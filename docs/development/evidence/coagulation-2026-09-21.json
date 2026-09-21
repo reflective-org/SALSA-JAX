@@ -1,0 +1,102 @@
+{
+  "scope": "coagc collision coefficients only; not full coagulation or SALSA",
+  "implementation_sha256": {
+    "src/salsa_jax/constants.py": "b9dc080c94cf9bb8b30ba842104cbe9743900b6a53c0043db967de2e4ed36675",
+    "src/salsa_jax/processes/coagulation.py": "7bd785be1492006b206724c8323a3e57b7c35a5b05d5824d0a1765a84076d3c2",
+    "benchmarks/benchmark_coagulation.py": "d429f802b9dd7694e6d1a7948dcb21b50b75ab416ff4f5fe5da3fbf2c80c8769",
+    "tools/coagulation_oracle.py": "386af2bcf87e46cff0650b220773e5e6efb7be088a8e797522e5f6364f01fac3"
+  },
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "jax_version": "0.11.2",
+  "jaxlib_version": "0.11.2",
+  "numpy_version": "2.5.3",
+  "thread_environment": {
+    "XLA_FLAGS": null,
+    "OMP_NUM_THREADS": null,
+    "OPENBLAS_NUM_THREADS": null,
+    "MKL_NUM_THREADS": null,
+    "VECLIB_MAXIMUM_THREADS": null,
+    "NUMEXPR_NUM_THREADS": null,
+    "JAX_NUM_THREADS": null,
+    "TF_NUM_INTRAOP_THREADS": null,
+    "TF_NUM_INTEROP_THREADS": null
+  },
+  "device": "cpu:0",
+  "dtype": "float64",
+  "case_count": 1734,
+  "repetitions": 1000,
+  "trials": 5,
+  "case_inputs_sha256": "97662f354ec43d1450f98ec3d2ece785fa44e7f17d98bc14e02dba9c2a65f693",
+  "case_hash_encoding": "C-order (n,6) IEEE float64 little endian",
+  "trial_orders": [
+    [
+      "jax",
+      "fortran"
+    ],
+    [
+      "fortran",
+      "jax"
+    ],
+    [
+      "jax",
+      "fortran"
+    ],
+    [
+      "fortran",
+      "jax"
+    ],
+    [
+      "jax",
+      "fortran"
+    ]
+  ],
+  "provenance": {
+    "source_sha256": {
+      "parkind1.F90": "bd7aa3a0f896829781c6c9c1924726def9bd8b2825778e26274c615c2642ff5a",
+      "mo_kind.F90": "e7d3a5f28d216e60828c395a704e33a7bfc5db6e966533776fc438f4d782d255",
+      "mo_math_constants.F90": "ceae6f761c288597f7fb495ff2a55030fee8f861e1ee0dcd8adc0ba3ba95734f",
+      "mo_physical_constants.F90": "12405902248f437d9f7ae9b03d1efe194cd7605f6b396156c3d820366b8a79b0",
+      "mo_ham_salsa_init.F90": "efc26ed1c4ab391f5fd288e7e5bd0f2998e722731c34ccd778063febf43faf50"
+    },
+    "function_sha256": "90591d2a1b5498deefb1fe02ec6052729407da8222812ca485f2aa55ae74b3fe",
+    "driver_sha256": "ff50c856626449b05ea71fab134b68cc2d5f948bb0807f6651da20dfc0afe07c",
+    "separate_compilation_without_lto": true,
+    "compiler": "GNU Fortran (Homebrew GCC 16.1.0) 16.1.0",
+    "flags": [
+      "-O2",
+      "-fno-fast-math",
+      "-fno-lto",
+      "-ffree-line-length-none"
+    ]
+  },
+  "jax_compile_seconds": 0.04003604198805988,
+  "jax_persistent_compilation_cache": false,
+  "jax_first_execution_seconds": 0.00026608299231156707,
+  "jax_warm_seconds_per_batch": [
+    3.686295897932723e-05,
+    3.6959666002076117e-05,
+    3.754337504506111e-05,
+    3.730933298356831e-05,
+    3.6084582970943304e-05
+  ],
+  "fortran_kernel_wall_seconds_per_batch": [
+    3.8849e-05,
+    3.2833e-05,
+    3.3174000000000005e-05,
+    3.3002999999999996e-05,
+    3.3133e-05
+  ],
+  "fortran_kernel_cpu_seconds_per_batch": [
+    3.8852999999999995e-05,
+    3.2835e-05,
+    3.318e-05,
+    3.3002999999999996e-05,
+    3.3135e-05
+  ],
+  "fortran_clock_ticks_per_second": 1000000000,
+  "median_fortran_over_jax": 0.8964637288155916,
+  "max_relative_error": 8.949567578225463e-15,
+  "jax_batch_checksum": 3.2570541118746906e-09,
+  "fortran_batch_checksum": 3.2570541118746923e-09,
+  "timing_notes": "Both compared metrics are elapsed wall time. Fortran SYSTEM_CLOCK uses int64 counters after an untimed warm pass; startup, I/O and checksum are excluded. Separate compilation without LTO preserves repeated non-PURE coagc calls. CPU_TIME is supplementary. JAX includes dispatch and block_until_ready; input transfer, compilation and checksum are outside warm timing. Trial order alternates. Thread settings are recorded, not normalized; this is a scoped CPU leaf comparison, not a full-model speedup or a controlled single-thread comparison."
+}
