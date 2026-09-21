@@ -42,3 +42,18 @@ gas with sulfate material-budget checks, and an empty-particle case. All nine
 default compatibility diagnostic hashes match the pre-fix run exactly. The
 checked full run proceeds beyond D001 but exposes a further segmentation fault;
 reference acceptance remains pending. See [recorded evidence](evidence/d001-repair.json).
+
+## D002 — undefined organic fraction when nucleation is disabled
+
+With an explicitly registered, positive organic gas and `nsnucl=0`, condensation
+read `zxocnv` without assigning it. The sulfuric-acid fraction was initialized,
+but its organic counterpart was only returned by the skipped nucleation call.
+The positive-organic regression failed under signaling-NaN initialization and
+floating-point traps before correction; assigning `zxocnv=0._dp` alongside
+`zxsa` makes the no-nucleation contract explicit.
+
+Seven condensation tests now pass, including positive-organic material-budget
+closure, unchanged particle number, the concentration threshold, and zero sink.
+The organic kernel fixture uses no sulfate vapor, so gas/species indexing errors
+cannot be hidden by a simultaneous sulfate change. This does not enable organic
+gas registration in the full driver or validate VBS.

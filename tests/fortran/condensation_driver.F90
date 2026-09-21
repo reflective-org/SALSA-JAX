@@ -11,16 +11,21 @@ PROGRAM condensation_regression
   INTEGER :: pbl(1),i
   CHARACTER(len=24) :: mode
   CALL get_command_argument(1,mode)
-  IF (TRIM(mode)=='present' .OR. TRIM(mode)=='zero') THEN
+  IF (TRIM(mode)=='present' .OR. TRIM(mode)=='zero' .OR. &
+      TRIM(mode)=='threshold' .OR. TRIM(mode)=='empty_organic') THEN
     subm_ngasspec=3
     isubm_ocnv=3
   END IF
   ALLOCATE(gas(1,1,subm_ngasspec))
   gas=0._dp
   gas(1,1,2)=1.e12_dp
-  IF (TRIM(mode)=='present') gas(1,1,3)=2.e12_dp
+  IF (TRIM(mode)=='present' .OR. TRIM(mode)=='empty_organic') THEN
+    gas(1,1,2)=0._dp
+    gas(1,1,3)=2.e12_dp
+  END IF
+  IF (TRIM(mode)=='threshold') gas(1,1,3)=1.e-10_dp
   number=1.e8_dp
-  IF (TRIM(mode)=='empty') number=0._dp
+  IF (TRIM(mode)=='empty' .OR. TRIM(mode)=='empty_organic') number=0._dp
   before=number
   volumes=0._dp
   DO i=1,fn2b

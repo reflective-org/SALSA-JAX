@@ -75,3 +75,23 @@ def test_condensation_with_no_particles_has_no_sink(current_condensation):
     sulfate, organic, sulfate_volume, organic_volume, number_change = run_current(current_condensation, "empty")
     assert sulfate == 1e12
     assert organic == sulfate_volume == organic_volume == number_change == 0
+
+
+def test_registered_organic_without_nucleation_closes_budget(current_condensation):
+    sulfate, organic, sulfate_volume, organic_volume, number_change = run_current(current_condensation, "present")
+    assert sulfate == sulfate_volume == number_change == 0
+    assert 0 < organic < 2e12
+    molecular_volume = (150e-3 / 6.02214179e23) / 2000.0
+    assert organic_volume / molecular_volume == pytest.approx(2e12 - organic, rel=2e-14)
+
+
+def test_organic_threshold_remains_inactive(current_condensation):
+    _, organic, _, organic_volume, number_change = run_current(current_condensation, "threshold")
+    assert organic == 1e-10
+    assert organic_volume == number_change == 0
+
+
+def test_registered_organic_without_particles_has_no_sink(current_condensation):
+    sulfate, organic, sulfate_volume, organic_volume, number_change = run_current(current_condensation, "empty_organic")
+    assert organic == 2e12
+    assert sulfate == sulfate_volume == organic_volume == number_change == 0

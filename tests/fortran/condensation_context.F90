@@ -19,7 +19,7 @@ MODULE mo_ham_salsactl
   IMPLICIT NONE
   INTEGER, PARAMETER :: in1a=1, in2a=4, fn2b=17, nbin(2)=[3,7]
   INTEGER :: nsnucl=0
-  REAL(dp), PARAMETER :: d_sa=5.5393769643945706e-10_dp, epsoc=1._dp, n3=100._dp
+  REAL(dp), PARAMETER :: d_sa=5.539376964394570e-10_dp, epsoc=0.15_dp, n3=100._dp
   REAL(dp) :: massacc(fn2b)=1._dp, dpmid(fn2b)=1.e-8_dp
 END MODULE
 MODULE mo_ham

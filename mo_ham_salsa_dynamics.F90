@@ -560,6 +560,7 @@ CONTAINS
     ztmst = time_step_len
     zqtmst = 1.0_dp/ztmst
     zxsa = 0._dp
+    zxocnv = 0._dp
     zj3n3 = 0._dp
     
     !------------------------------------------------------------------------------
