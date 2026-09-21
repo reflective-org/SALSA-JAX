@@ -48,8 +48,9 @@ The tag `fortran-baseline-d87dc07` identifies the original reference revision
 local checkout points to that repository; `origin` is SALSA-JAX. Clones only
 configure `origin` unless an upstream remote is added explicitly.
 
-Four isolated Fortran repairs address absent organic gas, an undefined organic
-fraction, activation velocity shape/units, and undersized aerosol-water storage.
+Five isolated Fortran repairs address absent organic gas in condensation and
+nucleation, an undefined organic fraction, activation velocity shape/units,
+and undersized aerosol-water storage.
 The full checked run now reaches an unresolved radiation initialization failure;
 full-model scientific validation is pending. See the
 [repair record](docs/development/reference-repairs.md). The first scalar kernel

@@ -95,6 +95,15 @@ the trap; symbolized frames identify `ham_rad_refrac_volume` → `ham_rad_refrac
 → `ham_rad` → `driver.F90:808`. Audit initial diagnostic values separately from
 microphysics. See [current comparison evidence](evidence/reference-repairs-2026-09-21.json).
 
-Nucleation still reads the optional organic-gas index unconditionally in its
-own routine. Condensation repairs do not validate any `nsnucl>0` configuration;
-its absent-organic handling needs a separate reproducer and correction.
+The separate nucleation gas-index defect is repaired below. Full-driver
+`nsnucl>0` trajectories still require their own reference acceptance.
+
+## D006 — nucleation reads an absent organic gas
+
+The independent nucleation routine now initializes optional organic vapor to
+zero and accesses its gas entry only for a positive registered index. The
+original index-zero failure is retained for all three sulfate nucleation schemes.
+Twenty-nine checks establish original/current compatibility, zero-input behavior,
+and sulfate budgets when nested in condensation; see the
+[nucleation reference contract and evidence](nucleation-reference.md).
+This does not enable unsupported nucleation modes or validate full trajectories.

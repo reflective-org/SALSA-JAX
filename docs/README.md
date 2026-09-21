@@ -6,6 +6,7 @@
 - [Fortran architecture, units and known defects](development/architecture.md)
 - [Independent Fortran repairs and remaining failures](development/reference-repairs.md)
 - [Effective runtime metadata and capture scope](development/runtime-metadata.md)
+- [Isolated nucleation contract and regression evidence](development/nucleation-reference.md)
 - [Lessons from local JAX ports](development/local-port-lessons.md)
 - [Numerical validation and benchmark protocol](development/validation-and-benchmarks.md)
 - [First coagulation-coefficient port](development/coagulation-coefficient.md)

@@ -71,8 +71,9 @@ diagnostics. Host file I/O stays outside transformed JAX computations.
 - Default `nsnucl=0`; condensation/coagulation and 2b hydration are enabled.
   Setup rejects `nsnucl>4`, and mode 4 aborts pending NH3 input. Unreachable
   parameterizations need new supported Fortran cases before being ported.
-  Nucleation has its own unguarded organic-gas read, still to be reproduced and
-  repaired before enabling those modes.
+  Nucleation's own absent-organic read is now repaired (D006), with checked
+  isolated comparisons and coupled budget tests. Full-driver enabled-nucleation
+  trajectories remain unvalidated; see [the reference contract](nucleation-reference.md).
 - `set_coagc` computes a local particle mass array but does not populate a global
   coefficient table; the routine name is not evidence of its behavior.
 - The driver computes `new_pelvoc` without consuming it; sulfate forcing peaks at
