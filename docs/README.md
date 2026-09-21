@@ -13,11 +13,13 @@
 - [Standalone radiation initialization and data audit](development/radiation-reference-audit.md)
 - [Lessons from local JAX ports](development/local-port-lessons.md)
 - [Numerical validation and benchmark protocol](development/validation-and-benchmarks.md)
+- [Standalone condensation port and benchmarks](development/condensation-process.md)
 - [Complete standalone coagulation port and benchmarks](development/coagulation-process.md)
 - [First coagulation-coefficient port](development/coagulation-coefficient.md)
 - [2026-09-21 baseline and benchmark results](development/results-2026-09-21.md)
 
-The Python package implements complete standalone coagulation for 17 bins and
-five materials using supplied hydrated diameters. Condensation, nucleation,
-hydration and the full box model remain planned. See the process guide for
+The Python package implements standalone coagulation and condensation for
+17 bins and five materials using supplied hydrated diameters. Condensation
+has nucleation disabled. Nucleation, hydration and the full box model remain
+planned. See the process guide for
 the inherited cross-regime conservation limitation.

@@ -29,7 +29,9 @@ For C01, the independent scalar oracle can precede full-model F11–F16. Later
 processes use scoped fixtures, provenance and comparisons; passing those does
 not close the complete parent trajectory gates. Coagulation C07–C11 now accepts
 captured dry geometry and hydrated diameters explicitly, allowing its standalone
-port before C02/C06. Those dependencies remain required for coupled execution.
+port before C02/C06. Condensation C12–C14 similarly accepts captured hydrated
+diameters, with nucleation disabled. Those dependencies remain required for
+coupled execution.
 Documentation of the unit's equations, units, branch limits and tolerances belongs
 in its `.J` commit. Split a row into additional named child kernels if its audited
 implementation cannot be reviewed as one coherent change.
@@ -104,3 +106,14 @@ all coupled acceptance gates remain open.
 | C11.D009.A | C11.D009.R | Compare conservative update choices and document scientific decision | Positive/empty/stiff cases, number/material budgets and effect on dilute baseline |
 | C11.D009.F | C11.D009.A | Implement the selected Fortran reference repair separately | Reproducer conserves; affected process/trajectory outputs reviewed |
 | C11.D009.J | C11.D009.F | Update JAX to the repaired reference with explicit compatibility decision | Eager/JIT parity, budgets and repeat-call acceptance |
+
+## Condensation milestone
+
+C12–C14 are implemented as `condensation_rates` and `condensation_step`, with
+`nsnucl=0`, `nsoa=0` and supplied hydrated diameters. Separate commits retain
+actual boundary capture, the repaired Fortran oracle, the JAX port and the
+benchmark. The 29-case matrix covers registered/absent organic gas and actual
+runtime species constants. F13c is complete only for the condensation boundary;
+nested nucleation capture and N01–N08 remain open. A two-process check connects
+coagulation to condensation with captured diameter inputs; it does not close
+the hydration, remapping or complete-native integration gates.

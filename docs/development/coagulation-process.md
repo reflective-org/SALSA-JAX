@@ -140,8 +140,10 @@ See the [checked integration and coefficient evidence](evidence/coagulation-proc
 [batch benchmark](evidence/coagulation-benchmark-batch-2026-09-21.json) and
 [single-case benchmark](evidence/coagulation-benchmark-single-2026-09-21.json).
 The full suite passed 188 tests before two final process cases were added;
-the final 15-test process suite also passed, covering all **190 current tests**.
+the final 15-test process suite also passed, covering the **190 tests at that
+coagulation milestone**. Later totals are in the [status ledger](../plans/STATUS.md).
 
-Hydration, grid generation, remapping, condensation and nucleation ports remain separate
-work; accepting already captured geometry/wet diameters allows this process to
+The separate [condensation port](condensation-process.md) is now available
+with nucleation disabled. Hydration, grid generation, remapping and nucleation
+remain separate work; accepting already captured geometry/wet diameters allows this process to
 be tested before those coupled dependencies are implemented.

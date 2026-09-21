@@ -3,10 +3,10 @@
 An incremental Python/JAX port of HAM-SALSA aerosol microphysics, validated
 process by process against the original Fortran implementation.
 
-**Status:** complete standalone coagulation is ported to JAX for the 17-bin,
-five-material configuration, including the collision coefficients and sequential
-bin transfers. It matches original Fortran with supplied hydrated diameters.
-Condensation, nucleation and the coupled SALSA model remain in the
+**Status:** standalone coagulation and condensation are ported to JAX for the
+17-bin, five-material configuration, using supplied hydrated diameters.
+Condensation includes sulfate and optional nonvolatile organic uptake with
+nucleation disabled. Nucleation and the coupled SALSA model remain in the
 [commit-sized roadmap](docs/plans/ULTRAPLAN.md).
 
 ## Quick start
@@ -47,6 +47,13 @@ Maximum process relative error is below 2e-15. CPU timing shows no speedup yet:
 The port preserves a discovered native cross-regime volume-conservation defect
 (D009), which becomes large in stiff stress cases; numerical parity does not
 establish physical validity there.
+
+The separate [condensation API and validation](docs/development/condensation-process.md)
+cover 29 cases against the D001/D002-repaired Fortran routine. Particle number
+and gas outputs match exactly; maximum volume relative error is about 6e-16.
+Both species budgets close. CPU timing is slower than Fortran: 35.3 versus
+6.4 µs for 29 cases. Positive organic cases are kernel fixtures; the default
+full driver does not register that gas.
 
 ## Fortran reference and current limitation
 
@@ -107,8 +114,9 @@ Start with the [documentation index](docs/README.md),
 [development quickstart](docs/development/quickstart.md), and
 [current status / next tasks](docs/plans/STATUS.md).
 Native entry/exit capture is verified for the default first call. Coagulation
-is now separately captured and ported. The next process port is condensation with nucleation disabled; hydration and grid
-generation also remain to be ported for coupled execution. Full-driver
+and condensation are separately captured and ported. Next is independent
+nucleation; hydration, grid generation and remapping also remain to be ported
+for coupled execution. Full-driver
 radiation requires valid optical tables and a separate initialization repair.
 
 See [LICENSE.txt](LICENSE.txt) and retained source notices for attribution.

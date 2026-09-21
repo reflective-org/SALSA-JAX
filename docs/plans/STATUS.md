@@ -29,18 +29,22 @@ The [master plan](ULTRAPLAN.md) defines the remaining commit-sized backlog.
 | F11b | Partial | Native material/component/gas/number maps and species/tracer table captured; remaining HAM wrapper tables/flags documented |
 | F12 | Default first call verified | Full-precision native entry/exit, geometry and units; six HAM arrays identical with capture on/off |
 | F14a/F15a/F16a | Default first-call checks pass | Hash-verified fixture, native conversions/material budgets and byte-identical fresh-process repeat |
-| S01 | Partial, first leaf only | Legacy constants and float64 policy for `coagc`; broader state/kind readback remains planned |
+| S01 | Standalone process subset | Legacy constants and float64 policy for coagulation/condensation; compiled runtime values checked, broader model constants remain pending |
 | C01.R / C01.J | Leaf parity passes | Verbatim original-Fortran oracle; four tests, 1734 cases; maximum relative error 8.95e-15 |
 | P01/P02 | Preliminary leaf evidence | Wall-to-wall batch timing with source/case hashes; no full-process or model claim |
 | F13b | Default process boundary verified | Coagulation inputs after hydration and outputs before condensation; capture/control and fresh repeat match exactly |
-| S02/S04–S06 | Coagulation subset | Fixed 17-bin/five-material layout, immutable state return, explicit geometry/environment and enabled flag; full state API remains pending |
+| S02/S04–S06 | Coagulation/condensation subset | Fixed 17-bin/five-material layout, immutable state return, explicit geometry/environment and enabled flag; full state API remains pending |
 | C07–C11.R/J | Standalone numerical parity passes | Original process/coefficient extraction matches baseline tag; 31 cases, actual capture, eager/JIT and 20-call sequences |
 | C11.D009.R | Legacy defect reproduced | Minimal 2a/2b pair creates volume; preserved in JAX and documented, scientific repair pending |
 | P03/P04a | Initial scoped process measurement | One and 31-case CPU timings against optimized Fortran; no measured speedup |
+| F13c | Condensation subset verified | Actual conditional condensation boundary at nsnucl=0; capture/control and fresh repeat exact, nested nucleation remains pending |
+| C12–C14.R/J | Standalone numerical parity passes | Repaired Fortran oracle, 29 cases, eager/JIT, species budgets and 20 calls; organic fixtures explicit |
+| P04b | Initial scoped process measurement | One and 29-case CPU timings against optimized Fortran; no measured speedup |
 | Q01 | Implemented | Quickstart, capability limits and reproduction commands |
 
-All **190 current tests pass** in this repository's `.venv`: the last full run
-passed 188, followed by 15 process tests including two added boundary cases. Original inputs
+All **242 current tests pass** in this repository's `.venv`: the full suite
+passed 241, followed by 14 condensation tests including the added two-process
+integration case. Original inputs
 remain unchanged; Fortran scientific/driver repairs are separate commits. Generated
 builds/outputs remain ignored. Source relocation has not started. The pre-existing
 `AGENTS.md` remains unchanged; this ledger and the repair record carry current
@@ -48,12 +52,13 @@ validation status.
 
 ## Next ready tasks, in order
 
-1. **C12–C14 / F13c:** isolate and port condensation with `nsnucl=0`; keep
-   nucleation a separate rate/survival/insertion contract before recoupling.
+1. **N01–N07 / remaining F13c:** port nucleation independently, starting with
+   the supported rate schemes, then growth/survival and aerosol insertion.
+   Reintroduce the nested condensation call only after separate acceptance.
 2. **C11.D009.A/F/J:** review and repair the inherited cross-regime volume
    creation in a separate scientific change; do not silently alter this port.
 3. **C02/C04–C06 / F13a:** port grid generation and hydration for coupled
-   execution. Coagulation currently accepts their already computed outputs.
+   execution. Coagulation and condensation accept their already computed outputs.
 4. **F13d / F14–F16:** capture remapping and complete process-switch/reset,
    configuration and trajectory acceptance. Finish F11b HAM wrapper metadata.
 5. **D007:** reproduce and guard absent-organic access in tiny-particle cleanup
@@ -62,13 +67,11 @@ validation status.
    full-driver acceptance. Source relocation still depends on reference gates.
 7. **O01–O04:** improve build portability and artifact cleanup separately.
 
-Coagulation, condensation and nucleation each have separate Fortran oracles,
-Python kernels, tests and benchmarks. Condensation is first isolated with
-`nsnucl=0`; nucleation rate/survival/insertion is validated independently before
-reintroducing the original nested condensation call. Complete standalone
-coagulation now has numerical parity for its documented configuration.
-Hydration, condensation and nucleation JAX ports remain pending;
-this is not yet a coupled SALSA simulation.
+Processes are tracked independently. Coagulation and condensation have JAX
+kernels, separate Fortran oracles, tests and benchmarks. Condensation currently
+uses `nsnucl=0`; nucleation rate/survival/insertion will be validated before
+restoring coupling. Hydration and nucleation JAX ports remain pending; this is
+not yet a coupled SALSA simulation.
 
 ## Initial implementation commits
 
@@ -162,7 +165,8 @@ The CPU benchmark shows no speedup: JAX/Fortran median warm times are
 42.51/4.11 µs for one captured case and 132.09/123.61 µs for 31 cases.
 Maximum number/volume relative error is below 2e-15. Full provenance and limits
 are in the [integration record](../development/evidence/coagulation-process-2026-09-21.json)
-and linked benchmark artifacts. Condensation and nucleation have not been ported.
+and linked benchmark artifacts. The subsequent condensation milestone is below;
+nucleation remains unported.
 
 
 | Commit | Coagulation deliverable |
@@ -171,3 +175,26 @@ and linked benchmark artifacts. Condensation and nucleation have not been ported
 | `57dc829` | C07–C11.R: verbatim Fortran oracle, 31 cases and D009 reproducer |
 | `104c82b` | C07–C11.J: complete standalone JAX coagulation and comparisons |
 | `ddbe581` | P04a: scoped CPU benchmark with raw measurements |
+
+## Standalone condensation milestone
+
+The [condensation API and contract](../development/condensation-process.md)
+cover sulfate and optional nonvolatile organic uptake with nucleation disabled.
+Actual native capture, 29 oracle cases, species budgets, eager/JIT parity and
+20 successive fixed-diameter calls pass. A separate check connects the two
+ported processes against their captured boundaries. Full SALSA, hydration,
+nucleation and remapping acceptance remain open.
+
+JAX/Fortran median warmed CPU times are 10.10/0.263 µs for the captured case
+and 35.31/6.40 µs for 29 cases. Number/gas outputs match exactly; maximum volume
+relative error is about 6e-16. The
+[integration evidence](../development/evidence/condensation-process-2026-09-21.json)
+and linked raw benchmarks retain provenance and timing limitations.
+
+
+| Commit | Condensation deliverable |
+|---|---|
+| `d2169ad` | F13c subset: checked condensation capture and fixture |
+| `6b41e42` | C12–C14.R: repaired Fortran oracle and 29 cases |
+| `d06f7a2` | C12–C14.J: standalone JAX condensation and comparisons |
+| `0e6ea69` | P04b: independent CPU benchmark with raw measurements |

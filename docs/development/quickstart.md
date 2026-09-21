@@ -106,3 +106,19 @@ and exposed by tests, not repaired by the port.
 Use `--single-case` for the captured default only. These timings compare the
 complete isolated process, with JAX compilation reported separately; they are
 not full-model performance measurements.
+
+## Separate condensation
+
+The [condensation guide](condensation-process.md) documents the canonical gas
+slots, runtime species properties, thresholds and `nsnucl=0` scope. It includes
+both sulfate and optional nonvolatile organic uptake; no nucleation API is
+exposed yet. Regenerate its actual boundary with `--capture-condensation-state`
+in the checked first-microphysics scope.
+
+```sh
+.venv/bin/python -m benchmarks.benchmark_condensation --repetitions 1000 --trials 5
+```
+
+Its oracle includes the earlier D001/D002 repairs and uses compiled legacy
+constants. Positive organic cases are isolated fixtures, not a new full-driver
+gas registration. All benchmarks use the repository's virtual environment.

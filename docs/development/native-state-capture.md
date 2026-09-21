@@ -74,8 +74,8 @@ The first fixture is a single default call with nucleation disabled. Capturing
 it is not complete process parity or trajectory acceptance. Full model radiation
 remains unsupported, and optional/edge configurations need their own checked
 cases. The [coagulation process boundary and JAX port](coagulation-process.md)
-are now available. Other process boundaries and the full Python state API remain
-pending.
+and the separate [condensation port](condensation-process.md) are now available.
+Other process boundaries and the full Python state API remain pending.
 
 The [integration evidence](evidence/native-state-2026-09-21.json) records the
 repaired capture, a control without native instrumentation and a fresh repeat.
