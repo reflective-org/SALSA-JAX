@@ -3,11 +3,12 @@
 An incremental Python/JAX port of HAM-SALSA aerosol microphysics, validated
 process by process against the original Fortran implementation.
 
-**Status:** coagulation, condensation and supported nucleation are ported to
-JAX for 17 bins and five materials, using supplied hydrated diameters.
-Nucleation schemes 1–3 and growth options 1–3 are independently tested, with
-condensation coupling restored. Hydration, remapping and the complete SALSA
-model remain in the [commit-sized roadmap](docs/plans/ULTRAPLAN.md).
+**Status:** grid generation, hydration, coagulation, condensation and supported
+nucleation are ported to JAX for 17 bins and five materials. The default grid →
+hydration → coagulation → condensation chain matches native boundaries before
+remapping. Nucleation schemes 1–3 and growth options 1–3 are independently tested,
+with condensation coupling restored. Remapping and the complete SALSA model
+remain in the [commit-sized roadmap](docs/plans/ULTRAPLAN.md).
 
 ## Quick start
 
@@ -58,10 +59,16 @@ full driver does not register that gas.
 The [nucleation API and validation](docs/development/nucleation-process.md)
 cover 110 Fortran cases, all supported growth options, vapor uptake, particle
 insertion and species budgets. Paired JIT comparisons differ by less than
-5.7e-15; CPU timing shows no speedup in the recorded small batches. All **384
-tests pass**. A checked [active native capture](docs/development/nucleation-native-capture.md)
+5.7e-15; CPU timing shows no speedup in the recorded small batches. All **459
+tests pass** in the repository’s `.venv`. A checked [active native capture](docs/development/nucleation-native-capture.md)
 now validates the nested source and coupled insertion against the initialized
 Fortran driver; full SALSA trajectories remain open.
+
+The [grid and hydration guide](docs/development/grid-and-hydration.md) covers
+native grid spacing, water uptake, exact iteration counts and actual initial
+hydration capture. Grid geometry matches exactly; hydration errors stay below
+4e-16 relative over 31 cases. Warm CPU timing shows no speedup: JAX takes
+53.75 µs versus Fortran’s 38.72 µs for that batch.
 
 ## Fortran reference and current limitation
 
@@ -124,7 +131,8 @@ Start with the [documentation index](docs/README.md),
 Native entry/exit capture is verified for the default first call. Coagulation
 and condensation are separately captured and ported; nucleation is ported and
 coupled using both explicit kernel fixtures and a checked active native capture.
-Next are grid generation, hydration and remapping for complete coupled execution.
+Grid and hydration are now validated through the default pre-remap chain.
+Next are remapping and complete composition, including optional hydration recalculation.
 Full-driver
 radiation requires valid optical tables and a separate initialization repair.
 

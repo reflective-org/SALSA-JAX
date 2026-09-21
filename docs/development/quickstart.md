@@ -111,8 +111,8 @@ not full-model performance measurements.
 
 The [condensation guide](condensation-process.md) documents the canonical gas
 slots, runtime species properties, thresholds and `nsnucl=0` scope. It includes
-both sulfate and optional nonvolatile organic uptake; no nucleation API is
-exposed yet. Regenerate its actual boundary with `--capture-condensation-state`
+both sulfate and optional nonvolatile organic uptake; the separate nucleation
+coupling API is described below. Regenerate its actual boundary with `--capture-condensation-state`
 in the checked first-microphysics scope.
 
 ```sh
@@ -154,3 +154,25 @@ first-call sulfate is too small to activate nucleation:
 
 The [active capture guide](nucleation-native-capture.md) explains first-call
 forcing, capture/control checks, fixture export and supported scope.
+
+## Grid and hydration
+
+The [grid/hydration guide](grid-and-hydration.md) documents `size_grid`,
+`inverse_molality`, `equilibrate`, explicit species properties and solubility flags.
+Enable float64 and supply number/material volume plus RH and temperature.
+The initial hydration capture and composed grid → hydration → coagulation →
+condensation tests pass with native `recalc=False`, before remapping. The full
+suite currently passes 459 tests. Remapping, optional recalculation integration,
+seven-mode initialization and the complete SALSA timestep remain pending.
+
+```sh
+.venv/bin/python -m pytest -q tests/test_grid.py tests/test_inverse_molality.py \
+  tests/test_hydration_oracle.py tests/test_hydration.py tests/test_hydration_native.py
+.venv/bin/python -m benchmarks.benchmark_hydration --repetitions 500 --trials 5
+```
+
+Run timings after tests finish; add `--single-case` for the curated final-state
+case. Add `--capture-hydration-state` to a checked first-microphysics run to
+capture the initial native boundary. D010 documents invalid zero-volume inputs;
+parity does not repair that native failure. See the guide for capture commands,
+benchmarks and known limits.

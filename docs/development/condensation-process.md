@@ -5,7 +5,8 @@ condensation routine for `nsnucl=0`, `nsoa=0`, without `HAMMOZ`. It includes
 transport coefficients, transition corrections, sulfate uptake and optional
 nonvolatile organic uptake. Supported nucleation is now available through the separate
 [condensation coupling API](nucleation-process.md). VBS, semivolatile partitioning,
-hydration and remapping remain separate work.
+and remapping remain separate work. [Grid and hydration](grid-and-hydration.md)
+are ported and validated in the default pre-remap chain.
 
 ## API and state contract
 
@@ -103,7 +104,8 @@ to newly transferred material. Eager/JIT state parity uses relative tolerance
 2e-13, rates 1e-13, each species budget 3e-14, with no absolute floor.
 Twenty repeated calls use a 4e-13 tolerance and retain fixed supplied diameters.
 A separate test chains the ported coagulation and condensation outputs against
-their captured boundaries; it does not implement hydration or remapping.
+their captured boundaries. A subsequent [grid/hydration test](grid-and-hydration.md)
+adds computed geometry and water uptake to that chain; remapping remains pending.
 
 ## CPU benchmark
 

@@ -99,8 +99,8 @@ C07–C11 are implemented together as a standalone 17-bin/five-material process,
 with separate commits for capture, original-Fortran oracle and JAX translation.
 The small transfer branches share one sequential loop; splitting them into
 separate runtime abstractions would obscure the required update order. Supplied
-geometry/wet diameters satisfy this isolated API; grid/hydration JAX ports and
-all coupled acceptance gates remain open.
+geometry/wet diameters satisfy this isolated API. Grid/hydration are now ported
+and accepted in the default pre-remap chain; complete coupled gates remain open.
 
 | ID | Depends on | Commit-sized deliverable | Verification |
 |---|---|---|---|
@@ -142,8 +142,8 @@ for native invariance and actual-boundary parity evidence:
 | N08b.R | F13c.N3,N08a.R | Replay that fixture through isolated and coupled native oracles | Every relevant boundary matches captured source and state |
 | N08b.J | N08b.R,N08a.J | Accept JAX source/coupled outputs against active native fixture | Eager/JIT parity, physical budgets and configuration documented |
 
-Grid generation C02 and hydration C04–C06 remain prerequisites for complete
-composition; remapping C15–C17 follows. Inherited nucleation arithmetic quirks
+Grid generation C02 and hydration C04–C06 are now accepted as described below;
+remapping C15–C17 follows before complete composition. Inherited nucleation arithmetic quirks
 are recorded in the process guide and require separate scientific decisions
 before any repair. They are not silently corrected in the compatibility port.
 
@@ -154,8 +154,20 @@ before any repair. They are not silently corrected in the compatibility port.
 | `736c048` | F13c.N3: reviewed fixture pair and mandatory-capture checks |
 | `d60258f` | N08b.R/J: native replay, adapter and eager/JIT acceptance |
 
-Next implement C02.R/J (native grid generation and JAX geometry), then
-C04.R/J (composition helper), C05.R/J (soluble equilibration) and C06.R/J
-(insoluble hydration switch), each with the existing separate reference and
-port acceptance. F13a should capture the actual hydration boundary before
-claiming its native integration. Parent N08/C18/I01 remain open.
+## Grid and hydration milestone
+
+C02.R/J and C04–C06.R/J now pass independent original-Fortran comparisons.
+The fixed native grid preserves binary32 spacing fractions; inverse molality
+and equilibrium hydration retain the native RH clamp, solubility flags and
+uncapped stopping rule. The 31-case matrix has exact iteration counts.
+F13a captures the initial actual hydration boundary: capture/control outputs
+and fresh repeats are identical. The default JAX grid → hydration → coagulation →
+condensation chain matches native boundaries with `recalc=False`, before remapping.
+See the [contract and evidence](../development/grid-and-hydration.md).
+
+Next implement C15.R/J transfer decisions, C16.R/J ordered redistribution and
+C17.R/J post-remap corrections, with F13d actual-boundary capture. Each reference
+and port remains a separate commit-sized task. Then accept C18 with `recalc`
+off/on and both remap passes, followed by active N08 composition. C03 seven-mode
+initialization remains a separate prerequisite for the box model. Parent
+N08/C18/I01 and complete trajectories remain open.

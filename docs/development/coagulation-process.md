@@ -144,6 +144,8 @@ the final 15-test process suite also passed, covering the **190 tests at that
 coagulation milestone**. Later totals are in the [status ledger](../plans/STATUS.md).
 
 The separate [condensation port](condensation-process.md) is now available
-with nucleation disabled. Hydration, grid generation, remapping and nucleation
-remain separate work; accepting already captured geometry/wet diameters allows this process to
-be tested before those coupled dependencies are implemented.
+with nucleation disabled; [supported nucleation](nucleation-process.md) has a
+separate coupling API. [Grid and hydration](grid-and-hydration.md) are also ported
+and validated in the default pre-remap chain. This standalone API still accepts
+supplied geometry/wet diameters. Remapping and complete native composition remain
+pending.

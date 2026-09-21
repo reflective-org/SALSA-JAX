@@ -111,8 +111,9 @@ series' parameter domain or proof of physical correctness of inherited formulas.
 The default driver has nucleation disabled. The original 110-case matrix uses
 explicit initialized kernel fixtures. A subsequent [active native capture](nucleation-native-capture.md)
 now validates scheme 2/growth 1 through the checked driver's actual nested
-call and parent condensation boundary. Hydration, grid generation, remapping
-and the complete JAX SALSA timestep remain outside this process milestone. Full radiation still
+call and parent condensation boundary. [Grid and hydration](grid-and-hydration.md)
+are now separately ported and accepted through the default pre-remap chain.
+Remapping and the complete JAX SALSA timestep remain pending. Full radiation still
 has the D005 blocker and coagulation retains the D009 budget defect.
 The [status ledger](../plans/STATUS.md) distinguishes completed process tasks
 from pending native capture and trajectory gates.
@@ -155,5 +156,6 @@ See the [integration record](evidence/nucleation-process-2026-09-21.json),
 [single-case measurements](evidence/nucleation-benchmark-single-2026-09-21.json).
 Both operations match Fortran below 5.68e-15 relative error across the paired
 benchmark cells; coupled state error is below 4.36e-15. The full repository
-suite passed **315 tests at that milestone**; active native acceptance raises
-the current count to **384** in the repository's `.venv`.
+suite passed **315 tests at that milestone**, followed by 384 with active native
+acceptance. Grid/hydration acceptance raises the current count to **459** in the
+repository's `.venv`.

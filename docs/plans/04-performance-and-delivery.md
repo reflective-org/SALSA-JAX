@@ -14,7 +14,7 @@ slowdowns as readily as improvements. One row is one intended commit.
 | P04a | P03,C11.J | Benchmark complete coagulation separately | Bin/material updates included; raw samples and compilation separated |
 | P04b | P03,C14.J | Benchmark condensation with nucleation disabled | Same gas/aerosol cases and reset costs; gas/material budgets pass |
 | P04c | P03,N07.J,N08a.J | Benchmark isolated nucleation and condensation coupling separately; implemented | Matched two native cells per case; nine static groups, checked parity and raw compile/warm measurements |
-| P04d1 | P03,C06.J | Benchmark water equilibration | Preserve convergence criterion; record iteration-sensitive cases |
+| P04d1 | P03,C06.J | Benchmark water equilibration; implemented | One/31-case CPU evidence, original convergence criterion and exact untimed iteration counts; no speedup |
 | P04d2 | P03,C17.J | Benchmark bin remapping | Preserve transfer order and both correction passes |
 | P04e | P04a,P04b,P04c,P04d1,P04d2,I01 | Benchmark original native process composition | Coupled parity passes; distinguish composed timing from sum of isolated times |
 | P05 | B03.J | Add matched full-driver timing mode | Equal initialization, forcing, steps, diagnostics and output cadence |

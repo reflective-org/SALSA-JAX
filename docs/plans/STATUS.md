@@ -45,38 +45,43 @@ The [master plan](ULTRAPLAN.md) defines the remaining commit-sized backlog.
 | N08a.R/J | Process coupling passes | Actual condensation call order, particle insertion, species budgets, ten fixed-diameter calls; parent N08 remains open |
 | F13c.N1–N3 / N08b.R/J | Active native acceptance passes | Copy-only profile, active nested/parent fixtures, exact capture invariance and actual Fortran/JAX parity |
 | P04c | Initial scoped measurements | Matched two-cell workloads, isolated/coupled, nine groups; no measured CPU speedup |
+| C02.R/J | Native grid passes | Four ordered limit sets; all five fields bit exact, preserving binary32 spacing fractions |
+| C04–C06.R/J | Standalone hydration passes | Actual molality/equilibration oracle; 31 cases, exact stopping counts, eager/JIT float64 parity |
+| F13a | Initial native hydration verified | Copy-only capture/control and fresh repeat exact; actual material registry replay and pre-remap JAX chain pass |
+| P04d1 | Initial scoped hydration measurement | One and 31-case CPU timings; exact untimed iteration checks, no measured speedup |
 | Q01 | Implemented | Quickstart, capability limits and reproduction commands |
 
-All **384 current tests pass** in this repository's `.venv` (40.26 seconds).
-The latest 69 checks add controlled native configuration, nested capture,
-fixture validation, adapter ordering and actual-boundary acceptance. Original inputs
-remain unchanged; Fortran scientific/driver repairs are separate commits. Generated
-builds/outputs remain ignored. Source relocation has not started. The pre-existing
-`AGENTS.md` remains unchanged; this ledger and the repair record carry current
-validation status.
+All **459 current tests pass** in this repository's `.venv` (50.13 seconds).
+The latest 75 checks cover native grid arithmetic, inverse molality, hydration,
+checked iteration diagnostics, capture integrity and pre-remap composition.
+Original Fortran sources and scientific inputs are unchanged by this milestone.
+Generated builds/outputs remain ignored. Source relocation has not started.
+The pre-existing `AGENTS.md` remains unchanged; this ledger and the repair record
+carry current validation status.
 
 ## Next ready tasks, in order
 
-1. **C02/C04–C06 / F13a:** port grid generation and hydration for complete
-   coupled execution. Begin with the grid's independent Fortran oracle and JAX
-   geometry, then composition/equilibration and actual hydration capture.
-2. **C11.D009.A/F/J:** review and repair the inherited cross-regime volume
-   creation in a separate scientific change; do not silently alter this port.
-3. **C15–C17:** port native remapping decisions, transfers and radius corrections
-   after grid/hydration acceptance, retaining original order and zero-bin policy.
-4. **F13d / F14–F16:** capture remapping and complete process-switch/reset,
-   configuration and trajectory acceptance. Finish F11b HAM wrapper metadata.
-5. **D007:** reproduce and guard absent-organic access in tiny-particle cleanup
-   before accepting empty/tiny-volume full-native cases.
+1. **C15–C17 / F13d:** capture and port native remapping decisions, transfers
+   and radius corrections, retaining sequential order and zero-bin policy.
+2. **C18 / N08 / F14–F16:** compose the complete native process order, including
+   optional diameter recalculation and both remap passes; accept process switches,
+   active nucleation and repeated trajectories. Finish F11b HAM wrapper metadata.
+3. **C03:** port the seven-mode `size_distribution` initialization independently
+   before claiming a standalone JAX box model.
+4. **C11.D009.A/F/J:** review and repair inherited cross-regime volume creation
+   as a separate scientific change; preserve compatibility until that decision.
+5. **D007/D010:** resolve tiny-particle cleanup's absent-organic access and
+   invalid active zero-volume hydration before accepting those native inputs.
 6. **D005:** obtain valid optical tables and repair standalone radiation before
    full-driver acceptance. Source relocation still depends on reference gates.
 7. **O01–O04:** improve build portability and artifact cleanup separately.
 
-Processes are tracked independently. Coagulation, condensation and supported
-nucleation have JAX kernels, separate Fortran oracles, tests and benchmarks.
-Nucleation is also coupled to condensation. Hydration, remapping and the
-complete native SALSA composition remain pending; this is not yet a complete
-coupled SALSA simulation.
+Processes are tracked independently. Grid generation, hydration, coagulation,
+condensation and supported nucleation have JAX kernels and separate Fortran
+references. Hydration, coagulation and condensation now compose against the
+actual default pre-remap boundaries, with `recalc=False`. Nucleation's active
+native process acceptance is separate. Remapping and complete SALSA composition
+remain pending; this is not yet a complete coupled SALSA simulation.
 
 ## Initial implementation commits
 
@@ -187,8 +192,8 @@ The [condensation API and contract](../development/condensation-process.md)
 cover sulfate and optional nonvolatile organic uptake with nucleation disabled.
 Actual native capture, 29 oracle cases, species budgets, eager/JIT parity and
 20 successive fixed-diameter calls pass. A separate check connects the two
-ported processes against their captured boundaries. Full SALSA, hydration and remapping acceptance remain open. Nucleation
-was subsequently ported below.
+ported processes against their captured boundaries. Full SALSA and remapping acceptance remain open. Hydration and nucleation
+were subsequently ported below.
 
 JAX/Fortran median warmed CPU times are 10.10/0.263 µs for the captured case
 and 35.31/6.40 µs for 29 cases. Number/gas outputs match exactly; maximum volume
@@ -257,3 +262,34 @@ active native process case, not the complete JAX SALSA timestep or trajectory.
 | `f571960` | F13c.N2: nested nucleation and parent condensation capture |
 | `736c048` | F13c.N3: checked active fixture pair and capture failure checks |
 | `d60258f` | N08b.R/J: actual-boundary replay, adapter and JAX acceptance |
+
+## Grid and hydration milestone
+
+The [grid/hydration contract](../development/grid-and-hydration.md) covers C02
+and C04–C06. Native binary32 grid fractions are preserved; all five geometry
+fields match exactly. Actual Fortran inverse molality and equilibration cover
+31 hydration cases. Eager/JIT core and wet-diameter errors remain below 4e-16
+relative, and all iteration counts match (maximum four in this matrix).
+
+Three checked native runs establish capture invariance and exact fresh repeats.
+The new JAX grid → hydration → coagulation → condensation test supplies computed
+geometry and wet diameters; number and gas match exactly and material-volume
+error is below 2.19e-16 relative. This default `nsnucl=0`, `recalc=False` chain
+ends before remapping. C18/N08/I01 remain open. D010 records a native zero-volume
+hydration failure; the JAX API signals NaN for that invalid domain.
+
+Warm JAX/Fortran CPU medians are 29.14/1.346 µs for one curated native-final-state
+case and 53.75/38.72 µs for 31 cases; no speedup is claimed. See the
+[integration evidence](../development/evidence/grid-hydration-2026-09-21.json)
+and linked benchmark artifacts for hashes, checks and limitations.
+
+| Commit | Deliverable |
+|---|---|
+| `b92dca5` | C02.R: verbatim native grid oracle |
+| `09ed944` | C02.J: grid geometry preserving binary32 spacing |
+| `5e8446a` | C04–C06.R: molality/hydration oracle and iteration diagnostics |
+| `5348ac0` | C04–C06.J: JAX molality and equilibrium hydration |
+| `408ec37` | F13a: copy-only initial hydration capture |
+| `245496b` | F13a: checked fixture and required capture checks |
+| `4ef4eb7` | C06 native adapter and composed pre-remap acceptance |
+| `ecf7b8a` | P04d1: matched hydration benchmark and raw evidence |

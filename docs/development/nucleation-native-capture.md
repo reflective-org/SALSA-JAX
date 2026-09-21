@@ -95,9 +95,10 @@ leaves its input aerosol/gas state unchanged. The extracted Fortran oracle is
 compared with these captures before eager/JIT JAX comparisons. Species budgets,
 finite/nonnegative outputs and unchanged unrelated state also pass.
 
-The full suite passes **384 tests** in the repository environment. No scientific
+The full suite passed **384 tests at this milestone** in the repository environment. No scientific
 kernel changed in this milestone, and no new performance claim is made; the
 existing [process benchmarks](nucleation-process.md#cpu-benchmark) remain scoped
-to their measured workloads. Grid generation, hydration, remapping and complete
-native composition are still pending. D009 coagulation volume drift, D007
+to their measured workloads. Subsequent [grid/hydration acceptance](grid-and-hydration.md)
+raises the suite to 459 tests and validates the default pre-remap chain.
+Remapping and complete native composition are still pending. D009 coagulation volume drift, D007
 tiny-particle cleanup and D005 radiation remain separate reference issues.
