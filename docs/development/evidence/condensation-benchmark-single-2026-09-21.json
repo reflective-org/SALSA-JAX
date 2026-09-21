@@ -1,0 +1,179 @@
+{
+  "scope": "standalone condensation; 17 bins, 5 materials, nsnucl=0, nsoa=0; supplied hydration, canonical SO2/H2SO4/OC gases",
+  "scientific_limit": "Registered organic cases are explicit kernel fixtures; default full driver has no organic gas registration. Nucleation, VBS and coupled trajectories excluded.",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "device": "cpu:0",
+  "dtype": "float64",
+  "versions": {
+    "jax": "0.11.2",
+    "jaxlib": "0.11.2",
+    "numpy": "2.5.3"
+  },
+  "thread_environment": {
+    "XLA_FLAGS": null,
+    "OMP_NUM_THREADS": null,
+    "OPENBLAS_NUM_THREADS": null,
+    "MKL_NUM_THREADS": null,
+    "VECLIB_MAXIMUM_THREADS": null,
+    "JAX_NUM_THREADS": null,
+    "TF_NUM_INTRAOP_THREADS": null,
+    "TF_NUM_INTEROP_THREADS": null
+  },
+  "implementation_sha256": {
+    "src/salsa_jax/constants.py": "40ead21be5c2fc79dcc29e817def5681719dfe748346a24233ce002936afe02c",
+    "src/salsa_jax/processes/condensation.py": "13cdcb10aa9bb35bfd518f03fd705dfa361ff287c2802fb2e31ef1ea4ff3dfe3",
+    "tools/condensation_process_oracle.py": "6b8b8129487924de9fda6a026f62f3d9e48caf5b8e5d7c2166cbd39572295158",
+    "tools/coagulation_process_oracle.py": "bbae27058afd6fdf0915e0cb30348cb35b877108716c5b6518367d336b0e4f98",
+    "benchmarks/benchmark_condensation.py": "525105d36a516cc3799325c55d924aa70ebccd1dda8b785cd460b6c6a043c78c"
+  },
+  "case_count": 1,
+  "case_labels": [
+    "captured-default"
+  ],
+  "case_sha256": {
+    "number": "84930ccec7c7da2ace785b9c9743bd557928681ed6a34c65c95bd244aaca30cb",
+    "volume": "597390a1215cc86d625c1a06a6b08381f8a95dc4140d0e6f9d56a96d26727dc6",
+    "gas": "0569654108efbd9c53aaa6447117676abdbd31b0ffae9f9275dd10e84b6053fe",
+    "wet_diameter": "83937db08e9bc539aa9a4fd1acbff54a71054a49bf050d76e6f879676180961d",
+    "temperature": "30d33e0a184a6e5eda1ecc1945cd5b017c605e4a3a39bf3ad8d999451e59c5c9",
+    "pressure": "baf41290b3afca735365ad7dd467ae335b1e9096fbce4423813fc2d1a78b0df7",
+    "timestep": "6c3c396ed6b5c36dcae172271f462051b1266b851e92df3deea8ac65478fd712",
+    "sulfate_molar_mass": "3a43ef9ac563310133c49f7d0a79797a4901abea9f78ac1b1379440437ae7c30",
+    "sulfate_density": "366c40c47c4235bd1c83248bef535b58d8f08dcd3289045b489ff5ae72eff4a6",
+    "organic_molar_mass": "fab4c4415b50601e97f6b89f2f92021b61bf2dd3bdb9d1f5ffb6e8de92046e01",
+    "organic_density": "64fa92a0745fda69503e42b2fcff78ae328e676b75347c12f422d1ee069e5289",
+    "mass_accommodation": "564feaec13814322dde4e96f547f4e5b83c1e561a1f9920acb294903624ff57e",
+    "organic_enabled": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc"
+  },
+  "case_hash_encoding": "named arrays, C-order IEEE float64 little endian",
+  "fortran_provenance": {
+    "compiled_constants": {
+      "avogadro": 6.02214179e+23,
+      "gas_constant": 8.314472,
+      "boltzmann": 1.3806504e-23,
+      "reference_pressure": 101325.0,
+      "pi": 3.141592653589793,
+      "molecule_diameter": 5.53937696439457e-10
+    },
+    "species_parameters_supplied_per_case": true,
+    "source_sha256": {
+      "parkind1.F90": "bd7aa3a0f896829781c6c9c1924726def9bd8b2825778e26274c615c2642ff5a",
+      "mo_kind.F90": "e7d3a5f28d216e60828c395a704e33a7bfc5db6e966533776fc438f4d782d255",
+      "mo_math_constants.F90": "ceae6f761c288597f7fb495ff2a55030fee8f861e1ee0dcd8adc0ba3ba95734f",
+      "mo_physical_constants.F90": "12405902248f437d9f7ae9b03d1efe194cd7605f6b396156c3d820366b8a79b0",
+      "mo_ham_salsa_dynamics.F90": "13db52f2e5e10bb0ad485348209a74e3b8bcbf25af77d05a995a8444050cff25",
+      "mo_ham_salsactl.F90": "95dc7bcd437bc2d9cb9bc9bd784ad912c71ccfb978bdfad0cadf641b1374c30c",
+      "mo_ham_species.F90": "828b524dc894bf8423dd89328624f46c0a9b95ae907e7d58eac8d50d9e8e4cd0",
+      "mo_ham.F90": "117e36d7a8dfbacc986e8736275de88d2deacda2cdd12c4287d3022afd042737"
+    },
+    "process_sha256": "6358fb1c2875d17c6c3752c2530894c88077a91fc340b04381849fe77e1a8823",
+    "instrumented_process_sha256": "8ca456ff8decf1d67d54c76aec07aa4179cf6f8c37583b43200817bcd7f5f1d3",
+    "wrapper_sha256": {
+      "stubs.f90": "c30120e3c114af08cae363f3ef5d1aa9d5356f22050a3b40150ae7095cc91954",
+      "condensation.F90": "2083b8936a77608ee67cc0c402f34027a37cc24a9d56741a8fa2ff1d1f4d4dbc",
+      "driver.f90": "1be736fb0d427248f34640f06376e3e29c6eedd7c518ff452126b5f5ac701141"
+    },
+    "diagnostic_overlay": "IF (capture_rates) last_rates=zcolrate",
+    "separate_compilation_without_lto": true,
+    "configuration": {
+      "nsoa": 0,
+      "nsnucl": 0,
+      "HAMMOZ": false,
+      "bins": 17,
+      "species": 5,
+      "gas_slots": [
+        "SO2",
+        "H2SO4",
+        "OC"
+      ],
+      "nucleation_stub_aborts": true,
+      "default_species_parameters": {
+        "sulfate_molar_mass": 96.0631,
+        "organic_molar_mass": 180.0,
+        "sulfate_density": 1841.0,
+        "organic_density": 2000.0
+      }
+    },
+    "compiler": "GNU Fortran (Homebrew GCC 16.1.0) 16.1.0",
+    "flags": [
+      "-O2",
+      "-fno-fast-math",
+      "-fno-lto",
+      "-ffree-line-length-none",
+      "-cpp"
+    ],
+    "checked": false
+  },
+  "parity": {
+    "number": {
+      "max_absolute": 0.0,
+      "max_relative_nonzero": 0.0,
+      "max_absolute_at_reference_zero": 0.0
+    },
+    "volume": {
+      "max_absolute": 0.0,
+      "max_relative_nonzero": 0.0,
+      "max_absolute_at_reference_zero": 0.0
+    },
+    "gas": {
+      "max_absolute": 0.0,
+      "max_relative_nonzero": 0.0,
+      "max_absolute_at_reference_zero": 0.0
+    }
+  },
+  "fortran_max_relative_species_budget_error": {
+    "sulfate": 0.0,
+    "organic": 0.0
+  },
+  "repetitions": 1000,
+  "trials": 5,
+  "trial_orders": [
+    [
+      "jax",
+      "fortran"
+    ],
+    [
+      "fortran",
+      "jax"
+    ],
+    [
+      "jax",
+      "fortran"
+    ],
+    [
+      "fortran",
+      "jax"
+    ],
+    [
+      "jax",
+      "fortran"
+    ]
+  ],
+  "jax_compile_seconds": 0.055964583007153124,
+  "jax_persistent_compilation_cache": false,
+  "jax_first_execution_seconds": 0.00031395803671330214,
+  "jax_warm_wall_seconds_per_batch": [
+    1.3703916978556662e-05,
+    1.1088167026173323e-05,
+    1.0101083025801927e-05,
+    9.191707998979836e-06,
+    9.062666969839483e-06
+  ],
+  "fortran_warm_wall_seconds_per_batch": [
+    2.74e-07,
+    3.34e-07,
+    2.63e-07,
+    2.5700000000000004e-07,
+    2.5900000000000003e-07
+  ],
+  "fortran_cpu_seconds_per_batch": [
+    2.769999999999999e-07,
+    3.390000000000003e-07,
+    2.6499999999999963e-07,
+    2.5899999999999966e-07,
+    2.6099999999999997e-07
+  ],
+  "fortran_clock_ticks_per_second": 1000000000,
+  "median_fortran_over_jax": 0.02603681202581942,
+  "timing_notes": "Alternating warmed wall-time trials. Fortran uses separately compiled original arithmetic with O2, no fast-math/LTO, and runtime checks disabled; a false diagnostic branch remains in the process. It includes copying mutable inputs and setting species properties before each call; startup, I/O, diagnostic rate capture and checksums are excluded. JAX uses the same fixed inputs each call and includes dispatch plus synchronization of all outputs; transfer and compilation are excluded. Fortran loops over cases, JAX batches them. Thread settings are recorded, not normalized. These measurements are not full-model, GPU, or hydration timings."
+}
