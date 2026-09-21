@@ -46,15 +46,28 @@ state; no nucleation or condensation formulas are replaced.
 hashes, compiler flags, fixture inputs and rates. All nine ordinary default-run
 diagnostics remain identical after this repair; that case has `nsnucl=0`.
 
-## Scope limits and next port steps
+## Process oracle and scope limits
 
 These are checked kernel fixtures, not full-driver nucleation trajectories.
 Original/current agreement for `nj3=2,3` does not establish validity throughout
 the parameter domain. Ordinary initialization rejects modes above four; no
 organic or ternary nucleation capability is enabled here.
 
-Before porting the dispatcher, capture complete state/species contracts and
-native process boundaries. Port binary, activation and kinetic rate functions
-individually, then growth/survival, then condensation coupling. The existing
-[core roadmap](../plans/02-state-and-core-processes.md) tracks each reference and
-JAX implementation as separate commits.
+`tools/nucleation_process_oracle.py` now supplies the independent port oracle.
+It compiles the full module after preserving a byte-identical original copy,
+records critical clusters with a small diagnostic overlay, and calls the actual
+extracted condensation routine for coupled checks. Its 110 cases cover active
+binary rates and all scheme/growth combinations, absent/registered organics,
+cutoffs, vapor limitation, empty backgrounds and heterogeneous properties.
+Two duplicated vertical cells exercise both sides of the native PBL boundary;
+results select the requested cell and timing includes both cells.
+
+```sh
+.venv/bin/python -m pytest -q tests/test_nucleation_process_oracle.py
+```
+
+Thirteen checks establish compiled constants, untouched source provenance,
+strict checked/optimized bit equality, nontrivial binary activity, isolated
+state preservation and coupled gas/material budgets. This is an initialized
+kernel oracle, not an activated full-driver capture. The [core roadmap](../plans/02-state-and-core-processes.md)
+tracks the remaining native capture and coupled SALSA acceptance gates.
