@@ -58,8 +58,10 @@ full driver does not register that gas.
 The [nucleation API and validation](docs/development/nucleation-process.md)
 cover 110 Fortran cases, all supported growth options, vapor uptake, particle
 insertion and species budgets. Paired JIT comparisons differ by less than
-5.7e-15; CPU timing shows no speedup in the recorded small batches. All **315
-tests pass**. Activated native capture and full SALSA trajectories remain open.
+5.7e-15; CPU timing shows no speedup in the recorded small batches. All **384
+tests pass**. A checked [active native capture](docs/development/nucleation-native-capture.md)
+now validates the nested source and coupled insertion against the initialized
+Fortran driver; full SALSA trajectories remain open.
 
 ## Fortran reference and current limitation
 
@@ -121,8 +123,8 @@ Start with the [documentation index](docs/README.md),
 [current status / next tasks](docs/plans/STATUS.md).
 Native entry/exit capture is verified for the default first call. Coagulation
 and condensation are separately captured and ported; nucleation is ported and
-coupled using explicit initialized kernel fixtures. Next are activated native
-capture, hydration, grid generation and remapping for complete coupled execution.
+coupled using both explicit kernel fixtures and a checked active native capture.
+Next are grid generation, hydration and remapping for complete coupled execution.
 Full-driver
 radiation requires valid optical tables and a separate initialization repair.
 

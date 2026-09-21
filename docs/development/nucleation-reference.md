@@ -69,5 +69,6 @@ results select the requested cell and timing includes both cells.
 Thirteen checks establish compiled constants, untouched source provenance,
 strict checked/optimized bit equality, nontrivial binary activity, isolated
 state preservation and coupled gas/material budgets. This is an initialized
-kernel oracle, not an activated full-driver capture. The [core roadmap](../plans/02-state-and-core-processes.md)
-tracks the remaining native capture and coupled SALSA acceptance gates.
+kernel oracle. A subsequent [active native capture](nucleation-native-capture.md)
+connects it to the initialized driver boundary. The [core roadmap](../plans/02-state-and-core-processes.md)
+tracks the remaining complete coupled SALSA acceptance gates.

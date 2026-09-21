@@ -141,3 +141,16 @@ fixtures do not establish an activated full-driver trajectory.
 Run benchmarks after tests finish. Each native case computes two vertical cells;
 JAX timing includes the same pair. Retained legacy growth formulas and the
 empty-background insertion gate are documented in the process guide.
+
+For a checked active native boundary, use the explicit test profile; default
+first-call sulfate is too small to activate nucleation:
+
+```sh
+.venv/bin/python tools/fortran_reference.py \
+  --config configs/fortran-nucleation-active.toml --scope first-microphysics \
+  --capture-salsa-state --capture-nucleation-state \
+  --run --output build/active-nucleation-new
+```
+
+The [active capture guide](nucleation-native-capture.md) explains first-call
+forcing, capture/control checks, fixture export and supported scope.

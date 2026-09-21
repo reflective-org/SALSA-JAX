@@ -13,6 +13,7 @@
 - [Standalone radiation initialization and data audit](development/radiation-reference-audit.md)
 - [Lessons from local JAX ports](development/local-port-lessons.md)
 - [Numerical validation and benchmark protocol](development/validation-and-benchmarks.md)
+- [Active native nucleation capture and acceptance](development/nucleation-native-capture.md)
 - [Supported nucleation and condensation coupling](development/nucleation-process.md)
 - [Nucleation rate leaves](development/nucleation-rates.md)
 - [Standalone condensation port and benchmarks](development/condensation-process.md)

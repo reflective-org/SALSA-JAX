@@ -37,18 +37,19 @@ The [master plan](ULTRAPLAN.md) defines the remaining commit-sized backlog.
 | C07–C11.R/J | Standalone numerical parity passes | Original process/coefficient extraction matches baseline tag; 31 cases, actual capture, eager/JIT and 20-call sequences |
 | C11.D009.R | Legacy defect reproduced | Minimal 2a/2b pair creates volume; preserved in JAX and documented, scientific repair pending |
 | P03/P04a | Initial scoped process measurement | One and 31-case CPU timings against optimized Fortran; no measured speedup |
-| F13c | Condensation subset verified | Actual conditional condensation boundary at nsnucl=0; capture/control and fresh repeat exact, nested nucleation remains pending |
+| F13c | Default and active boundaries verified | Default condensation plus nested nucleation/parent condensation for explicit scheme 2/growth 1; capture/control and fresh repeat exact |
 | C12–C14.R/J | Standalone numerical parity passes | Repaired Fortran oracle, 29 cases, eager/JIT, species budgets and 20 calls; organic fixtures explicit |
 | P04b | Initial scoped process measurement | One and 29-case CPU timings against optimized Fortran; no measured speedup |
 | N01–N03.R/J | Rate leaves pass | Actual Fortran leaf extraction; 216 cases, binary/activation/kinetic and boundary semantics |
 | N04–N07.R/J | Supported isolated process passes | 110 cases, growth options 1–3, vapor limitation, Taylor population and source dispatcher |
 | N08a.R/J | Process coupling passes | Actual condensation call order, particle insertion, species budgets, ten fixed-diameter calls; parent N08 remains open |
+| F13c.N1–N3 / N08b.R/J | Active native acceptance passes | Copy-only profile, active nested/parent fixtures, exact capture invariance and actual Fortran/JAX parity |
 | P04c | Initial scoped measurements | Matched two-cell workloads, isolated/coupled, nine groups; no measured CPU speedup |
 | Q01 | Implemented | Quickstart, capability limits and reproduction commands |
 
-All **315 current tests pass** in this repository's `.venv` (43.39 seconds).
-The 73 new checks cover independent nucleation leaves, growth, coupling and its
-Fortran oracle. Original inputs
+All **384 current tests pass** in this repository's `.venv` (40.26 seconds).
+The latest 69 checks add controlled native configuration, nested capture,
+fixture validation, adapter ordering and actual-boundary acceptance. Original inputs
 remain unchanged; Fortran scientific/driver repairs are separate commits. Generated
 builds/outputs remain ignored. Source relocation has not started. The pre-existing
 `AGENTS.md` remains unchanged; this ledger and the repair record carry current
@@ -56,14 +57,13 @@ validation status.
 
 ## Next ready tasks, in order
 
-1. **F13c.N1/N2/N3 / N08b:** capture an explicitly activated native nucleation
-   boundary, prove capture/control invariance and compare its isolated/coupled
-   state with the new kernels. Do not treat the default `nsnucl=0` capture as
-   an active nucleation fixture.
+1. **C02/C04–C06 / F13a:** port grid generation and hydration for complete
+   coupled execution. Begin with the grid's independent Fortran oracle and JAX
+   geometry, then composition/equilibration and actual hydration capture.
 2. **C11.D009.A/F/J:** review and repair the inherited cross-regime volume
    creation in a separate scientific change; do not silently alter this port.
-3. **C02/C04–C06 / F13a:** port grid generation and hydration for coupled
-   execution. Coagulation and condensation accept their already computed outputs.
+3. **C15–C17:** port native remapping decisions, transfers and radius corrections
+   after grid/hydration acceptance, retaining original order and zero-bin policy.
 4. **F13d / F14–F16:** capture remapping and complete process-switch/reset,
    configuration and trajectory acceptance. Finish F11b HAM wrapper metadata.
 5. **D007:** reproduce and guard absent-organic access in tiny-particle cleanup
@@ -210,7 +210,8 @@ The [nucleation guide](../development/nucleation-process.md) distinguishes
 critical-rate leaves, isolated molecular sources and the coupled condensation
 update. N01–N07 support schemes and growth options 1–3. N08a restores vapor
 uptake and first-bin particle insertion with explicit initialized fixtures;
-N08b native capture and parent N08 complete-SALSA acceptance remain open.
+N08b native capture is verified in the next milestone; parent N08 complete-SALSA
+acceptance remains open.
 
 The complete native-module oracle covers 110 cases, including nonzero binary
 sources for every growth option. Checked/optimized outputs match exactly.
@@ -232,3 +233,27 @@ and linked raw measurements.
 | `bb270f2` | N04–N07.J: growth/survival/Taylor and source dispatcher |
 | `519a697` | N08a.J: condensation coupling and insertion |
 | `5fa043f` | P04c: matched isolated/coupled CPU benchmark and raw measurements |
+
+## Active native nucleation milestone
+
+The [capture guide](../development/nucleation-native-capture.md) and
+[evidence record](../development/evidence/nucleation-native-2026-09-21.json)
+document three strict checked first-call runs. The profile sets scheme 2,
+growth 1 and sulfate 1e14 molecules/m³ only in the copied driver, because the
+standalone build ignores the SALSA namelist and default first-call sulfate is
+below the nucleation cutoff. All other initialization and forcing are retained.
+
+Capture/control HAM arrays, runtime metadata and ordinary diagnostics match
+exactly; captured native/nucleation/condensation boundaries repeat exactly.
+The molecular source is 1.6066412692623088e8 molecules/m³/s, and first-bin
+number increases by 1.0077747032660246e6 particles/m³. The independent Fortran
+oracle and eager/JIT kernels match these actual boundaries; species budgets
+pass. No production Fortran or JAX science code changed. This validates one
+active native process case, not the complete JAX SALSA timestep or trajectory.
+
+| Commit | Deliverable |
+|---|---|
+| `a8809ea` | F13c.N1: controlled first-call profile and isolated configuration |
+| `f571960` | F13c.N2: nested nucleation and parent condensation capture |
+| `736c048` | F13c.N3: checked active fixture pair and capture failure checks |
+| `d60258f` | N08b.R/J: actual-boundary replay, adapter and JAX acceptance |

@@ -116,12 +116,12 @@ C12–C14 are implemented as `condensation_rates` and `condensation_step`, with
 actual boundary capture, the repaired Fortran oracle, the JAX port and the
 benchmark. The 29-case matrix covers registered/absent organic gas and actual
 runtime species constants. F13c is complete only for the condensation boundary;
-nested active nucleation capture remains open. N01–N07 and N08a are now
+nested active nucleation capture is subsequently verified for scheme 2/growth 1. N01–N07 and N08a are now
 implemented as described below. A two-process check connects
 coagulation to condensation with captured diameter inputs; it does not close
 the hydration, remapping or complete-native integration gates.
 
-## Nucleation milestone and remaining native capture
+## Nucleation milestone and active native capture
 
 N01–N03 rate leaves and N04–N07 growth/source dispatcher are implemented.
 N08a couples the accepted sources to the shared native condensation update,
@@ -130,7 +130,9 @@ static-option JIT groups and ten successive calls pass. P04c records separate
 isolated/coupled timings; no speedup is claimed. These process APIs accept
 supplied wet diameters and do not close C18, N08, I01 or full-driver gates.
 
-The next active-native acceptance work remains split into reviewable commits:
+The following active-native tasks are now complete for scheme 2/growth 1,
+with explicit first-call sulfate forcing. See the [capture guide](../development/nucleation-native-capture.md)
+for native invariance and actual-boundary parity evidence:
 
 | ID | Depends on | Commit-sized deliverable | Verification |
 |---|---|---|---|
@@ -144,3 +146,16 @@ Grid generation C02 and hydration C04–C06 remain prerequisites for complete
 composition; remapping C15–C17 follows. Inherited nucleation arithmetic quirks
 are recorded in the process guide and require separate scientific decisions
 before any repair. They are not silently corrected in the compatibility port.
+
+| Commit | Completed active-native task |
+|---|---|
+| `a8809ea` | F13c.N1: explicit profile and copied-driver configuration |
+| `f571960` | F13c.N2: nested/parent capture and harness integration |
+| `736c048` | F13c.N3: reviewed fixture pair and mandatory-capture checks |
+| `d60258f` | N08b.R/J: native replay, adapter and eager/JIT acceptance |
+
+Next implement C02.R/J (native grid generation and JAX geometry), then
+C04.R/J (composition helper), C05.R/J (soluble equilibration) and C06.R/J
+(insoluble hydration switch), each with the existing separate reference and
+port acceptance. F13a should capture the actual hydration boundary before
+claiming its native integration. Parent N08/C18/I01 remain open.
