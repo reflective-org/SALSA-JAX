@@ -75,7 +75,9 @@ implementation cannot be reviewed as one coherent change.
 | N05.R / N05.J | N04 | `nj3=2` growth/survival branch | Boundary cases and branch-specific intermediate rates |
 | N06.R / N06.J | N04 | `nj3=3` growth/survival branch | Branch helper including `zNnuc_tayl` where reached; split helper if needed |
 | N07.R / N07.J | N04,N05,N06 | Supported `nucleation` dispatcher | `nsnucl=0,1,2,3` effective options; preserve unsupported errors |
-| N08.R / N08.J | N07,C18 | Condensation+nucleation compatibility composition | Same call order, gas limitation and final native SALSA state |
+| N08a.R / N08a.J | N07,C14 | Isolated condensation+nucleation process coupling with supplied wet diameters | Actual native call order, vapor limitation, insertion and species budgets; implemented |
+| N08b.R / N08b.J | N08a,F13c.N3 | Accept explicitly activated native process capture | Isolated source and coupled output match actual captured boundary |
+| N08.R / N08.J | N08b,C18 | Complete native SALSA nucleation compatibility composition | Same call order and final state with hydration and remapping |
 
 `nsnucl=4` currently aborts for missing NH3; values above 4 are rejected by setup.
 `ternucl`, `orgnucl`, `sumnucl`, `hetnucl`, `SAnucl`, and `SAORGnucl` are **not**
@@ -114,6 +116,31 @@ C12–C14 are implemented as `condensation_rates` and `condensation_step`, with
 actual boundary capture, the repaired Fortran oracle, the JAX port and the
 benchmark. The 29-case matrix covers registered/absent organic gas and actual
 runtime species constants. F13c is complete only for the condensation boundary;
-nested nucleation capture and N01–N08 remain open. A two-process check connects
+nested active nucleation capture remains open. N01–N07 and N08a are now
+implemented as described below. A two-process check connects
 coagulation to condensation with captured diameter inputs; it does not close
 the hydration, remapping or complete-native integration gates.
+
+## Nucleation milestone and remaining native capture
+
+N01–N03 rate leaves and N04–N07 growth/source dispatcher are implemented.
+N08a couples the accepted sources to the shared native condensation update,
+without duplicating uptake physics. Its 110-case oracle, species budgets,
+static-option JIT groups and ten successive calls pass. P04c records separate
+isolated/coupled timings; no speedup is claimed. These process APIs accept
+supplied wet diameters and do not close C18, N08, I01 or full-driver gates.
+
+The next active-native acceptance work remains split into reviewable commits:
+
+| ID | Depends on | Commit-sized deliverable | Verification |
+|---|---|---|---|
+| F13c.N1 | N07.R,F13c | Add copy-only configured activation of one supported native scheme and growth option | Original source/namelists untouched; initialized switch captured; strict run reaches scoped completion |
+| F13c.N2 | F13c.N1 | Capture nested nucleation input/output plus enclosing condensation boundary | Full-precision units/maps; no translated reference formulas; capture off/on arrays identical |
+| F13c.N3 | F13c.N2 | Export one reviewed active fixture with source/configuration provenance | Fresh-process exact repeat, nonzero source/insertion and gas/material budgets |
+| N08b.R | F13c.N3,N08a.R | Replay that fixture through isolated and coupled native oracles | Every relevant boundary matches captured source and state |
+| N08b.J | N08b.R,N08a.J | Accept JAX source/coupled outputs against active native fixture | Eager/JIT parity, physical budgets and configuration documented |
+
+Grid generation C02 and hydration C04–C06 remain prerequisites for complete
+composition; remapping C15–C17 follows. Inherited nucleation arithmetic quirks
+are recorded in the process guide and require separate scientific decisions
+before any repair. They are not silently corrected in the compatibility port.

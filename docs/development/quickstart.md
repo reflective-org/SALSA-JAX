@@ -122,3 +122,22 @@ in the checked first-microphysics scope.
 Its oracle includes the earlier D001/D002 repairs and uses compiled legacy
 constants. Positive organic cases are isolated fixtures, not a new full-driver
 gas registration. All benchmarks use the repository's virtual environment.
+
+## Supported nucleation and coupling
+
+See the [nucleation guide](nucleation-process.md) for separate critical-rate,
+growth/source and coupled APIs. Enable float64; mark `scheme` and `growth`
+static under JIT. Explicit RH and boundary-layer flags augment the existing
+condensation inputs. The default driver has nucleation off; active kernel
+fixtures do not establish an activated full-driver trajectory.
+
+```sh
+.venv/bin/python -m pytest -q tests/test_nucleation_rates.py \
+  tests/test_nucleation_sources.py tests/test_nucleation.py \
+  tests/test_nucleation_process_oracle.py
+.venv/bin/python -m benchmarks.benchmark_nucleation --repetitions 500 --trials 5
+```
+
+Run benchmarks after tests finish. Each native case computes two vertical cells;
+JAX timing includes the same pair. Retained legacy growth formulas and the
+empty-background insertion gate are documented in the process guide.

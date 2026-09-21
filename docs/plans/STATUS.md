@@ -40,11 +40,15 @@ The [master plan](ULTRAPLAN.md) defines the remaining commit-sized backlog.
 | F13c | Condensation subset verified | Actual conditional condensation boundary at nsnucl=0; capture/control and fresh repeat exact, nested nucleation remains pending |
 | C12–C14.R/J | Standalone numerical parity passes | Repaired Fortran oracle, 29 cases, eager/JIT, species budgets and 20 calls; organic fixtures explicit |
 | P04b | Initial scoped process measurement | One and 29-case CPU timings against optimized Fortran; no measured speedup |
+| N01–N03.R/J | Rate leaves pass | Actual Fortran leaf extraction; 216 cases, binary/activation/kinetic and boundary semantics |
+| N04–N07.R/J | Supported isolated process passes | 110 cases, growth options 1–3, vapor limitation, Taylor population and source dispatcher |
+| N08a.R/J | Process coupling passes | Actual condensation call order, particle insertion, species budgets, ten fixed-diameter calls; parent N08 remains open |
+| P04c | Initial scoped measurements | Matched two-cell workloads, isolated/coupled, nine groups; no measured CPU speedup |
 | Q01 | Implemented | Quickstart, capability limits and reproduction commands |
 
-All **242 current tests pass** in this repository's `.venv`: the full suite
-passed 241, followed by 14 condensation tests including the added two-process
-integration case. Original inputs
+All **315 current tests pass** in this repository's `.venv` (43.39 seconds).
+The 73 new checks cover independent nucleation leaves, growth, coupling and its
+Fortran oracle. Original inputs
 remain unchanged; Fortran scientific/driver repairs are separate commits. Generated
 builds/outputs remain ignored. Source relocation has not started. The pre-existing
 `AGENTS.md` remains unchanged; this ledger and the repair record carry current
@@ -52,9 +56,10 @@ validation status.
 
 ## Next ready tasks, in order
 
-1. **N01–N07 / remaining F13c:** port nucleation independently, starting with
-   the supported rate schemes, then growth/survival and aerosol insertion.
-   Reintroduce the nested condensation call only after separate acceptance.
+1. **F13c.N1/N2/N3 / N08b:** capture an explicitly activated native nucleation
+   boundary, prove capture/control invariance and compare its isolated/coupled
+   state with the new kernels. Do not treat the default `nsnucl=0` capture as
+   an active nucleation fixture.
 2. **C11.D009.A/F/J:** review and repair the inherited cross-regime volume
    creation in a separate scientific change; do not silently alter this port.
 3. **C02/C04–C06 / F13a:** port grid generation and hydration for coupled
@@ -67,11 +72,11 @@ validation status.
    full-driver acceptance. Source relocation still depends on reference gates.
 7. **O01–O04:** improve build portability and artifact cleanup separately.
 
-Processes are tracked independently. Coagulation and condensation have JAX
-kernels, separate Fortran oracles, tests and benchmarks. Condensation currently
-uses `nsnucl=0`; nucleation rate/survival/insertion will be validated before
-restoring coupling. Hydration and nucleation JAX ports remain pending; this is
-not yet a coupled SALSA simulation.
+Processes are tracked independently. Coagulation, condensation and supported
+nucleation have JAX kernels, separate Fortran oracles, tests and benchmarks.
+Nucleation is also coupled to condensation. Hydration, remapping and the
+complete native SALSA composition remain pending; this is not yet a complete
+coupled SALSA simulation.
 
 ## Initial implementation commits
 
@@ -166,7 +171,7 @@ The CPU benchmark shows no speedup: JAX/Fortran median warm times are
 Maximum number/volume relative error is below 2e-15. Full provenance and limits
 are in the [integration record](../development/evidence/coagulation-process-2026-09-21.json)
 and linked benchmark artifacts. The subsequent condensation milestone is below;
-nucleation remains unported.
+nucleation was subsequently ported in the milestone below.
 
 
 | Commit | Coagulation deliverable |
@@ -182,8 +187,8 @@ The [condensation API and contract](../development/condensation-process.md)
 cover sulfate and optional nonvolatile organic uptake with nucleation disabled.
 Actual native capture, 29 oracle cases, species budgets, eager/JIT parity and
 20 successive fixed-diameter calls pass. A separate check connects the two
-ported processes against their captured boundaries. Full SALSA, hydration,
-nucleation and remapping acceptance remain open.
+ported processes against their captured boundaries. Full SALSA, hydration and remapping acceptance remain open. Nucleation
+was subsequently ported below.
 
 JAX/Fortran median warmed CPU times are 10.10/0.263 µs for the captured case
 and 35.31/6.40 µs for 29 cases. Number/gas outputs match exactly; maximum volume
@@ -198,3 +203,32 @@ and linked raw benchmarks retain provenance and timing limitations.
 | `6b41e42` | C12–C14.R: repaired Fortran oracle and 29 cases |
 | `d06f7a2` | C12–C14.J: standalone JAX condensation and comparisons |
 | `0e6ea69` | P04b: independent CPU benchmark with raw measurements |
+
+## Supported nucleation and condensation coupling milestone
+
+The [nucleation guide](../development/nucleation-process.md) distinguishes
+critical-rate leaves, isolated molecular sources and the coupled condensation
+update. N01–N07 support schemes and growth options 1–3. N08a restores vapor
+uptake and first-bin particle insertion with explicit initialized fixtures;
+N08b native capture and parent N08 complete-SALSA acceptance remain open.
+
+The complete native-module oracle covers 110 cases, including nonzero binary
+sources for every growth option. Checked/optimized outputs match exactly.
+Eager source error is below 1.74e-12; paired JIT source/coupled-state errors are
+below 5.68e-15/4.36e-15. Species budgets and ten-call fixed-diameter sequences
+pass. Native rate/growth quirks and the empty-background insertion gate are
+preserved and documented; no production Fortran edits accompany this port.
+
+All recorded small CPU groups are slower than Fortran. For example, scheme 2,
+growth 3 over 24 physical cells takes 59.28/49.63 µs for JAX/Fortran isolated
+sources and 73.47/53.33 µs for coupled uptake. Timings match both native levels
+per case and disclose reset/dispatch costs. See the [integration record](../development/evidence/nucleation-process-2026-09-21.json)
+and linked raw measurements.
+
+| Commit | Deliverable |
+|---|---|
+| `df8342b` | N01–N08a.R: complete native oracle and 110-case matrix |
+| `03f13b0` | N01–N03.J: binary/activation/kinetic rate leaves |
+| `bb270f2` | N04–N07.J: growth/survival/Taylor and source dispatcher |
+| `519a697` | N08a.J: condensation coupling and insertion |
+| `5fa043f` | P04c: matched isolated/coupled CPU benchmark and raw measurements |

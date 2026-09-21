@@ -1,0 +1,456 @@
+{
+  "recorded_date": "2026-09-21",
+  "scope": "N01-N07 supported isolated nucleation, N08a condensation coupling; supplied hydrated diameters, nsnucl1/2/3,nj3=1/2/3,nsoa0; no active full-driver capture or complete SALSA step",
+  "implementation_commits": {
+    "oracle": "df8342b",
+    "rate_leaves": "03f13b0",
+    "growth_dispatcher": "bb270f2",
+    "coupling": "519a697",
+    "benchmark": "5fa043f"
+  },
+  "tests": {
+    "command": ".venv/bin/python -m pytest -q",
+    "passed": 315,
+    "duration_seconds": 43.39,
+    "new_tests": 73
+  },
+  "leaf_case_count": 216,
+  "process_case_count": 110,
+  "selected_cell_source_max_relative_error": {
+    "eager": 1.7306413336420603e-12,
+    "jit": 5.6713979191721625e-15
+  },
+  "paired_jit_max_relative_error": {
+    "isolated": 5.6713979191721625e-15,
+    "coupled": 4.357836607463112e-15
+  },
+  "acceptance_relative_tolerances": {
+    "rate_leaves": 1e-11,
+    "source_eager": 5e-12,
+    "source_jit": 3e-13,
+    "coupled_state": 3e-13,
+    "species_budgets": 3e-14,
+    "ten_repeated_fixed_diameter_calls": 1e-12
+  },
+  "checked_optimized_parity": "bit-identical for every output at both native levels",
+  "checked_provenance": {
+    "source_sha256": {
+      "parkind1.F90": "bd7aa3a0f896829781c6c9c1924726def9bd8b2825778e26274c615c2642ff5a",
+      "mo_kind.F90": "e7d3a5f28d216e60828c395a704e33a7bfc5db6e966533776fc438f4d782d255",
+      "mo_math_constants.F90": "ceae6f761c288597f7fb495ff2a55030fee8f861e1ee0dcd8adc0ba3ba95734f",
+      "mo_physical_constants.F90": "12405902248f437d9f7ae9b03d1efe194cd7605f6b396156c3d820366b8a79b0",
+      "mo_ham_salsa_nucleation.F90": "927c2f2d8056ce100a5e36563cc9fa04b407ea0033ff848e9c65de3c9a9f2445",
+      "mo_ham_salsa_dynamics.F90": "13db52f2e5e10bb0ad485348209a74e3b8bcbf25af77d05a995a8444050cff25",
+      "mo_ham_salsactl.F90": "95dc7bcd437bc2d9cb9bc9bd784ad912c71ccfb978bdfad0cadf641b1374c30c",
+      "mo_ham_species.F90": "828b524dc894bf8423dd89328624f46c0a9b95ae907e7d58eac8d50d9e8e4cd0",
+      "mo_ham.F90": "117e36d7a8dfbacc986e8736275de88d2deacda2cdd12c4287d3022afd042737"
+    },
+    "wrapper_sha256": {
+      "stubs.f90": "20f6f30e0ee847806e833761589bbc7dd7b98f7b5ab458dde6856d77d7a5f636",
+      "nucleation.F90": "08f707b7e776a3fa6e514244ff79f9a2c631eef241bb25269bc2a2b94a539399",
+      "condensation.F90": "835113487723ba15850e17eb2522484b350b99355bd6fd91dc0856c56e939010",
+      "driver.f90": "4d52a1e00528448a430037fff7485e75cc79ffc3d0bc629c542cf1a46e5dbc4b"
+    },
+    "diagnostic_overlay": "    IF (capture_critical) THEN\n      last_critical(:,:,1)=zjnuc\n      last_critical(:,:,2)=znsa\n      last_critical(:,:,3)=znoc\n      last_critical(:,:,4)=zdcrit\n    END IF\n",
+    "checked": true,
+    "flags": [
+      "-O2",
+      "-fno-fast-math",
+      "-fno-lto",
+      "-ffree-line-length-none",
+      "-cpp",
+      "-fcheck=all",
+      "-ffpe-trap=invalid,zero,overflow",
+      "-fbacktrace"
+    ],
+    "compiled_constants": {
+      "avogadro": 6.02214179e+23,
+      "gas_constant": 8.314472,
+      "boltzmann": 1.3806504e-23,
+      "reference_pressure": 101325.0,
+      "pi": 3.141592653589793,
+      "molecule_diameter": 5.53937696439457e-10,
+      "cluster_molecules": 158.79,
+      "minimum_diameter": 3e-09,
+      "activation_coefficient": 1e-07
+    },
+    "configuration": {
+      "schemes": [
+        1,
+        2,
+        3
+      ],
+      "growth": [
+        1,
+        2,
+        3
+      ],
+      "nsoa": 0,
+      "HAMMOZ": false,
+      "bins": 17,
+      "materials": 5,
+      "native_levels_per_case": 2,
+      "pbl_index": 2,
+      "species_parameters_supplied_per_case": true,
+      "default_species_parameters": {
+        "sulfate_molar_mass": 96.0631,
+        "organic_molar_mass": 180.0,
+        "sulfate_density": 1841.0,
+        "organic_density": 2000.0
+      }
+    },
+    "separate_compilation_without_lto": true,
+    "compiler": "GNU Fortran (Homebrew GCC 16.1.0) 16.1.0"
+  },
+  "benchmark_files": [
+    "nucleation-benchmark-batch-2026-09-21.json",
+    "nucleation-benchmark-single-2026-09-21.json"
+  ],
+  "benchmark_commands": [
+    ".venv/bin/python -m benchmarks.benchmark_nucleation --repetitions 500 --trials 5",
+    ".venv/bin/python -m benchmarks.benchmark_nucleation --single-case --repetitions 500 --trials 5"
+  ],
+  "benchmark_summary": [
+    {
+      "workload": "single",
+      "scheme": 1,
+      "growth": 1,
+      "operation": "isolated",
+      "cells": 2,
+      "jax_median_microseconds": 9.544666041620076,
+      "fortran_median_microseconds": 0.648
+    },
+    {
+      "workload": "single",
+      "scheme": 1,
+      "growth": 1,
+      "operation": "coupled",
+      "cells": 2,
+      "jax_median_microseconds": 36.76183195784688,
+      "fortran_median_microseconds": 0.9760000000000001
+    },
+    {
+      "workload": "single",
+      "scheme": 1,
+      "growth": 2,
+      "operation": "isolated",
+      "cells": 2,
+      "jax_median_microseconds": 10.241249925456941,
+      "fortran_median_microseconds": 1.7160000000000002
+    },
+    {
+      "workload": "single",
+      "scheme": 1,
+      "growth": 2,
+      "operation": "coupled",
+      "cells": 2,
+      "jax_median_microseconds": 38.26208401005715,
+      "fortran_median_microseconds": 1.9819999999999998
+    },
+    {
+      "workload": "single",
+      "scheme": 1,
+      "growth": 3,
+      "operation": "isolated",
+      "cells": 2,
+      "jax_median_microseconds": 23.821750073693693,
+      "fortran_median_microseconds": 5.782
+    },
+    {
+      "workload": "single",
+      "scheme": 1,
+      "growth": 3,
+      "operation": "coupled",
+      "cells": 2,
+      "jax_median_microseconds": 44.70291605684906,
+      "fortran_median_microseconds": 5.864
+    },
+    {
+      "workload": "single",
+      "scheme": 2,
+      "growth": 1,
+      "operation": "isolated",
+      "cells": 2,
+      "jax_median_microseconds": 9.391083964146674,
+      "fortran_median_microseconds": 0.764
+    },
+    {
+      "workload": "single",
+      "scheme": 2,
+      "growth": 1,
+      "operation": "coupled",
+      "cells": 2,
+      "jax_median_microseconds": 38.36633404716849,
+      "fortran_median_microseconds": 0.924
+    },
+    {
+      "workload": "single",
+      "scheme": 2,
+      "growth": 2,
+      "operation": "isolated",
+      "cells": 2,
+      "jax_median_microseconds": 9.848583955317736,
+      "fortran_median_microseconds": 1.882
+    },
+    {
+      "workload": "single",
+      "scheme": 2,
+      "growth": 2,
+      "operation": "coupled",
+      "cells": 2,
+      "jax_median_microseconds": 38.46700000576675,
+      "fortran_median_microseconds": 2.02
+    },
+    {
+      "workload": "single",
+      "scheme": 2,
+      "growth": 3,
+      "operation": "isolated",
+      "cells": 2,
+      "jax_median_microseconds": 25.198083953000605,
+      "fortran_median_microseconds": 5.536
+    },
+    {
+      "workload": "single",
+      "scheme": 2,
+      "growth": 3,
+      "operation": "coupled",
+      "cells": 2,
+      "jax_median_microseconds": 47.41333390120417,
+      "fortran_median_microseconds": 5.97
+    },
+    {
+      "workload": "single",
+      "scheme": 3,
+      "growth": 1,
+      "operation": "isolated",
+      "cells": 2,
+      "jax_median_microseconds": 9.157082065939903,
+      "fortran_median_microseconds": 0.708
+    },
+    {
+      "workload": "single",
+      "scheme": 3,
+      "growth": 1,
+      "operation": "coupled",
+      "cells": 2,
+      "jax_median_microseconds": 37.179665989242494,
+      "fortran_median_microseconds": 0.9460000000000001
+    },
+    {
+      "workload": "single",
+      "scheme": 3,
+      "growth": 2,
+      "operation": "isolated",
+      "cells": 2,
+      "jax_median_microseconds": 10.044582071714103,
+      "fortran_median_microseconds": 1.7780000000000002
+    },
+    {
+      "workload": "single",
+      "scheme": 3,
+      "growth": 2,
+      "operation": "coupled",
+      "cells": 2,
+      "jax_median_microseconds": 38.95850002299994,
+      "fortran_median_microseconds": 2.0079999999999996
+    },
+    {
+      "workload": "single",
+      "scheme": 3,
+      "growth": 3,
+      "operation": "isolated",
+      "cells": 2,
+      "jax_median_microseconds": 22.045084042474627,
+      "fortran_median_microseconds": 5.664
+    },
+    {
+      "workload": "single",
+      "scheme": 3,
+      "growth": 3,
+      "operation": "coupled",
+      "cells": 2,
+      "jax_median_microseconds": 49.041165970265865,
+      "fortran_median_microseconds": 5.845999999999999
+    },
+    {
+      "workload": "batch",
+      "scheme": 1,
+      "growth": 1,
+      "operation": "isolated",
+      "cells": 28,
+      "jax_median_microseconds": 28.363168006762862,
+      "fortran_median_microseconds": 7.1339999999999995
+    },
+    {
+      "workload": "batch",
+      "scheme": 1,
+      "growth": 1,
+      "operation": "coupled",
+      "cells": 28,
+      "jax_median_microseconds": 42.47024992946535,
+      "fortran_median_microseconds": 10.344000000000001
+    },
+    {
+      "workload": "batch",
+      "scheme": 1,
+      "growth": 2,
+      "operation": "isolated",
+      "cells": 20,
+      "jax_median_microseconds": 48.93258400261402,
+      "fortran_median_microseconds": 8.854000000000001
+    },
+    {
+      "workload": "batch",
+      "scheme": 1,
+      "growth": 2,
+      "operation": "coupled",
+      "cells": 20,
+      "jax_median_microseconds": 54.32416801340878,
+      "fortran_median_microseconds": 11.082
+    },
+    {
+      "workload": "batch",
+      "scheme": 1,
+      "growth": 3,
+      "operation": "isolated",
+      "cells": 24,
+      "jax_median_microseconds": 62.5452499371022,
+      "fortran_median_microseconds": 31.294000000000004
+    },
+    {
+      "workload": "batch",
+      "scheme": 1,
+      "growth": 3,
+      "operation": "coupled",
+      "cells": 24,
+      "jax_median_microseconds": 68.57683206908405,
+      "fortran_median_microseconds": 34.084
+    },
+    {
+      "workload": "batch",
+      "scheme": 2,
+      "growth": 1,
+      "operation": "isolated",
+      "cells": 38,
+      "jax_median_microseconds": 28.24949997011572,
+      "fortran_median_microseconds": 10.812000000000001
+    },
+    {
+      "workload": "batch",
+      "scheme": 2,
+      "growth": 1,
+      "operation": "coupled",
+      "cells": 38,
+      "jax_median_microseconds": 45.12466595042497,
+      "fortran_median_microseconds": 15.144
+    },
+    {
+      "workload": "batch",
+      "scheme": 2,
+      "growth": 2,
+      "operation": "isolated",
+      "cells": 20,
+      "jax_median_microseconds": 37.06500004045665,
+      "fortran_median_microseconds": 13.478
+    },
+    {
+      "workload": "batch",
+      "scheme": 2,
+      "growth": 2,
+      "operation": "coupled",
+      "cells": 20,
+      "jax_median_microseconds": 52.82874999102205,
+      "fortran_median_microseconds": 16.014
+    },
+    {
+      "workload": "batch",
+      "scheme": 2,
+      "growth": 3,
+      "operation": "isolated",
+      "cells": 24,
+      "jax_median_microseconds": 59.276915970258415,
+      "fortran_median_microseconds": 49.634
+    },
+    {
+      "workload": "batch",
+      "scheme": 2,
+      "growth": 3,
+      "operation": "coupled",
+      "cells": 24,
+      "jax_median_microseconds": 73.46600003074855,
+      "fortran_median_microseconds": 53.33
+    },
+    {
+      "workload": "batch",
+      "scheme": 3,
+      "growth": 1,
+      "operation": "isolated",
+      "cells": 22,
+      "jax_median_microseconds": 19.64374992530793,
+      "fortran_median_microseconds": 7.112000000000001
+    },
+    {
+      "workload": "batch",
+      "scheme": 3,
+      "growth": 1,
+      "operation": "coupled",
+      "cells": 22,
+      "jax_median_microseconds": 42.000249959528446,
+      "fortran_median_microseconds": 9.878
+    },
+    {
+      "workload": "batch",
+      "scheme": 3,
+      "growth": 2,
+      "operation": "isolated",
+      "cells": 20,
+      "jax_median_microseconds": 39.83566595707089,
+      "fortran_median_microseconds": 13.858
+    },
+    {
+      "workload": "batch",
+      "scheme": 3,
+      "growth": 2,
+      "operation": "coupled",
+      "cells": 20,
+      "jax_median_microseconds": 56.159831932745874,
+      "fortran_median_microseconds": 16.2
+    },
+    {
+      "workload": "batch",
+      "scheme": 3,
+      "growth": 3,
+      "operation": "isolated",
+      "cells": 24,
+      "jax_median_microseconds": 59.99450001399964,
+      "fortran_median_microseconds": 50.288
+    },
+    {
+      "workload": "batch",
+      "scheme": 3,
+      "growth": 3,
+      "operation": "coupled",
+      "cells": 24,
+      "jax_median_microseconds": 73.38608393911272,
+      "fortran_median_microseconds": 52.452
+    }
+  ],
+  "performance_conclusion": "No measured CPU speedup in any recorded group/operation; no GPU or full-model claim.",
+  "remaining": [
+    "Activated full-driver nucleation boundary capture and invariance",
+    "Grid/hydration/remapping and complete native composition",
+    "D009 cross-regime coagulation budget repair",
+    "D007 tiny-volume absent organic access",
+    "D005 full-driver radiation failure"
+  ],
+  "inherited_nucleation_behaviors": [
+    "Critical diameter overwritten above PBL in schemes2/3",
+    "Growth concentration subtracts rate without timestep",
+    "Growth2/3 radius squared plus gamma transition expression",
+    "Growth3 fixed30-term Taylor expansion andfiveiterations",
+    "Emptybackgroundsink gate prevents coupled insertion",
+    "Molecularsource must exceed1 for number insertion"
+  ],
+  "isolated_timed_outputs_materialized": true
+}

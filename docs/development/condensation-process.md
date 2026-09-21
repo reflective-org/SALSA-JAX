@@ -3,8 +3,9 @@
 `src/salsa_jax/processes/condensation.py` ports the standalone SALSA
 condensation routine for `nsnucl=0`, `nsoa=0`, without `HAMMOZ`. It includes
 transport coefficients, transition corrections, sulfate uptake and optional
-nonvolatile organic uptake. Nucleation, VBS, semivolatile partitioning,
-hydration and remapping are separate work.
+nonvolatile organic uptake. Supported nucleation is now available through the separate
+[condensation coupling API](nucleation-process.md). VBS, semivolatile partitioning,
+hydration and remapping remain separate work.
 
 ## API and state contract
 
@@ -135,4 +136,4 @@ See [integration evidence](evidence/condensation-process-2026-09-21.json),
 [batch measurements](evidence/condensation-benchmark-batch-2026-09-21.json) and
 [single-case measurements](evidence/condensation-benchmark-single-2026-09-21.json).
 The full suite passed 241 tests; the final 14-test condensation suite includes
-one added two-process integration case, covering all **242 current tests**.
+one added two-process integration case, covering all **242 tests at that milestone**.

@@ -115,3 +115,43 @@ complete SALSA timestep remain outside this milestone. Full radiation still
 has the D005 blocker and coagulation retains the D009 budget defect.
 The [status ledger](../plans/STATUS.md) distinguishes completed process tasks
 from pending native capture and trajectory gates.
+
+## CPU benchmark
+
+```sh
+.venv/bin/python -m benchmarks.benchmark_nucleation --repetitions 500 --trials 5
+.venv/bin/python -m benchmarks.benchmark_nucleation --single-case --repetitions 500 --trials 5
+```
+
+Both commands measure isolated sources and the coupled update for all nine
+static scheme/growth groups. Add `--scheme 2 --growth 3 --operation coupled`
+to select a group. The native oracle always computes two vertical cells per
+case; JAX duplicates inputs with matching above/within-boundary flags. Parity
+is checked for **both** cells before timing. A “single case” therefore means
+two physical cells, not one.
+
+Five trials of 500 fixed-input repetitions on the recorded ARM64 CPU show
+**no speedup** in any measured group. Representative median warmed times:
+
+| Workload | Operation | JAX µs | Fortran µs |
+|---|---|---|---|
+| Scheme 2, growth 3, 2 cells | isolated | 25.20 | 5.54 |
+| Scheme 2, growth 3, 2 cells | coupled | 47.41 | 5.97 |
+| Scheme 2, growth 3, 24 cells | isolated | 59.28 | 49.63 |
+| Scheme 2, growth 3, 24 cells | coupled | 73.47 | 53.33 |
+
+The batch comprises each group's curated cases, not a uniform 110-case batch
+per configuration. Fortran includes mutable-state resets, per-case species
+setup and selected-output copies; JAX includes dispatch and synchronization
+of returned arrays. Compilation, transfers, process startup, I/O and critical
+capture are outside warmed timing. Trials alternate implementation order;
+thread settings are recorded rather than normalized. Fortran uses O2 without
+fast-math, LTO or runtime checks for timing; correctness also uses strict checks.
+Compilation costs are reported separately for every shape/configuration.
+
+See the [integration record](evidence/nucleation-process-2026-09-21.json),
+[batch measurements](evidence/nucleation-benchmark-batch-2026-09-21.json) and
+[single-case measurements](evidence/nucleation-benchmark-single-2026-09-21.json).
+Both operations match Fortran below 5.68e-15 relative error across the paired
+benchmark cells; coupled state error is below 4.36e-15. The full repository
+suite passes **315 tests** in its own `.venv`.
