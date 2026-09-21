@@ -13,7 +13,7 @@ from tools.state_capture import FILES
 FIXTURE = Path(__file__).resolve().parent / 'fixtures/native-default'
 
 
-@pytest.mark.parametrize("flag", ["--capture-salsa-state", "--capture-coagulation-state"])
+@pytest.mark.parametrize("flag", ["--capture-salsa-state", "--capture-coagulation-state", "--capture-condensation-state"])
 def test_capture_requires_single_call_scope(monkeypatch, flag):
     monkeypatch.setattr(sys, 'argv', ['reference', '--output', 'unused', flag])
     with pytest.raises(SystemExit) as error:
@@ -22,11 +22,12 @@ def test_capture_requires_single_call_scope(monkeypatch, flag):
 
 
 @pytest.mark.parametrize('complete', [False, True])
-@pytest.mark.parametrize('process', ['salsa', 'coagulation'])
+@pytest.mark.parametrize('process', ['salsa', 'coagulation', 'condensation'])
 def test_requested_capture_must_exist_even_on_success(tmp_path, monkeypatch, complete, process):
     from tools.coagulation_capture import FILES as COAG_FILES
-    files = FILES if process == 'salsa' else COAG_FILES
-    fixture = FIXTURE if process == 'salsa' else FIXTURE.parent / 'coagulation-default'
+    from tools.condensation_capture import FILES as COND_FILES
+    files = {'salsa': FILES, 'coagulation': COAG_FILES, 'condensation': COND_FILES}[process]
+    fixture = FIXTURE if process == 'salsa' else FIXTURE.parent / f'{process}-default'
     root, target = tmp_path / 'source', tmp_path / 'run'
     root.mkdir()
     real_root = harness.ROOT
