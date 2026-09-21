@@ -172,3 +172,31 @@ def test_export_rejects_unverified_runs(tmp_path, case):
     with pytest.raises(ValueError, match="checked|changed"):
         export_fixture(tmp_path, tmp_path / "fixture")
     assert not (tmp_path / "fixture").exists()
+
+
+def test_active_condensation_capture_keeps_explicit_growth_option(tmp_path):
+    def mutate(stage, records):
+        if stage == 'entry':
+            records['options']['values'] = [2, 0, 64]
+            records['nj3'] = {'kind': 'I', 'shape': [], 'values': [1]}
+    write_capture(tmp_path, mutate)
+    state = load_capture(tmp_path)
+    assert state['options']['nsnucl'] == 2
+    assert state['options']['nj3'] == 1
+    assert state['units']['prh'] == '1'
+    copied = tmp_path / 'mo_ham_salsa.F90'
+    copied.write_bytes((ROOT / copied.name).read_bytes())
+    instrument_salsa_condensation(copied, allow_nucleation=True)
+    assert 'cond_nj3 < 1 .OR. cond_nj3 > 3' in copied.read_text()
+    assert "'I nj3 0'" in copied.read_text()
+
+
+@pytest.mark.parametrize('scheme,growth', [(0, 1), (4, 1), (2, 0), (2, 4)])
+def test_active_condensation_capture_rejects_unsupported_options(tmp_path, scheme, growth):
+    def mutate(stage, records):
+        if stage == 'entry':
+            records['options']['values'] = [scheme, 0, 64]
+            records['nj3'] = {'kind': 'I', 'shape': [], 'values': [growth]}
+    write_capture(tmp_path, mutate)
+    with pytest.raises(ValueError, match='configuration'):
+        load_capture(tmp_path)

@@ -18,12 +18,16 @@ import time
 import tomllib
 
 if __package__:
+    from .reference_configuration import configure_driver
+    from .nucleation_capture import FILES as NUCLEATION_FILES, instrument_condensation_nucleation, load_capture as load_nucleation_capture
     from .runtime_metadata import FILENAME, instrument_driver, parse_metadata
     from .reference_scope import FILENAME as SCOPE_FILENAME, STATE_FILENAME, instrument_scope, parse_completion, parse_scope_state
     from .state_capture import FILES as STATE_FILES, instrument_salsa, load_capture
     from .coagulation_capture import FILES as COAGULATION_FILES, instrument_salsa_coagulation, load_capture as load_coagulation_capture
     from .condensation_capture import FILES as CONDENSATION_FILES, instrument_salsa_condensation, load_capture as load_condensation_capture
 else:
+    from reference_configuration import configure_driver
+    from nucleation_capture import FILES as NUCLEATION_FILES, instrument_condensation_nucleation, load_capture as load_nucleation_capture
     from runtime_metadata import FILENAME, instrument_driver, parse_metadata
     from reference_scope import FILENAME as SCOPE_FILENAME, STATE_FILENAME, instrument_scope, parse_completion, parse_scope_state
     from state_capture import FILES as STATE_FILES, instrument_salsa, load_capture
@@ -74,8 +78,14 @@ def main() -> int:
     parser.add_argument("--capture-coagulation-state", action="store_true",
                         help="capture actual coagulation inputs/outputs in the first-microphysics scope")
     parser.add_argument("--capture-condensation-state", action="store_true",
-                        help="capture condensation with nucleation disabled in the first-microphysics scope")
+                        help="capture condensation in the first-microphysics scope (active with a reference_case profile)")
+    parser.add_argument("--capture-nucleation-state", action="store_true",
+                        help="capture active nested nucleation and enclosing condensation boundaries")
     args = parser.parse_args()
+    if args.capture_nucleation_state:
+        if args.scope != "first-microphysics":
+            parser.error("--capture-nucleation-state requires --scope first-microphysics")
+        args.capture_condensation_state = True
     if args.capture_salsa_state and args.scope != "first-microphysics":
         parser.error("--capture-salsa-state requires --scope first-microphysics")
     if args.capture_coagulation_state and args.scope != "first-microphysics":
@@ -85,6 +95,15 @@ def main() -> int:
     if args.capture_salsa_state or args.capture_coagulation_state or args.capture_condensation_state:
         args.capture_runtime = True
     config = tomllib.loads(args.config.read_text())
+    reference_case = config.get("reference_case")
+    if reference_case is not None:
+        if args.scope != "first-microphysics":
+            parser.error("reference_case requires --scope first-microphysics")
+        if any(flag.startswith("-DHAMMOZ") for flag in config["build"]["flags"]):
+            parser.error("reference_case supports standalone builds without HAMMOZ")
+        args.capture_runtime = True
+    if args.capture_nucleation_state and reference_case is None:
+        parser.error("--capture-nucleation-state requires an explicit reference_case profile")
     target = args.output.resolve()
     target.mkdir(parents=True, exist_ok=False)
 
@@ -113,6 +132,8 @@ def main() -> int:
             destination.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(path, destination)
         (target / "data").mkdir()
+        if reference_case is not None:
+            manifest["reference_configuration"] = configure_driver(target / "driver.F90", reference_case)
         if args.capture_runtime:
             manifest["runtime_capture"] = instrument_driver(target / "driver.F90")
             manifest["runtime_capture"]["status"] = "instrumented_not_run"
@@ -126,8 +147,11 @@ def main() -> int:
             manifest["coagulation_capture"] = instrument_salsa_coagulation(target / "mo_ham_salsa.F90")
             manifest["coagulation_capture"]["status"] = "instrumented_not_run"
         if args.capture_condensation_state:
-            manifest["condensation_capture"] = instrument_salsa_condensation(target / "mo_ham_salsa.F90")
+            manifest["condensation_capture"] = instrument_salsa_condensation(target / "mo_ham_salsa.F90", allow_nucleation=reference_case is not None)
             manifest["condensation_capture"]["status"] = "instrumented_not_run"
+        if args.capture_nucleation_state:
+            manifest["nucleation_capture"] = instrument_condensation_nucleation(target / "mo_ham_salsa_dynamics.F90")
+            manifest["nucleation_capture"]["status"] = "instrumented_not_run"
         manifest["compiled_driver_sha256"] = sha256(target / "driver.F90")
         compiler = config["build"]["compiler"]
         manifest["compiler"] = output(compiler, "--version")
@@ -159,6 +183,10 @@ def main() -> int:
                     capture["runtime_file"] = FILENAME
                     capture["runtime_sha256"] = sha256(runtime_path)
                     capture["metadata"] = parse_metadata(runtime_path.read_text())
+                    if reference_case is not None:
+                        for key in ("nsnucl", "nj3"):
+                            if capture["metadata"]["values"][key] != reference_case[key]:
+                                raise ValueError(f"Runtime {key} differs from requested reference_case")
                     capture["status"] = "captured"
                 except (OSError, ValueError) as error:
                     capture["status"] = "capture_failed"
@@ -221,6 +249,18 @@ def main() -> int:
                     capture["error"] = str(error)
                     if manifest["run"]["returncode"] == 0:
                         manifest["status"] = "condensation_capture_failed"
+                    return 1
+            if args.capture_nucleation_state:
+                capture = manifest["nucleation_capture"]
+                try:
+                    capture["file_sha256"] = {name: sha256(target / name) for name in NUCLEATION_FILES.values()}
+                    capture["state"] = load_nucleation_capture(target)
+                    capture["status"] = "captured"
+                except (OSError, ValueError) as error:
+                    capture["status"] = "capture_failed"
+                    capture["error"] = str(error)
+                    if manifest["run"]["returncode"] == 0:
+                        manifest["status"] = "nucleation_capture_failed"
                     return 1
             return 0 if manifest["run"]["returncode"] == 0 else 1
         return 0

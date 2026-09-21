@@ -1,4 +1,4 @@
-"""Capture standalone condensation with nucleation disabled, in a copied source."""
+"""Capture standalone condensation boundaries in a copied source."""
 from __future__ import annotations
 
 import difflib
@@ -52,8 +52,9 @@ CALL = """    IF (lscond) CALL condensation(&
 """
 
 
-def instrument_salsa_condensation(path: Path) -> dict:
+def instrument_salsa_condensation(path: Path, *, allow_nucleation=False) -> dict:
     """Wrap the actual conditional call after hydration and before remapping."""
+    integers = {**INTEGERS, "nj3": ("cond_nj3", ())} if allow_nucleation else INTEGERS
     original = path.read_bytes()
     newline = b"\r\n" if b"\r\n" in original else b"\n"
     text = original.decode().replace("\r\n", "\n")
@@ -68,9 +69,12 @@ def instrument_salsa_condensation(path: Path) -> dict:
     USE mo_physical_constants, ONLY: cond_argas=>argas,cond_ak=>ak,cond_p0sl_bg=>p0sl_bg
     USE mo_time_control, ONLY: cond_time_step_len=>time_step_len
 """
+    if allow_nucleation:
+        imports += "    USE mo_ham_salsactl, ONLY: cond_nj3=>nj3\n"
     declarations = """    INTEGER :: cond_capture_unit
     INTEGER, SAVE :: cond_capture_count=0
 """
+    option_guard = "cond_nsnucl < 1 .OR. cond_nsnucl > 3 .OR. cond_nj3 < 1 .OR. cond_nj3 > 3" if allow_nucleation else "cond_nsnucl /= 0"
     stages = {}
     for stage, fields in (("entry", ENTRY), ("exit", EXIT)):
         lines = []
@@ -78,12 +82,12 @@ def instrument_salsa_condensation(path: Path) -> dict:
             lines += ["! SALSA_CONDENSATION_STATE_V1: copy-only instrumentation",
                       "cond_capture_count=cond_capture_count+1",
                       "IF (cond_capture_count /= 1) ERROR STOP 'condensation capture requires one call'",
-                      "IF (cond_nsnucl /= 0 .OR. nsoa /= 0 .OR. subm_naerospec_nowat /= 5) &",
+                      f"IF ({option_guard} .OR. nsoa /= 0 .OR. subm_naerospec_nowat /= 5) &",
                       "     ERROR STOP 'unsupported condensation capture configuration'"]
         lines += [f"OPEN(NEWUNIT=cond_capture_unit,FILE='{FILES[stage]}',STATUS='new',ACTION='write')",
                   f"WRITE(cond_capture_unit,'(A)') '{HEADER}'"]
         if stage == "entry":
-            for name, (expression, shape) in INTEGERS.items():
+            for name, (expression, shape) in integers.items():
                 lines += array_lines(name, expression, "I", shape, "cond_capture_unit")
         for name, (expression, shape, _) in fields.items():
             shape = tuple({"nspecies": "subm_naerospec_nowat", "ngas": "subm_ngasspec"}.get(dim, dim) for dim in shape)
@@ -109,7 +113,8 @@ def instrument_salsa_condensation(path: Path) -> dict:
 def load_capture(directory: Path) -> dict:
     entry = parse_records((directory / FILES["entry"]).read_text())
     exit_state = parse_records((directory / FILES["exit"]).read_text())
-    if set(entry) != set(ENTRY) | set(INTEGERS) or set(exit_state) != set(EXIT):
+    integers = {**INTEGERS, "nj3": ("cond_nj3", ())} if "nj3" in entry else INTEGERS
+    if set(entry) != set(ENTRY) | set(integers) or set(exit_state) != set(EXIT):
         raise ValueError("Missing or unexpected condensation field")
     dims = entry["dimensions"]
     if dims["kind"] != "I" or dims["shape"] != [6]:
@@ -118,14 +123,18 @@ def load_capture(directory: Path) -> dict:
     if (any(value <= 0 for value in sizes.values()) or sizes["kproma"] > sizes["kbdim"] or
             sizes["nspecies"] != 5 or sizes["fn2b"] != 17):
         raise ValueError("Invalid condensation dimensions")
-    for fields, records in ((ENTRY, entry), (EXIT, exit_state), (INTEGERS, entry)):
+    for fields, records in ((ENTRY, entry), (EXIT, exit_state), (integers, entry)):
         for name, spec in fields.items():
             expected = [int(dim) if dim.isdigit() else sizes[dim] for dim in spec[1]]
-            if records[name]["shape"] != expected or records[name]["kind"] != ("I" if fields is INTEGERS else "R"):
+            if records[name]["shape"] != expected or records[name]["kind"] != ("I" if fields is integers else "R"):
                 raise ValueError(f"Wrong condensation shape/type: {name}")
     if entry["boundaries"]["values"] != [1, 3, 4, 10, 11, 17]:
         raise ValueError("Unsupported condensation bin boundaries")
-    if entry["options"]["values"] != [0, 0, 64]:
+    nsnucl, nsoa, bits = entry["options"]["values"]
+    active = "nj3" in entry
+    if (nsoa != 0 or bits != 64 or
+            (active and (nsnucl not in (1, 2, 3) or entry["nj3"]["values"][0] not in (1, 2, 3))) or
+            (not active and nsnucl != 0)):
         raise ValueError("Unsupported condensation nucleation/composition/precision configuration")
     sulfate, organic = entry["gas_indices"]["values"]
     if not 1 <= sulfate <= sizes["ngas"] or not 0 <= organic <= sizes["ngas"] or sulfate == organic:
@@ -142,9 +151,9 @@ def load_capture(directory: Path) -> dict:
             raise ValueError(f"Negative condensation output: {name}")
     return {"schema_version": 1, "order": "Fortran column-major", "dimensions": sizes,
             "species": ["SO4", "OC", "BC", "SS", "DU"],
-            "options": {"nsnucl": 0, "nsoa": 0, "dp_bits": 64, "isubm_so4g": sulfate, "isubm_ocnv": organic},
+            "options": {"nsnucl": nsnucl, **({"nj3": entry["nj3"]["values"][0]} if active else {}), "nsoa": 0, "dp_bits": 64, "isubm_so4g": sulfate, "isubm_ocnv": organic},
             "stage": "after coagulation and optional second equilibration; immediately around condensation; before remapping",
-            "entry": entry, "exit": exit_state, "units": {name: spec[2] for name, spec in ENTRY.items()}}
+            "entry": entry, "exit": exit_state, "units": {**{name: spec[2] for name, spec in ENTRY.items()}, **({"prh": "1"} if active else {})}}
 
 
 def load_fixture(directory: Path) -> dict:
@@ -170,11 +179,12 @@ def export_fixture(run_directory: Path, target: Path) -> None:
     if hashes != capture.get("file_sha256"):
         raise ValueError("Run condensation files changed after manifest creation")
     state = load_capture(run_directory)
-    fixture = {"schema_version": 1, "scope": "one default condensation call with nucleation disabled; not trajectory acceptance",
+    fixture = {"schema_version": 1, "scope": "one condensation call; explicit captured nucleation options; not trajectory acceptance",
                "files": hashes, "run_manifest_sha256": hashlib.sha256(manifest_path.read_bytes()).hexdigest(),
                "source_revision": manifest["source_revision"], "working_tree_status": manifest["working_tree_status"],
                "source_sha256": manifest["source_sha256"], "input_sha256": manifest["input_sha256"],
                "compiler": manifest["compiler"], "config": manifest["config"],
+               **({"reference_configuration": manifest["reference_configuration"]} if "reference_configuration" in manifest else {}),
                "dimensions": state["dimensions"], "options": state["options"], "stage": state["stage"],
                "condensation_overlay": {key: value for key, value in capture.items() if key not in ("state", "file_sha256")},
                "runtime_metadata": manifest["runtime_capture"]["metadata"],
