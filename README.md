@@ -70,6 +70,19 @@ Full reference audits additionally need Make and NetCDF C/Fortran libraries:
 The second command currently reproduces the known defect; do not suppress the
 check to claim validation. Use a new output directory for each run.
 
+For an explicitly narrower reference, stop after the first HAM microphysics
+call under strict checks:
+
+```sh
+.venv/bin/python tools/fortran_reference.py \
+  --config configs/fortran-checked.toml --scope first-microphysics \
+  --capture-runtime --run --output build/first-microphysics
+```
+
+This scope checks finite microphysics outputs and records completion before
+radiation, activation and removal. It is not a validated full trajectory;
+see [scope and limitations](docs/development/scoped-reference.md).
+
 ## Layout and development
 
 - `src/salsa_jax/`: JAX kernels and constants.
@@ -82,8 +95,9 @@ check to claim validation. Use a new output directory for each run.
 Start with the [documentation index](docs/README.md),
 [development quickstart](docs/development/quickstart.md), and
 [current status / next tasks](docs/plans/STATUS.md).
-The next priority is a small reproduction and repair of the checked Fortran
-failure, followed by full-precision process capture and grid-geometry porting.
+The next priority is full-precision state/process capture using the checked
+microphysics scope, followed by grid-geometry porting. Full-driver radiation
+requires valid optical tables and a separate initialization repair.
 
 See [LICENSE.txt](LICENSE.txt) and retained source notices for attribution.
 The [original Fortran overview](docs/fortran-overview.md) describes HAM-SALSA's

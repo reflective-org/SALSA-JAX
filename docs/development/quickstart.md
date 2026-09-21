@@ -57,6 +57,12 @@ Do not disable checks to declare a defect fixed. Optional `--capture-runtime`
 records initialized dimensions, switches, gas mapping and real precision, even
 when a later process fails; see [runtime capture](runtime-metadata.md).
 
+To inspect only the first microphysics interface call, add
+`--scope first-microphysics` to the checked command. This explicit scope checks
+six output/state arrays for finite values and stops before radiation, activation
+and removal. Its manifest reports a separate completion status; it does not
+establish full-driver parity. See [the scoped reference](scoped-reference.md).
+
 For the legacy root build, persistent settings belong in `Makefile.in`.
 `sh configure` needs `makedepf90` and overwrites `Makefile`; the audit tool uses
 the checked-in dependency graph without requiring regeneration.

@@ -21,13 +21,16 @@ The [master plan](ULTRAPLAN.md) defines the remaining commit-sized backlog.
 | F10a | Implemented | Organic fraction initialized with nucleation off; positive-organic fixture and budgets pass |
 | F09b/F10b | Implemented | Activation velocity rank/units reproducer and correction; eight tests |
 | F09c/F10c | Implemented | Water-output extent reproducer and allocation for active class count; three tests |
+| F09d | Audit complete | Both optical tables rejected by NetCDF; standalone initialization/path/order issues documented |
+| F10d | Explicit scope verified | Checked first microphysics call completes with six finite arrays; full driver remains unvalidated |
+| F09e/F10e | Implemented | D006 absent-organic nucleation guard; 29 checked regressions, original/current equality and coupled sulfate budgets |
 | F11a | Initialization capture verified | Copy-only overlay; typed dimensions/switches/gas mapping; nine diagnostics identical with/without capture |
 | S01 | Partial, first leaf only | Legacy constants and float64 policy for `coagc`; broader state/kind readback remains planned |
 | C01.R / C01.J | Leaf parity passes | Verbatim original-Fortran oracle; four tests, 1734 cases; maximum relative error 8.95e-15 |
 | P01/P02 | Preliminary leaf evidence | Wall-to-wall batch timing with source/case hashes; no full-process or model claim |
 | Q01 | Implemented | Quickstart, capability limits and reproduction commands |
 
-Total current suite: **48 passed** in this repository's `.venv`. Original inputs
+Total current suite: **103 passed** in this repository's `.venv`. Original inputs
 remain unchanged; Fortran scientific/driver repairs are separate commits. Generated
 builds/outputs remain ignored. Source relocation has not started. The pre-existing
 `AGENTS.md` remains unchanged; this ledger and the repair record carry current
@@ -35,19 +38,17 @@ validation status.
 
 ## Next ready tasks, in order
 
-1. **F09d:** reproduce missing standalone radiation initialization/table data
-   (D005); inspect supplied optical inputs and initial diagnostic values. Define
-   a supported full-driver case or an explicitly scoped microphysics reference
-   before adding another repair. Never fabricate optical values.
-2. **F09e/F10e:** isolate nucleation's absent-organic-gas read and repair supported
-   sulfate-only modes with a narrow checked fixture before enabling nucleation.
-3. **F11b/F12:** extend metadata to complete state/tracer contracts and capture
-   full-precision SALSA entry/exit. Initialization capture is not timestep evidence.
-4. **F13–F16:** capture separate coagulation, condensation and nucleation process
+1. **F11b/F12:** extend metadata to complete state/tracer contracts and capture
+   full-precision SALSA entry/exit in the checked first-microphysics scope.
+   Initialization metadata and a finite first call are not trajectory evidence.
+2. **F13–F16:** capture separate coagulation, condensation and nucleation process
    states, validate budgets, repeat/reset behavior and configuration isolation.
-5. **C02.R/C02.J:** port grid geometry after its state/bin contract is captured;
+3. **C02.R/C02.J:** port grid geometry after its state/bin contract is captured;
    then follow the independent process tasks in the core plan.
-6. **O01–O04:** improve build portability and cleanup; mechanical source moves
+4. **D005 follow-up:** obtain valid optical tables and audit standalone radiation
+   initialization before accepting a full-driver case. The explicit early-stop
+   scope does not repair or silently disable full-driver radiation.
+5. **O01–O04:** improve build portability and cleanup; mechanical source moves
    still depend on passing reference gates.
 
 Coagulation, condensation and nucleation each have separate Fortran oracles,
@@ -83,7 +84,9 @@ provenance and has not been relabeled as a new benchmark run.
 The checked full-model failure prevents declaring a scientifically validated
 trajectory baseline. Matching formatted diagnostics does not resolve undefined
 memory access. The scalar coefficient port is independently tested and does not
-call the defective condensation path. GPU, complete coagulation, other processes,
+depend on the full-driver radiation path. The named first-microphysics scope
+completes one finite interface call, not a full timestep or trajectory.
+GPU, complete coagulation, other processes,
 full-model JAX parity, gradients and OpenIFS integration are not implemented.
 
 See [recorded results](../development/results-2026-09-21.md) for numerical and
@@ -99,6 +102,10 @@ timing evidence, and [quickstart](../development/quickstart.md) for commands.
 | `e659216` | F09b/F10b: activation input shape and pressure-velocity units |
 | `81f24b5` | F09c/F10c: allocate aerosol-water output for active classes |
 | `64db941` | F11a: copy-only effective runtime metadata and validation |
+| `0dd5281` | F09e: original absent-organic failure in sulfate nucleation |
+| `4a04894` | F10e: zero absent-organic vapor without changing registered-gas behavior |
+| `68b14e7` | Nucleation boundary documentation and checked numerical evidence |
+| `786e854` | F10d: explicit checked first-microphysics scope and completion checks |
 
 The [repair record](../development/reference-repairs.md) explains scientific
 scope and remaining defects. The [runtime capture guide](../development/runtime-metadata.md)
@@ -106,3 +113,9 @@ links initialization evidence and the instrumented/uninstrumented comparison.
 The current ordinary outputs differ from the original in five diagnostic files;
 this is recorded as a baseline change, not scientific acceptance. No new
 performance claim is made by these diagnostic runs.
+
+The D006 nucleation repair preserves all nine default ordinary-run diagnostics
+exactly; the default has nucleation disabled. Its separate kernel tests cover
+schemes 1/2/3 with growth options 1/2/3, registered-zero and positive organics,
+zero sulfate, and coupled sulfate budgets. See the
+[nucleation reference](../development/nucleation-reference.md) for scope limits.

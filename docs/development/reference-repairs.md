@@ -88,7 +88,9 @@ After the storage correction, a fresh isolated checked run reaches `ham_rad` and
 traps in `ham_rad_refrac_volume`. In the current standalone SALSA build,
 `ham_initialize` calls `ham_rad_initialize` only under `HAMMOZ`, while the
 driver calls `ham_rad` unconditionally. The supplied optical-property files
-are tiny NetCDF headers and require an independent completeness audit.
+are only 64 and 67 bytes; `ncdump` rejects both. The
+[radiation audit](radiation-reference-audit.md) also identifies path construction
+and initialization-order defects.
 Do not invent optical values, disable traps, or describe this as an accepted
 full-model reference. The fresh `build/reference-repairs-checked` run reproduced
 the trap; symbolized frames identify `ham_rad_refrac_volume` → `ham_rad_refrac`

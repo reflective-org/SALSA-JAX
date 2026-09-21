@@ -1,0 +1,92 @@
+{
+  "task": "F09d / D005 radiation audit",
+  "date": "2026-09-21",
+  "scope": "Read-only production audit plus copied-driver checked experiments; no scientific acceptance",
+  "source_revision": "0dd52818d421a5148a414a41e86cf8981f6869de",
+  "working_tree_status_at_copy": "M mo_ham_salsa_nucleation.F90\n M tests/test_nucleation_regression.py",
+  "checked_build_command": [
+    "make",
+    "-j1",
+    "F90=gfortran",
+    "F90FLAGS=-cpp -g -fbacktrace -std=legacy -ffpe-trap=invalid,zero,overflow -O0 -fcheck=all -finit-real=snan -DNOMPI -DSALSA -D__x86_64 -I./include -I/opt/homebrew/Cellar/netcdf-fortran/4.6.3/include -I/opt/homebrew/Cellar/netcdf-fortran/4.6.3/include",
+    "LDFLAGS=",
+    "LIBS=-L/opt/homebrew/Cellar/netcdf-fortran/4.6.3/lib -lnetcdff -lnetcdf -L/opt/homebrew/Cellar/netcdf/4.10.0/lib -lnetcdf"
+  ],
+  "compiler": "GNU Fortran (Homebrew GCC 16.1.0) 16.1.0\nCopyright (C) 2026 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+  "baseline": {
+    "directory": "/private/tmp/salsa-f09d-checked-audit",
+    "build_returncode": 0,
+    "run_returncode": -4,
+    "run_log_sha256": "c6f57242ff30dd909c86bc42ce527861d172e448d395895f5809a713effa7f4b",
+    "manifest_sha256": "5686baebc025e324e4cdf4c01491094038f7f02f878886c796ba4345eec3fe7c"
+  },
+  "source_sha256": {
+    "driver.F90": "ff59d164d894111da2f41263351fd815a062c9ae34502b91cae3436a3dafb5f2",
+    "mo_ham_init.F90": "184c4abf33df411e874493d0476b0fddbcdc45813a82c3d7144afc451c123f1f",
+    "mo_ham_rad.F90": "025da81d8362f7648ac38393bf25e2d5eb04288d5f41e3be1bf3bef690a38108",
+    "mo_ham_rad_data.F90": "1e501439e53b8d7c2e398ad7527f876676df4350c15b54995c42677841bf74ed",
+    "mo_ham.F90": "117e36d7a8dfbacc986e8736275de88d2deacda2cdd12c4287d3022afd042737",
+    "TM5M7_DATA.F90": "ba69c6ed04c74008e49de50715549ef66f985656d6c793015738a9c7295f1cca"
+  },
+  "optical_inputs": [
+    {
+      "path": "input/lut_optical_properties_M7.nc",
+      "bytes": 64,
+      "sha256": "fff3657f3ec81bd4a3cb28abb0b4a0741d075af6258333213fe5bf4dba0d0814",
+      "ncdump_returncode": 1,
+      "ncdump_stderr": "ncdump: /Users/ali/Documents/GitHub/aerosol-microphysics/SALSA-JAX/input/lut_optical_properties_M7.nc: NetCDF: Invalid argument"
+    },
+    {
+      "path": "input/lut_optical_properties_lw_M7.nc",
+      "bytes": 67,
+      "sha256": "c4e0ee3db8fb106a7d5e2eb79ba4272c5545c6441ed7345c61e719b917584e87",
+      "ncdump_returncode": 1,
+      "ncdump_stderr": "ncdump: /Users/ali/Documents/GitHub/aerosol-microphysics/SALSA-JAX/input/lut_optical_properties_lw_M7.nc: NetCDF: Invalid argument"
+    }
+  ],
+  "experiments": [
+    {
+      "mode": "without_optics",
+      "path": "/private/tmp/salsa-f09d-without_optics",
+      "build_returncode": 0,
+      "original_driver_sha256": "ff59d164d894111da2f41263351fd815a062c9ae34502b91cae3436a3dafb5f2",
+      "experiment_driver_sha256": "0eeb54e281d8424584818adbb3213d1a79eb60addbd0cbc8958f9cddc1a11348",
+      "run_returncode": 0,
+      "driver_patch": "--- driver.F90\n+++ driver.F90\n@@ -801,11 +801,7 @@\n       CALL activ_updraft(kproma, kbdim, klev, krow, &\n          ZTKEM1, ZWCAPE, zvervel, zrhoa, zw, zwpdf)\n       \n-      CALL ham_rad(kproma, kbdim, klev, krow, kpband, NASWBAND, &\n-         pxtm1, ppd_hl, &\n-         ZAER_TAU(:,:,:,1), ZAER_SSA, ZAER_ASYM, ZAER_TAU_LW, zrwet, &\n-         & ldiag_aeropt, kb_diag, ntype_diaf, &\n-         & lambda_diag, zaer_tau_diag, zaer_ssa_diag, zaer_asym_diag)\n+      ! F09d isolated experiment: radiation excluded.\n       !<--hhalonen\n \n       SELECT CASE(nham_subm)\n",
+      "patch_sha256": "702dd9431bd70e0f9a6166904eabf18797f1f2ea820e98e2e6a7aabf56e60230",
+      "build_log_sha256": "6f5628126d3929c2de41c85af340182ba631b5fcce90c885b72480e85a3df5df",
+      "run_log_sha256": "8f5f2b2a09cdd7e0461f2450e102b2f11db05f617c53e679d1d2e44b984d6db5",
+      "executable_sha256": "4a8a040ed448d86c9b8abbbc713c230b71c413437ca22ce470a0478bd501b0a6"
+    },
+    {
+      "mode": "first_microphysics",
+      "path": "/private/tmp/salsa-f09d-first_microphysics",
+      "build_returncode": 0,
+      "original_driver_sha256": "ff59d164d894111da2f41263351fd815a062c9ae34502b91cae3436a3dafb5f2",
+      "experiment_driver_sha256": "9408b5e5c5527375021f77d71fedfa4f0bf4c68ef311dc80c9fff071d6da98e7",
+      "run_returncode": 0,
+      "driver_patch": "--- driver.F90\n+++ driver.F90\n@@ -1,5 +1,6 @@\n PROGRAM driver\n \n+  USE, INTRINSIC :: ieee_arithmetic, ONLY: ieee_is_finite\n   USE driver_input\n   USE mo_ham_salsa_init\n   USE mo_ham,          ONLY:nham_subm, naerocomp, &\n@@ -777,6 +778,14 @@\n           pxtm1, pxtte,                                       &  ! tracer mass/number mr, tendencies\n           zrwet, zm6dry, zrhop, zww,                          &  ! mean mode actual radius [m], dry radius for soluble modes [m] \n           paclc, pgrvolm1, zpbl)                                 ! cloud cover, grid box volume, boundary layer top level\n+      IF (.NOT. ALL(ieee_is_finite(pxtm1))) ERROR STOP 'pxtm1 nonfinite'\n+      IF (.NOT. ALL(ieee_is_finite(pxtte))) ERROR STOP 'pxtte nonfinite'\n+      IF (.NOT. ALL(ieee_is_finite(zrwet))) ERROR STOP 'zrwet nonfinite'\n+      IF (.NOT. ALL(ieee_is_finite(zm6dry))) ERROR STOP 'zm6dry nonfinite'\n+      IF (.NOT. ALL(ieee_is_finite(zrhop))) ERROR STOP 'zrhop nonfinite'\n+      IF (.NOT. ALL(ieee_is_finite(zww))) ERROR STOP 'zww nonfinite'\n+      WRITE(*,*) 'F09D_FIRST_MICROPHYSICS_FINITE'\n+      STOP\n       DO jn=1, nclass\n          jt = sizeclass(jn)%idt_no\n          zaernl(1:kproma,:,jn) = zfacn*zrhoa(1:kproma,:)*(pxtm1(1:kproma,:,jt)+pxtte(1:kproma,:,jt)*time_step_len)\n",
+      "patch_sha256": "29ab9c3d8b8a735e15b5e37b3da75cd0d7b74c2e6d9bdbbc24ce4c417d41ae83",
+      "build_log_sha256": "6f5628126d3929c2de41c85af340182ba631b5fcce90c885b72480e85a3df5df",
+      "run_log_sha256": "f00d1a14491999e9adb3cedc6ddc3cce86feed321e85f8c85bedf355c1cc7702",
+      "executable_sha256": "72ccafc2b5739941c3d7eda4af9ca084697a5460982820480f0dd138407fdc42",
+      "finite_checked_fields": [
+        "pxtm1",
+        "pxtte",
+        "zrwet",
+        "zm6dry",
+        "zrhop",
+        "zww"
+      ],
+      "finite_marker_present": true,
+      "completed_full_timesteps": 0
+    }
+  ],
+  "recommended_next_scope": "Stop after first ham_subm_interface, before derived-number loop; capture entry/exit state, tendencies and physical diagnostics at full precision. Exclude optics/activation/removal/full trajectory claims.",
+  "known_limitations": [
+    "Finite check covers only first returned microphysics state, not conservation or entire trajectory.",
+    "Existing initial diagnostic rows may precede assignment; do not treat them as initial-state evidence.",
+    "No-optics experiment completed 1000 steps but did not add per-step budget/state validation.",
+    "Namelist HAMCTL reading is compiled out without HAMMOZ; profile changes need effective runtime capture."
+  ]
+}
