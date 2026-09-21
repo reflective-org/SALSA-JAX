@@ -266,7 +266,11 @@ CONTAINS
     !-- 1) Nucleation rate and diameter of critical cluster -------------------
     ! >> thk: VBS
     pcsa(1:kproma,:)   = pc_gas(1:kproma,:,isubm_so4g)
-    pcocnv(1:kproma,:) = pc_gas(1:kproma,:,isubm_ocnv)
+    ! Optional nonvolatile organic gas is absent when its index is zero.
+    pcocnv(1:kproma,:) = 0._dp
+    IF (isubm_ocnv > 0) THEN
+       pcocnv(1:kproma,:) = pc_gas(1:kproma,:,isubm_ocnv)
+    END IF
     ! << thk
 
     zjnuc=0._dp
