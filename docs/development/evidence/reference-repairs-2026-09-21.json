@@ -1,0 +1,487 @@
+{
+  "schema_version": 1,
+  "recorded_date": "2026-09-21",
+  "scope": "Observed ordinary-output changes across the combined reference repairs; not scientific validity or attribution to one repair",
+  "runs": {
+    "repository_launch": {
+      "source_revision": "d87dc072084336fd351d00a2ade863304c6f313d",
+      "working_tree_status": "M .depend\n M Makefile\n M README.md\n?? .gitignore\n?? AGENTS.md\n?? benchmarks/\n?? configs/\n?? docs/\n?? pyproject.toml\n?? requirements-dev.txt\n?? src/\n?? tests/\n?? tools/",
+      "platform": "macOS-26.6.2-arm64-arm-64bit",
+      "machine": "arm64",
+      "config": {
+        "build": {
+          "compiler": "gfortran",
+          "flags": [
+            "-cpp",
+            "-g",
+            "-fbacktrace",
+            "-std=legacy",
+            "-ffpe-trap=invalid,zero,overflow",
+            "-O",
+            "-DNOMPI",
+            "-DSALSA",
+            "-D__x86_64",
+            "-I./include"
+          ],
+          "jobs": 1,
+          "timeout_seconds": 180
+        },
+        "run": {
+          "timeout_seconds": 60
+        }
+      },
+      "config_sha256": "c7f57e11634475c841f09b30e7fd08415675d3d328d7e107e80d914da44e0cb4",
+      "harness_sha256": "42767efd0ebba9ed1e35f9b3248269b1d78b2fa4a06f12956915069abbb82dba",
+      "environment": {
+        "FC": null,
+        "FFLAGS": null,
+        "LDFLAGS": "-L/opt/homebrew/opt/netcdf/lib:-L/opt/homebrew/opt/netcdf-fortran/lib:-L/opt/homebrew/opt/llvm/lib:-L/opt/homebrew/opt/openblas/lib:-L/opt/homebrew/opt/lapack/lib:",
+        "OMP_NUM_THREADS": null
+      },
+      "compiler": "GNU Fortran (Homebrew GCC 16.1.0) 16.1.0\nCopyright (C) 2026 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+      "netcdf_fortran": "4.6.3",
+      "netcdf_c": "netCDF 4.10.0",
+      "build": {
+        "command": [
+          "make",
+          "-j1",
+          "F90=gfortran",
+          "F90FLAGS=-cpp -g -fbacktrace -std=legacy -ffpe-trap=invalid,zero,overflow -O -DNOMPI -DSALSA -D__x86_64 -I./include -I/opt/homebrew/Cellar/netcdf-fortran/4.6.3/include -I/opt/homebrew/Cellar/netcdf-fortran/4.6.3/include",
+          "LDFLAGS=",
+          "LIBS=-L/opt/homebrew/Cellar/netcdf-fortran/4.6.3/lib -lnetcdff -lnetcdf -L/opt/homebrew/Cellar/netcdf/4.10.0/lib -lnetcdf"
+        ],
+        "status": "finished",
+        "returncode": 0,
+        "wall_seconds_including_io": 9.048948624986224,
+        "log": "build.log"
+      },
+      "executable_sha256": "f4d5b449e18f686b3749c0eeb7666eb4d4d195c6d72741e9e70f9e7fe3e9ee84",
+      "run": {
+        "command": [
+          "./ham_box"
+        ],
+        "status": "finished",
+        "returncode": 0,
+        "wall_seconds_including_io": 0.5675772079848684,
+        "log": "run.log"
+      },
+      "status": "run_completed_unvalidated",
+      "manifest_path": "/Users/ali/Documents/GitHub/aerosol-microphysics/SALSA-JAX/build/repository-launch/manifest.json",
+      "manifest_sha256": "b68ae1aca87b76980f2c64adcf22972bb8984726d55626f878393991a91958d9"
+    },
+    "repaired_ordinary": {
+      "source_revision": "e659216ba8aede645c0f06f338cf91939defbb79",
+      "working_tree_status": "M driver.F90\n M tools/fortran_reference.py\n?? docs/development/runtime-metadata.md\n?? tests/test_aerosol_water_storage.py\n?? tests/test_runtime_metadata.py\n?? tools/runtime_metadata.py",
+      "platform": "macOS-26.6.2-arm64-arm-64bit",
+      "machine": "arm64",
+      "config": {
+        "build": {
+          "compiler": "gfortran",
+          "flags": [
+            "-cpp",
+            "-g",
+            "-fbacktrace",
+            "-std=legacy",
+            "-ffpe-trap=invalid,zero,overflow",
+            "-O",
+            "-DNOMPI",
+            "-DSALSA",
+            "-D__x86_64",
+            "-I./include"
+          ],
+          "jobs": 1,
+          "timeout_seconds": 180
+        },
+        "run": {
+          "timeout_seconds": 60
+        }
+      },
+      "config_sha256": "c7f57e11634475c841f09b30e7fd08415675d3d328d7e107e80d914da44e0cb4",
+      "harness_sha256": "da2e927af23f83f00b74f6d375d61b88f30e2ce8ffb7f6006f09a18af690f9e9",
+      "environment": {
+        "FC": null,
+        "FFLAGS": null,
+        "LDFLAGS": "-L/opt/homebrew/opt/netcdf/lib:-L/opt/homebrew/opt/netcdf-fortran/lib:-L/opt/homebrew/opt/llvm/lib:-L/opt/homebrew/opt/openblas/lib:-L/opt/homebrew/opt/lapack/lib:",
+        "OMP_NUM_THREADS": null
+      },
+      "compiler": "GNU Fortran (Homebrew GCC 16.1.0) 16.1.0\nCopyright (C) 2026 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+      "netcdf_fortran": "4.6.3",
+      "netcdf_c": "netCDF 4.10.0",
+      "build": {
+        "command": [
+          "make",
+          "-j1",
+          "F90=gfortran",
+          "F90FLAGS=-cpp -g -fbacktrace -std=legacy -ffpe-trap=invalid,zero,overflow -O -DNOMPI -DSALSA -D__x86_64 -I./include -I/opt/homebrew/Cellar/netcdf-fortran/4.6.3/include -I/opt/homebrew/Cellar/netcdf-fortran/4.6.3/include",
+          "LDFLAGS=",
+          "LIBS=-L/opt/homebrew/Cellar/netcdf-fortran/4.6.3/lib -lnetcdff -lnetcdf -L/opt/homebrew/Cellar/netcdf/4.10.0/lib -lnetcdf"
+        ],
+        "status": "finished",
+        "returncode": 0,
+        "wall_seconds_including_io": 9.000398957985453,
+        "log": "build.log"
+      },
+      "executable_sha256": "a711075a37a82e425f4e520da823220da562e8f5977e0085173a92453130a176",
+      "run": {
+        "command": [
+          "./ham_box"
+        ],
+        "status": "finished",
+        "returncode": 0,
+        "wall_seconds_including_io": 0.5585477499989793,
+        "log": "run.log"
+      },
+      "status": "run_completed_unvalidated",
+      "manifest_path": "/private/tmp/salsa-jax-f11-plain-20260921/manifest.json",
+      "manifest_sha256": "2af0148d9d3cf3c8a7681dc79989ca00f19d4b98c8756f0eab6adc49fafd4be0"
+    },
+    "repaired_checked": {
+      "source_revision": "81f24b55334ca79cf91264460ed1ec353be7010f",
+      "working_tree_status": "M tools/fortran_reference.py\n?? docs/development/runtime-metadata.md\n?? tests/test_runtime_metadata.py\n?? tools/runtime_metadata.py",
+      "platform": "macOS-26.6.2-arm64-arm-64bit",
+      "machine": "arm64",
+      "config": {
+        "build": {
+          "compiler": "gfortran",
+          "flags": [
+            "-cpp",
+            "-g",
+            "-fbacktrace",
+            "-std=legacy",
+            "-ffpe-trap=invalid,zero,overflow",
+            "-O0",
+            "-fcheck=all",
+            "-finit-real=snan",
+            "-DNOMPI",
+            "-DSALSA",
+            "-D__x86_64",
+            "-I./include"
+          ],
+          "jobs": 1,
+          "timeout_seconds": 180
+        },
+        "run": {
+          "timeout_seconds": 60
+        }
+      },
+      "config_sha256": "fb123db9c6ccda24778618ddbffa43613b3d3110a5b2ea758ed7d51174073db0",
+      "harness_sha256": "da2e927af23f83f00b74f6d375d61b88f30e2ce8ffb7f6006f09a18af690f9e9",
+      "environment": {
+        "FC": null,
+        "FFLAGS": null,
+        "LDFLAGS": "-L/opt/homebrew/opt/netcdf/lib:-L/opt/homebrew/opt/netcdf-fortran/lib:-L/opt/homebrew/opt/llvm/lib:-L/opt/homebrew/opt/openblas/lib:-L/opt/homebrew/opt/lapack/lib:",
+        "OMP_NUM_THREADS": null
+      },
+      "compiler": "GNU Fortran (Homebrew GCC 16.1.0) 16.1.0\nCopyright (C) 2026 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+      "netcdf_fortran": "4.6.3",
+      "netcdf_c": "netCDF 4.10.0",
+      "build": {
+        "command": [
+          "make",
+          "-j1",
+          "F90=gfortran",
+          "F90FLAGS=-cpp -g -fbacktrace -std=legacy -ffpe-trap=invalid,zero,overflow -O0 -fcheck=all -finit-real=snan -DNOMPI -DSALSA -D__x86_64 -I./include -I/opt/homebrew/Cellar/netcdf-fortran/4.6.3/include -I/opt/homebrew/Cellar/netcdf-fortran/4.6.3/include",
+          "LDFLAGS=",
+          "LIBS=-L/opt/homebrew/Cellar/netcdf-fortran/4.6.3/lib -lnetcdff -lnetcdf -L/opt/homebrew/Cellar/netcdf/4.10.0/lib -lnetcdf"
+        ],
+        "status": "finished",
+        "returncode": 0,
+        "wall_seconds_including_io": 9.559977666998748,
+        "log": "build.log"
+      },
+      "executable_sha256": "0519251d8c4b28d95d18c09200f7b305e72026d87bac29e852420a04c3bb3166",
+      "run": {
+        "command": [
+          "./ham_box"
+        ],
+        "status": "finished",
+        "returncode": -4,
+        "wall_seconds_including_io": 0.3376933749532327,
+        "log": "run.log"
+      },
+      "status": "run_failed",
+      "manifest_path": "/Users/ali/Documents/GitHub/aerosol-microphysics/SALSA-JAX/build/reference-repairs-checked/manifest.json",
+      "manifest_sha256": "a09ca7b6038b4a46e12df23a63da37c210272b098870f526e82061d5e41d39fe"
+    }
+  },
+  "current_source_and_input_hashes": "runtime-capture-2026-09-21.json: source_sha256 and input_sha256",
+  "source_hash_changes_from_launch": {
+    "driver.F90": {
+      "baseline": "399eb272b773650cd3d82146871b14e795027f915b7f7498488b68f4c4007574",
+      "current": "ff59d164d894111da2f41263351fd815a062c9ae34502b91cae3436a3dafb5f2"
+    },
+    "mo_ham_salsa_dynamics.F90": {
+      "baseline": "cfe952585ca9247afb890214b9f571de32b76a20f57059653c67f60ad3f072fa",
+      "current": "13db52f2e5e10bb0ad485348209a74e3b8bcbf25af77d05a995a8444050cff25"
+    },
+    "mo_ham_subm_species.F90": {
+      "baseline": "70d7bb72d6e86c6945b3cb653876441162af0dd4b46df17f066a867051b20e96",
+      "current": "de188b92adb2d07b121ad5e37f19573365fc0f228ddea75a7c3b882a2a34440a"
+    }
+  },
+  "launch_and_current_input_hashes_equal": true,
+  "current_and_fresh_checked_source_hashes_equal": true,
+  "comparison_method": {
+    "data_slash_files": "comma-separated float64 parsing, one header row skipped",
+    "other_files": "whitespace-separated float64 parsing",
+    "differences": "absolute and relative differences in the saved diagnostic values; no tolerance acceptance criterion",
+    "relative_metric": "max(abs(current-baseline)/abs(baseline)) only over finite nonzero baseline elements",
+    "units": "inherited legacy output units; files include concentrations and selected removal tendencies",
+    "precision_caveat": "data/*.dat use coarse formatted precision; other driver time series were stored in default-real arrays. Equality of these diagnostics cannot establish full-precision state parity."
+  },
+  "file_comparisons": [
+    {
+      "file": "data/fracn.dat",
+      "baseline_sha256": "142d2930f9dfc34a55e3383365f6d6d635638152f3909b72d56b867c25fbd778",
+      "current_sha256": "142d2930f9dfc34a55e3383365f6d6d635638152f3909b72d56b867c25fbd778",
+      "hashes_equal": true,
+      "baseline_shape": [
+        1001,
+        17
+      ],
+      "current_shape": [
+        1001,
+        17
+      ],
+      "baseline_nonfinite_count": 0,
+      "current_nonfinite_count": 0,
+      "max_absolute_difference": 0,
+      "worst_zero_based_index": [
+        0,
+        0
+      ],
+      "baseline_at_worst": 0,
+      "current_at_worst": 0,
+      "differing_finite_elements": 0,
+      "max_relative_difference_nonzero_baseline": 0,
+      "baseline_zero_current_nonzero_count": 0
+    },
+    {
+      "file": "data/nact.dat",
+      "baseline_sha256": "01746eca2c12f90f71526a39955b8c8e915376a3a486455f29d17f935d732a59",
+      "current_sha256": "01746eca2c12f90f71526a39955b8c8e915376a3a486455f29d17f935d732a59",
+      "hashes_equal": true,
+      "baseline_shape": [
+        1001,
+        17
+      ],
+      "current_shape": [
+        1001,
+        17
+      ],
+      "baseline_nonfinite_count": 0,
+      "current_nonfinite_count": 0,
+      "max_absolute_difference": 0,
+      "worst_zero_based_index": [
+        0,
+        0
+      ],
+      "baseline_at_worst": 0,
+      "current_at_worst": 0,
+      "differing_finite_elements": 0,
+      "max_relative_difference_nonzero_baseline": 0,
+      "baseline_zero_current_nonzero_count": 0
+    },
+    {
+      "file": "data/num.dat",
+      "baseline_sha256": "5d9c7298bf2e9a92d2a9d928ec4674a30565f797b061972febac3ec65687925e",
+      "current_sha256": "5d9c7298bf2e9a92d2a9d928ec4674a30565f797b061972febac3ec65687925e",
+      "hashes_equal": true,
+      "baseline_shape": [
+        1001,
+        17
+      ],
+      "current_shape": [
+        1001,
+        17
+      ],
+      "baseline_nonfinite_count": 0,
+      "current_nonfinite_count": 0,
+      "max_absolute_difference": 0,
+      "worst_zero_based_index": [
+        0,
+        0
+      ],
+      "baseline_at_worst": 380.7,
+      "current_at_worst": 380.7,
+      "differing_finite_elements": 0,
+      "max_relative_difference_nonzero_baseline": 0,
+      "baseline_zero_current_nonzero_count": 0
+    },
+    {
+      "file": "data/rdry.dat",
+      "baseline_sha256": "077a19c2cee1897ea7c675b207bada51d0347193ed9465bb26a575a02c1f8ced",
+      "current_sha256": "077a19c2cee1897ea7c675b207bada51d0347193ed9465bb26a575a02c1f8ced",
+      "hashes_equal": true,
+      "baseline_shape": [
+        1001,
+        17
+      ],
+      "current_shape": [
+        1001,
+        17
+      ],
+      "baseline_nonfinite_count": 0,
+      "current_nonfinite_count": 0,
+      "max_absolute_difference": 0,
+      "worst_zero_based_index": [
+        0,
+        0
+      ],
+      "baseline_at_worst": 3.101e-9,
+      "current_at_worst": 3.101e-9,
+      "differing_finite_elements": 0,
+      "max_relative_difference_nonzero_baseline": 0,
+      "baseline_zero_current_nonzero_count": 0
+    },
+    {
+      "file": "zaernl_series.dat",
+      "baseline_sha256": "90e501609d3365e30cf78debe889ae70fd31982da390797388c92c543f8f8fce",
+      "current_sha256": "2e65d548d6db750de0cd85b36ef9472970c2701370fbee8a9229e2bbdb715814",
+      "hashes_equal": false,
+      "baseline_shape": [
+        1000,
+        17
+      ],
+      "current_shape": [
+        1000,
+        17
+      ],
+      "baseline_nonfinite_count": 0,
+      "current_nonfinite_count": 0,
+      "max_absolute_difference": 0.0009000000009109499,
+      "worst_zero_based_index": [
+        178,
+        6
+      ],
+      "baseline_at_worst": 13379.8564,
+      "current_at_worst": 13379.8555,
+      "differing_finite_elements": 184,
+      "max_relative_difference_nonzero_baseline": 1.199408237262227e-7,
+      "baseline_zero_current_nonzero_count": 0
+    },
+    {
+      "file": "zpxtte_drydep.dat",
+      "baseline_sha256": "284986f2eda74c04e5475d5fb058f40ffb3725f82efd9e59469cd813e3707276",
+      "current_sha256": "e284da8432aeee13f56fd5d642d6f8c57ae01eacb27fbcd603fb61595e558ae9",
+      "hashes_equal": false,
+      "baseline_shape": [
+        1000,
+        7
+      ],
+      "current_shape": [
+        1000,
+        7
+      ],
+      "baseline_nonfinite_count": 0,
+      "current_nonfinite_count": 0,
+      "max_absolute_difference": 3.39999999938786e-21,
+      "worst_zero_based_index": [
+        108,
+        5
+      ],
+      "baseline_at_worst": 3.17045618e-14,
+      "current_at_worst": 3.17045584e-14,
+      "differing_finite_elements": 95,
+      "max_relative_difference_nonzero_baseline": 1.2026109601197276e-7,
+      "baseline_zero_current_nonzero_count": 0
+    },
+    {
+      "file": "zpxtte_sedi.dat",
+      "baseline_sha256": "4efaad50c70e7a2432aea72efb8f08696e80cb39694e0f914b565c2a76b9e846",
+      "current_sha256": "4429b3c9a70f1d5a03a469a68cd7b8a3f0cca3c8b2a1fbb31a4239ae4c4e85ac",
+      "hashes_equal": false,
+      "baseline_shape": [
+        1000,
+        7
+      ],
+      "current_shape": [
+        1000,
+        7
+      ],
+      "baseline_nonfinite_count": 0,
+      "current_nonfinite_count": 0,
+      "max_absolute_difference": 2.099999999437024e-25,
+      "worst_zero_based_index": [
+        124,
+        6
+      ],
+      "baseline_at_worst": 3.28023311e-18,
+      "current_at_worst": 3.2802329e-18,
+      "differing_finite_elements": 53,
+      "max_relative_difference_nonzero_baseline": 1.4563616098794272e-7,
+      "baseline_zero_current_nonzero_count": 0
+    },
+    {
+      "file": "zpxtte_wetdepconv.dat",
+      "baseline_sha256": "b7ebaf6968b40e5f1c49e275623fda2414f21aff606c9cfde51bdfb84f1fffe5",
+      "current_sha256": "eebe270c0d93e7f1688351742596dbd63f5a7a89b802140de89c76cf5f523dab",
+      "hashes_equal": false,
+      "baseline_shape": [
+        1000,
+        7
+      ],
+      "current_shape": [
+        1000,
+        7
+      ],
+      "baseline_nonfinite_count": 0,
+      "current_nonfinite_count": 0,
+      "max_absolute_difference": 4.299999999225823e-22,
+      "worst_zero_based_index": [
+        141,
+        6
+      ],
+      "baseline_at_worst": 5.38077172e-15,
+      "current_at_worst": 5.38077129e-15,
+      "differing_finite_elements": 84,
+      "max_relative_difference_nonzero_baseline": 2.4840336957423235e-7,
+      "baseline_zero_current_nonzero_count": 0
+    },
+    {
+      "file": "zpxtte_wetdepstrat.dat",
+      "baseline_sha256": "731198ed1fcc70deee0cb708cf7f9f7dbf4166cef47c6d2696e6b2a0e88a5c91",
+      "current_sha256": "fc96becb0b34b88dcf548392432dec5aaf140bae6e4cf2e35dfc4107cc81b2da",
+      "hashes_equal": false,
+      "baseline_shape": [
+        1000,
+        7
+      ],
+      "current_shape": [
+        1000,
+        7
+      ],
+      "baseline_nonfinite_count": 0,
+      "current_nonfinite_count": 0,
+      "max_absolute_difference": 3.2999999962504202e-21,
+      "worst_zero_based_index": [
+        115,
+        6
+      ],
+      "baseline_at_worst": 5.33456675e-14,
+      "current_at_worst": 5.33456708e-14,
+      "differing_finite_elements": 485,
+      "max_relative_difference_nonzero_baseline": 0.0002651201230134711,
+      "baseline_zero_current_nonzero_count": 0
+    }
+  ],
+  "changed_hash_file_count": 5,
+  "checked_failure": {
+    "returncode": -4,
+    "signal": "SIGILL on this compiler/platform; not a demonstrated compiler defect",
+    "log_sha256": "1377a227e17bdee6d476d8101a21e2217ef4c2e5d0d1cd5c647e9e917eed3721",
+    "symbolized_frames": [
+      "ham_rad_refrac_volume mo_ham_rad.F90:236",
+      "ham_rad_refrac mo_ham_rad.F90:173",
+      "ham_rad mo_ham_rad.F90:1055",
+      "driver driver.F90:808"
+    ],
+    "symbolized_log": "build/reference-repairs-checked/run.log"
+  },
+  "limitations": [
+    "The launch reference contained undefined behavior; matching it is not itself a correctness target.",
+    "Differences span combined gas-index, local-array initialization, velocity contract and aerosol-water storage repairs; no whole-run change is attributed solely to velocity.",
+    "The checked reference still fails in the optics path, so full-box scientific validation remains blocked.",
+    "Undefined initial activation diagnostic rows remain a separate concern even where hashes coincide."
+  ]
+}

@@ -13,7 +13,8 @@ python3 -m venv .venv
 .venv/bin/python -m pytest -q
 ```
 
-GNU Fortran must be on `PATH` for the tests. The leaf oracle compiles the original
+GNU Fortran and NetCDF's `ncdump` must be on `PATH` for the full test suite.
+The leaf oracle compiles the original
 `coagc` function and constants; it does not need NetCDF or a full HAM build.
 A missing compiler is an error, not a skipped parity test. Exact package versions
 are a tested environment snapshot, not evidence of support for all platforms.
@@ -49,10 +50,12 @@ Each output directory must be new. Inspect its `manifest.json`, `build.log`,
 source bytes as well as HEAD; the command does not claim a dirty tree equals HEAD.
 These run wall times include startup/I/O and are **not** kernel benchmarks.
 
-The checked profile currently fails on known D001, an inactive organic-gas
-index in condensation; see [architecture](architecture.md). The ordinary run
-completes but is not an approved scientific reference until that issue is resolved.
-Do not disable bounds checking to declare the defect fixed.
+The checked profile now passes the repaired condensation/driver sites and fails
+in standalone radiation (D005); see [reference repairs](reference-repairs.md).
+The ordinary run completes but remains an unvalidated scientific reference.
+Do not disable checks to declare a defect fixed. Optional `--capture-runtime`
+records initialized dimensions, switches, gas mapping and real precision, even
+when a later process fails; see [runtime capture](runtime-metadata.md).
 
 For the legacy root build, persistent settings belong in `Makefile.in`.
 `sh configure` needs `makedepf90` and overwrites `Makefile`; the audit tool uses

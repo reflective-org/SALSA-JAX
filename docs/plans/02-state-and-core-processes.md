@@ -53,7 +53,7 @@ implementation cannot be reviewed as one coherent change.
 |---|---|---|---|
 | C12.R / C12.J | C06,S05 | Condensation transport/uptake coefficients | Matched sink coefficients over wet radius and meteorology cases |
 | C13.R / C13.J | C12 | Sulfuric-acid condensation with `nsnucl=0` | Gas depletion and sulfate material budget including limiting branches |
-| C14.R / C14.J | C13 | Existing organic condensation path | Supported `locgas` cases; actual active code, not presumed VBS chemistry |
+| C14.R / C14.J | C13 | Existing organic condensation path | Explicit registered-organic kernel fixtures; `locgas` alone does not establish gas registration |
 | C15.R / C15.J | C02,S04 | `distr_update` transfer decisions | Just below/on/above boundaries and nearly empty bins |
 | C16.R / C16.J | C15 | `distr_update` material/number redistribution | Sequential transfers and loop termination; conserve reference budgets |
 | C17.R / C17.J | C16,C06 | Post-remap radius/volume correction | Exact zero-bin policy and both remap passes |

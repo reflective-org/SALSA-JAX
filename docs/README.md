@@ -4,6 +4,8 @@
 - [Execution status and next tasks](plans/STATUS.md)
 - [Development quickstart](development/quickstart.md)
 - [Fortran architecture, units and known defects](development/architecture.md)
+- [Independent Fortran repairs and remaining failures](development/reference-repairs.md)
+- [Effective runtime metadata and capture scope](development/runtime-metadata.md)
 - [Lessons from local JAX ports](development/local-port-lessons.md)
 - [Numerical validation and benchmark protocol](development/validation-and-benchmarks.md)
 - [First coagulation-coefficient port](development/coagulation-coefficient.md)

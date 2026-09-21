@@ -35,6 +35,23 @@ in [STATUS.md](STATUS.md). Keep mechanical changes separate from scientific fixe
 Repeat F09/F10 as numbered child tasks for additional independent defects; do not
 turn a single repair task into a repository-wide warning cleanup.
 
+### Discovered child tasks
+
+| ID | Depends on | Commit-sized scope | Verification |
+|---|---|---|---|
+| F10a | F10 | Initialize organic fraction with nucleation disabled (D002) | Positive registered-organic fixture passes checked budgets |
+| F09b/F10b | F10 | Reproduce and repair activation velocity shape/units (D003) | Original poisoned-plane failure; signed/zero PDF cases agree |
+| F09c/F10c | F10b | Reproduce and repair aerosol-water storage extent (D004) | Historical 17-class failure; runtime 7/17-class storage checks |
+| F09d | F10c | Isolate standalone radiation initialization/data failure (D005) | Fresh checked run and optical-input completeness inventory |
+| F10d | F09d | Implement justified radiation repair or explicit reference scope | Supported configuration passes; missing tables cannot silently pass |
+| F09e | F10 | Reproduce absent-organic read in nucleation | Sulfate-only configuration fails at the actual gas access |
+| F10e | F09e | Guard supported nucleation inputs | Sulfate-only and registered-organic cases retain physical budgets |
+| F11a | F10 | Capture initialized scalar configuration and gas mapping | Copy-only overlay leaves all nine diagnostics unchanged |
+| F11b | F11a | Capture full tracer/species table and array contracts | Mapping bounds, units and actual compiled dimensions verified |
+
+F09b/F10b and F09c/F10c each form one small regression-and-repair commit;
+F09d/F10d and F09e/F10e remain separate investigation and correction tasks.
+
 ## P1.1 — Build portability before source relocation
 
 | ID | Depends on | Deliverable / suggested commit | Verification |

@@ -60,14 +60,19 @@ diagnostics. Host file I/O stays outside transformed JAX computations.
 
 ## Observed limitations and discrepancies
 
-- **D001 — confirmed bounds violation:** the checked run fails at
-  `mo_ham_salsa_dynamics.F90:680`, reading `pc_gas(ii,jj,isubm_ocnv)` with index 0.
-  The compatibility executable completes, but this undefined access means its
-  trajectory is not yet an approved scientific oracle. Reproduce/fix the inactive
-  organic gas path in an isolated commit and report effects on the baseline.
+- **D001–D004 repaired:** absent organic-gas condensation, undefined organic
+  fraction, activation velocity shape/units, and aerosol-water storage have
+  separate regressions. A fresh checked run now fails inside standalone
+  radiation (`ham_rad_refrac_volume`, D005). The ordinary trajectory is still
+  unvalidated; see the [repair record](reference-repairs.md).
+- Runtime capture confirms 64-bit `dp`, 109 tracers, 14 species, 17 aerosol
+  classes, `nsol=17`, two gases, and an absent-organic-gas index of zero. These
+  are initialized values for the default case, not inferred parameter defaults.
 - Default `nsnucl=0`; condensation/coagulation and 2b hydration are enabled.
   Setup rejects `nsnucl>4`, and mode 4 aborts pending NH3 input. Unreachable
   parameterizations need new supported Fortran cases before being ported.
+  Nucleation has its own unguarded organic-gas read, still to be reproduced and
+  repaired before enabling those modes.
 - `set_coagc` computes a local particle mass array but does not populate a global
   coefficient table; the routine name is not evidence of its behavior.
 - The driver computes `new_pelvoc` without consuming it; sulfate forcing peaks at

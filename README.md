@@ -11,7 +11,8 @@ currently provide a complete JAX SALSA simulation.
 ## Quick start
 
 Use a dedicated virtual environment. GNU Fortran must be on `PATH` for the
-mandatory original-Fortran comparisons.
+mandatory original-Fortran comparisons; the driver metadata test also needs
+NetCDF's `ncdump` on `PATH`.
 
 ```sh
 git clone git@github.com:reflective-org/SALSA-JAX.git
@@ -40,16 +41,19 @@ initial leaf benchmark shows no speedup; see the measured
 
 ## Fortran reference and current limitation
 
-This repository preserves the history and scientific source of
+This repository preserves the history and original reference revision of
 [reflective-org/SALSA](https://github.com/reflective-org/SALSA).
 The tag `fortran-baseline-d87dc07` identifies the original reference revision
 `d87dc072084336fd351d00a2ade863304c6f313d`. The `upstream` remote in the initial
 local checkout points to that repository; `origin` is SALSA-JAX. Clones only
 configure `origin` unless an upstream remote is added explicitly.
 
-The full checked Fortran run currently finds an out-of-bounds organic-gas access
-in condensation. The ordinary run is repeatable, but full-model scientific
-validation is pending. The first scalar kernel is independent of this defect.
+Four isolated Fortran repairs address absent organic gas, an undefined organic
+fraction, activation velocity shape/units, and undersized aerosol-water storage.
+The full checked run now reaches an unresolved radiation initialization failure;
+full-model scientific validation is pending. See the
+[repair record](docs/development/reference-repairs.md). The first scalar kernel
+is independently validated.
 Source relocation waits for reference validation. Historical benchmark evidence
 was generated in the original SALSA working directory before this repository
 was created; its recorded source hashes remain applicable.
@@ -71,7 +75,7 @@ check to claim validation. Use a new output directory for each run.
 - `tests/`, `tools/`, `benchmarks/`: parity tests, original-Fortran oracles and timings.
 - `configs/`: reference build/run profiles.
 - `docs/`: architecture, evidence, contributor workflows and plans.
-- Root `.F90`, `include/`, `input/`: preserved Fortran source and scientific inputs.
+- Root `.F90`, `include/`, `input/`: Fortran reference source and scientific inputs.
 - `.venv/`, `build/`, `outputs/`: local generated files, excluded from Git.
 
 Start with the [documentation index](docs/README.md),

@@ -84,14 +84,16 @@ tests validate storage, not complete M7 scientific behavior.
 
 ## D005 — standalone radiation reference remains unresolved
 
-After the storage correction, the checked debug run reaches `ham_rad` and
+After the storage correction, a fresh isolated checked run reaches `ham_rad` and
 traps in `ham_rad_refrac_volume`. In the current standalone SALSA build,
 `ham_initialize` calls `ham_rad_initialize` only under `HAMMOZ`, while the
 driver calls `ham_rad` unconditionally. The supplied optical-property files
 are tiny NetCDF headers and require an independent completeness audit.
 Do not invent optical values, disable traps, or describe this as an accepted
-full-model reference. Reproduce on a fresh copied checked build before closing
-this issue. Also audit initial diagnostic values separately from microphysics.
+full-model reference. The fresh `build/reference-repairs-checked` run reproduced
+the trap; symbolized frames identify `ham_rad_refrac_volume` → `ham_rad_refrac`
+→ `ham_rad` → `driver.F90:808`. Audit initial diagnostic values separately from
+microphysics. See [current comparison evidence](evidence/reference-repairs-2026-09-21.json).
 
 Nucleation still reads the optional organic-gas index unconditionally in its
 own routine. Condensation repairs do not validate any `nsnucl>0` configuration;
