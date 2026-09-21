@@ -151,3 +151,19 @@ failure, and parity tests must not be described as unrestricted scientific
 acceptance. See the [coagulation contract](coagulation-process.md) for the
 reproducer, measured errors, benchmarks and supported scope. A conservative
 scheme requires a separate reviewed scientific change.
+
+## D010 — active soluble zero-volume hydration fails
+
+The original `equilibration` enters its soluble-bin iteration whenever number
+is strictly above `nlim`. With zero volume in every material, both dry core and
+computed wet diameter are zero; the subsequent Kelvin expression divides by
+that diameter. `tests/test_hydration_oracle.py` reproduces the floating-point
+failure under the checked original-Fortran oracle. Positive-volume pure BC/dust
+are valid and remain dry; absence of sulfate/salt alone is not this failure.
+
+The compatibility port does not modify Fortran or invent particle volume.
+JAX reports NaN wet diameter for this invalid domain, avoiding an endless loop
+that literal unchecked arithmetic could produce. `tests/test_hydration.py`
+checks that signaling while preserving other bins. A scientific repair or
+stronger caller invariant needs a separate decision before accepting such
+inputs. See the [grid/hydration contract](grid-and-hydration.md).
