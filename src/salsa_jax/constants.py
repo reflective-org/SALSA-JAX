@@ -26,3 +26,12 @@ NUCLEATION_ACTIVATION_COEFFICIENT = 1e-7  # s-1
 NUCLEATION_CLUSTER_MOLECULES = 158.79  # molecules per target particle
 NUCLEATION_TARGET_DIAMETER = 3e-9  # m, reglim(1)
 NUCLEATION_CRITICAL_DIAMETER = 7.9375e-10  # m, activation/kinetic schemes
+
+# mo_ham_salsa_properties and initialized five-material hydration registry.
+HYDRATION_SPECIES_MOLAR_MASS = (SULFATE_MOLAR_MASS, ORGANIC_MOLAR_MASS, 12.01, 58.443, 250.0)  # g/mol
+HYDRATION_SPECIES_DENSITY = (SULFATE_DENSITY, ORGANIC_DENSITY, 2000.0, 2165.0, 2650.0)  # kg/m3
+WATER_MOLAR_MASS = 18.0  # g/mol
+WATER_DENSITY = 1000.0  # kg/m3
+WATER_SURFACE_TENSION = 0.073  # J/m2, surfw0
+ORGANIC_SOLUBLE_FRACTION = 0.15  # epsoc
+HYDRATION_NUMBER_THRESHOLD = 1.0  # particles/m3, strict greater-than
