@@ -1,0 +1,10 @@
+# Checked audit profile; compare against compatibility before accepting repairs.
+# NetCDF include/link paths are discovered through nf-config and nc-config.
+[build]
+compiler = "gfortran"
+flags = ["-cpp", "-g", "-fbacktrace", "-std=legacy", "-ffpe-trap=invalid,zero,overflow", "-O0", "-fcheck=all", "-finit-real=snan", "-DNOMPI", "-DSALSA", "-D__x86_64", "-I./include"]
+jobs = 1
+timeout_seconds = 180
+
+[run]
+timeout_seconds = 60
