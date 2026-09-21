@@ -33,6 +33,9 @@ def test_isolated_nucleation_preserves_all_input_state(oracle):
         np.testing.assert_array_equal(isolated[field], cases[field])
     for field in ("critical_rate", "critical_molecules", "critical_diameter", "molecular_rate", "fractions"):
         np.testing.assert_array_equal(isolated[field], coupled[field])
+    repeated, _ = run_oracle(executable, cases, repetitions=3, operation="isolated")
+    for field in isolated:
+        np.testing.assert_array_equal(repeated[field], isolated[field])
     assert timing["operation"] == "isolated"
     assert timing["kernel_wall_seconds"] > 0
 

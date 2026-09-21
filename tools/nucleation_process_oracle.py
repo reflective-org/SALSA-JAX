@@ -128,6 +128,10 @@ contains
       call condensation(1,1,2,1,number,volume,diameter,gas,rh,temperature,pressure,environment(4,index),pbl)
     end if
     lev=1+options(4,index)
+    if(mode==0) then
+      molecular(:,index)=rate(1,lev,:)
+      fractions(:,index)=[sa(1,lev),oc(1,lev)]
+    end if
     number_out(:,index)=number(1,lev,:)
     volume_out(:,:,index)=volume(1,lev,:,:)
     gas_out(:,index)=gas(1,lev,:)
