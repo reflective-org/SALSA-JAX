@@ -17,6 +17,11 @@ import subprocess
 import time
 import tomllib
 
+if __package__:
+    from .runtime_metadata import FILENAME, instrument_driver, parse_metadata
+else:
+    from runtime_metadata import FILENAME, instrument_driver, parse_metadata
+
 ROOT = Path(__file__).resolve().parents[1]
 
 
@@ -52,6 +57,8 @@ def main() -> int:
     parser.add_argument("--output", type=Path, required=True, help="new build/run directory")
     parser.add_argument("--config", type=Path, default=ROOT / "configs/fortran-reference.toml")
     parser.add_argument("--run", action="store_true")
+    parser.add_argument("--capture-runtime", action="store_true",
+                        help="instrument only the copied driver to emit effective runtime metadata")
     args = parser.parse_args()
     config = tomllib.loads(args.config.read_text())
     target = args.output.resolve()
@@ -81,6 +88,9 @@ def main() -> int:
             destination.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(path, destination)
         (target / "data").mkdir()
+        if args.capture_runtime:
+            manifest["runtime_capture"] = instrument_driver(target / "driver.F90")
+            manifest["runtime_capture"]["status"] = "instrumented_not_run"
         compiler = config["build"]["compiler"]
         manifest["compiler"] = output(compiler, "--version")
         manifest["netcdf_fortran"] = output("nf-config", "--version")
@@ -104,9 +114,23 @@ def main() -> int:
                 str(p.relative_to(target)): sha256(p)
                 for p in sorted([*target.glob("*.dat"), *target.glob("data/*.dat")])
             }
+            if args.capture_runtime:
+                capture = manifest["runtime_capture"]
+                try:
+                    runtime_path = target / FILENAME
+                    capture["runtime_file"] = FILENAME
+                    capture["runtime_sha256"] = sha256(runtime_path)
+                    capture["metadata"] = parse_metadata(runtime_path.read_text())
+                    capture["status"] = "captured"
+                except (OSError, ValueError) as error:
+                    capture["status"] = "capture_failed"
+                    capture["error"] = str(error)
+                    if manifest["run"]["returncode"] == 0:
+                        manifest["status"] = "runtime_capture_failed"
+                    return 1
             return 0 if manifest["run"]["returncode"] == 0 else 1
         return 0
-    except (OSError, subprocess.CalledProcessError) as error:
+    except (OSError, ValueError, subprocess.CalledProcessError) as error:
         manifest["status"] = "setup_failed"
         manifest["error"] = str(error)
         return 1
