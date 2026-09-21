@@ -3,10 +3,11 @@
 An incremental Python/JAX port of HAM-SALSA aerosol microphysics, validated
 process by process against the original Fortran implementation.
 
-**Status:** the Brownian collision-coefficient kernel is implemented and tested.
-Complete coagulation, condensation, nucleation and the coupled box model remain
-in the [commit-sized roadmap](docs/plans/ULTRAPLAN.md). This repository does not
-currently provide a complete JAX SALSA simulation.
+**Status:** complete standalone coagulation is ported to JAX for the 17-bin,
+five-material configuration, including the collision coefficients and sequential
+bin transfers. It matches original Fortran with supplied hydrated diameters.
+Condensation, nucleation and the coupled SALSA model remain in the
+[commit-sized roadmap](docs/plans/ULTRAPLAN.md).
 
 ## Quick start
 
@@ -38,6 +39,14 @@ coefficient = coagulation_coefficient(
 The first 1734-case comparison has maximum relative error below 9e-15. The
 initial leaf benchmark shows no speedup; see the measured
 [results and limitations](docs/development/results-2026-09-21.md).
+
+The [complete coagulation API and validation](docs/development/coagulation-process.md)
+cover 31 cases, actual model-boundary capture and repeated process calls.
+Maximum process relative error is below 2e-15. CPU timing shows no speedup yet:
+31 cases take about 132 µs in JAX versus 124 µs in optimized Fortran.
+The port preserves a discovered native cross-regime volume-conservation defect
+(D009), which becomes large in stiff stress cases; numerical parity does not
+establish physical validity there.
 
 ## Fortran reference and current limitation
 
@@ -97,9 +106,10 @@ full-precision fixture, map validation and repeated-run evidence.
 Start with the [documentation index](docs/README.md),
 [development quickstart](docs/development/quickstart.md), and
 [current status / next tasks](docs/plans/STATUS.md).
-Native entry/exit capture is verified for the default first call. The next
-priority is separate process capture and the Python state/grid-geometry
-contract. Full-driver radiation requires valid optical tables and a separate initialization repair.
+Native entry/exit capture is verified for the default first call. Coagulation
+is now separately captured and ported. The next process port is condensation with nucleation disabled; hydration and grid
+generation also remain to be ported for coupled execution. Full-driver
+radiation requires valid optical tables and a separate initialization repair.
 
 See [LICENSE.txt](LICENSE.txt) and retained source notices for attribution.
 The [original Fortran overview](docs/fortran-overview.md) describes HAM-SALSA's

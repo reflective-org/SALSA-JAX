@@ -89,3 +89,20 @@ describes later process, end-to-end and ensemble gates.
 Keep environments/builds/bulk outputs ignored. Commit small scientific fixtures,
 source/config changes and reviewed results with provenance; do not commit raw
 run directories. Follow [STATUS.md](../plans/STATUS.md) to select the next task.
+
+## Complete coagulation
+
+The [process guide](coagulation-process.md) documents `coagulation_step`, its
+17-bin/five-material inputs, boundary fixture and original-Fortran comparisons.
+Supply hydrated wet diameters; hydration is a separate process. Add
+`--capture-coagulation-state` to a checked first-microphysics run to regenerate
+the real process boundary. D009 volume drift in stiff native cases is retained
+and exposed by tests, not repaired by the port.
+
+```sh
+.venv/bin/python -m benchmarks.benchmark_coagulation_process --repetitions 1000 --trials 5
+```
+
+Use `--single-case` for the captured default only. These timings compare the
+complete isolated process, with JAX compilation reported separately; they are
+not full-model performance measurements.

@@ -135,3 +135,19 @@ This changes the initialized scientific baseline. Previous full-driver
 diagnostic comparisons do not establish acceptance of the repaired trajectory.
 See the [state contract](salsa-state-contract.md) and
 [capture evidence](evidence/native-state-2026-09-21.json).
+
+## D009 — cross-regime coagulation creates volume in stiff cases
+
+The complete-process oracle exposes a native numerical defect: regime 2a gains
+use the old 2b volumes, then regime 2b losses use already-updated 2a numbers.
+The mismatched transfers fail to conserve material volume. A minimal pair of
+corresponding 2a/2b bins containing only sulfate gains 240.2863% total volume at
+1e12 particles/m³ per bin and a 3600 s timestep. This is not caused by sea-salt
+relabeling; the captured dilute default coagulation call closes to roundoff.
+
+The JAX port reproduces the original Fortran behavior; no reference repair is
+included in this milestone. The regression explicitly demonstrates the budget
+failure, and parity tests must not be described as unrestricted scientific
+acceptance. See the [coagulation contract](coagulation-process.md) for the
+reproducer, measured errors, benchmarks and supported scope. A conservative
+scheme requires a separate reviewed scientific change.

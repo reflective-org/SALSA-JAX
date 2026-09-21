@@ -25,8 +25,11 @@ Every unit below has **two separately numbered commits**:
   or boundary checks, and document measured errors. Depends on its own `.R` and
   the prerequisite `.J` units shown below. No missing-oracle skips at acceptance.
 
-For C01, the independent scalar oracle can precede full-model F11–F16. All later
-process captures use the full-state provenance/comparison infrastructure F14–F16.
+For C01, the independent scalar oracle can precede full-model F11–F16. Later
+processes use scoped fixtures, provenance and comparisons; passing those does
+not close the complete parent trajectory gates. Coagulation C07–C11 now accepts
+captured dry geometry and hydrated diameters explicitly, allowing its standalone
+port before C02/C06. Those dependencies remain required for coupled execution.
 Documentation of the unit's equations, units, branch limits and tolerances belongs
 in its `.J` commit. Split a row into additional named child kernels if its audited
 implementation cannot be reviewed as one coherent change.
@@ -85,3 +88,19 @@ Fortran case and a new `.R`/`.J` pair after scientific configuration is establis
 | I02 | I01 | Add short repeated-call trajectories | Gas/number/material trajectories and accumulated errors reported |
 | I03 | I02 | Add longer core trajectories and budget report | Drift measured at checkpoints; baseline defects remain explicit |
 | I04 | I03 | Document supported core API and minimal example | Example runs from installed package with no sibling repository imports |
+
+## Coagulation milestone and discovered follow-up
+
+C07–C11 are implemented together as a standalone 17-bin/five-material process,
+with separate commits for capture, original-Fortran oracle and JAX translation.
+The small transfer branches share one sequential loop; splitting them into
+separate runtime abstractions would obscure the required update order. Supplied
+geometry/wet diameters satisfy this isolated API; grid/hydration JAX ports and
+all coupled acceptance gates remain open.
+
+| ID | Depends on | Commit-sized deliverable | Verification |
+|---|---|---|---|
+| C11.D009.R | C11.R | Preserve minimal cross-regime volume-creation reproducer | Original two-bin result and analytical transfer mismatch agree; implemented |
+| C11.D009.A | C11.D009.R | Compare conservative update choices and document scientific decision | Positive/empty/stiff cases, number/material budgets and effect on dilute baseline |
+| C11.D009.F | C11.D009.A | Implement the selected Fortran reference repair separately | Reproducer conserves; affected process/trajectory outputs reviewed |
+| C11.D009.J | C11.D009.F | Update JAX to the repaired reference with explicit compatibility decision | Eager/JIT parity, budgets and repeat-call acceptance |

@@ -44,8 +44,9 @@ may contain initialization-only records and are not a scoped trajectory oracle.
 The completion status therefore remains explicitly unvalidated scientifically.
 
 Full-precision [native entry/exit capture](native-state-capture.md) now records
-species, tracer, shape and unit contracts for the default first call. Separate
-coagulation, condensation and nucleation captures remain next. Read the [radiation audit](radiation-reference-audit.md)
+species, tracer, shape and unit contracts for the default first call. The
+[coagulation process capture and port](coagulation-process.md) are now available;
+condensation and nucleation remain separate upcoming captures. Read the [radiation audit](radiation-reference-audit.md)
 for why an optics repair is not hidden inside this scope.
 
 The [checked integration record](evidence/first-microphysics-2026-09-21.json)

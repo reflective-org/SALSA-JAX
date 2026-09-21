@@ -32,9 +32,15 @@ The [master plan](ULTRAPLAN.md) defines the remaining commit-sized backlog.
 | S01 | Partial, first leaf only | Legacy constants and float64 policy for `coagc`; broader state/kind readback remains planned |
 | C01.R / C01.J | Leaf parity passes | Verbatim original-Fortran oracle; four tests, 1734 cases; maximum relative error 8.95e-15 |
 | P01/P02 | Preliminary leaf evidence | Wall-to-wall batch timing with source/case hashes; no full-process or model claim |
+| F13b | Default process boundary verified | Coagulation inputs after hydration and outputs before condensation; capture/control and fresh repeat match exactly |
+| S02/S04–S06 | Coagulation subset | Fixed 17-bin/five-material layout, immutable state return, explicit geometry/environment and enabled flag; full state API remains pending |
+| C07–C11.R/J | Standalone numerical parity passes | Original process/coefficient extraction matches baseline tag; 31 cases, actual capture, eager/JIT and 20-call sequences |
+| C11.D009.R | Legacy defect reproduced | Minimal 2a/2b pair creates volume; preserved in JAX and documented, scientific repair pending |
+| P03/P04a | Initial scoped process measurement | One and 31-case CPU timings against optimized Fortran; no measured speedup |
 | Q01 | Implemented | Quickstart, capability limits and reproduction commands |
 
-Total current suite: **142 passed** in this repository's `.venv`. Original inputs
+All **190 current tests pass** in this repository's `.venv`: the last full run
+passed 188, followed by 15 process tests including two added boundary cases. Original inputs
 remain unchanged; Fortran scientific/driver repairs are separate commits. Generated
 builds/outputs remain ignored. Source relocation has not started. The pre-existing
 `AGENTS.md` remains unchanged; this ledger and the repair record carry current
@@ -42,28 +48,27 @@ validation status.
 
 ## Next ready tasks, in order
 
-1. **F13a/F13b:** capture hydration and coagulation boundaries separately,
-   including mutable state and effective switches. Use the native fixture as
-   the outer contract; each boundary needs its own comparison and budget checks.
-2. **F13c/F13d and remaining F14–F16:** capture condensation, nested nucleation
-   and remapping; validate budgets, repeat/reset behavior and configuration
-   isolation.
-3. **S02 / C02.R/C02.J:** implement the Python state/bin contract and grid
-   geometry against the captured native arrays. Complete remaining F11b wrapper
-   metadata before porting HAM conversion or activation.
-4. **D005 follow-up:** obtain valid optical tables and audit standalone radiation
-   initialization before accepting a full-driver case. The explicit early-stop
-   scope does not repair or silently disable full-driver radiation.
+1. **C12–C14 / F13c:** isolate and port condensation with `nsnucl=0`; keep
+   nucleation a separate rate/survival/insertion contract before recoupling.
+2. **C11.D009.A/F/J:** review and repair the inherited cross-regime volume
+   creation in a separate scientific change; do not silently alter this port.
+3. **C02/C04–C06 / F13a:** port grid generation and hydration for coupled
+   execution. Coagulation currently accepts their already computed outputs.
+4. **F13d / F14–F16:** capture remapping and complete process-switch/reset,
+   configuration and trajectory acceptance. Finish F11b HAM wrapper metadata.
 5. **D007:** reproduce and guard absent-organic access in tiny-particle cleanup
-   before accepting empty/tiny-volume process cases.
-6. **O01–O04:** improve build portability and cleanup; mechanical source moves
-   still depend on passing reference gates.
+   before accepting empty/tiny-volume full-native cases.
+6. **D005:** obtain valid optical tables and repair standalone radiation before
+   full-driver acceptance. Source relocation still depends on reference gates.
+7. **O01–O04:** improve build portability and artifact cleanup separately.
 
 Coagulation, condensation and nucleation each have separate Fortran oracles,
 Python kernels, tests and benchmarks. Condensation is first isolated with
 `nsnucl=0`; nucleation rate/survival/insertion is validated independently before
-reintroducing the original nested condensation call. Complete coagulation is
-still pending: only its collision-coefficient leaf is ported.
+reintroducing the original nested condensation call. Complete standalone
+coagulation now has numerical parity for its documented configuration.
+Hydration, condensation and nucleation JAX ports remain pending;
+this is not yet a coupled SALSA simulation.
 
 ## Initial implementation commits
 
@@ -94,8 +99,10 @@ trajectory baseline. Matching formatted diagnostics does not resolve undefined
 memory access. The scalar coefficient port is independently tested and does not
 depend on the full-driver radiation path. The named first-microphysics scope
 completes one finite interface call, not a full timestep or trajectory.
-GPU, complete coagulation, other processes,
-full-model JAX parity, gradients and OpenIFS integration are not implemented.
+GPU, other complete processes, full-model JAX parity, gradients and OpenIFS
+integration are not implemented. Coagulation preserves the native D009 volume
+creation in stiff cross-regime cases; matching Fortran is not unrestricted
+scientific acceptance.
 
 See [recorded results](../development/results-2026-09-21.md) for numerical and
 timing evidence, and [quickstart](../development/quickstart.md) for commands.
@@ -141,4 +148,26 @@ capture on/off invariance and fresh-process repeatability. Native budgets retain
 the original salt-to-sulfate volume relabeling approximation. See the
 [source/configuration evidence](../development/evidence/native-state-2026-09-21.json).
 F14a/F15a/F16a cover only this native fixture; the parent process/trajectory
-gates remain open. No new JAX process or speedup is claimed.
+gates remain open. This native-capture milestone preceded the complete coagulation port below.
+
+## Complete coagulation milestone
+
+The [process API and contract](../development/coagulation-process.md) cover the
+full standalone routine, accepting supplied wet diameters and dry geometry.
+Its separate original-Fortran oracle, actual captured boundary, 31-case matrix,
+strict checked builds and repeated-call tests establish numerical parity.
+The native D009 volume-budget discrepancy remains explicitly unrepaired.
+
+The CPU benchmark shows no speedup: JAX/Fortran median warm times are
+42.51/4.11 µs for one captured case and 132.09/123.61 µs for 31 cases.
+Maximum number/volume relative error is below 2e-15. Full provenance and limits
+are in the [integration record](../development/evidence/coagulation-process-2026-09-21.json)
+and linked benchmark artifacts. Condensation and nucleation have not been ported.
+
+
+| Commit | Coagulation deliverable |
+|---|---|
+| `887c386` | F13b: checked process capture and fixture |
+| `57dc829` | C07–C11.R: verbatim Fortran oracle, 31 cases and D009 reproducer |
+| `104c82b` | C07–C11.J: complete standalone JAX coagulation and comparisons |
+| `ddbe581` | P04a: scoped CPU benchmark with raw measurements |

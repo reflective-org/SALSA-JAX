@@ -13,8 +13,11 @@
 - [Standalone radiation initialization and data audit](development/radiation-reference-audit.md)
 - [Lessons from local JAX ports](development/local-port-lessons.md)
 - [Numerical validation and benchmark protocol](development/validation-and-benchmarks.md)
+- [Complete standalone coagulation port and benchmarks](development/coagulation-process.md)
 - [First coagulation-coefficient port](development/coagulation-coefficient.md)
 - [2026-09-21 baseline and benchmark results](development/results-2026-09-21.md)
 
-The current Python package implements one collision-coefficient leaf. Complete
-coagulation, other aerosol processes and the full box model remain planned.
+The Python package implements complete standalone coagulation for 17 bins and
+five materials using supplied hydrated diameters. Condensation, nucleation,
+hydration and the full box model remain planned. See the process guide for
+the inherited cross-regime conservation limitation.

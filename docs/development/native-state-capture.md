@@ -73,9 +73,12 @@ Repeat the native capture in another process and compare all three native files.
 The first fixture is a single default call with nucleation disabled. Capturing
 it is not complete process parity or trajectory acceptance. Full model radiation
 remains unsupported, and optional/edge configurations need their own checked
-cases. Next steps are per-process boundaries and a validated Python state API.
+cases. The [coagulation process boundary and JAX port](coagulation-process.md)
+are now available. Other process boundaries and the full Python state API remain
+pending.
 
 The [integration evidence](evidence/native-state-2026-09-21.json) records the
 repaired capture, a control without native instrumentation and a fresh repeat.
 All six full-precision HAM arrays match the control, and all three native files
-repeat exactly. The complete virtual-environment suite passes **142 tests**.
+repeat exactly. The native-capture milestone passed **142 tests**; later process work and
+current test totals are tracked in the [status ledger](../plans/STATUS.md).
