@@ -70,7 +70,7 @@ CONTAINS
     
     !-- local variables --------
 
-    INTEGER :: ii, jj, kk
+    INTEGER :: ii, kk
     INTEGER :: jt, jn ,jl, jk, jspec                    ! for indexing
          
     REAL(dp):: zfac,          &
@@ -110,46 +110,33 @@ CONTAINS
        paerml(1:kproma,:,iduai)  = 1.0_dp*paernl(1:kproma,:,iacci)*core(iacci) * speclist(id_du)%density / 1.e-9_dp
        paerml(1:kproma,:,iduci)  = 1.0_dp*paernl(1:kproma,:,icoai)*core(icoai) * speclist(id_du)%density / 1.e-9_dp
     CASE(HAM_SALSA)
-       jj = 0
        
        DO ii = in1a, fn1a
-          jj = jj + 1
-          iso4b(ii) = jj     
           !--- Sulfate mass
           paerml(1:kproma,:,iso4b(ii)) = 0.2_dp*paernl(1:kproma,:,ii)*core(ii) /(1.e6_dp *zmvsu)
        END DO
        
        DO ii = in1a, fn1a
-          jj = jj + 1
-          iocb(ii) = jj  
           !--- Organic carbon
           paerml(1:kproma,:,iocb(ii))  = 0.8_dp*paernl(1:kproma,:,ii)*core(ii) * speclist(id_oc)%density / 1.e-9_dp
        END DO
        
        DO ii = in2a, fn2a     
-          jj = jj + 1    
-          iso4b(ii) = jj
           !--- Sulfate volume
           paerml(1:kproma,:,iso4b(ii)) = 0.5_dp*paernl(1:kproma,:,ii)*core(ii) / (1.e6_dp *zmvsu)
        END DO
        
        DO ii = in2a, fn2a     
-          jj = jj + 1     
-          iocb(ii) = jj     
           !--- Organic carbon
           paerml(1:kproma,:,iocb(ii)) =  0.05_dp*paernl(1:kproma,:,ii)*core(ii) * speclist(id_oc)%density / 1.e-9_dp 
        END DO
        
        DO ii = in2a, fn2a     
-          jj = jj + 1     
-          ibcb(ii) = jj     
           !--- Black carbon
           paerml(1:kproma,:,ibcb(ii)) =  0.05_dp*paernl(1:kproma,:,ii)*core(ii) * speclist(id_bc)%density / 1.e-9_dp     
        END DO
        
        DO ii = in2a, fn2a     
-          jj = jj + 1    
-          issb(ii) = jj    
           !--- Sea salt
           ! <-- thk: bugfix
           paerml(1:kproma,:,issb(ii)) =  0.1_dp*paernl(1:kproma,:,ii)*core(ii) * speclist(id_ss)%density / 1.e-9_dp
@@ -157,36 +144,26 @@ CONTAINS
        END DO
        
        DO ii = in2a, fn2a     
-          jj = jj + 1     
-          idub(ii) = jj     
           !--- Mineral dust
           paerml(1:kproma,:,idub(ii)) =  0.3_dp*paernl(1:kproma,:,ii)*core(ii) * speclist(id_du)%density / 1.e-9_dp     
        END DO
        
        DO ii = in2b, fn2b     
-          jj = jj + 1     
-          iso4b(ii) = jj     
           !--- Sulfate volume
           paerml(1:kproma,:,iso4b(ii)) = 0.01_dp*paernl(1:kproma,:,ii)*core(ii) / (1.e6_dp *zmvsu)     
        END DO
        
        DO ii = in2b, fn2b     
-          jj = jj + 1
-          iocb(ii) = jj    
           !--- Organic carbon
           paerml(1:kproma,:,iocb(ii))  = 0.01_dp*paernl(1:kproma,:,ii)*core(ii) * speclist(id_oc)%density / 1.e-9_dp
        END DO
        
        DO ii = in2b, fn2b   
-          jj = jj + 1
-          ibcb(ii) = jj
           !--- Black carbon
           paerml(1:kproma,:,ibcb(ii))  = 0.01_dp*paernl(1:kproma,:,ii)*core(ii) * speclist(id_bc)%density / 1.e-9_dp
        END DO
        
        DO ii = in2b, fn2b
-          jj = jj + 1
-          idub(ii) = jj
           !--- Mineral dust
           paerml(1:kproma,:,idub(ii))  = 0.97_dp*paernl(1:kproma,:,ii)*core(ii) * speclist(id_du)%density / 1.e-9_dp
        END DO
