@@ -57,3 +57,42 @@ closure, unchanged particle number, the concentration threshold, and zero sink.
 The organic kernel fixture uses no sulfate vapor, so gas/species indexing errors
 cannot be hidden by a simultaneous sulfate change. This does not enable organic
 gas registration in the full driver or validate VBS.
+
+## D003 — activation input shape and units
+
+The driver initialized the last plane of a rank-three velocity array, whereas
+the activation routine consumed a rank-two array. It also supplied m/s where
+Pa/s was required. The corrected rank-two input converts the existing NetCDF
+`W` sample with `-grav*zrhoa*W`. Eight isolated tests cover the original failure,
+input metadata, signed/zero velocities, heterogeneous densities and PDF values.
+See [updraft evidence and scientific limitations](updraft-input-repair.md).
+
+## D004 — aerosol-water output storage is too small
+
+`driver.F90` allocated `zww` with `nmod=7`, the size of the initial modal
+distribution. `ham_subm_interface` writes `nclass=17` aerosol classes for SALSA.
+The explicit-shape argument concealed the mismatch from runtime bounds checks;
+ten excess writes could corrupt neighboring stack data and array descriptors.
+An isolated debug run stopped crashing in activation when this storage was
+corrected, then exposed the independent radiation failure below.
+
+The driver now allocates `zww(kbdim,klev,nclass)` after model initialization.
+The initial-distribution `nmod` remains seven. Three storage-contract tests
+compile the actual driver declaration/allocation: the baseline fails for 17
+classes, and the corrected allocation accommodates both seven and 17. These
+tests validate storage, not complete M7 scientific behavior.
+
+## D005 — standalone radiation reference remains unresolved
+
+After the storage correction, the checked debug run reaches `ham_rad` and
+traps in `ham_rad_refrac_volume`. In the current standalone SALSA build,
+`ham_initialize` calls `ham_rad_initialize` only under `HAMMOZ`, while the
+driver calls `ham_rad` unconditionally. The supplied optical-property files
+are tiny NetCDF headers and require an independent completeness audit.
+Do not invent optical values, disable traps, or describe this as an accepted
+full-model reference. Reproduce on a fresh copied checked build before closing
+this issue. Also audit initial diagnostic values separately from microphysics.
+
+Nucleation still reads the optional organic-gas index unconditionally in its
+own routine. Condensation repairs do not validate any `nsnucl>0` configuration;
+its absent-organic handling needs a separate reproducer and correction.

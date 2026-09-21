@@ -95,8 +95,8 @@ PROGRAM driver
        paclc(kbdim,klev),  & !cloud cover
        pqm1(kbdim,klev),   & !specific humidity
        pqsm1(kbdim,klev),   & !saturation specific humidity
-       pgrvolm1(kbdim,klev), & !grid box volume
-       zww(kbdim,klev,nmod)
+       pgrvolm1(kbdim,klev) !grid box volume
+  REAL(dp), ALLOCATABLE :: zww(:,:,:) ! water content for each aerosol class
   !-->eehol
 
   !<--eehol: variables for calculating concentrations and mixing ratios
@@ -407,6 +407,7 @@ PROGRAM driver
 
   !--->hhalonen
   ALLOCATE(zrhop(kbdim,klev,nclass))
+  ALLOCATE(zww(kbdim,klev,nclass))
   ALLOCATE(ZXTMD1(kbdim,klev,ntrac))
   ALLOCATE(ZVDEP(kbdim,ntrac))
   ALLOCATE(ZTENCIH(kbdim,klev,ntrac))
