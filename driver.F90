@@ -286,7 +286,7 @@ PROGRAM driver
   REAL(KIND=JPRB) :: ZTKEM1(kbdim,klev)        ! turbulent kinetic energy
   REAL(KIND=JPRB) :: ZTUNPAR = 0.8164965_JPRB  ! tuning parameter for sigma_w derived from TKE (square root of 2/3 (isotropy assumption))
   REAL(KIND=JPRB) :: ZWCAPE(kbdim) = 0._JPRB   ! CAPE as zero as it is not used
-  REAL(wp), ALLOCATABLE :: zvervel(:,:,:)
+  REAL(wp), ALLOCATABLE :: zvervel(:,:) ! pressure vertical velocity [Pa s-1]
   REAL(KIND=JPRB) :: ppd_hl(kbdim, klev)
   REAL(KIND=JPRB) :: ZAER_TAU(1,kbdim,14,1), &
       ZAER_SSA(1,kbdim,14),ZAER_ASYM(1,kbdim,14),ZAER_TAU_LW(1,kbdim,16)
@@ -536,7 +536,7 @@ PROGRAM driver
   !<--alaak
 
   !-->hhalonen
-  ALLOCATE(zvervel(kbdim,klev,nw))
+  ALLOCATE(zvervel(kbdim,klev))
   ALLOCATE(znacttot(kbdim,klev)) ! total number of activated particles in all modes [m-3]
   !<--hhalonen
 
@@ -574,7 +574,8 @@ PROGRAM driver
   ! Reading total vertical velocity of activation from the input
   cfile2 = 'input/GlobalTraj-CE_200801.01_activ_1step.nc'
   CALL read_var_nf77_4d (cfile2, "lon", "lat", "lev", "time", "W", zin, ierr)
-  zvervel(1:kproma,:,nw) = zin(85,25,47,1)
+  ! Input W is [m s-1]; activ_updraft expects pressure velocity [Pa s-1].
+  zvervel(1:kproma,:) = -grav*zrhoa(1:kproma,:)*zin(85,25,47,1)
   !<--hhalonen
 
   !<--eehol: testing wet deposition
