@@ -19,8 +19,10 @@ import tomllib
 
 if __package__:
     from .runtime_metadata import FILENAME, instrument_driver, parse_metadata
+    from .reference_scope import FILENAME as SCOPE_FILENAME, instrument_scope, parse_completion
 else:
     from runtime_metadata import FILENAME, instrument_driver, parse_metadata
+    from reference_scope import FILENAME as SCOPE_FILENAME, instrument_scope, parse_completion
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -59,6 +61,8 @@ def main() -> int:
     parser.add_argument("--run", action="store_true")
     parser.add_argument("--capture-runtime", action="store_true",
                         help="instrument only the copied driver to emit effective runtime metadata")
+    parser.add_argument("--scope", choices=("full", "first-microphysics"), default="full",
+                        help="full trajectory or a finite-state check after the first microphysics call")
     args = parser.parse_args()
     config = tomllib.loads(args.config.read_text())
     target = args.output.resolve()
@@ -71,6 +75,7 @@ def main() -> int:
         "schema_version": 1, "purpose": "compatibility audit; not performance measurement",
         "platform": platform.platform(), "machine": platform.machine(),
         "config": config,
+        "scope": args.scope,
         "environment": {key: os.environ.get(key) for key in
                         ["FC", "FFLAGS", "LDFLAGS", "OMP_NUM_THREADS"]},
         "status": "preparing",
@@ -91,6 +96,10 @@ def main() -> int:
         if args.capture_runtime:
             manifest["runtime_capture"] = instrument_driver(target / "driver.F90")
             manifest["runtime_capture"]["status"] = "instrumented_not_run"
+        if args.scope == "first-microphysics":
+            manifest["scope_capture"] = instrument_scope(target / "driver.F90")
+            manifest["scope_capture"]["status"] = "instrumented_not_run"
+        manifest["compiled_driver_sha256"] = sha256(target / "driver.F90")
         compiler = config["build"]["compiler"]
         manifest["compiler"] = output(compiler, "--version")
         manifest["netcdf_fortran"] = output("nf-config", "--version")
@@ -128,6 +137,22 @@ def main() -> int:
                     if manifest["run"]["returncode"] == 0:
                         manifest["status"] = "runtime_capture_failed"
                     return 1
+            if args.scope == "first-microphysics":
+                capture = manifest["scope_capture"]
+                try:
+                    scope_path = target / SCOPE_FILENAME
+                    capture["completion_file"] = SCOPE_FILENAME
+                    capture["completion_sha256"] = sha256(scope_path)
+                    capture["completion"] = parse_completion(scope_path.read_text())
+                    capture["status"] = "captured"
+                except (OSError, ValueError) as error:
+                    capture["status"] = "capture_failed"
+                    capture["error"] = str(error)
+                    if manifest["run"]["returncode"] == 0:
+                        manifest["status"] = "scope_capture_failed"
+                    return 1
+                if manifest["run"]["returncode"] == 0:
+                    manifest["status"] = "first_microphysics_completed_unvalidated"
             return 0 if manifest["run"]["returncode"] == 0 else 1
         return 0
     except (OSError, ValueError, subprocess.CalledProcessError) as error:
