@@ -19,10 +19,12 @@ import tomllib
 
 if __package__:
     from .runtime_metadata import FILENAME, instrument_driver, parse_metadata
-    from .reference_scope import FILENAME as SCOPE_FILENAME, instrument_scope, parse_completion
+    from .reference_scope import FILENAME as SCOPE_FILENAME, STATE_FILENAME, instrument_scope, parse_completion, parse_scope_state
+    from .state_capture import FILES as STATE_FILES, instrument_salsa, load_capture
 else:
     from runtime_metadata import FILENAME, instrument_driver, parse_metadata
-    from reference_scope import FILENAME as SCOPE_FILENAME, instrument_scope, parse_completion
+    from reference_scope import FILENAME as SCOPE_FILENAME, STATE_FILENAME, instrument_scope, parse_completion, parse_scope_state
+    from state_capture import FILES as STATE_FILES, instrument_salsa, load_capture
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -63,7 +65,13 @@ def main() -> int:
                         help="instrument only the copied driver to emit effective runtime metadata")
     parser.add_argument("--scope", choices=("full", "first-microphysics"), default="full",
                         help="full trajectory or a finite-state check after the first microphysics call")
+    parser.add_argument("--capture-salsa-state", action="store_true",
+                        help="capture native entry/exit arrays and mappings in the first-microphysics scope")
     args = parser.parse_args()
+    if args.capture_salsa_state and args.scope != "first-microphysics":
+        parser.error("--capture-salsa-state requires --scope first-microphysics")
+    if args.capture_salsa_state:
+        args.capture_runtime = True
     config = tomllib.loads(args.config.read_text())
     target = args.output.resolve()
     target.mkdir(parents=True, exist_ok=False)
@@ -99,6 +107,9 @@ def main() -> int:
         if args.scope == "first-microphysics":
             manifest["scope_capture"] = instrument_scope(target / "driver.F90")
             manifest["scope_capture"]["status"] = "instrumented_not_run"
+        if args.capture_salsa_state:
+            manifest["salsa_capture"] = instrument_salsa(target / "mo_ham_salsa.F90")
+            manifest["salsa_capture"]["status"] = "instrumented_not_run"
         manifest["compiled_driver_sha256"] = sha256(target / "driver.F90")
         compiler = config["build"]["compiler"]
         manifest["compiler"] = output(compiler, "--version")
@@ -144,6 +155,10 @@ def main() -> int:
                     capture["completion_file"] = SCOPE_FILENAME
                     capture["completion_sha256"] = sha256(scope_path)
                     capture["completion"] = parse_completion(scope_path.read_text())
+                    state_path = target / STATE_FILENAME
+                    capture["state_file"] = STATE_FILENAME
+                    capture["state_sha256"] = sha256(state_path)
+                    capture["state"] = parse_scope_state(state_path.read_text())
                     capture["status"] = "captured"
                 except (OSError, ValueError) as error:
                     capture["status"] = "capture_failed"
@@ -153,6 +168,18 @@ def main() -> int:
                     return 1
                 if manifest["run"]["returncode"] == 0:
                     manifest["status"] = "first_microphysics_completed_unvalidated"
+            if args.capture_salsa_state:
+                capture = manifest["salsa_capture"]
+                try:
+                    capture["file_sha256"] = {name: sha256(target / name) for name in STATE_FILES.values()}
+                    capture["state"] = load_capture(target)
+                    capture["status"] = "captured"
+                except (OSError, ValueError) as error:
+                    capture["status"] = "capture_failed"
+                    capture["error"] = str(error)
+                    if manifest["run"]["returncode"] == 0:
+                        manifest["status"] = "salsa_capture_failed"
+                    return 1
             return 0 if manifest["run"]["returncode"] == 0 else 1
         return 0
     except (OSError, ValueError, subprocess.CalledProcessError) as error:
