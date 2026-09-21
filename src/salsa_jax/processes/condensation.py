@@ -12,6 +12,7 @@ from salsa_jax.constants import (
     AVOGADRO, BOLTZMANN, GAS_CONSTANT, PI, REFERENCE_PRESSURE,
     SULFATE_MOLAR_MASS, ORGANIC_MOLAR_MASS, SULFATE_DENSITY, ORGANIC_DENSITY,
     SULFURIC_ACID_DIAMETER, CONDENSATION_GAS_THRESHOLD, CONDENSATION_SINK_THRESHOLD,
+    NUCLEATION_CLUSTER_MOLECULES,
 )
 
 
@@ -87,27 +88,45 @@ def condensation_step(number, volume, gas, wet_diameter, temperature, pressure, 
     timestep = jnp.asarray(timestep, dtype=jnp.float64)
 
     def condense():
-        rates = condensation_rates(number, wet_diameter, temperature, pressure, parameters=parameters)
-        sink = jnp.sum(rates, axis=-1)
-        # Keep inactive/zero-sink calculations finite under traced select/vmap.
-        denominator = jnp.where(sink > CONDENSATION_SINK_THRESHOLD, sink, 1.0)
-        fraction = rates / denominator[..., None]
-        new_gas, new_volume = gas, volume
-        # Native organic update precedes sulfate; with nucleation disabled both
-        # use the same unchanged number, wet diameter and collision sink.
-        for gas_slot, material_slot, molar_mass, density, active in (
-            (2, 1, parameters.organic_molar_mass, parameters.organic_density, organic_enabled),
-            (1, 0, parameters.sulfate_molar_mass, parameters.sulfate_density, True),
-        ):
-            vapor = gas[..., gas_slot]
-            update = (jnp.asarray(active) & (vapor > CONDENSATION_GAS_THRESHOLD) &
-                      (sink > CONDENSATION_SINK_THRESHOLD))
-            remaining = vapor / (1.0 + timestep * sink)
-            remaining = jnp.where(update, remaining, vapor)
-            molecular_volume = (jnp.asarray(molar_mass, dtype=jnp.float64) / 1000.0) / AVOGADRO / jnp.asarray(density, dtype=jnp.float64)
-            addition = fraction * molecular_volume[..., None] * (vapor - remaining)[..., None]
-            new_volume = new_volume.at[..., material_slot].add(addition)
-            new_gas = new_gas.at[..., gas_slot].set(remaining)
-        return CondensationState(number, new_volume, new_gas)
+        return _condense(number, volume, gas, wet_diameter, temperature, pressure, timestep,
+                         organic_enabled, parameters)
 
     return jax.lax.cond(enabled, condense, lambda: CondensationState(number, volume, gas))
+
+
+def _condense(number, volume, gas, wet_diameter, temperature, pressure, timestep,
+              organic_enabled, parameters, sources=None):
+    """Shared native vapor update; optional sources restore nucleation coupling."""
+    rates = condensation_rates(number, wet_diameter, temperature, pressure, parameters=parameters)
+    sink = jnp.sum(rates, axis=-1)
+    new_number, new_gas, new_volume = number, gas, volume
+    # The original collision sink is computed once, before any insertion.
+    # Native organic uptake precedes sulfate uptake.
+    for gas_slot, material_slot, molar_mass, density, active in (
+        (2, 1, parameters.organic_molar_mass, parameters.organic_density, organic_enabled),
+        (1, 0, parameters.sulfate_molar_mass, parameters.sulfate_density, True),
+    ):
+        vapor = gas[..., gas_slot]
+        # Preserve the native background-sink gate even with a nucleation source.
+        update = (jnp.asarray(active) & (vapor > CONDENSATION_GAS_THRESHOLD) &
+                  (sink > CONDENSATION_SINK_THRESHOLD))
+        vapor_rates, vapor_sink = rates, sink
+        if sources is not None:
+            source = sources.molecular_rate[..., material_slot]
+            source_sink = source / jnp.where(update, vapor, 1.0)
+            vapor_rates = rates.at[..., 0].add(source_sink)
+            vapor_sink = sink + source_sink
+        denominator = jnp.where(vapor_sink > CONDENSATION_SINK_THRESHOLD, vapor_sink, 1.0)
+        fraction = vapor_rates / denominator[..., None]
+        remaining = vapor / (1.0 + timestep * vapor_sink)
+        remaining = jnp.where(update, remaining, vapor)
+        molecular_volume = (jnp.asarray(molar_mass, dtype=jnp.float64) / 1000.0) / AVOGADRO / jnp.asarray(density, dtype=jnp.float64)
+        addition = fraction * molecular_volume[..., None] * (vapor - remaining)[..., None]
+        new_volume = new_volume.at[..., material_slot].add(addition)
+        new_gas = new_gas.at[..., gas_slot].set(remaining)
+        if sources is not None:
+            composition = sources.fractions[..., material_slot]
+            ratio = jnp.where(source > 1.0, source / jnp.where(source > 1.0, source + vapor * rates[..., 0], 1.0), 0.0)
+            inserted = ratio * addition[..., 0] / molecular_volume / (NUCLEATION_CLUSTER_MOLECULES * jnp.where(composition > 0, composition, 1.0))
+            new_number = new_number.at[..., 0].add(jnp.where(composition > 0, inserted, 0.0))
+    return CondensationState(new_number, new_volume, new_gas)
