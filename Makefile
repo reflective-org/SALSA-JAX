@@ -94,3 +94,7 @@ TM5M7_INIT.o : TM5M7_INIT.F90 parkind1.o TM5M7_OPTICS_DATA.o
 TM5M7_OPTICS_DATA.o : TM5M7_OPTICS_DATA.F90 parkind1.o 
 yomm7ctl.o : yomm7ctl.F90 parkind1.o 
 YOMMP0.o : YOMMP0.F90 
+
+mo_ham_vbsctl.o : mo_ham_vbsctl.F90 mo_kind.o
+mo_ham_vbs.o : mo_ham_vbs.F90 mo_kind.o mo_ham_vbsctl.o mo_physical_constants.o mo_tracdef.o mo_species.o mo_ham_species.o
+mo_ham_vbs_partition.o : mo_ham_vbs_partition.F90 mo_kind.o mo_ham_vbsctl.o mo_math_constants.o mo_physical_constants.o mo_species.o mo_ham_species.o mo_ham_salsactl.o mo_ham.o
