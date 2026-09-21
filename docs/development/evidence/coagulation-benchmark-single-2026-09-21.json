@@ -1,0 +1,150 @@
+{
+  "scope": "complete standalone coagulation; 17 bins, 5 materials, no HAMMOZ/VBS; hydration/remapping excluded",
+  "scientific_limit": "D009: native cross-regime updates create material volume in stiff cases; parity does not repair this",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "device": "cpu:0",
+  "dtype": "float64",
+  "versions": {
+    "jax": "0.11.2",
+    "jaxlib": "0.11.2",
+    "numpy": "2.5.3"
+  },
+  "thread_environment": {
+    "XLA_FLAGS": null,
+    "OMP_NUM_THREADS": null,
+    "OPENBLAS_NUM_THREADS": null,
+    "MKL_NUM_THREADS": null,
+    "VECLIB_MAXIMUM_THREADS": null,
+    "JAX_NUM_THREADS": null,
+    "TF_NUM_INTRAOP_THREADS": null,
+    "TF_NUM_INTEROP_THREADS": null
+  },
+  "implementation_sha256": {
+    "src/salsa_jax/constants.py": "f38da2ce06cde01d57ecf7b28a6659b0c96d86b493baf268048ca31b4648f3fc",
+    "src/salsa_jax/processes/coagulation.py": "7bd785be1492006b206724c8323a3e57b7c35a5b05d5824d0a1765a84076d3c2",
+    "src/salsa_jax/processes/coagulation_step.py": "2f7d8a61aa19f79f974595fec6424755471f2bdcac2b21ff637be36935243d75",
+    "tools/coagulation_process_oracle.py": "bbae27058afd6fdf0915e0cb30348cb35b877108716c5b6518367d336b0e4f98",
+    "benchmarks/benchmark_coagulation_process.py": "7b977a1ff6e0d2e936ab62dff9b3c8ec8302bf46c907338712345333c831579f"
+  },
+  "case_count": 1,
+  "case_labels": [
+    "captured-default"
+  ],
+  "case_sha256": {
+    "number": "75b3b46b5f8abd768460918ede1842d800a992511c5ab9ecfdd73bee9e97ea2b",
+    "volume": "95abb526d0a4351c0076c1272c5931966ac6b6722d14548585209672a17d30a8",
+    "wet_diameter": "83937db08e9bc539aa9a4fd1acbff54a71054a49bf050d76e6f879676180961d",
+    "dry_diameter": "94b260d4e990fec65990c57a8d076e7541a73c1d0a360daf705730617f8c8095",
+    "temperature": "30d33e0a184a6e5eda1ecc1945cd5b017c605e4a3a39bf3ad8d999451e59c5c9",
+    "pressure": "baf41290b3afca735365ad7dd467ae335b1e9096fbce4423813fc2d1a78b0df7",
+    "timestep": "6c3c396ed6b5c36dcae172271f462051b1266b851e92df3deea8ac65478fd712"
+  },
+  "case_hash_encoding": "named arrays, C-order IEEE float64 little endian",
+  "fortran_provenance": {
+    "source_sha256": {
+      "parkind1.F90": "bd7aa3a0f896829781c6c9c1924726def9bd8b2825778e26274c615c2642ff5a",
+      "mo_kind.F90": "e7d3a5f28d216e60828c395a704e33a7bfc5db6e966533776fc438f4d782d255",
+      "mo_math_constants.F90": "ceae6f761c288597f7fb495ff2a55030fee8f861e1ee0dcd8adc0ba3ba95734f",
+      "mo_physical_constants.F90": "12405902248f437d9f7ae9b03d1efe194cd7605f6b396156c3d820366b8a79b0",
+      "mo_ham_salsa_init.F90": "efc26ed1c4ab391f5fd288e7e5bd0f2998e722731c34ccd778063febf43faf50",
+      "mo_ham_salsa_dynamics.F90": "13db52f2e5e10bb0ad485348209a74e3b8bcbf25af77d05a995a8444050cff25"
+    },
+    "function_sha256": "90591d2a1b5498deefb1fe02ec6052729407da8222812ca485f2aa55ae74b3fe",
+    "process_sha256": "75701beff1dbbc398fb46f857a2c6346819b571900339d8bde5a135002a6b79a",
+    "instrumented_process_sha256": "1155e576c82e461f2fb812cc59f59105d35cf7a206b0b16681d3415fd7ef54bd",
+    "wrapper_sha256": {
+      "stubs.f90": "46a46416b50e9e1614673ab4ee50e5fa071f04cc54648e197f5f0935c9eb2144",
+      "coagc.f90": "ada0274a40fa5d3f690deeb025a464d2b4edde0685c1c757071866e8539599bd",
+      "coagulation.F90": "e333d20c1e36244bbf4cb74d227080bc9abe0d26b8d88ec4d3867a7a4fb10107",
+      "driver.f90": "9c59d44ff36957de3b6805ca2558d4a7709263f73985904994aa6c7f9b289ecf"
+    },
+    "diagnostic_overlay": "IF (capture_coefficients) last_coefficients=zcc",
+    "separate_compilation_without_lto": true,
+    "configuration": {
+      "nsoa": 0,
+      "HAMMOZ": false,
+      "bins": 17,
+      "species": 5,
+      "in1a": 1,
+      "in2a": 4,
+      "fn2a": 10,
+      "in2b": 11,
+      "fn2b": 17
+    },
+    "compiler": "GNU Fortran (Homebrew GCC 16.1.0) 16.1.0",
+    "flags": [
+      "-O2",
+      "-fno-fast-math",
+      "-fno-lto",
+      "-ffree-line-length-none",
+      "-cpp"
+    ],
+    "checked": false
+  },
+  "parity": {
+    "number": {
+      "max_absolute": 0.0,
+      "max_relative_nonzero": 0.0,
+      "max_absolute_at_reference_zero": 0.0
+    },
+    "volume": {
+      "max_absolute": 5.048709793414476e-29,
+      "max_relative_nonzero": 2.1869521135843047e-16,
+      "max_absolute_at_reference_zero": 0.0
+    }
+  },
+  "fortran_relative_volume_change_by_case": {
+    "captured-default": 6.657194998731298e-16
+  },
+  "repetitions": 1000,
+  "trials": 5,
+  "trial_orders": [
+    [
+      "jax",
+      "fortran"
+    ],
+    [
+      "fortran",
+      "jax"
+    ],
+    [
+      "jax",
+      "fortran"
+    ],
+    [
+      "fortran",
+      "jax"
+    ],
+    [
+      "jax",
+      "fortran"
+    ]
+  ],
+  "jax_compile_seconds": 0.3793671250459738,
+  "jax_persistent_compilation_cache": false,
+  "jax_first_execution_seconds": 0.0006135000148788095,
+  "jax_warm_wall_seconds_per_batch": [
+    4.2507250036578625e-05,
+    4.3093832966405895e-05,
+    4.011204198468476e-05,
+    4.386554204393178e-05,
+    4.014383297180757e-05
+  ],
+  "fortran_warm_wall_seconds_per_batch": [
+    4.086e-06,
+    4.113e-06,
+    3.784e-06,
+    4.133e-06,
+    4.12e-06
+  ],
+  "fortran_cpu_seconds_per_batch": [
+    4.1050000000000005e-06,
+    4.116e-06,
+    3.7889999999999992e-06,
+    4.136e-06,
+    4.123999999999999e-06
+  ],
+  "fortran_clock_ticks_per_second": 1000000000,
+  "median_fortran_over_jax": 0.09675996439338357,
+  "timing_notes": "Alternating warmed wall-time trials. Fortran uses separately compiled original arithmetic with O2, no fast-math/LTO, and runtime checks disabled; a false diagnostic branch remains in the process. It includes copying mutable inputs and dry geometry before each call; startup, I/O, diagnostic matrix capture and checksums are excluded. JAX uses the same fixed inputs each call and includes dispatch plus synchronization of both outputs; transfer and compilation are excluded. Fortran loops over cases, JAX batches them. Thread settings are recorded, not normalized. These measurements are not full-model, GPU, or hydration timings."
+}
