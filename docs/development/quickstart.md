@@ -52,7 +52,8 @@ These run wall times include startup/I/O and are **not** kernel benchmarks.
 
 The checked profile now passes the repaired condensation/driver sites and fails
 in standalone radiation (D005); see [reference repairs](reference-repairs.md).
-The ordinary run completes but remains an unvalidated scientific reference.
+Earlier ordinary runs completed but remain unvalidated scientific references;
+the D008 initializer repair has since changed the baseline.
 Do not disable checks to declare a defect fixed. Optional `--capture-runtime`
 records initialized dimensions, switches, gas mapping and real precision, even
 when a later process fails; see [runtime capture](runtime-metadata.md).
@@ -62,6 +63,10 @@ To inspect only the first microphysics interface call, add
 six output/state arrays for finite values and stops before radiation, activation
 and removal. Its manifest reports a separate completion status; it does not
 establish full-driver parity. See [the scoped reference](scoped-reference.md).
+Add `--capture-salsa-state` to capture native inputs/outputs, mappings and
+geometry at full precision; runtime metadata is then enabled automatically.
+See the [capture and fixture guide](native-state-capture.md) for export commands
+and the checked default-case evidence.
 
 For the legacy root build, persistent settings belong in `Makefile.in`.
 `sh configure` needs `makedepf90` and overwrites `Makefile`; the audit tool uses

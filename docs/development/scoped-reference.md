@@ -23,7 +23,8 @@ radiation, cloud activation or removal.
 Before stopping, it requires finite values in all six arrays: tracer state
 `pxtm1`, tendencies `pxtte`, wet radius `zrwet`, dry radius `zm6dry`, density
 `zrhop`, and aerosol water `zww`. It writes a completion record only after these
-checks pass. The manifest distinguishes this result from ordinary full execution;
+checks pass and serializes all six arrays to `scope-state.txt` at full
+precision. The manifest distinguishes this result from ordinary full execution;
 an executable exit code alone cannot satisfy the completion contract.
 
 The copied-source overlay and hash chain are retained. The source checkout,
@@ -42,9 +43,9 @@ and advance driver tendencies through a second step. Existing diagnostic files
 may contain initialization-only records and are not a scoped trajectory oracle.
 The completion status therefore remains explicitly unvalidated scientifically.
 
-The next task is full-precision native SALSA entry/exit capture with species,
-tracer, shape and unit contracts, followed by separate coagulation, condensation,
-and nucleation captures. Read the [radiation audit](radiation-reference-audit.md)
+Full-precision [native entry/exit capture](native-state-capture.md) now records
+species, tracer, shape and unit contracts for the default first call. Separate
+coagulation, condensation and nucleation captures remain next. Read the [radiation audit](radiation-reference-audit.md)
 for why an optics repair is not hidden inside this scope.
 
 The [checked integration record](evidence/first-microphysics-2026-09-21.json)

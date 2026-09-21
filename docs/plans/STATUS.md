@@ -3,7 +3,7 @@
 Updated 2026-09-21. Baseline HEAD:
 `d87dc072084336fd351d00a2ade863304c6f313d`.
 Development repository: [reflective-org/SALSA-JAX](https://github.com/reflective-org/SALSA-JAX).
-Reference repairs and initialization capture extend the initial implementation below.
+Reference repairs and native state capture extend the initial implementation below.
 The upstream Fortran revision is pinned by tag `fortran-baseline-d87dc07`.
 The [master plan](ULTRAPLAN.md) defines the remaining commit-sized backlog.
 
@@ -25,12 +25,16 @@ The [master plan](ULTRAPLAN.md) defines the remaining commit-sized backlog.
 | F10d | Explicit scope verified | Checked first microphysics call completes with six finite arrays; full driver remains unvalidated |
 | F09e/F10e | Implemented | D006 absent-organic nucleation guard; 29 checked regressions, original/current equality and coupled sulfate budgets |
 | F11a | Initialization capture verified | Copy-only overlay; typed dimensions/switches/gas mapping; nine diagnostics identical with/without capture |
+| F09f/F10f | Implemented | D008: preserve registered component maps; original overwrite reproduced, all 69 identities and initial volumes checked |
+| F11b | Partial | Native material/component/gas/number maps and species/tracer table captured; remaining HAM wrapper tables/flags documented |
+| F12 | Default first call verified | Full-precision native entry/exit, geometry and units; six HAM arrays identical with capture on/off |
+| F14a/F15a/F16a | Default first-call checks pass | Hash-verified fixture, native conversions/material budgets and byte-identical fresh-process repeat |
 | S01 | Partial, first leaf only | Legacy constants and float64 policy for `coagc`; broader state/kind readback remains planned |
 | C01.R / C01.J | Leaf parity passes | Verbatim original-Fortran oracle; four tests, 1734 cases; maximum relative error 8.95e-15 |
 | P01/P02 | Preliminary leaf evidence | Wall-to-wall batch timing with source/case hashes; no full-process or model claim |
 | Q01 | Implemented | Quickstart, capability limits and reproduction commands |
 
-Total current suite: **103 passed** in this repository's `.venv`. Original inputs
+Total current suite: **142 passed** in this repository's `.venv`. Original inputs
 remain unchanged; Fortran scientific/driver repairs are separate commits. Generated
 builds/outputs remain ignored. Source relocation has not started. The pre-existing
 `AGENTS.md` remains unchanged; this ledger and the repair record carry current
@@ -38,17 +42,21 @@ validation status.
 
 ## Next ready tasks, in order
 
-1. **F11b/F12:** extend metadata to complete state/tracer contracts and capture
-   full-precision SALSA entry/exit in the checked first-microphysics scope.
-   Initialization metadata and a finite first call are not trajectory evidence.
-2. **F13–F16:** capture separate coagulation, condensation and nucleation process
-   states, validate budgets, repeat/reset behavior and configuration isolation.
-3. **C02.R/C02.J:** port grid geometry after its state/bin contract is captured;
-   then follow the independent process tasks in the core plan.
+1. **F13a/F13b:** capture hydration and coagulation boundaries separately,
+   including mutable state and effective switches. Use the native fixture as
+   the outer contract; each boundary needs its own comparison and budget checks.
+2. **F13c/F13d and remaining F14–F16:** capture condensation, nested nucleation
+   and remapping; validate budgets, repeat/reset behavior and configuration
+   isolation.
+3. **S02 / C02.R/C02.J:** implement the Python state/bin contract and grid
+   geometry against the captured native arrays. Complete remaining F11b wrapper
+   metadata before porting HAM conversion or activation.
 4. **D005 follow-up:** obtain valid optical tables and audit standalone radiation
    initialization before accepting a full-driver case. The explicit early-stop
    scope does not repair or silently disable full-driver radiation.
-5. **O01–O04:** improve build portability and cleanup; mechanical source moves
+5. **D007:** reproduce and guard absent-organic access in tiny-particle cleanup
+   before accepting empty/tiny-volume process cases.
+6. **O01–O04:** improve build portability and cleanup; mechanical source moves
    still depend on passing reference gates.
 
 Coagulation, condensation and nucleation each have separate Fortran oracles,
@@ -106,12 +114,16 @@ timing evidence, and [quickstart](../development/quickstart.md) for commands.
 | `4a04894` | F10e: zero absent-organic vapor without changing registered-gas behavior |
 | `68b14e7` | Nucleation boundary documentation and checked numerical evidence |
 | `786e854` | F10d: explicit checked first-microphysics scope and completion checks |
+| `0f843dd` | F09f/F10f: preserve registered component maps during initialization (D008) |
+| `50d190f` | Full-precision HAM arrays for capture on/off comparison |
+| `f27fa5f` | F12/F14a: native state capture, checked fixture and strict map validation |
 
 The [repair record](../development/reference-repairs.md) explains scientific
 scope and remaining defects. The [runtime capture guide](../development/runtime-metadata.md)
 links initialization evidence and the instrumented/uninstrumented comparison.
-The current ordinary outputs differ from the original in five diagnostic files;
-this is recorded as a baseline change, not scientific acceptance. No new
+Before D008, ordinary outputs differed from the original in five diagnostic
+files. D008 changes initialization again; no full-trajectory comparison for
+that corrected baseline is claimed here. No new
 performance claim is made by these diagnostic runs.
 
 The D006 nucleation repair preserves all nine default ordinary-run diagnostics
@@ -119,3 +131,14 @@ exactly; the default has nucleation disabled. Its separate kernel tests cover
 schemes 1/2/3 with growth options 1/2/3, registered-zero and positive organics,
 zero sulfate, and coupled sulfate budgets. See the
 [nucleation reference](../development/nucleation-reference.md) for scope limits.
+
+## Native capture milestone
+
+The [capture guide](../development/native-state-capture.md) and
+[state contract](../development/salsa-state-contract.md) describe the reviewed
+fixture and remaining wrapper metadata. Three checked runs establish native
+capture on/off invariance and fresh-process repeatability. Native budgets retain
+the original salt-to-sulfate volume relabeling approximation. See the
+[source/configuration evidence](../development/evidence/native-state-2026-09-21.json).
+F14a/F15a/F16a cover only this native fixture; the parent process/trajectory
+gates remain open. No new JAX process or speedup is claimed.

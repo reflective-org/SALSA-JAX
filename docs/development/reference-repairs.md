@@ -109,3 +109,29 @@ Twenty-nine checks establish original/current compatibility, zero-input behavior
 and sulfate budgets when nested in condensation; see the
 [nucleation reference contract and evidence](nucleation-reference.md).
 This does not enable unsupported nucleation modes or validate full trajectories.
+
+## D007 — tiny-particle cleanup still reads absent organic gas
+
+Six evaporation/cleanup branches in `salsa` access organic gas index zero
+without a guard. The checked default fixture avoids these branches. This is
+an outstanding reproducer/repair task; D001 and D006 do not cover it.
+
+## D008 — initialization overwrites registered component maps
+
+The first native capture exposed inconsistent bin/species identities:
+`conc2mmr` overwrote species-major component maps with region-major indices
+after HAM registered its 69 components and tracers. For example, OC in bin 1
+was assigned component 4, already registered as sulfate in bin 4. Subsequent
+unit conversion used the original metadata, so this affected scientific state.
+
+Commit `0f843dd` removes only the redundant map assignments and counter,
+retaining all composition recipes. Two checked Fortran regressions reproduce
+the original overwrite and verify current maps, all 69 component identities
+and the intended per-bin material volumes. The repaired native capture passes
+strict mapping checks and material budgets; its six returned HAM arrays match
+exactly with capture disabled. Fresh-process native files repeat byte for byte.
+
+This changes the initialized scientific baseline. Previous full-driver
+diagnostic comparisons do not establish acceptance of the repaired trajectory.
+See the [state contract](salsa-state-contract.md) and
+[capture evidence](evidence/native-state-2026-09-21.json).

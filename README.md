@@ -48,9 +48,9 @@ The tag `fortran-baseline-d87dc07` identifies the original reference revision
 local checkout points to that repository; `origin` is SALSA-JAX. Clones only
 configure `origin` unless an upstream remote is added explicitly.
 
-Five isolated Fortran repairs address absent organic gas in condensation and
+Six isolated Fortran repairs address absent organic gas in condensation and
 nucleation, an undefined organic fraction, activation velocity shape/units,
-and undersized aerosol-water storage.
+undersized aerosol-water storage, and overwritten component maps.
 The full checked run now reaches an unresolved radiation initialization failure;
 full-model scientific validation is pending. See the
 [repair record](docs/development/reference-repairs.md). The first scalar kernel
@@ -76,12 +76,14 @@ call under strict checks:
 ```sh
 .venv/bin/python tools/fortran_reference.py \
   --config configs/fortran-checked.toml --scope first-microphysics \
-  --capture-runtime --run --output build/first-microphysics
+  --capture-salsa-state --run --output build/first-microphysics
 ```
 
 This scope checks finite microphysics outputs and records completion before
 radiation, activation and removal. It is not a validated full trajectory;
-see [scope and limitations](docs/development/scoped-reference.md).
+see [scope and limitations](docs/development/scoped-reference.md). The
+[native capture guide](docs/development/native-state-capture.md) describes the
+full-precision fixture, map validation and repeated-run evidence.
 
 ## Layout and development
 
@@ -95,9 +97,9 @@ see [scope and limitations](docs/development/scoped-reference.md).
 Start with the [documentation index](docs/README.md),
 [development quickstart](docs/development/quickstart.md), and
 [current status / next tasks](docs/plans/STATUS.md).
-The next priority is full-precision state/process capture using the checked
-microphysics scope, followed by grid-geometry porting. Full-driver radiation
-requires valid optical tables and a separate initialization repair.
+Native entry/exit capture is verified for the default first call. The next
+priority is separate process capture and the Python state/grid-geometry
+contract. Full-driver radiation requires valid optical tables and a separate initialization repair.
 
 See [LICENSE.txt](LICENSE.txt) and retained source notices for attribution.
 The [original Fortran overview](docs/fortran-overview.md) describes HAM-SALSA's

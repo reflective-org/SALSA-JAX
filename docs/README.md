@@ -7,6 +7,8 @@
 - [Independent Fortran repairs and remaining failures](development/reference-repairs.md)
 - [Effective runtime metadata and capture scope](development/runtime-metadata.md)
 - [Isolated nucleation contract and regression evidence](development/nucleation-reference.md)
+- [Native SALSA capture and checked fixture](development/native-state-capture.md)
+- [State, units and component mapping contract](development/salsa-state-contract.md)
 - [Checked first-call microphysics scope](development/scoped-reference.md)
 - [Standalone radiation initialization and data audit](development/radiation-reference-audit.md)
 - [Lessons from local JAX ports](development/local-port-lessons.md)

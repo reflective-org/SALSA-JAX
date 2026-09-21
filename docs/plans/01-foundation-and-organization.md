@@ -23,7 +23,7 @@ in [STATUS.md](STATUS.md). Keep mechanical changes separate from scientific fixe
 | F09 | F08 | Reproduce first checked-build defect with a narrow case | Test fails at same source site before any repair |
 | F10 | F09 | Repair that defect or document justified compatibility isolation | Reproducer passes; compatibility impact reported, never assumed |
 | F11 | F07,F10 | Emit effective switches, timestep and kind/storage size | Values read from running Fortran, not inferred from config text |
-| F12 | F11 | Add full-precision native SALSA entry/exit capture overlay | Instrumented/uninstrumented diagnostics unchanged |
+| F12 | F11 | Add full-precision native SALSA entry/exit capture overlay | Six full-precision HAM arrays unchanged with native capture on/off |
 | F13a | F12 | Capture equilibration boundaries | Number/material/water/radius fields and hydration options recorded |
 | F13b | F13a | Capture coagulation boundaries | Before/after bin state and coefficients, including mutated globals |
 | F13c | F13b | Capture condensation and nested nucleation boundaries | Gas depletion, rates and aerosol insertion distinguished |
@@ -46,8 +46,21 @@ turn a single repair task into a repository-wide warning cleanup.
 | F10d | F09d | Implement justified radiation repair or explicit reference scope | Supported configuration passes; missing tables cannot silently pass |
 | F09e | F10 | Reproduce absent-organic read in nucleation | Sulfate-only configuration fails at the actual gas access |
 | F10e | F09e | Guard supported nucleation inputs | Sulfate-only and registered-organic cases retain physical budgets |
+| F09f/F10f | F12 | Reproduce and preserve registered component maps during initialization (D008) | Original overwrite fails; all 69 identities and composition recipes checked |
+| F09g/F10g | F12 | Reproduce and guard tiny-particle cleanup organic access (D007) | Missing-gas branch fails before repair; registered-gas behavior preserved |
+| F14a | F12 | Export checked native fixture with hash/provenance manifest | Reject altered files, failed/unchecked runs and existing output directories |
+| F15a | F14a | Validate native conversions and material budgets | Mixed units and salt-to-sulfate volume transfer accounted for explicitly |
+| F16a | F15a | Repeat default native capture in a fresh process | All three native files identical; other configurations remain pending |
 | F11a | F10 | Capture initialized scalar configuration and gas mapping | Copy-only overlay leaves all nine diagnostics unchanged |
-| F11b | F11a | Capture full tracer/species table and array contracts | Mapping bounds, units and actual compiled dimensions verified |
+| F11b | F09f/F10f | F12 | Reproduce and preserve registered component maps during initialization (D008) | Original overwrite fails; all 69 identities and composition recipes checked |
+| F09g/F10g | F12 | Reproduce and guard tiny-particle cleanup organic access (D007) | Missing-gas branch fails before repair; registered-gas behavior preserved |
+| F14a | F12 | Export checked native fixture with hash/provenance manifest | Reject altered files, failed/unchecked runs and existing output directories |
+| F15a | F14a | Validate native conversions and material budgets | Mixed units and salt-to-sulfate volume transfer accounted for explicitly |
+| F16a | F15a | Repeat default native capture in a fresh process | All three native files identical; other configurations remain pending |
+| F11a | Capture full tracer/species table and array contracts | Mapping bounds, units and actual compiled dimensions verified |
+
+F12 first exposed D008; accepting its fixture depends on F10f. F14a–F16a
+validate only the native first-call fixture, not their complete parent gates.
 
 F09b/F10b and F09c/F10c each form one small regression-and-repair commit;
 F09d/F10d and F09e/F10e remain separate investigation and correction tasks.
