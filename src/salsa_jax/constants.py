@@ -20,3 +20,9 @@ ORGANIC_DENSITY = 2000.0  # kg m-3
 SULFURIC_ACID_DIAMETER = 5.539376964394570e-10  # m
 CONDENSATION_GAS_THRESHOLD = 1e-10  # molecules m-3, strict greater-than
 CONDENSATION_SINK_THRESHOLD = 1e-30  # s-1, strict greater-than
+
+# mo_ham_salsactl.F90: supported sulfate nucleation defaults.
+NUCLEATION_ACTIVATION_COEFFICIENT = 1e-7  # s-1
+NUCLEATION_CLUSTER_MOLECULES = 158.79  # molecules per target particle
+NUCLEATION_TARGET_DIAMETER = 3e-9  # m, reglim(1)
+NUCLEATION_CRITICAL_DIAMETER = 7.9375e-10  # m, activation/kinetic schemes
