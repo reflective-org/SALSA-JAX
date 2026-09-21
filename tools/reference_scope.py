@@ -4,8 +4,14 @@ import difflib
 import hashlib
 from pathlib import Path
 
+if __package__:
+    from .array_records import HEADER, FOOTER, array_lines, parse_records
+else:
+    from array_records import HEADER, FOOTER, array_lines, parse_records
+
 SCOPE = "first-microphysics"
 FILENAME = "reference-scope.txt"
+STATE_FILENAME = "scope-state.txt"
 FINITE_FIELDS = ("pxtm1", "pxtte", "zrwet", "zm6dry", "zrhop", "zww")
 COMPLETION_LINES = (
     "SALSA_REFERENCE_SCOPE 1", "scope first-microphysics",
@@ -24,6 +30,12 @@ def instrument_scope(path: Path) -> dict:
     lines = ["      ! SALSA_FIRST_MICROPHYSICS_SCOPE_V1: copy-only finite-state gate"]
     for field in FINITE_FIELDS:
         lines.append(f"      IF (.NOT. ALL(scope_is_finite({field}))) ERROR STOP 'nonfinite {field}'")
+    lines += [f"      OPEN(NEWUNIT=scope_unit, FILE='{STATE_FILENAME}', STATUS='new', ACTION='write')",
+              f"      WRITE(scope_unit,'(A)') '{HEADER}'"]
+    for field in FINITE_FIELDS:
+        shape = tuple(f"SIZE({field},{axis})" for axis in (1, 2, 3))
+        lines += ["      " + line for line in array_lines(field, field, "R", shape, unit="scope_unit")]
+    lines += [f"      WRITE(scope_unit,'(A)') '{FOOTER}'", "      CLOSE(scope_unit)"]
     lines.append(f"      OPEN(NEWUNIT=scope_unit, FILE='{FILENAME}', STATUS='replace', ACTION='write')")
     lines.extend(f"      WRITE(scope_unit,'(A)') '{line}'" for line in COMPLETION_LINES)
     lines.extend(["      CLOSE(scope_unit)", "      STOP"])
@@ -61,3 +73,18 @@ def parse_completion(text: str) -> dict:
     if text.splitlines() != list(COMPLETION_LINES):
         raise ValueError("Invalid first-microphysics completion record")
     return {"schema_version": 1, "scope": SCOPE, "completed_calls": 1}
+
+
+def parse_scope_state(text: str) -> dict:
+    records = parse_records(text)
+    if set(records) != set(FINITE_FIELDS):
+        raise ValueError("Missing/unexpected scope state field")
+    if any(record["kind"] != "R" or len(record["shape"]) != 3 for record in records.values()):
+        raise ValueError("Invalid scope state type/rank")
+    shape = records["pxtm1"]["shape"]
+    if records["pxtte"]["shape"] != shape:
+        raise ValueError("Tracer state/tendency shape mismatch")
+    properties = records["zrwet"]["shape"]
+    if properties[:2] != shape[:2] or any(records[name]["shape"] != properties for name in FINITE_FIELDS[2:]):
+        raise ValueError("Property shape mismatch")
+    return records

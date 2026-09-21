@@ -9,7 +9,7 @@ import sys
 import pytest
 
 from tools.reference_scope import (CALL_END_ANCHOR, COMPLETION_LINES, FILENAME,
-                                   FINITE_FIELDS, instrument_scope, parse_completion)
+                                   FINITE_FIELDS, STATE_FILENAME, instrument_scope, parse_completion, parse_scope_state)
 from tools.runtime_metadata import instrument_driver
 
 
@@ -84,6 +84,7 @@ def test_fortran_completion_written_only_after_all_finite_checks(tmp_path, poiso
         assert not (tmp_path / FILENAME).exists()
     else:
         assert result.returncode == 0
+        assert set(parse_scope_state((tmp_path / STATE_FILENAME).read_text())) == set(FINITE_FIELDS)
         assert parse_completion((tmp_path / FILENAME).read_text()) == {
             "schema_version": 1, "scope": "first-microphysics", "completed_calls": 1}
 
@@ -115,6 +116,11 @@ def test_scope_failure_manifest_and_full_default(tmp_path, monkeypatch, scope, m
             return {"status": "finished", "returncode": 0}
         if marker is not None:
             (directory / FILENAME).write_text(marker)
+            state = ["SALSA_ARRAYS 1"]
+            for field in FINITE_FIELDS:
+                state += [f"R {field} 3 1 1 1", "1.0"]
+            state.append("END_SALSA_ARRAYS")
+            (directory / STATE_FILENAME).write_text("\n".join(state) + "\n")
         return {"status": "finished", "returncode": returncode}
 
     monkeypatch.setattr(fortran_reference, "logged_run", fake_run)
