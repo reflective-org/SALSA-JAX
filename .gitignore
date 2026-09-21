@@ -1,0 +1,23 @@
+# Local environments and Python build/cache files
+.venv/
+__pycache__/
+.pytest_cache/
+*.egg-info/
+/dist/
+
+# Generated builds, isolated model runs, and benchmarks
+/build/
+/outputs/
+/ham_box
+*.o
+*.mod
+*.smod
+
+# Legacy driver diagnostics (tracked sample data remain visible)
+/data/num.dat
+/data/rdry.dat
+/data/nact.dat
+/data/fracn.dat
+/zaernl_series.dat
+/zpxtte_*.dat
+.DS_Store
