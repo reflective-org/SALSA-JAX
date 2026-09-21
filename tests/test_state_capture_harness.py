@@ -13,15 +13,20 @@ from tools.state_capture import FILES
 FIXTURE = Path(__file__).resolve().parent / 'fixtures/native-default'
 
 
-def test_capture_requires_single_call_scope(monkeypatch):
-    monkeypatch.setattr(sys, 'argv', ['reference', '--output', 'unused', '--capture-salsa-state'])
+@pytest.mark.parametrize("flag", ["--capture-salsa-state", "--capture-coagulation-state"])
+def test_capture_requires_single_call_scope(monkeypatch, flag):
+    monkeypatch.setattr(sys, 'argv', ['reference', '--output', 'unused', flag])
     with pytest.raises(SystemExit) as error:
         harness.main()
     assert error.value.code == 2
 
 
 @pytest.mark.parametrize('complete', [False, True])
-def test_requested_capture_must_exist_even_on_success(tmp_path, monkeypatch, complete):
+@pytest.mark.parametrize('process', ['salsa', 'coagulation'])
+def test_requested_capture_must_exist_even_on_success(tmp_path, monkeypatch, complete, process):
+    from tools.coagulation_capture import FILES as COAG_FILES
+    files = FILES if process == 'salsa' else COAG_FILES
+    fixture = FIXTURE if process == 'salsa' else FIXTURE.parent / 'coagulation-default'
     root, target = tmp_path / 'source', tmp_path / 'run'
     root.mkdir()
     real_root = harness.ROOT
@@ -46,14 +51,14 @@ def test_requested_capture_must_exist_even_on_success(tmp_path, monkeypatch, com
             lines.append('END_SALSA_ARRAYS')
             (directory / STATE_FILENAME).write_text('\n'.join(lines) + '\n')
             if complete:
-                for name in FILES.values():
-                    shutil.copy2(FIXTURE / name, directory / name)
+                for name in files.values():
+                    shutil.copy2(fixture / name, directory / name)
         return {'status':'finished', 'returncode':0}
 
     monkeypatch.setattr(harness, 'logged_run', fake_run)
     monkeypatch.setattr(sys, 'argv', ['reference', '--config', str(real_root / 'configs/fortran-checked.toml'),
-                        '--output', str(target), '--scope', 'first-microphysics', '--capture-salsa-state', '--run'])
+                        '--output', str(target), '--scope', 'first-microphysics', f'--capture-{process}-state', '--run'])
     assert harness.main() == (0 if complete else 1)
     manifest = json.loads((target / 'manifest.json').read_text())
-    assert manifest['status'] == ('first_microphysics_completed_unvalidated' if complete else 'salsa_capture_failed')
-    assert manifest['salsa_capture']['status'] == ('captured' if complete else 'capture_failed')
+    assert manifest['status'] == ('first_microphysics_completed_unvalidated' if complete else f'{process}_capture_failed')
+    assert manifest[f'{process}_capture']['status'] == ('captured' if complete else 'capture_failed')

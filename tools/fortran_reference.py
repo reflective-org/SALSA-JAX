@@ -21,10 +21,12 @@ if __package__:
     from .runtime_metadata import FILENAME, instrument_driver, parse_metadata
     from .reference_scope import FILENAME as SCOPE_FILENAME, STATE_FILENAME, instrument_scope, parse_completion, parse_scope_state
     from .state_capture import FILES as STATE_FILES, instrument_salsa, load_capture
+    from .coagulation_capture import FILES as COAGULATION_FILES, instrument_salsa_coagulation, load_capture as load_coagulation_capture
 else:
     from runtime_metadata import FILENAME, instrument_driver, parse_metadata
     from reference_scope import FILENAME as SCOPE_FILENAME, STATE_FILENAME, instrument_scope, parse_completion, parse_scope_state
     from state_capture import FILES as STATE_FILES, instrument_salsa, load_capture
+    from coagulation_capture import FILES as COAGULATION_FILES, instrument_salsa_coagulation, load_capture as load_coagulation_capture
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -67,10 +69,14 @@ def main() -> int:
                         help="full trajectory or a finite-state check after the first microphysics call")
     parser.add_argument("--capture-salsa-state", action="store_true",
                         help="capture native entry/exit arrays and mappings in the first-microphysics scope")
+    parser.add_argument("--capture-coagulation-state", action="store_true",
+                        help="capture actual coagulation inputs/outputs in the first-microphysics scope")
     args = parser.parse_args()
     if args.capture_salsa_state and args.scope != "first-microphysics":
         parser.error("--capture-salsa-state requires --scope first-microphysics")
-    if args.capture_salsa_state:
+    if args.capture_coagulation_state and args.scope != "first-microphysics":
+        parser.error("--capture-coagulation-state requires --scope first-microphysics")
+    if args.capture_salsa_state or args.capture_coagulation_state:
         args.capture_runtime = True
     config = tomllib.loads(args.config.read_text())
     target = args.output.resolve()
@@ -110,6 +116,9 @@ def main() -> int:
         if args.capture_salsa_state:
             manifest["salsa_capture"] = instrument_salsa(target / "mo_ham_salsa.F90")
             manifest["salsa_capture"]["status"] = "instrumented_not_run"
+        if args.capture_coagulation_state:
+            manifest["coagulation_capture"] = instrument_salsa_coagulation(target / "mo_ham_salsa.F90")
+            manifest["coagulation_capture"]["status"] = "instrumented_not_run"
         manifest["compiled_driver_sha256"] = sha256(target / "driver.F90")
         compiler = config["build"]["compiler"]
         manifest["compiler"] = output(compiler, "--version")
@@ -179,6 +188,18 @@ def main() -> int:
                     capture["error"] = str(error)
                     if manifest["run"]["returncode"] == 0:
                         manifest["status"] = "salsa_capture_failed"
+                    return 1
+            if args.capture_coagulation_state:
+                capture = manifest["coagulation_capture"]
+                try:
+                    capture["file_sha256"] = {name: sha256(target / name) for name in COAGULATION_FILES.values()}
+                    capture["state"] = load_coagulation_capture(target)
+                    capture["status"] = "captured"
+                except (OSError, ValueError) as error:
+                    capture["status"] = "capture_failed"
+                    capture["error"] = str(error)
+                    if manifest["run"]["returncode"] == 0:
+                        manifest["status"] = "coagulation_capture_failed"
                     return 1
             return 0 if manifest["run"]["returncode"] == 0 else 1
         return 0
