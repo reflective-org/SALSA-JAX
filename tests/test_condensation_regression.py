@@ -44,3 +44,34 @@ def test_original_unregistered_organic_gas_reproduces_d001(original_condensation
     assert result.returncode != 0
     assert "Index '0'" in result.stderr
     assert "pc_gas" in result.stderr
+
+
+@pytest.fixture(scope="module")
+def current_condensation(tmp_path_factory):
+    return compile_condensation(tmp_path_factory.mktemp("condensation-current"),
+                                (ROOT / "mo_ham_salsa_dynamics.F90").read_text())
+
+
+def run_current(executable, mode):
+    import numpy as np
+    result = subprocess.run([str(executable), mode], capture_output=True, text=True)
+    assert result.returncode == 0, result.stderr
+    values = np.fromstring(result.stdout, sep=" ")
+    assert values.shape == (5,)
+    assert np.isfinite(values).all()
+    return values
+
+
+@pytest.mark.parametrize("mode", ["absent", "zero"])
+def test_condensation_without_organic_preserves_sulfate_budget(current_condensation, mode):
+    sulfate, organic, sulfate_volume, organic_volume, number_change = run_current(current_condensation, mode)
+    assert 0 < sulfate < 1e12
+    assert organic == organic_volume == number_change == 0
+    molecular_volume = (98e-3 / 6.02214179e23) / 1841.0
+    assert sulfate_volume / molecular_volume == pytest.approx(1e12 - sulfate, rel=2e-14)
+
+
+def test_condensation_with_no_particles_has_no_sink(current_condensation):
+    sulfate, organic, sulfate_volume, organic_volume, number_change = run_current(current_condensation, "empty")
+    assert sulfate == 1e12
+    assert organic == sulfate_volume == organic_volume == number_change == 0

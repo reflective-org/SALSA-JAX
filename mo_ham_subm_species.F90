@@ -45,7 +45,8 @@ MODULE mo_ham_subm_species
 
 
   !-- species indices for microphysics routines
-  INTEGER :: isubm_so2, isubm_so4g, isubm_oc, isubm_ocnv, isubm_so4, isubm_wat
+  INTEGER :: isubm_so2, isubm_so4g, isubm_oc, isubm_so4, isubm_wat
+  INTEGER :: isubm_ocnv = 0 ! Optional nonvolatile organic gas; zero means absent.
   
   ! >> thk: volatility basis set (VBS)
   INTEGER :: isubm_bc, isubm_ss, isubm_du

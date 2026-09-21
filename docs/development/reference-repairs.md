@@ -29,3 +29,16 @@ The full reproducer remains:
 A positive registered-organic case is a deliberately constructed kernel fixture;
 ordinary model initialization does not currently register that gas. It must not
 be described as validation of a supported full-driver organic configuration.
+
+### F10 correction and impact
+
+The optional index now has an explicit zero sentinel. Non-VBS organic
+condensation executes only inside `ELSE IF (isubm_ocnv > 0)`, so no array
+reference depends on Fortran short-circuit behavior. Species registration and
+tracer dimensions are unchanged.
+
+Four isolated tests pass: the historical failing case, missing/zero organic
+gas with sulfate material-budget checks, and an empty-particle case. All nine
+default compatibility diagnostic hashes match the pre-fix run exactly. The
+checked full run proceeds beyond D001 but exposes a further segmentation fault;
+reference acceptance remains pending. See [recorded evidence](evidence/d001-repair.json).

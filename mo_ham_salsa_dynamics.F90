@@ -673,7 +673,7 @@ CONTAINS
                      ) 
              ENDIF
 #endif          
-          ELSE
+          ELSE IF (isubm_ocnv > 0) THEN
           !---- 5.1.1) Non-volatile organic compound: condenses onto all bins 
 
              ! >> thk: VBS
