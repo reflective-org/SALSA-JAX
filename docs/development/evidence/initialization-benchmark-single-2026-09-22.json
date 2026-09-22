@@ -1,0 +1,206 @@
+{
+  "scope": "Seven-mode size_distribution only, one native cell per case; no composition, HAM conversion or grid generation",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "jax_version": "0.11.2",
+  "jaxlib_version": "0.11.2",
+  "numpy_version": "2.5.3",
+  "thread_environment": {
+    "XLA_FLAGS": null,
+    "OMP_NUM_THREADS": null,
+    "OPENBLAS_NUM_THREADS": null,
+    "MKL_NUM_THREADS": null,
+    "VECLIB_MAXIMUM_THREADS": null,
+    "JAX_NUM_THREADS": null,
+    "TF_NUM_INTRAOP_THREADS": null,
+    "TF_NUM_INTEROP_THREADS": null
+  },
+  "device": "cpu:0",
+  "dtype": "float64",
+  "cases": 1,
+  "case_labels": [
+    "driver-default"
+  ],
+  "repetitions": 500,
+  "trials": 5,
+  "jax_compile_seconds": 0.042191917018499225,
+  "samples_seconds_per_batch": {
+    "jax": [
+      7.666166056878865e-06,
+      6.379500031471252e-06,
+      5.711999954655766e-06,
+      5.5642500519752504e-06,
+      4.889999981969595e-06
+    ],
+    "fortran": [
+      1.2719999999999998e-06,
+      1.16e-06,
+      1.07e-06,
+      1.0239999999999999e-06,
+      8.94e-07
+    ]
+  },
+  "median_seconds_per_batch": {
+    "jax": 5.711999954655766e-06,
+    "fortran": 1.07e-06
+  },
+  "median_fortran_over_jax": 0.18732493145905207,
+  "parity": {
+    "rtol": 3e-13,
+    "atol": 0,
+    "max_absolute": 5.960464477539063e-08,
+    "max_relative_nonzero": 1.2876490279419786e-15,
+    "checked_optimized_exact": true
+  },
+  "number_checksums": {
+    "jax": 1080144614.5378442,
+    "fortran": 1080144614.537844
+  },
+  "checked_provenance": {
+    "source_sha256": {
+      "parkind1.F90": "bd7aa3a0f896829781c6c9c1924726def9bd8b2825778e26274c615c2642ff5a",
+      "mo_kind.F90": "e7d3a5f28d216e60828c395a704e33a7bfc5db6e966533776fc438f4d782d255",
+      "mo_math_constants.F90": "ceae6f761c288597f7fb495ff2a55030fee8f861e1ee0dcd8adc0ba3ba95734f",
+      "mo_ham_salsa_sizedist.F90": "83ea26e4adb9080a856a1bc670467b82505f26419b0c42d781536b6659f158e4",
+      "driver.F90": "ff59d164d894111da2f41263351fd815a062c9ae34502b91cae3436a3dafb5f2"
+    },
+    "wrapper_sha256": {
+      "stubs.f90": "1c03ae1edf04bf379662fa0750f9d1b5e5f2d7c57bc6d5a00cb46d8e01df916b",
+      "driver.f90": "b689e3eb8ed21656a6a4ef493c1c4e4ffd78993a2dac982d7de604dd4da9fc16"
+    },
+    "flags": [
+      "-O2",
+      "-fno-fast-math",
+      "-fno-lto",
+      "-ffree-line-length-none",
+      "-cpp",
+      "-fcheck=all",
+      "-ffpe-trap=invalid,zero,overflow",
+      "-fbacktrace"
+    ],
+    "checked": true,
+    "scientific_module_byte_identical": "mo_ham_salsa_sizedist.F90",
+    "native_default_assignments": {
+      "n": "n = (/1000.0, 100.0, 10.0, 0.001, 100.0, 10.0, 0.001/)*1.e6_dp",
+      "dpg": "dpg = (/0.01, 0.3, 1.0, 3.0, 0.03, 0.3, 3.0/)*1.e-6_dp",
+      "sigmag": "sigmag = (/ 1.59, 1.59, 1.59, 2.0, 1.59, 1.59, 2.0 /)"
+    },
+    "compiled_defaults": {
+      "mode_number": [
+        1000000000.0,
+        100000000.0,
+        10000000.0,
+        1000.0000474974513,
+        100000000.0,
+        10000000.0,
+        1000.0000474974513
+      ],
+      "dpg": [
+        9.999999776482582e-09,
+        3.000000119209289e-07,
+        1e-06,
+        3e-06,
+        2.999999932944775e-08,
+        3.000000119209289e-07,
+        3e-06
+      ],
+      "sigma": [
+        1.590000033378601,
+        1.590000033378601,
+        1.590000033378601,
+        2.0,
+        1.590000033378601,
+        1.590000033378601,
+        2.0
+      ]
+    },
+    "compiled_pi": 3.141592653589793,
+    "compiler": "GNU Fortran (Homebrew GCC 16.1.0) 16.1.0",
+    "configuration": {
+      "modes": 7,
+      "bins": 17,
+      "native_default_literal_bits": 32,
+      "arithmetic_bits": 64
+    },
+    "separate_compilation_without_lto": true
+  },
+  "optimized_provenance": {
+    "source_sha256": {
+      "parkind1.F90": "bd7aa3a0f896829781c6c9c1924726def9bd8b2825778e26274c615c2642ff5a",
+      "mo_kind.F90": "e7d3a5f28d216e60828c395a704e33a7bfc5db6e966533776fc438f4d782d255",
+      "mo_math_constants.F90": "ceae6f761c288597f7fb495ff2a55030fee8f861e1ee0dcd8adc0ba3ba95734f",
+      "mo_ham_salsa_sizedist.F90": "83ea26e4adb9080a856a1bc670467b82505f26419b0c42d781536b6659f158e4",
+      "driver.F90": "ff59d164d894111da2f41263351fd815a062c9ae34502b91cae3436a3dafb5f2"
+    },
+    "wrapper_sha256": {
+      "stubs.f90": "1c03ae1edf04bf379662fa0750f9d1b5e5f2d7c57bc6d5a00cb46d8e01df916b",
+      "driver.f90": "b689e3eb8ed21656a6a4ef493c1c4e4ffd78993a2dac982d7de604dd4da9fc16"
+    },
+    "flags": [
+      "-O2",
+      "-fno-fast-math",
+      "-fno-lto",
+      "-ffree-line-length-none",
+      "-cpp"
+    ],
+    "checked": false,
+    "scientific_module_byte_identical": "mo_ham_salsa_sizedist.F90",
+    "native_default_assignments": {
+      "n": "n = (/1000.0, 100.0, 10.0, 0.001, 100.0, 10.0, 0.001/)*1.e6_dp",
+      "dpg": "dpg = (/0.01, 0.3, 1.0, 3.0, 0.03, 0.3, 3.0/)*1.e-6_dp",
+      "sigmag": "sigmag = (/ 1.59, 1.59, 1.59, 2.0, 1.59, 1.59, 2.0 /)"
+    },
+    "compiled_defaults": {
+      "mode_number": [
+        1000000000.0,
+        100000000.0,
+        10000000.0,
+        1000.0000474974513,
+        100000000.0,
+        10000000.0,
+        1000.0000474974513
+      ],
+      "dpg": [
+        9.999999776482582e-09,
+        3.000000119209289e-07,
+        1e-06,
+        3e-06,
+        2.999999932944775e-08,
+        3.000000119209289e-07,
+        3e-06
+      ],
+      "sigma": [
+        1.590000033378601,
+        1.590000033378601,
+        1.590000033378601,
+        2.0,
+        1.590000033378601,
+        1.590000033378601,
+        2.0
+      ]
+    },
+    "compiled_pi": 3.141592653589793,
+    "compiler": "GNU Fortran (Homebrew GCC 16.1.0) 16.1.0",
+    "configuration": {
+      "modes": 7,
+      "bins": 17,
+      "native_default_literal_bits": 32,
+      "arithmetic_bits": 64
+    },
+    "separate_compilation_without_lto": true
+  },
+  "implementation_sha256": {
+    "src/salsa_jax/initialization.py": "df9db82c6a1c1fa4050cd48b6633dba98c006bf9dbd9ec1d8d14f7d32742908b",
+    "src/salsa_jax/constants.py": "ed52054463b3805b69a5e9f7ea11ebe7e944016f82908d8a0c207aacdeac02e8",
+    "tools/initialization_oracle.py": "e06b3844584dc0d2cc57d60d92ce4bbb6ba42ed17d7cf8c300a6341e31ef1d38",
+    "benchmarks/benchmark_initialization.py": "b95e9dfdf16bac799d9c6016618627e8885a0840c8dec87d7ff7ea4245b88148"
+  },
+  "case_sha256": {
+    "mode_number": "8b9d8201dc2fd8d026bf4e8032b3859a8cb56bf8ff5d7eadaf231c32b44b1f74",
+    "dpg": "7cd3de91127f34f205d4febf4f25657498d2e0b0ffeec56667c5872cf1d9d5d2",
+    "sigma": "f0363ada2c95b211be83d05ebf1339af9ab0d1603d998596b69bd85ade5a5500",
+    "lower_volume": "8ac1e4ba2b2dcfcfd68f10ae615cf842aac297e5ca808f3533fb863e72a3e32a",
+    "upper_volume": "5d5037c835c876f94c115aa57b316d39c36a357a583e96e9b7f4a9dd6a922678",
+    "dry_diameter": "94b260d4e990fec65990c57a8d076e7541a73c1d0a360daf705730617f8c8095"
+  },
+  "timing_notes": "Native timing includes geometry assignment and output zeroing; modal arrays are passed as existing slices. JAX inputs are immutable. JAX dispatch and all output synchronization included. Compile/transfers, native startup/I/O and comparison work excluded. Alternating trial order; every repetition evaluates fixed inputs."
+}
