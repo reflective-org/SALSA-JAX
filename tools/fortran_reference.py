@@ -18,6 +18,7 @@ import time
 import tomllib
 
 if __package__:
+    from .remapping_capture import FILES as REMAPPING_FILES, instrument_salsa_remapping, load_capture as load_remapping_capture
     from .hydration_capture import FILES as HYDRATION_FILES, instrument_salsa_hydration, load_capture as load_hydration_capture
     from .reference_configuration import configure_driver
     from .nucleation_capture import FILES as NUCLEATION_FILES, instrument_condensation_nucleation, load_capture as load_nucleation_capture
@@ -27,6 +28,7 @@ if __package__:
     from .coagulation_capture import FILES as COAGULATION_FILES, instrument_salsa_coagulation, load_capture as load_coagulation_capture
     from .condensation_capture import FILES as CONDENSATION_FILES, instrument_salsa_condensation, load_capture as load_condensation_capture
 else:
+    from remapping_capture import FILES as REMAPPING_FILES, instrument_salsa_remapping, load_capture as load_remapping_capture
     from hydration_capture import FILES as HYDRATION_FILES, instrument_salsa_hydration, load_capture as load_hydration_capture
     from reference_configuration import configure_driver
     from nucleation_capture import FILES as NUCLEATION_FILES, instrument_condensation_nucleation, load_capture as load_nucleation_capture
@@ -85,7 +87,11 @@ def main() -> int:
                         help="capture active nested nucleation and enclosing condensation boundaries")
     parser.add_argument("--capture-hydration-state", action="store_true",
                         help="capture the first native hydration call before coagulation")
+    parser.add_argument("--capture-remapping-state", action="store_true",
+                        help="capture both remapping and correction passes in the first native call")
     args = parser.parse_args()
+    if args.capture_remapping_state and args.scope != "first-microphysics":
+        parser.error("--capture-remapping-state requires --scope first-microphysics")
     if args.capture_hydration_state and args.scope != "first-microphysics":
         parser.error("--capture-hydration-state requires --scope first-microphysics")
     if args.capture_nucleation_state:
@@ -98,7 +104,7 @@ def main() -> int:
         parser.error("--capture-coagulation-state requires --scope first-microphysics")
     if args.capture_condensation_state and args.scope != "first-microphysics":
         parser.error("--capture-condensation-state requires --scope first-microphysics")
-    if args.capture_salsa_state or args.capture_coagulation_state or args.capture_condensation_state or args.capture_hydration_state:
+    if args.capture_salsa_state or args.capture_coagulation_state or args.capture_condensation_state or args.capture_hydration_state or args.capture_remapping_state:
         args.capture_runtime = True
     config = tomllib.loads(args.config.read_text())
     reference_case = config.get("reference_case")
@@ -161,6 +167,9 @@ def main() -> int:
         if args.capture_nucleation_state:
             manifest["nucleation_capture"] = instrument_condensation_nucleation(target / "mo_ham_salsa_dynamics.F90")
             manifest["nucleation_capture"]["status"] = "instrumented_not_run"
+        if args.capture_remapping_state:
+            manifest["remapping_capture"] = instrument_salsa_remapping(target / "mo_ham_salsa.F90")
+            manifest["remapping_capture"]["status"] = "instrumented_not_run"
         manifest["compiled_driver_sha256"] = sha256(target / "driver.F90")
         compiler = config["build"]["compiler"]
         manifest["compiler"] = output(compiler, "--version")
@@ -282,6 +291,18 @@ def main() -> int:
                     capture["error"] = str(error)
                     if manifest["run"]["returncode"] == 0:
                         manifest["status"] = "hydration_capture_failed"
+                    return 1
+            if args.capture_remapping_state:
+                capture = manifest["remapping_capture"]
+                try:
+                    capture["file_sha256"] = {name: sha256(target / name) for name in REMAPPING_FILES.values()}
+                    capture["state"] = load_remapping_capture(target)
+                    capture["status"] = "captured"
+                except (OSError, ValueError) as error:
+                    capture["status"] = "capture_failed"
+                    capture["error"] = str(error)
+                    if manifest["run"]["returncode"] == 0:
+                        manifest["status"] = "remapping_capture_failed"
                     return 1
             return 0 if manifest["run"]["returncode"] == 0 else 1
         return 0
