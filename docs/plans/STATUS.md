@@ -49,39 +49,42 @@ The [master plan](ULTRAPLAN.md) defines the remaining commit-sized backlog.
 | C04–C06.R/J | Standalone hydration passes | Actual molality/equilibration oracle; 31 cases, exact stopping counts, eager/JIT float64 parity |
 | F13a | Initial native hydration verified | Copy-only capture/control and fresh repeat exact; actual material registry replay and pre-remap JAX chain pass |
 | P04d1 | Initial scoped hydration measurement | One and 31-case CPU timings; exact untimed iteration checks, no measured speedup |
+| C15–C16.R/J | Ordered remapping passes | 47 cases; exact strict soluble-threshold decisions, material/number budgets and two-call comparisons |
+| C17.R/J | Native correction passes | 54 cleanup/hydration/radii-water cases; D007 reproduced, no clipping or scientific repair |
+| F13d | Both native passes verified | Eight capture stages; control/repeat exact; remapping and interleaved corrections match actual boundaries |
+| P04d2 | Initial isolated remapping measurement | Matched one-call CPU workload; corrections and second pass excluded |
 | Q01 | Implemented | Quickstart, capability limits and reproduction commands |
 
-All **459 current tests pass** in this repository's `.venv` (50.13 seconds).
-The latest 75 checks cover native grid arithmetic, inverse molality, hydration,
-checked iteration diagnostics, capture integrity and pre-remap composition.
-Original Fortran sources and scientific inputs are unchanged by this milestone.
-Generated builds/outputs remain ignored. Source relocation has not started.
-The pre-existing `AGENTS.md` remains unchanged; this ledger and the repair record
-carry current validation status.
+All **541 current tests pass** in this repository's `.venv` (59.49 seconds).
+The latest 82 checks cover ordered redistribution, strict transfer boundaries,
+cleanup/hydration/radius/water corrections, capture integrity and both native
+passes. Original Fortran sources and scientific inputs are unchanged. Generated
+builds/outputs remain ignored. Source relocation has not started. The existing
+`AGENTS.md` remains unchanged; this ledger and the repair record carry current
+validation status.
 
 ## Next ready tasks, in order
 
-1. **C15–C17 / F13d:** capture and port native remapping decisions, transfers
-   and radius corrections, retaining sequential order and zero-bin policy.
-2. **C18 / N08 / F14–F16:** compose the complete native process order, including
-   optional diameter recalculation and both remap passes; accept process switches,
-   active nucleation and repeated trajectories. Finish F11b HAM wrapper metadata.
-3. **C03:** port the seven-mode `size_distribution` initialization independently
+1. **C18 / N08 / F14–F16:** compose initial cleanup, all microphysics processes,
+   optional diameter recalculation, both remap/correction passes, density and
+   final material/tracer conversion. Accept `recalc` off/on, active nucleation,
+   process switches and trajectories. Finish F11b HAM wrapper metadata.
+2. **C03:** port seven-mode `size_distribution` initialization independently
    before claiming a standalone JAX box model.
-4. **C11.D009.A/F/J:** review and repair inherited cross-regime volume creation
-   as a separate scientific change; preserve compatibility until that decision.
-5. **D007/D010:** resolve tiny-particle cleanup's absent-organic access and
+3. **C11.D009.A/F/J / D011/D012:** review scientific repairs for coagulation
+   volume creation, orphan material after remapping and tiny nonvolatile loss;
+   preserve current compatibility until each reference decision is made.
+4. **D007/D010:** repair the reproduced absent-organic cleanup access and resolve
    invalid active zero-volume hydration before accepting those native inputs.
-6. **D005:** obtain valid optical tables and repair standalone radiation before
+5. **D005:** obtain valid optical tables and repair standalone radiation before
    full-driver acceptance. Source relocation still depends on reference gates.
-7. **O01–O04:** improve build portability and artifact cleanup separately.
+6. **O01–O04:** improve build portability and artifact cleanup separately.
 
-Processes are tracked independently. Grid generation, hydration, coagulation,
-condensation and supported nucleation have JAX kernels and separate Fortran
-references. Hydration, coagulation and condensation now compose against the
-actual default pre-remap boundaries, with `recalc=False`. Nucleation's active
-native process acceptance is separate. Remapping and complete SALSA composition
-remain pending; this is not yet a complete coupled SALSA simulation.
+Processes are tracked independently. Grid, hydration, coagulation, condensation,
+supported nucleation, remapping and post-remap corrections have JAX kernels
+and original-Fortran references. The default pre-remap chain and both following
+remap/correction passes match their respective native boundaries. Complete
+SALSA composition, its wrapper conversions and trajectories remain pending.
 
 ## Initial implementation commits
 
@@ -192,7 +195,7 @@ The [condensation API and contract](../development/condensation-process.md)
 cover sulfate and optional nonvolatile organic uptake with nucleation disabled.
 Actual native capture, 29 oracle cases, species budgets, eager/JIT parity and
 20 successive fixed-diameter calls pass. A separate check connects the two
-ported processes against their captured boundaries. Full SALSA and remapping acceptance remain open. Hydration and nucleation
+ported processes against their captured boundaries. Full SALSA acceptance remains open. Hydration, nucleation and remapping
 were subsequently ported below.
 
 JAX/Fortran median warmed CPU times are 10.10/0.263 µs for the captured case
@@ -293,3 +296,39 @@ and linked benchmark artifacts for hashes, checks and limitations.
 | `245496b` | F13a: checked fixture and required capture checks |
 | `4ef4eb7` | C06 native adapter and composed pre-remap acceptance |
 | `ecf7b8a` | P04d1: matched hydration benchmark and raw evidence |
+
+## Remapping and correction milestone
+
+C15–C17 and F13d are accepted within the [remapping contract](../development/remapping.md).
+The 47-case redistribution matrix preserves native sequential transfers, strict
+soluble thresholds, terminal-bin handling and orphan material. Maximum relative
+number/volume errors are 3.20e-14/4.26e-15; all scan counts match. A targeted
+compiler barrier prevents a one-ULP threshold change from reciprocal rewriting.
+
+The 54 correction cases preserve tiny cleanup, hydration and radius/water
+conversion. Number/material/gas are exact, geometry errors below 3.53e-16;
+water cancellation uses a documented dry-mass scale. D007's actual bounds error,
+D011 orphan material and D012 tiny nonvolatile loss are reproduced explicitly.
+No production Fortran or original scientific input changed.
+
+Three checked native runs establish capture invariance and fresh-repeat identity.
+Eight captured boundaries cover both full remap/correction passes. The JAX chain
+starting at native condensation output matches number/material/gas exactly;
+geometry error is below 2.81e-16, and water absolute error below 2.07e-24 kg/m³.
+This does not close C18/N08 or the final density/HAM conversion and trajectory gates.
+
+The isolated one-call CPU benchmark shows no speedup. Warm JAX/Fortran medians
+are 60.45/0.222 µs for one case and 150.13/5.916 µs for 47 cases. Both complete
+correction passes are outside these timings. See the [integration record](../development/evidence/remapping-2026-09-21.json)
+and linked raw measurements.
+
+| Commit | Deliverable |
+|---|---|
+| `db7342f` | C15–C16.R: original remapping oracle and 47 cases |
+| `2872745` | C17.R: verbatim native correction block and hydration reference |
+| `1266a2c` | F13d: copy-only capture of both remap/correction passes |
+| `5b6589b` | F13d: reviewed native fixture and mandatory-capture checks |
+| `7cae9e5` | C15–C16.J: ordered remapping and exact threshold branches |
+| `7a38c0d` | C17.J: cleanup/hydration/geometry correction and failure signaling |
+| `585e001` | C17: native adapter and independent/interleaved two-pass acceptance |
+| `538117a` | P04d2: isolated one-call CPU benchmark and raw evidence |

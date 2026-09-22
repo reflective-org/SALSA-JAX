@@ -15,6 +15,7 @@
 - [Numerical validation and benchmark protocol](development/validation-and-benchmarks.md)
 - [Active native nucleation capture and acceptance](development/nucleation-native-capture.md)
 - [Native grid, hydration and CPU benchmarks](development/grid-and-hydration.md)
+- [Native remapping and post-remap correction](development/remapping.md)
 - [Supported nucleation and condensation coupling](development/nucleation-process.md)
 - [Nucleation rate leaves](development/nucleation-rates.md)
 - [Standalone condensation port and benchmarks](development/condensation-process.md)
@@ -22,9 +23,11 @@
 - [First coagulation-coefficient port](development/coagulation-coefficient.md)
 - [2026-09-21 baseline and benchmark results](development/results-2026-09-21.md)
 
-The Python package implements grid generation, hydration, coagulation and
-condensation for 17 bins and five materials. Their default pre-remap composition
-matches native boundaries. Condensation has a separate coupled API for validated
-nucleation schemes and growth options 1–3. Remapping, complete process composition
-and the full box model remain planned. All 459 tests pass in the repository’s
-`.venv`; see the process guides for inherited scientific limitations.
+The Python package implements grid generation, hydration, coagulation,
+condensation, remapping and post-remap correction for 17 bins and five materials.
+The default pre-remap chain and the following two-pass remap/correction chain
+separately match native boundaries. Condensation has a separate coupled API for validated nucleation
+schemes and growth options 1–3. Complete SALSA composition, seven-mode
+initialization and box-model trajectories remain planned. All 541 tests pass in
+the repository’s `.venv`; see the [current validation status](plans/STATUS.md)
+and process guides for evidence and inherited scientific limitations.

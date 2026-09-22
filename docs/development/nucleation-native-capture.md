@@ -99,6 +99,7 @@ The full suite passed **384 tests at this milestone** in the repository environm
 kernel changed in this milestone, and no new performance claim is made; the
 existing [process benchmarks](nucleation-process.md#cpu-benchmark) remain scoped
 to their measured workloads. Subsequent [grid/hydration acceptance](grid-and-hydration.md)
-raises the suite to 459 tests and validates the default pre-remap chain.
-Remapping and complete native composition are still pending. D009 coagulation volume drift, D007
+validated the default pre-remap chain at 459 tests. Subsequent
+[remapping acceptance](remapping.md) raises the suite to 541 tests; complete
+native composition is still pending. D009 coagulation volume drift, D007
 tiny-particle cleanup and D005 radiation remain separate reference issues.

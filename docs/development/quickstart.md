@@ -161,9 +161,11 @@ The [grid/hydration guide](grid-and-hydration.md) documents `size_grid`,
 `inverse_molality`, `equilibrate`, explicit species properties and solubility flags.
 Enable float64 and supply number/material volume plus RH and temperature.
 The initial hydration capture and composed grid → hydration → coagulation →
-condensation tests pass with native `recalc=False`, before remapping. The full
-suite currently passes 459 tests. Remapping, optional recalculation integration,
-seven-mode initialization and the complete SALSA timestep remain pending.
+condensation tests pass with native `recalc=False`. Remapping and corrections
+now extend native-boundary acceptance through both default passes; see below.
+The full suite passes 541 tests in the repository’s `.venv`. The
+[current status](../plans/STATUS.md) tracks validation evidence and the remaining
+composition, initialization and trajectory gates.
 
 ```sh
 .venv/bin/python -m pytest -q tests/test_grid.py tests/test_inverse_molality.py \
@@ -176,3 +178,42 @@ case. Add `--capture-hydration-state` to a checked first-microphysics run to
 capture the initial native boundary. D010 documents invalid zero-volume inputs;
 parity does not repair that native failure. See the guide for capture commands,
 benchmarks and known limits.
+
+## Remapping and post-remap correction
+
+The [remapping guide](remapping.md) documents `remap` and `correction`, their
+17-bin/five-material contracts, retained native policies and actual two-pass
+capture. One complete caller pass is redistribution → tiny cleanup → hydration
+→ radius/water conversion. Repeat that whole sequence twice; two consecutive
+redistributions alone do not reproduce SALSA.
+
+```sh
+.venv/bin/python -m pytest -q tests/test_remapping_oracle.py \
+  tests/test_remapping.py tests/test_remapping_correction.py \
+  tests/test_remapping_capture.py tests/test_remapping_native.py
+.venv/bin/python tools/fortran_reference.py \
+  --config configs/fortran-checked.toml --scope first-microphysics \
+  --capture-salsa-state --capture-remapping-state \
+  --run --output build/remapping-new
+```
+
+Use a new run directory. The copy-only overlay records eight boundaries across
+both passes; the fixture records configuration, source and overlay provenance.
+The tests retain native orphan material and tiny-particle inert-material loss.
+An absent organic-gas mapping in the tiny cleanup branch is D007: affected JAX
+cells report `valid=False` and NaN physical outputs, rather than claiming a
+successful native result.
+
+```sh
+.venv/bin/python -m benchmarks.benchmark_remapping --repetitions 500 --trials 5
+```
+
+Run benchmarks after tests finish. This adapter times one redistribution call;
+cleanup, hydration and the second pass are excluded. The measured one-call CPU
+results show no speedup; see the [raw timing links](remapping.md#isolated-cpu-benchmark).
+They do not establish composed or full-model performance.
+
+Next, C18/N08 must integrate initial cleanup, final density and HAM tracer/unit
+conversion, optional hydration recalculation, and default/active nucleation
+composition. Seven-mode initialization (C03), the one-step acceptance matrix
+and repeated trajectories remain separate pending gates.

@@ -59,9 +59,9 @@ implementation cannot be reviewed as one coherent change.
 | C12.R / C12.J | C06,S05 | Condensation transport/uptake coefficients | Matched sink coefficients over wet radius and meteorology cases |
 | C13.R / C13.J | C12 | Sulfuric-acid condensation with `nsnucl=0` | Gas depletion and sulfate material budget including limiting branches |
 | C14.R / C14.J | C13 | Existing organic condensation path | Explicit registered-organic kernel fixtures; `locgas` alone does not establish gas registration |
-| C15.R / C15.J | C02,S04 | `distr_update` transfer decisions | Just below/on/above boundaries and nearly empty bins |
-| C16.R / C16.J | C15 | `distr_update` material/number redistribution | Sequential transfers and loop termination; conserve reference budgets |
-| C17.R / C17.J | C16,C06 | Post-remap radius/volume correction | Exact zero-bin policy and both remap passes |
+| C15.R / C15.J | C02,S04 | `distr_update` transfer decisions; implemented | Just below/on/above boundaries and nearly empty bins |
+| C16.R / C16.J | C15 | `distr_update` material/number redistribution; implemented | Sequential transfers, loop termination and native budgets, including orphan material |
+| C17.R / C17.J | C16,C06 | Post-remap cleanup, hydration and radius/water correction; implemented | Exact zero-bin policy, unclipped water and both native passes; D007 invalid-state signal |
 | C18.R / C18.J | C11,C14,C17 | Native `salsa` composition without nucleation | Every process boundary plus final state; `recalc` off/on |
 
 ## P3.3 — Nucleation, retaining condensation coupling
@@ -119,7 +119,8 @@ runtime species constants. F13c is complete only for the condensation boundary;
 nested active nucleation capture is subsequently verified for scheme 2/growth 1. N01–N07 and N08a are now
 implemented as described below. A two-process check connects
 coagulation to condensation with captured diameter inputs; it does not close
-the hydration, remapping or complete-native integration gates.
+the complete-native integration gates. Subsequent milestones independently
+accept hydration and both remap/correction passes.
 
 ## Nucleation milestone and active native capture
 
@@ -142,9 +143,9 @@ for native invariance and actual-boundary parity evidence:
 | N08b.R | F13c.N3,N08a.R | Replay that fixture through isolated and coupled native oracles | Every relevant boundary matches captured source and state |
 | N08b.J | N08b.R,N08a.J | Accept JAX source/coupled outputs against active native fixture | Eager/JIT parity, physical budgets and configuration documented |
 
-Grid generation C02 and hydration C04–C06 are now accepted as described below;
-remapping C15–C17 follows before complete composition. Inherited nucleation arithmetic quirks
-are recorded in the process guide and require separate scientific decisions
+Grid generation C02, hydration C04–C06 and remapping C15–C17 are now accepted
+as described below; complete composition remains pending. Inherited nucleation
+arithmetic quirks are recorded in the process guide and require separate scientific decisions
 before any repair. They are not silently corrected in the compatibility port.
 
 | Commit | Completed active-native task |
@@ -165,9 +166,36 @@ and fresh repeats are identical. The default JAX grid → hydration → coagulat
 condensation chain matches native boundaries with `recalc=False`, before remapping.
 See the [contract and evidence](../development/grid-and-hydration.md).
 
-Next implement C15.R/J transfer decisions, C16.R/J ordered redistribution and
-C17.R/J post-remap corrections, with F13d actual-boundary capture. Each reference
-and port remains a separate commit-sized task. Then accept C18 with `recalc`
-off/on and both remap passes, followed by active N08 composition. C03 seven-mode
-initialization remains a separate prerequisite for the box model. Parent
-N08/C18/I01 and complete trajectories remain open.
+## Remapping and correction milestone
+
+C15–C17 now have separate original-Fortran references and JAX implementations.
+The independent matrices cover 47 redistribution cases and 54 correction cases:
+strict size/number thresholds, descending transfers, soluble transfer, cleanup,
+hydration and geometry. F13d records eight actual boundaries over both native
+passes. Eight native acceptance tests replay the reference and check eager/JIT
+outputs plus composition from the default upstream process chain. See the
+[remapping contract and evidence](../development/remapping.md).
+
+Retained behaviors include orphan material after redistribution, inert-material
+loss during tiny cleanup, D007 absent-organic failure and signed water roundoff.
+No scientific repair is implied by numerical parity. Final density and HAM
+tracer conversion are outside C17.
+
+Next work remains commit-sized; each `.R` reference commit precedes its `.J`
+implementation and acceptance commit:
+
+| Child task | Depends on | Deliverable | Verification |
+|---|---|---|---|
+| C18a.R/J | C17,F12 | Initial SALSA cleanup before first hydration | Entry-to-hydration state, sulfate/OC budgets, D007 invalid branch and inherited nonvolatile loss |
+| C18b.R/J | C17 | Final per-region particle density | Actual species selection, wet-volume threshold and density fallback in each regime |
+| C18c.R/J | C18b,S03 | Final native material/radius unit conversion | Every flattened component and output unit matches actual native exit |
+| C18d.R/J | C18a–c,C11,C14 | Complete native composition without nucleation | All boundaries and final outputs, both remap passes, process off/on and `recalc` off/on |
+| N08.R/J | C18d,N08b | Active nucleation in complete native composition | Reviewed active capture, coupled source/insertion and final state |
+| I01 | N08,S08 | Expand complete one-step configuration matrix | Supported switches, mapping/configuration checks and documented invalid domains |
+
+C18 remains the parent acceptance gate until C18a–d pass. HAM-wrapper
+conversion beyond the native SALSA interface remains in the coupled-process
+plan. Follow I01 with I02/I03 repeated trajectories.
+
+C03 seven-mode initialization remains a separate prerequisite for the box model.
+Parent C18/N08/I01, complete core trajectories and full-driver gates remain open.

@@ -3,12 +3,13 @@
 An incremental Python/JAX port of HAM-SALSA aerosol microphysics, validated
 process by process against the original Fortran implementation.
 
-**Status:** grid generation, hydration, coagulation, condensation and supported
-nucleation are ported to JAX for 17 bins and five materials. The default grid →
-hydration → coagulation → condensation chain matches native boundaries before
-remapping. Nucleation schemes 1–3 and growth options 1–3 are independently tested,
-with condensation coupling restored. Remapping and the complete SALSA model
-remain in the [commit-sized roadmap](docs/plans/ULTRAPLAN.md).
+**Status:** grid generation, hydration, coagulation, condensation, supported
+nucleation, remapping and post-remap corrections are ported to JAX for 17 bins
+and five materials. The default pre-remap chain and the following two-pass
+remap/correction chain each match captured native boundaries. Nucleation schemes 1–3 and
+growth options 1–3 are independently tested, with condensation coupling
+restored. Complete SALSA composition and trajectories remain in the
+[commit-sized roadmap](docs/plans/ULTRAPLAN.md).
 
 ## Quick start
 
@@ -59,8 +60,10 @@ full driver does not register that gas.
 The [nucleation API and validation](docs/development/nucleation-process.md)
 cover 110 Fortran cases, all supported growth options, vapor uptake, particle
 insertion and species budgets. Paired JIT comparisons differ by less than
-5.7e-15; CPU timing shows no speedup in the recorded small batches. All **459
-tests pass** in the repository’s `.venv`. A checked [active native capture](docs/development/nucleation-native-capture.md)
+5.7e-15; CPU timing shows no speedup in the recorded small batches. All **541
+tests pass** in the repository’s `.venv`; see the
+[current validation status](docs/plans/STATUS.md) for scope and remaining gates.
+A checked [active native capture](docs/development/nucleation-native-capture.md)
 now validates the nested source and coupled insertion against the initialized
 Fortran driver; full SALSA trajectories remain open.
 
@@ -69,6 +72,14 @@ native grid spacing, water uptake, exact iteration counts and actual initial
 hydration capture. Grid geometry matches exactly; hydration errors stay below
 4e-16 relative over 31 cases. Warm CPU timing shows no speedup: JAX takes
 53.75 µs versus Fortran’s 38.72 µs for that batch.
+
+The [remapping and correction guide](docs/development/remapping.md) covers
+ordered redistribution, tiny-particle cleanup, hydration and radius/water
+conversion. Independent Fortran cases and captured boundaries validate both
+actual default SALSA passes. Native orphan material, tiny-particle inert loss
+and absent-organic cleanup failure remain explicit; these kernels do not yet
+include final density or HAM tracer conversion. Isolated remapping CPU timing
+shows no speedup: 47 cases take 150.13 µs in JAX versus 5.916 µs in Fortran.
 
 ## Fortran reference and current limitation
 
@@ -131,10 +142,12 @@ Start with the [documentation index](docs/README.md),
 Native entry/exit capture is verified for the default first call. Coagulation
 and condensation are separately captured and ported; nucleation is ported and
 coupled using both explicit kernel fixtures and a checked active native capture.
-Grid and hydration are now validated through the default pre-remap chain.
-Next are remapping and complete composition, including optional hydration recalculation.
-Full-driver
-radiation requires valid optical tables and a separate initialization repair.
+The default pre-remap and two-pass remap/correction chains are validated
+separately. Next are
+complete C18/N08 composition, including initial cleanup, final density and HAM
+unit conversion, optional hydration recalculation and trajectory acceptance.
+Seven-mode initialization remains pending. Full-driver radiation requires
+valid optical tables and a separate initialization repair.
 
 See [LICENSE.txt](LICENSE.txt) and retained source notices for attribution.
 The [original Fortran overview](docs/fortran-overview.md) describes HAM-SALSA's

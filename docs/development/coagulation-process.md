@@ -147,5 +147,5 @@ The separate [condensation port](condensation-process.md) is now available
 with nucleation disabled; [supported nucleation](nucleation-process.md) has a
 separate coupling API. [Grid and hydration](grid-and-hydration.md) are also ported
 and validated in the default pre-remap chain. This standalone API still accepts
-supplied geometry/wet diameters. Remapping and complete native composition remain
-pending.
+supplied geometry/wet diameters. Both [remap/correction passes](remapping.md)
+are now separately accepted; complete native composition remains pending.

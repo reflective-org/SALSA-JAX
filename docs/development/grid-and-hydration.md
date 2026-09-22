@@ -114,7 +114,9 @@ remapping and is not a complete SALSA step or a box-model trajectory.
 
 ## Measured acceptance and CPU timing
 
-All **459 tests pass** using `.venv/bin/python -m pytest -q` (50.13 s).
+All **459 tests passed at this milestone** using `.venv/bin/python -m pytest -q`
+(50.13 s). Subsequent [remapping/correction acceptance](remapping.md) raises the
+current suite to 541 tests.
 The 31-case matrix has maximum relative core error 3.53e-16 and wet-diameter
 error 2.08e-16 in eager/JIT mode, with exact per-bin iteration counts (maximum
 four). The molality leaf's eager error is below 6.44e-14; JIT matches exactly.

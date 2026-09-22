@@ -113,7 +113,8 @@ explicit initialized kernel fixtures. A subsequent [active native capture](nucle
 now validates scheme 2/growth 1 through the checked driver's actual nested
 call and parent condensation boundary. [Grid and hydration](grid-and-hydration.md)
 are now separately ported and accepted through the default pre-remap chain.
-Remapping and the complete JAX SALSA timestep remain pending. Full radiation still
+Both [remap/correction passes](remapping.md) are now separately accepted;
+the complete JAX SALSA timestep remains pending. Full radiation still
 has the D005 blocker and coagulation retains the D009 budget defect.
 The [status ledger](../plans/STATUS.md) distinguishes completed process tasks
 from pending native capture and trajectory gates.
@@ -157,5 +158,5 @@ See the [integration record](evidence/nucleation-process-2026-09-21.json),
 Both operations match Fortran below 5.68e-15 relative error across the paired
 benchmark cells; coupled state error is below 4.36e-15. The full repository
 suite passed **315 tests at that milestone**, followed by 384 with active native
-acceptance. Grid/hydration acceptance raises the current count to **459** in the
-repository's `.venv`.
+acceptance. Grid/hydration reached 459; subsequent remapping/correction
+acceptance raises the current count to **541** in the repository's `.venv`.
