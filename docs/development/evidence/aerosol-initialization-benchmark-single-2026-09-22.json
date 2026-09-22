@@ -1,0 +1,257 @@
+{
+  "scope": "SALSA conc2mmr aerosol initialization only; one native cell per case; all number, mass and tracer outputs retained. No size-distribution generation, gas conversion or full-model timing.",
+  "case_selection": "First curated case: native number/core/maps/properties with synthetic air density 1.2 kg/m3 and zero initial tracers.",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "python_version": "3.12.12",
+  "jax_version": "0.11.2",
+  "jaxlib_version": "0.11.2",
+  "numpy_version": "2.5.3",
+  "device": "cpu:0",
+  "dtype": "float64",
+  "thread_environment": {
+    "XLA_FLAGS": null,
+    "OMP_NUM_THREADS": null,
+    "OPENBLAS_NUM_THREADS": null,
+    "MKL_NUM_THREADS": null,
+    "VECLIB_MAXIMUM_THREADS": null,
+    "JAX_NUM_THREADS": null,
+    "TF_NUM_INTRAOP_THREADS": null,
+    "TF_NUM_INTEROP_THREADS": null
+  },
+  "cases": 1,
+  "case_labels": [
+    "native-layout-density1.2"
+  ],
+  "native_cells_per_case": 1,
+  "tracer_width": 109,
+  "repetitions": 500,
+  "trials": 5,
+  "jax_compile_seconds": 0.0580909579875879,
+  "samples_seconds_per_batch": {
+    "jax": [
+      7.375025004148484e-05,
+      4.0959582081995904e-05,
+      4.2294083978049455e-05,
+      4.2154083959758284e-05,
+      3.953449998516589e-05
+    ],
+    "fortran": [
+      3.5599999999999996e-07,
+      3.6200000000000004e-07,
+      3.52e-07,
+      3.5e-07,
+      3.42e-07
+    ]
+  },
+  "median_seconds_per_batch": {
+    "jax": 4.2154083959758284e-05,
+    "fortran": 3.52e-07
+  },
+  "median_fortran_over_jax": 0.00835031785617809,
+  "parity": {
+    "relative_tolerance": 3e-13,
+    "absolute_tolerance": 0,
+    "checked_optimized_exact": true,
+    "fields": {
+      "number": {
+        "max_absolute": 0.0,
+        "max_relative_nonzero": 0.0,
+        "nonzero_at_zero_reference": 0,
+        "negative_jax_values": 0,
+        "negative_fortran_values": 0
+      },
+      "mass": {
+        "max_absolute": 9.5367431640625e-07,
+        "max_relative_nonzero": 2.1751820579826835e-16,
+        "nonzero_at_zero_reference": 0,
+        "negative_jax_values": 0,
+        "negative_fortran_values": 0
+      },
+      "tracers": {
+        "max_absolute": 5.960464477539063e-08,
+        "max_relative_nonzero": 2.4137783145164758e-16,
+        "nonzero_at_zero_reference": 0,
+        "negative_jax_values": 0,
+        "negative_fortran_values": 0
+      }
+    }
+  },
+  "checksums": {
+    "number": {
+      "native_reported": 1080.144614537844,
+      "numpy_sum": 1080.144614537844,
+      "jax_numpy_sum": 1080.144614537844
+    },
+    "mass": {
+      "native_reported": 85703607607.58714,
+      "numpy_sum": 85703607607.58716,
+      "jax_numpy_sum": 85703607607.58716
+    },
+    "tracers": {
+      "native_reported": 900120512.1148702,
+      "numpy_sum": 900120512.1148701,
+      "jax_numpy_sum": 900120512.1148703
+    }
+  },
+  "units": {
+    "number": "particles/cm3",
+    "mass": "SO4 molecules/cm3; other materials ug/m3",
+    "tracers": "Native mass/number mixing ratios; untouched sentinel slots preserved"
+  },
+  "checked_provenance": {
+    "source_sha256": {
+      "parkind1.F90": "bd7aa3a0f896829781c6c9c1924726def9bd8b2825778e26274c615c2642ff5a",
+      "mo_kind.F90": "e7d3a5f28d216e60828c395a704e33a7bfc5db6e966533776fc438f4d782d255",
+      "mo_math_constants.F90": "ceae6f761c288597f7fb495ff2a55030fee8f861e1ee0dcd8adc0ba3ba95734f",
+      "mo_physical_constants.F90": "12405902248f437d9f7ae9b03d1efe194cd7605f6b396156c3d820366b8a79b0",
+      "mo_convert_concentrations.F90": "f72f5304623cab88b5bffda5f519e9a0bf78dce1671c70552edcb706ba3b4d14",
+      "mo_ham.F90": "117e36d7a8dfbacc986e8736275de88d2deacda2cdd12c4287d3022afd042737",
+      "mo_ham_subm_species.F90": "de188b92adb2d07b121ad5e37f19573365fc0f228ddea75a7c3b882a2a34440a"
+    },
+    "routine_sha256": "aac300622f1348d35e55534e517ec8d628b6f6c631ae39e532f20278222d4bd3",
+    "wrapper_sha256": {
+      "stubs.f90": "c7fa0b4b0f8a75a782ae7153d9df0d970a7559a9f6712e7d36445d3e62997a7c",
+      "conc2mmr.F90": "e6089c077cf8b251476afe731fd483a6e7aa0a98f32957e7a5de286609fafe63",
+      "driver.f90": "7fa70b8a61f39905e995568680f9fa7e6473c7d37d6b2ab776b725a615d34c23"
+    },
+    "flags": [
+      "-O2",
+      "-fno-fast-math",
+      "-fno-lto",
+      "-ffree-line-length-none",
+      "-cpp",
+      "-fcheck=all",
+      "-ffpe-trap=invalid,zero,overflow",
+      "-fbacktrace"
+    ],
+    "checked": true,
+    "compiler": "GNU Fortran (Homebrew GCC 16.1.0) 16.1.0",
+    "compiled_constants": {
+      "avogadro": 6.02214179e+23,
+      "mw_so4": 96.0631,
+      "legacy_sulfate_prefactor": 6.022e+20
+    },
+    "configuration": {
+      "bins": 17,
+      "components": 69,
+      "nonwater_species": 5,
+      "nham_subm": "HAM_SALSA",
+      "mw_so4_units": "g/mol",
+      "number_input_units": "particles/m3",
+      "number_output_units": "particles/cm3",
+      "M7_branch_retained_but_untested": true
+    },
+    "registry_stub": "Per-component effective unit codes are represented by virtual species IDs6:74 and indices1:69; physical masses/densities remain canonical SO4/OC/BC/SS/DU entries1:5. Native lookup/assignment loops unchanged.",
+    "separate_compilation_without_lto": true
+  },
+  "optimized_provenance": {
+    "source_sha256": {
+      "parkind1.F90": "bd7aa3a0f896829781c6c9c1924726def9bd8b2825778e26274c615c2642ff5a",
+      "mo_kind.F90": "e7d3a5f28d216e60828c395a704e33a7bfc5db6e966533776fc438f4d782d255",
+      "mo_math_constants.F90": "ceae6f761c288597f7fb495ff2a55030fee8f861e1ee0dcd8adc0ba3ba95734f",
+      "mo_physical_constants.F90": "12405902248f437d9f7ae9b03d1efe194cd7605f6b396156c3d820366b8a79b0",
+      "mo_convert_concentrations.F90": "f72f5304623cab88b5bffda5f519e9a0bf78dce1671c70552edcb706ba3b4d14",
+      "mo_ham.F90": "117e36d7a8dfbacc986e8736275de88d2deacda2cdd12c4287d3022afd042737",
+      "mo_ham_subm_species.F90": "de188b92adb2d07b121ad5e37f19573365fc0f228ddea75a7c3b882a2a34440a"
+    },
+    "routine_sha256": "aac300622f1348d35e55534e517ec8d628b6f6c631ae39e532f20278222d4bd3",
+    "wrapper_sha256": {
+      "stubs.f90": "c7fa0b4b0f8a75a782ae7153d9df0d970a7559a9f6712e7d36445d3e62997a7c",
+      "conc2mmr.F90": "e6089c077cf8b251476afe731fd483a6e7aa0a98f32957e7a5de286609fafe63",
+      "driver.f90": "7fa70b8a61f39905e995568680f9fa7e6473c7d37d6b2ab776b725a615d34c23"
+    },
+    "flags": [
+      "-O2",
+      "-fno-fast-math",
+      "-fno-lto",
+      "-ffree-line-length-none",
+      "-cpp"
+    ],
+    "checked": false,
+    "compiler": "GNU Fortran (Homebrew GCC 16.1.0) 16.1.0",
+    "compiled_constants": {
+      "avogadro": 6.02214179e+23,
+      "mw_so4": 96.0631,
+      "legacy_sulfate_prefactor": 6.022e+20
+    },
+    "configuration": {
+      "bins": 17,
+      "components": 69,
+      "nonwater_species": 5,
+      "nham_subm": "HAM_SALSA",
+      "mw_so4_units": "g/mol",
+      "number_input_units": "particles/m3",
+      "number_output_units": "particles/cm3",
+      "M7_branch_retained_but_untested": true
+    },
+    "registry_stub": "Per-component effective unit codes are represented by virtual species IDs6:74 and indices1:69; physical masses/densities remain canonical SO4/OC/BC/SS/DU entries1:5. Native lookup/assignment loops unchanged.",
+    "separate_compilation_without_lto": true
+  },
+  "implementation_sha256": {
+    "src/salsa_jax/aerosol_initialization.py": "55033e6c49720f17e054488b6477a4e2333ee13788297938fe25ff617c33a09a",
+    "src/salsa_jax/constants.py": "8c4ad8b7d3a47a3d654904595fba86f247b1d8cf8a1039b8fcf00fc3bfa882b6",
+    "src/salsa_jax/processes/hydration.py": "f19330b8b32f0e4648ccf7edef967407dc14be4c294f86506a4086d03acf6dbc",
+    "tools/aerosol_initialization_oracle.py": "f41bab52da8a7fd0163c045e1b378cb58836b1cc5bd06db7d4bc84fcd934571d",
+    "tools/ham_conversion_fixture.py": "daa52d15578e474d669f5b9262a73542ffc43440a52f2915f46c767220bcb369",
+    "benchmarks/benchmark_aerosol_initialization.py": "4ee231e0fa201a4c0a063c1fe5f749abef50963478636ae1e1a538b3c744055c"
+  },
+  "case_sha256": {
+    "number": "eb3d30e1dd1fe5e142641aebb1fa19f80cf8adf8d2104b60cf11587162053ae2",
+    "core": "653cfb06322d3a4380bd8152c1afaf43402932b8ba9761405a8673c34bd362da",
+    "tracers": "232885aa9953d5c0890072e5589e9265c9a06f8354cb7403cde80d604c526f09",
+    "air_density": "9fbabc0d08aa3515342ef4669b29ff3d6a8ae8ef8ad05a606e81c43d383fc723",
+    "component_map": "8d3e96166acc38c36b4842ad2122da4e3ac138941816ac39f13f3abe2e02f048",
+    "component_tracer_indices": "a39d81024e246dd23626497ba26c00162cd993eb39348e7469530f6cd6d4bb31",
+    "number_tracer_indices": "8feec6862da56aeb2cda301ce17bae670168925453626800f965682a0073a962",
+    "component_unit_codes": "71105de5add926242be0b9587287c978d821d5c192a3866ef0b4152375c810b0",
+    "species_molar_mass": "f2a0661afdcf0dab4e7cb153d631459325e51e62c8e4fa00185650a8b5271f4d",
+    "species_density": "81749955e67c76c2ec3e59e2ea22761c2da63ebbd749904c0fb1938bf3c68410",
+    "mw_so4": "3a43ef9ac563310133c49f7d0a79797a4901abea9f78ac1b1379440437ae7c30"
+  },
+  "case_shapes": {
+    "number": [
+      1,
+      17
+    ],
+    "core": [
+      1,
+      17
+    ],
+    "tracers": [
+      1,
+      109
+    ],
+    "air_density": [
+      1
+    ],
+    "component_map": [
+      1,
+      17,
+      5
+    ],
+    "component_tracer_indices": [
+      1,
+      69
+    ],
+    "number_tracer_indices": [
+      1,
+      17
+    ],
+    "component_unit_codes": [
+      1,
+      69
+    ],
+    "species_molar_mass": [
+      1,
+      5
+    ],
+    "species_density": [
+      1,
+      5
+    ],
+    "mw_so4": [
+      1
+    ]
+  },
+  "timing_notes": "Native timed calls include registry/map/property setup, mutable input copies and mass-output initialization. JAX inputs are immutable, and ordered tracer scatters are part of its kernel. Each repetition evaluates the same initial state; it does not feed particles/cm3 back as particles/m3. All three JAX outputs are synchronized, including dispatch cost. Compilation and initial device transfers, native startup/parsing/output, checksums and comparisons are excluded. Native kernels are compiled separately without LTO. Trial order alternates; Fortran loops serially over cases while JAX batches the same cases."
+}
