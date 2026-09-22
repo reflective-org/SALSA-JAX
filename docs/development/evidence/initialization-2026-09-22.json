@@ -1,0 +1,669 @@
+{
+  "date": "2026-09-22",
+  "scope": "Native7mode size_distribution only;23curated cases and no claimsabout HAM concentration conversion/native initializationcapture",
+  "dtype": "float64",
+  "python": "3.12.12",
+  "jax_version": "0.11.2",
+  "backend": "cpu",
+  "oracle_provenance": {
+    "source_sha256": {
+      "parkind1.F90": "bd7aa3a0f896829781c6c9c1924726def9bd8b2825778e26274c615c2642ff5a",
+      "mo_kind.F90": "e7d3a5f28d216e60828c395a704e33a7bfc5db6e966533776fc438f4d782d255",
+      "mo_math_constants.F90": "ceae6f761c288597f7fb495ff2a55030fee8f861e1ee0dcd8adc0ba3ba95734f",
+      "mo_ham_salsa_sizedist.F90": "83ea26e4adb9080a856a1bc670467b82505f26419b0c42d781536b6659f158e4",
+      "driver.F90": "ff59d164d894111da2f41263351fd815a062c9ae34502b91cae3436a3dafb5f2"
+    },
+    "wrapper_sha256": {
+      "stubs.f90": "1c03ae1edf04bf379662fa0750f9d1b5e5f2d7c57bc6d5a00cb46d8e01df916b",
+      "driver.f90": "b689e3eb8ed21656a6a4ef493c1c4e4ffd78993a2dac982d7de604dd4da9fc16"
+    },
+    "flags": [
+      "-O2",
+      "-fno-fast-math",
+      "-fno-lto",
+      "-ffree-line-length-none",
+      "-cpp",
+      "-fcheck=all",
+      "-ffpe-trap=invalid,zero,overflow",
+      "-fbacktrace"
+    ],
+    "checked": true,
+    "scientific_module_byte_identical": "mo_ham_salsa_sizedist.F90",
+    "native_default_assignments": {
+      "n": "n = (/1000.0, 100.0, 10.0, 0.001, 100.0, 10.0, 0.001/)*1.e6_dp",
+      "dpg": "dpg = (/0.01, 0.3, 1.0, 3.0, 0.03, 0.3, 3.0/)*1.e-6_dp",
+      "sigmag": "sigmag = (/ 1.59, 1.59, 1.59, 2.0, 1.59, 1.59, 2.0 /)"
+    },
+    "compiled_defaults": {
+      "mode_number": [
+        1000000000.0,
+        100000000.0,
+        10000000.0,
+        1000.0000474974513,
+        100000000.0,
+        10000000.0,
+        1000.0000474974513
+      ],
+      "dpg": [
+        9.999999776482582e-09,
+        3.000000119209289e-07,
+        1e-06,
+        3e-06,
+        2.999999932944775e-08,
+        3.000000119209289e-07,
+        3e-06
+      ],
+      "sigma": [
+        1.590000033378601,
+        1.590000033378601,
+        1.590000033378601,
+        2.0,
+        1.590000033378601,
+        1.590000033378601,
+        2.0
+      ]
+    },
+    "compiled_pi": 3.141592653589793,
+    "compiler": "GNU Fortran (Homebrew GCC 16.1.0) 16.1.0",
+    "configuration": {
+      "modes": 7,
+      "bins": 17,
+      "native_default_literal_bits": 32,
+      "arithmetic_bits": 64
+    },
+    "separate_compilation_without_lto": true
+  },
+  "case_count": 23,
+  "case_labels": [
+    "driver-default",
+    "empty",
+    "isolated-mode1",
+    "isolated-mode2",
+    "isolated-mode3",
+    "isolated-mode4",
+    "isolated-mode5",
+    "isolated-mode6",
+    "isolated-mode7",
+    "all-modes-equal",
+    "narrow-modes",
+    "broad-modes",
+    "shifted-smaller",
+    "shifted-larger",
+    "tiny-mode-counts",
+    "large-mode-counts",
+    "nonuniform-grid",
+    "narrow-bin-widths",
+    "mixed-0",
+    "mixed-1",
+    "mixed-2",
+    "mixed-3",
+    "mixed-4"
+  ],
+  "case_sha256": {
+    "mode_number": "1477f533a6a19c625f00f0ae6b282613db5a1e9ff74538200535fb925f70e0a2",
+    "dpg": "56475496812fb94ac4622f06f9285058a69e4cdda6ec25343fda1a861db59e0c",
+    "sigma": "881de6c00f651c5e8b0fec5ff97a28fb2b2731d7ec782901ca6374ba4d54bd50",
+    "lower_volume": "8c662b9e7260558997d0735e7b349c2c912c39122d01d341a8ed9dee8cf50440",
+    "upper_volume": "ac656ea14a0667cf18bf9f7cf581dab8a124f84182a803c4207453377b5f00a3",
+    "dry_diameter": "2193941a138a1728701c555f012fecd9e8fab37b15b4dc98f616152c94ad59a4"
+  },
+  "implementation_sha256": {
+    "src/salsa_jax/initialization.py": "df9db82c6a1c1fa4050cd48b6633dba98c006bf9dbd9ec1d8d14f7d32742908b",
+    "tools/initialization_oracle.py": "e06b3844584dc0d2cc57d60d92ce4bbb6ba42ed17d7cf8c300a6341e31ef1d38",
+    "tests/test_initialization_oracle.py": "ede52ab4d76be5d556af02f009ad7990015f22b4d8906e50b297f055a441beb2",
+    "benchmarks/benchmark_initialization.py": "e9311634159600ea2f0be80017398dd51363b5906955e05c509510f1a169bb72"
+  },
+  "tolerance": {
+    "relative": 3e-13,
+    "absolute": 0
+  },
+  "parity": {
+    "eager": {
+      "max_absolute_error": 8.0,
+      "max_relative_error_nonzero_reference": 2.8348602070562913e-14,
+      "max_absolute_at_zero_reference": 0.0,
+      "nonzero_at_zero_reference_count": 0,
+      "nonfinite_count": 0,
+      "negative_number_count": 0,
+      "number_checksum": 1.0801449045765149e+17,
+      "worst_relative_case": "narrow-modes",
+      "per_case": [
+        {
+          "label": "driver-default",
+          "max_absolute_error": 1.1920928955078125e-07,
+          "max_relative_error_nonzero_reference": 1.2876490279419786e-15
+        },
+        {
+          "label": "empty",
+          "max_absolute_error": 0.0,
+          "max_relative_error_nonzero_reference": 0.0
+        },
+        {
+          "label": "isolated-mode1",
+          "max_absolute_error": 1.1920928955078125e-07,
+          "max_relative_error_nonzero_reference": 1.4290261136367373e-14
+        },
+        {
+          "label": "isolated-mode2",
+          "max_absolute_error": 3.725290298461914e-09,
+          "max_relative_error_nonzero_reference": 7.185551025073747e-15
+        },
+        {
+          "label": "isolated-mode3",
+          "max_absolute_error": 9.313225746154785e-10,
+          "max_relative_error_nonzero_reference": 6.9542028076166204e-15
+        },
+        {
+          "label": "isolated-mode4",
+          "max_absolute_error": 1.1368683772161603e-13,
+          "max_relative_error_nonzero_reference": 7.160387331865236e-15
+        },
+        {
+          "label": "isolated-mode5",
+          "max_absolute_error": 3.725290298461914e-09,
+          "max_relative_error_nonzero_reference": 1.4171865472115037e-14
+        },
+        {
+          "label": "isolated-mode6",
+          "max_absolute_error": 2.3283064365386963e-10,
+          "max_relative_error_nonzero_reference": 7.185551025073747e-15
+        },
+        {
+          "label": "isolated-mode7",
+          "max_absolute_error": 1.1368683772161603e-13,
+          "max_relative_error_nonzero_reference": 7.160387331865236e-15
+        },
+        {
+          "label": "all-modes-equal",
+          "max_absolute_error": 1.862645149230957e-08,
+          "max_relative_error_nonzero_reference": 6.266635366488839e-16
+        },
+        {
+          "label": "narrow-modes",
+          "max_absolute_error": 2.9103830456733704e-11,
+          "max_relative_error_nonzero_reference": 2.8348602070562913e-14
+        },
+        {
+          "label": "broad-modes",
+          "max_absolute_error": 5.960464477539063e-08,
+          "max_relative_error_nonzero_reference": 6.9155660708288e-16
+        },
+        {
+          "label": "shifted-smaller",
+          "max_absolute_error": 1.7881393432617188e-07,
+          "max_relative_error_nonzero_reference": 7.555260463241727e-16
+        },
+        {
+          "label": "shifted-larger",
+          "max_absolute_error": 5.960464477539063e-08,
+          "max_relative_error_nonzero_reference": 1.3064108137945637e-15
+        },
+        {
+          "label": "tiny-mode-counts",
+          "max_absolute_error": 5.421010862427522e-20,
+          "max_relative_error_nonzero_reference": 1.1711099686562908e-15
+        },
+        {
+          "label": "large-mode-counts",
+          "max_absolute_error": 8.0,
+          "max_relative_error_nonzero_reference": 1.2961899524383567e-15
+        },
+        {
+          "label": "nonuniform-grid",
+          "max_absolute_error": 1.4901161193847656e-08,
+          "max_relative_error_nonzero_reference": 2.4346683356508257e-15
+        },
+        {
+          "label": "narrow-bin-widths",
+          "max_absolute_error": 2.2737367544323206e-13,
+          "max_relative_error_nonzero_reference": 1.4013664597186222e-15
+        },
+        {
+          "label": "mixed-0",
+          "max_absolute_error": 5.960464477539063e-08,
+          "max_relative_error_nonzero_reference": 2.5333735973745696e-16
+        },
+        {
+          "label": "mixed-1",
+          "max_absolute_error": 9.5367431640625e-07,
+          "max_relative_error_nonzero_reference": 3.40601421162259e-15
+        },
+        {
+          "label": "mixed-2",
+          "max_absolute_error": 2.384185791015625e-07,
+          "max_relative_error_nonzero_reference": 4.0306907110739616e-16
+        },
+        {
+          "label": "mixed-3",
+          "max_absolute_error": 4.76837158203125e-07,
+          "max_relative_error_nonzero_reference": 1.933459999030491e-15
+        },
+        {
+          "label": "mixed-4",
+          "max_absolute_error": 2.384185791015625e-07,
+          "max_relative_error_nonzero_reference": 2.771097309141366e-15
+        }
+      ]
+    },
+    "jit": {
+      "max_absolute_error": 8.0,
+      "max_relative_error_nonzero_reference": 2.8348602070562913e-14,
+      "max_absolute_at_zero_reference": 0.0,
+      "nonzero_at_zero_reference_count": 0,
+      "nonfinite_count": 0,
+      "negative_number_count": 0,
+      "number_checksum": 1.0801449045765149e+17,
+      "worst_relative_case": "narrow-modes",
+      "per_case": [
+        {
+          "label": "driver-default",
+          "max_absolute_error": 5.960464477539063e-08,
+          "max_relative_error_nonzero_reference": 1.2876490279419786e-15
+        },
+        {
+          "label": "empty",
+          "max_absolute_error": 0.0,
+          "max_relative_error_nonzero_reference": 0.0
+        },
+        {
+          "label": "isolated-mode1",
+          "max_absolute_error": 1.1920928955078125e-07,
+          "max_relative_error_nonzero_reference": 1.4290261136367373e-14
+        },
+        {
+          "label": "isolated-mode2",
+          "max_absolute_error": 3.725290298461914e-09,
+          "max_relative_error_nonzero_reference": 7.185551025073747e-15
+        },
+        {
+          "label": "isolated-mode3",
+          "max_absolute_error": 9.313225746154785e-10,
+          "max_relative_error_nonzero_reference": 6.9542028076166204e-15
+        },
+        {
+          "label": "isolated-mode4",
+          "max_absolute_error": 1.1368683772161603e-13,
+          "max_relative_error_nonzero_reference": 7.160387331865236e-15
+        },
+        {
+          "label": "isolated-mode5",
+          "max_absolute_error": 3.725290298461914e-09,
+          "max_relative_error_nonzero_reference": 1.4171865472115037e-14
+        },
+        {
+          "label": "isolated-mode6",
+          "max_absolute_error": 2.3283064365386963e-10,
+          "max_relative_error_nonzero_reference": 7.185551025073747e-15
+        },
+        {
+          "label": "isolated-mode7",
+          "max_absolute_error": 1.1368683772161603e-13,
+          "max_relative_error_nonzero_reference": 7.160387331865236e-15
+        },
+        {
+          "label": "all-modes-equal",
+          "max_absolute_error": 2.2351741790771484e-08,
+          "max_relative_error_nonzero_reference": 7.519962439786608e-16
+        },
+        {
+          "label": "narrow-modes",
+          "max_absolute_error": 2.9103830456733704e-11,
+          "max_relative_error_nonzero_reference": 2.8348602070562913e-14
+        },
+        {
+          "label": "broad-modes",
+          "max_absolute_error": 5.960464477539063e-08,
+          "max_relative_error_nonzero_reference": 5.762971725690667e-16
+        },
+        {
+          "label": "shifted-smaller",
+          "max_absolute_error": 1.7881393432617188e-07,
+          "max_relative_error_nonzero_reference": 7.555260463241727e-16
+        },
+        {
+          "label": "shifted-larger",
+          "max_absolute_error": 5.960464477539063e-08,
+          "max_relative_error_nonzero_reference": 1.3064108137945637e-15
+        },
+        {
+          "label": "tiny-mode-counts",
+          "max_absolute_error": 5.421010862427522e-20,
+          "max_relative_error_nonzero_reference": 1.1711099686562908e-15
+        },
+        {
+          "label": "large-mode-counts",
+          "max_absolute_error": 8.0,
+          "max_relative_error_nonzero_reference": 1.1521688466118727e-15
+        },
+        {
+          "label": "nonuniform-grid",
+          "max_absolute_error": 5.960464477539063e-08,
+          "max_relative_error_nonzero_reference": 2.4346683356508257e-15
+        },
+        {
+          "label": "narrow-bin-widths",
+          "max_absolute_error": 1.8189894035458565e-12,
+          "max_relative_error_nonzero_reference": 1.4013664597186222e-15
+        },
+        {
+          "label": "mixed-0",
+          "max_absolute_error": 5.960464477539063e-08,
+          "max_relative_error_nonzero_reference": 2.5333735973745696e-16
+        },
+        {
+          "label": "mixed-1",
+          "max_absolute_error": 9.5367431640625e-07,
+          "max_relative_error_nonzero_reference": 3.40601421162259e-15
+        },
+        {
+          "label": "mixed-2",
+          "max_absolute_error": 1.1920928955078125e-07,
+          "max_relative_error_nonzero_reference": 4.0306907110739616e-16
+        },
+        {
+          "label": "mixed-3",
+          "max_absolute_error": 5.960464477539063e-08,
+          "max_relative_error_nonzero_reference": 1.933459999030491e-15
+        },
+        {
+          "label": "mixed-4",
+          "max_absolute_error": 2.384185791015625e-07,
+          "max_relative_error_nonzero_reference": 2.771097309141366e-15
+        }
+      ]
+    }
+  },
+  "population_policy": {
+    "native_formula": "sum of all7 modal densities evaluated at dpmid, each multiplied by diameter binwidth derived from upper/lower volume bounds",
+    "normalization": "No normalization: midpointquadrature, finite size-domain truncation and repeated2a/2b geometry prevent requiring sum(bin_number)==sum(mode_number).",
+    "overlapping_regimes": "Nativebins4:10 and11:17 have identicaldefaultgeometry; all7modes contribute toboth. No soluble/insoluble mode partition is applied by thisroutine.",
+    "units": "mode_number and outputnumber particles/m3; dpg/dpmid m; lower/upper volume m3/particle",
+    "per_case": [
+      {
+        "label": "driver-default",
+        "input_mode_number_sum": 1220002000.000095,
+        "initialized_all17bins_number_sum": 1080144614.537844,
+        "ratio_allbins_to_modes": 0.8853629867309725,
+        "first10bins_number_sum": 970393212.243018,
+        "ratio_first10bins_to_modes": 0.7954029683909883,
+        "duplicate_geometry": true,
+        "duplicate_population_exact": true,
+        "empty_or_underflow_bin_count": 0
+      },
+      {
+        "label": "empty",
+        "input_mode_number_sum": 0.0,
+        "initialized_all17bins_number_sum": 0.0,
+        "ratio_allbins_to_modes": null,
+        "first10bins_number_sum": 0.0,
+        "ratio_first10bins_to_modes": null,
+        "duplicate_geometry": true,
+        "duplicate_population_exact": true,
+        "empty_or_underflow_bin_count": 17
+      },
+      {
+        "label": "isolated-mode1",
+        "input_mode_number_sum": 1000000000.0,
+        "initialized_all17bins_number_sum": 782882946.0192059,
+        "ratio_allbins_to_modes": 0.7828829460192059,
+        "first10bins_number_sum": 782861740.6237012,
+        "ratio_first10bins_to_modes": 0.7828617406237012,
+        "duplicate_geometry": true,
+        "duplicate_population_exact": true,
+        "empty_or_underflow_bin_count": 0
+      },
+      {
+        "label": "isolated-mode2",
+        "input_mode_number_sum": 100000000.0,
+        "initialized_all17bins_number_sum": 175501194.09840715,
+        "ratio_allbins_to_modes": 1.7550119409840714,
+        "first10bins_number_sum": 87753461.81278273,
+        "ratio_first10bins_to_modes": 0.8775346181278273,
+        "duplicate_geometry": true,
+        "duplicate_population_exact": true,
+        "empty_or_underflow_bin_count": 0
+      },
+      {
+        "label": "isolated-mode3",
+        "input_mode_number_sum": 10000000.0,
+        "initialized_all17bins_number_sum": 15601277.915240146,
+        "ratio_allbins_to_modes": 1.5601277915240146,
+        "first10bins_number_sum": 7800638.957752594,
+        "ratio_first10bins_to_modes": 0.7800638957752594,
+        "duplicate_geometry": true,
+        "duplicate_population_exact": true,
+        "empty_or_underflow_bin_count": 0
+      },
+      {
+        "label": "isolated-mode4",
+        "input_mode_number_sum": 1000.0000474974513,
+        "initialized_all17bins_number_sum": 1608.1458096606545,
+        "ratio_allbins_to_modes": 1.6081457332778308,
+        "first10bins_number_sum": 804.072905732402,
+        "ratio_first10bins_to_modes": 0.80407286754099,
+        "duplicate_geometry": true,
+        "duplicate_population_exact": true,
+        "empty_or_underflow_bin_count": 0
+      },
+      {
+        "label": "isolated-mode5",
+        "input_mode_number_sum": 100000000.0,
+        "initialized_all17bins_number_sum": 88605860.80353078,
+        "ratio_allbins_to_modes": 0.8860586080353078,
+        "first10bins_number_sum": 83200416.5216917,
+        "ratio_first10bins_to_modes": 0.832004165216917,
+        "duplicate_geometry": true,
+        "duplicate_population_exact": true,
+        "empty_or_underflow_bin_count": 0
+      },
+      {
+        "label": "isolated-mode6",
+        "input_mode_number_sum": 10000000.0,
+        "initialized_all17bins_number_sum": 17550119.409840707,
+        "ratio_allbins_to_modes": 1.7550119409840708,
+        "first10bins_number_sum": 8775346.181278273,
+        "ratio_first10bins_to_modes": 0.8775346181278273,
+        "duplicate_geometry": true,
+        "duplicate_population_exact": true,
+        "empty_or_underflow_bin_count": 0
+      },
+      {
+        "label": "isolated-mode7",
+        "input_mode_number_sum": 1000.0000474974513,
+        "initialized_all17bins_number_sum": 1608.1458096606545,
+        "ratio_allbins_to_modes": 1.6081457332778308,
+        "first10bins_number_sum": 804.072905732402,
+        "ratio_first10bins_to_modes": 0.80407286754099,
+        "duplicate_geometry": true,
+        "duplicate_population_exact": true,
+        "empty_or_underflow_bin_count": 0
+      },
+      {
+        "label": "all-modes-equal",
+        "input_mode_number_sum": 700000000.0,
+        "initialized_all17bins_number_sum": 995538469.4102333,
+        "ratio_allbins_to_modes": 1.4221978134431903,
+        "first10bins_number_sum": 575814477.2953513,
+        "ratio_first10bins_to_modes": 0.8225921104219304,
+        "duplicate_geometry": true,
+        "duplicate_population_exact": true,
+        "empty_or_underflow_bin_count": 0
+      },
+      {
+        "label": "narrow-modes",
+        "input_mode_number_sum": 1220002000.000095,
+        "initialized_all17bins_number_sum": 539278844.506487,
+        "ratio_allbins_to_modes": 0.44203111511820886,
+        "first10bins_number_sum": 270798920.3496769,
+        "ratio_first10bins_to_modes": 0.22196596427682566,
+        "duplicate_geometry": true,
+        "duplicate_population_exact": true,
+        "empty_or_underflow_bin_count": 0
+      },
+      {
+        "label": "broad-modes",
+        "input_mode_number_sum": 1220002000.000095,
+        "initialized_all17bins_number_sum": 1018209367.5791445,
+        "ratio_allbins_to_modes": 0.8345964740869812,
+        "first10bins_number_sum": 852023653.4529389,
+        "ratio_first10bins_to_modes": 0.6983788989303892,
+        "duplicate_geometry": true,
+        "duplicate_population_exact": true,
+        "empty_or_underflow_bin_count": 0
+      },
+      {
+        "label": "shifted-smaller",
+        "input_mode_number_sum": 1220002000.000095,
+        "initialized_all17bins_number_sum": 468756636.2796899,
+        "ratio_allbins_to_modes": 0.3842261211700091,
+        "first10bins_number_sum": 376868843.68408924,
+        "ratio_first10bins_to_modes": 0.3089083818584395,
+        "duplicate_geometry": true,
+        "duplicate_population_exact": true,
+        "empty_or_underflow_bin_count": 0
+      },
+      {
+        "label": "shifted-larger",
+        "input_mode_number_sum": 1220002000.000095,
+        "initialized_all17bins_number_sum": 1237748859.6219387,
+        "ratio_allbins_to_modes": 1.0145465824005555,
+        "first10bins_number_sum": 1015198004.8024594,
+        "ratio_first10bins_to_modes": 0.8321281479885938,
+        "duplicate_geometry": true,
+        "duplicate_population_exact": true,
+        "empty_or_underflow_bin_count": 0
+      },
+      {
+        "label": "tiny-mode-counts",
+        "input_mode_number_sum": 0.001220002000000095,
+        "initialized_all17bins_number_sum": 0.0010801446145378441,
+        "ratio_allbins_to_modes": 0.8853629867309726,
+        "first10bins_number_sum": 0.000970393212243018,
+        "ratio_first10bins_to_modes": 0.7954029683909883,
+        "duplicate_geometry": true,
+        "duplicate_population_exact": true,
+        "empty_or_underflow_bin_count": 0
+      },
+      {
+        "label": "large-mode-counts",
+        "input_mode_number_sum": 1.220002000000095e+17,
+        "initialized_all17bins_number_sum": 1.0801446145378445e+17,
+        "ratio_allbins_to_modes": 0.8853629867309728,
+        "first10bins_number_sum": 9.703932122430182e+16,
+        "ratio_first10bins_to_modes": 0.7954029683909885,
+        "duplicate_geometry": true,
+        "duplicate_population_exact": true,
+        "empty_or_underflow_bin_count": 0
+      },
+      {
+        "label": "nonuniform-grid",
+        "input_mode_number_sum": 1220002000.000095,
+        "initialized_all17bins_number_sum": 966827094.6650852,
+        "ratio_allbins_to_modes": 0.7924799259878345,
+        "first10bins_number_sum": 875022288.4528491,
+        "ratio_first10bins_to_modes": 0.7172302081904629,
+        "duplicate_geometry": false,
+        "duplicate_population_exact": false,
+        "empty_or_underflow_bin_count": 0
+      },
+      {
+        "label": "narrow-bin-widths",
+        "input_mode_number_sum": 1220002000.000095,
+        "initialized_all17bins_number_sum": 26153.154678314088,
+        "ratio_allbins_to_modes": 2.1436976888818257e-05,
+        "first10bins_number_sum": 22304.495888033238,
+        "ratio_first10bins_to_modes": 1.8282343707659087e-05,
+        "duplicate_geometry": true,
+        "duplicate_population_exact": true,
+        "empty_or_underflow_bin_count": 0
+      },
+      {
+        "label": "mixed-0",
+        "input_mode_number_sum": 1347021305.2579708,
+        "initialized_all17bins_number_sum": 1239371573.3629622,
+        "ratio_allbins_to_modes": 0.9200831260242076,
+        "first10bins_number_sum": 1059478742.3757035,
+        "ratio_first10bins_to_modes": 0.7865345100631504,
+        "duplicate_geometry": true,
+        "duplicate_population_exact": true,
+        "empty_or_underflow_bin_count": 0
+      },
+      {
+        "label": "mixed-1",
+        "input_mode_number_sum": 4976622309.343572,
+        "initialized_all17bins_number_sum": 4027130069.487334,
+        "ratio_allbins_to_modes": 0.8092095037886292,
+        "first10bins_number_sum": 3412080950.7791066,
+        "ratio_first10bins_to_modes": 0.6856218412180788,
+        "duplicate_geometry": true,
+        "duplicate_population_exact": true,
+        "empty_or_underflow_bin_count": 0
+      },
+      {
+        "label": "mixed-2",
+        "input_mode_number_sum": 2907825563.8027644,
+        "initialized_all17bins_number_sum": 4291033970.7907596,
+        "ratio_allbins_to_modes": 1.4756847949225256,
+        "first10bins_number_sum": 2607543741.1585474,
+        "ratio_first10bins_to_modes": 0.8967332062891978,
+        "duplicate_geometry": true,
+        "duplicate_population_exact": true,
+        "empty_or_underflow_bin_count": 0
+      },
+      {
+        "label": "mixed-3",
+        "input_mode_number_sum": 8143190407.301415,
+        "initialized_all17bins_number_sum": 7557505334.235895,
+        "ratio_allbins_to_modes": 0.9280767065767763,
+        "first10bins_number_sum": 6357547169.042856,
+        "ratio_first10bins_to_modes": 0.7807194540535979,
+        "duplicate_geometry": true,
+        "duplicate_population_exact": true,
+        "empty_or_underflow_bin_count": 0
+      },
+      {
+        "label": "mixed-4",
+        "input_mode_number_sum": 4736194810.632585,
+        "initialized_all17bins_number_sum": 4502151438.790009,
+        "ratio_allbins_to_modes": 0.9505840909843579,
+        "first10bins_number_sum": 3613272028.731462,
+        "ratio_first10bins_to_modes": 0.7629061246846938,
+        "duplicate_geometry": true,
+        "duplicate_population_exact": true,
+        "empty_or_underflow_bin_count": 0
+      }
+    ]
+  },
+  "native_literal_rounding": {
+    "policy": "Unsuffixed literals are evaluated as defaultREAL(binary32), promoted toREAL(dp), then multiplied by optional _dp scale. Defaults are extracted and independently compiled verbatim fromdriver.F90.",
+    "default_assignments": {
+      "n": "n = (/1000.0, 100.0, 10.0, 0.001, 100.0, 10.0, 0.001/)*1.e6_dp",
+      "dpg": "dpg = (/0.01, 0.3, 1.0, 3.0, 0.03, 0.3, 3.0/)*1.e-6_dp",
+      "sigmag": "sigmag = (/ 1.59, 1.59, 1.59, 2.0, 1.59, 1.59, 2.0 /)"
+    },
+    "incorrect_ideal_decimal64_default_effect": {
+      "max_absolute_number_difference": 20.082562625408173,
+      "max_relative_number_difference": 4.119840460297944e-07,
+      "native_default_mode_sum": 1220002000.000095,
+      "ideal_decimal64_mode_sum": 1220002000.0
+    }
+  },
+  "benchmark_review": {
+    "scientific_bugs_found": [],
+    "timing_bugs_found": [],
+    "description_correction": "Native timing copies3geometryarrays and zerosoutput; modalarrays are passed byexistingcontiguousslices without explicitcopies.",
+    "limits": [
+      "This is an isolatedinitializerbenchmark, not fullSALSA/HAM initialization.",
+      "Fortran is serial across cases; JAX batches cases while performing equal casework.",
+      "Device inputtransfers/compilation/native startupandI/O are excluded; JAXdispatchandoutput synchronization are included.",
+      "No finaltimingmeasurement performed during concurrentgasport work."
+    ]
+  },
+  "native_cell_loops": {
+    "kproma": 2,
+    "kbdim": 3,
+    "klev": 2,
+    "active4cells_exactly_equal": true,
+    "inactive2cells_exactly_zero": true
+  }
+}
