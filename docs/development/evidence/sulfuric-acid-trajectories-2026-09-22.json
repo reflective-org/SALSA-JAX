@@ -1,0 +1,5429 @@
+{
+  "scope": "Every post-step field of selected pure-sulfate fixed-environment trajectories; no full HAM driver claim",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "python_version": "3.12.12",
+  "jax_version": "0.11.2",
+  "numpy_version": "2.5.3",
+  "checked_provenance": {
+    "source_sha256": {
+      "parkind1.F90": "bd7aa3a0f896829781c6c9c1924726def9bd8b2825778e26274c615c2642ff5a",
+      "mo_kind.F90": "e7d3a5f28d216e60828c395a704e33a7bfc5db6e966533776fc438f4d782d255",
+      "mo_math_constants.F90": "ceae6f761c288597f7fb495ff2a55030fee8f861e1ee0dcd8adc0ba3ba95734f",
+      "mo_physical_constants.F90": "12405902248f437d9f7ae9b03d1efe194cd7605f6b396156c3d820366b8a79b0",
+      "mo_ham_salsa_nucleation.F90": "927c2f2d8056ce100a5e36563cc9fa04b407ea0033ff848e9c65de3c9a9f2445",
+      "mo_ham_salsa_properties.F90": "5292a5c9debcb6b3fd8bab7d477c463cbfd98d9ff7dc03d5f793f9c1aae76127",
+      "mo_ham_salsa_dynamics.F90": "13db52f2e5e10bb0ad485348209a74e3b8bcbf25af77d05a995a8444050cff25",
+      "mo_ham_salsa_update.F90": "f01880e86935e4dd628ce9bdcd010df1530525f167cd6262e9e76b584caf1cf1",
+      "mo_ham_salsa.F90": "af04c42794909550de39d2bdc0a5d1bcc430f59c729841114e35e8ce790b04df",
+      "mo_ham_salsa_init.F90": "efc26ed1c4ab391f5fd288e7e5bd0f2998e722731c34ccd778063febf43faf50"
+    },
+    "wrapper_sha256": {
+      "stubs.f90": "7cc7fcf5ebbd8b2307d8d3d2306a3f4a1e3b0b5215f2527419c1306b43c8dafc",
+      "init.F90": "17ef9dc65c41c544eb587e438e86ebbd398bd190cfa39bd7a4ca1909433ce274",
+      "driver.f90": "0a7dc8bd4cf0464b4b141f4a15ae4cbb260f1b2e809623ef5a6d4350e8d2be73"
+    },
+    "extracted_routine_sha256": {
+      "coagc": "90591d2a1b5498deefb1fe02ec6052729407da8222812ca485f2aa55ae74b3fe",
+      "set_sizebins": "9d1ab956e4ec67b5059b247d88e3d702bae72d298853bc18db8b5b584a1daf5f"
+    },
+    "flags": [
+      "-O2",
+      "-fno-fast-math",
+      "-fno-lto",
+      "-ffree-line-length-none",
+      "-cpp",
+      "-fcheck=all",
+      "-ffpe-trap=invalid,zero,overflow",
+      "-fbacktrace"
+    ],
+    "checked": true,
+    "compiled_constants": {
+      "avogadro": 6.02214179e+23,
+      "gas_constant": 8.314472,
+      "boltzmann": 1.3806504e-23,
+      "reference_pressure": 101325.0,
+      "pi": 3.141592653589793
+    },
+    "compiler": "GNU Fortran (Homebrew GCC 16.1.0) 16.1.0",
+    "scientific_modules_byte_identical": [
+      "mo_ham_salsa_nucleation.F90",
+      "mo_ham_salsa_properties.F90",
+      "mo_ham_salsa_dynamics.F90",
+      "mo_ham_salsa_update.F90",
+      "mo_ham_salsa.F90"
+    ],
+    "scope": "complete salsa call; nsoa=0, no HAMMOZ, native 69-component mapping, 17 bins, five nonwater species; constant additive H2SO4 source before every call; seven post-step fields at both native levels",
+    "separate_compilation_without_lto": true,
+    "parent_driver_sha256": "2cf96a43ceba9f6b10b4a58d138a7905103ddafd2af16e59590faa42c61d7afe",
+    "source_rate_units": "molecules/m3/s",
+    "output_order": "step, case, native level, field component"
+  },
+  "optimized_provenance": {
+    "source_sha256": {
+      "parkind1.F90": "bd7aa3a0f896829781c6c9c1924726def9bd8b2825778e26274c615c2642ff5a",
+      "mo_kind.F90": "e7d3a5f28d216e60828c395a704e33a7bfc5db6e966533776fc438f4d782d255",
+      "mo_math_constants.F90": "ceae6f761c288597f7fb495ff2a55030fee8f861e1ee0dcd8adc0ba3ba95734f",
+      "mo_physical_constants.F90": "12405902248f437d9f7ae9b03d1efe194cd7605f6b396156c3d820366b8a79b0",
+      "mo_ham_salsa_nucleation.F90": "927c2f2d8056ce100a5e36563cc9fa04b407ea0033ff848e9c65de3c9a9f2445",
+      "mo_ham_salsa_properties.F90": "5292a5c9debcb6b3fd8bab7d477c463cbfd98d9ff7dc03d5f793f9c1aae76127",
+      "mo_ham_salsa_dynamics.F90": "13db52f2e5e10bb0ad485348209a74e3b8bcbf25af77d05a995a8444050cff25",
+      "mo_ham_salsa_update.F90": "f01880e86935e4dd628ce9bdcd010df1530525f167cd6262e9e76b584caf1cf1",
+      "mo_ham_salsa.F90": "af04c42794909550de39d2bdc0a5d1bcc430f59c729841114e35e8ce790b04df",
+      "mo_ham_salsa_init.F90": "efc26ed1c4ab391f5fd288e7e5bd0f2998e722731c34ccd778063febf43faf50"
+    },
+    "wrapper_sha256": {
+      "stubs.f90": "7cc7fcf5ebbd8b2307d8d3d2306a3f4a1e3b0b5215f2527419c1306b43c8dafc",
+      "init.F90": "17ef9dc65c41c544eb587e438e86ebbd398bd190cfa39bd7a4ca1909433ce274",
+      "driver.f90": "0a7dc8bd4cf0464b4b141f4a15ae4cbb260f1b2e809623ef5a6d4350e8d2be73"
+    },
+    "extracted_routine_sha256": {
+      "coagc": "90591d2a1b5498deefb1fe02ec6052729407da8222812ca485f2aa55ae74b3fe",
+      "set_sizebins": "9d1ab956e4ec67b5059b247d88e3d702bae72d298853bc18db8b5b584a1daf5f"
+    },
+    "flags": [
+      "-O2",
+      "-fno-fast-math",
+      "-fno-lto",
+      "-ffree-line-length-none",
+      "-cpp"
+    ],
+    "checked": false,
+    "compiled_constants": {
+      "avogadro": 6.02214179e+23,
+      "gas_constant": 8.314472,
+      "boltzmann": 1.3806504e-23,
+      "reference_pressure": 101325.0,
+      "pi": 3.141592653589793
+    },
+    "compiler": "GNU Fortran (Homebrew GCC 16.1.0) 16.1.0",
+    "scientific_modules_byte_identical": [
+      "mo_ham_salsa_nucleation.F90",
+      "mo_ham_salsa_properties.F90",
+      "mo_ham_salsa_dynamics.F90",
+      "mo_ham_salsa_update.F90",
+      "mo_ham_salsa.F90"
+    ],
+    "scope": "complete salsa call; nsoa=0, no HAMMOZ, native 69-component mapping, 17 bins, five nonwater species; constant additive H2SO4 source before every call; seven post-step fields at both native levels",
+    "separate_compilation_without_lto": true,
+    "parent_driver_sha256": "2cf96a43ceba9f6b10b4a58d138a7905103ddafd2af16e59590faa42c61d7afe",
+    "source_rate_units": "molecules/m3/s",
+    "output_order": "step, case, native level, field component"
+  },
+  "scenarios": {
+    "configured-source": {
+      "configuration": {
+        "steps": 600,
+        "timestep_s": 1.0,
+        "temperature_k": 280.0,
+        "pressure_pa": 101325.0,
+        "relative_humidity": 0.5,
+        "initial_h2so4_molecules_m3": 100000000000000.0,
+        "h2so4_source_molecules_m3_s": 100000000000.0,
+        "initial_number_m3": [
+          0.0,
+          0.0,
+          0.0,
+          100000000.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "nucleation_scheme": 2,
+        "growth_option": 1,
+        "coagulation_enabled": true,
+        "condensation_enabled": true,
+        "recalculate": true
+      },
+      "comparison": {
+        "passed": true,
+        "relative_tolerance": 3e-11,
+        "absolute_tolerance": 0,
+        "water_cancellation_allowance": "32*eps*dry_particle_volume*water_density*number, per bin and step",
+        "fields": {
+          "mass": {
+            "passed": true,
+            "max_absolute_error": 1.0523945093154907e-05,
+            "max_relative_error_nonzero": 2.6032957001843473e-12,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              536,
+              0,
+              11
+            ]
+          },
+          "number": {
+            "passed": true,
+            "max_absolute_error": 1.621246337890625e-05,
+            "max_relative_error_nonzero": 2.6035670177898356e-12,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              596,
+              0,
+              0
+            ]
+          },
+          "gas": {
+            "passed": true,
+            "max_absolute_error": 0.03125,
+            "max_relative_error_nonzero": 2.2201144430061926e-16,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              533,
+              0,
+              1
+            ]
+          },
+          "wet_radius_cm": {
+            "passed": true,
+            "max_absolute_error": 1.6940658945086007e-20,
+            "max_relative_error_nonzero": 3.778495891760392e-15,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              585,
+              0,
+              4
+            ]
+          },
+          "dry_radius_cm": {
+            "passed": true,
+            "max_absolute_error": 1.3552527156068805e-20,
+            "max_relative_error_nonzero": 3.487544679428679e-15,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              0,
+              0,
+              7
+            ]
+          },
+          "density": {
+            "passed": true,
+            "max_absolute_error": 8.881784197001252e-16,
+            "max_relative_error_nonzero": 6.275466877783016e-16,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              444,
+              0,
+              0
+            ]
+          },
+          "water_mass": {
+            "passed": true,
+            "max_absolute_error": 9.342132601734146e-25,
+            "max_relative_error_nonzero": 2.6036056008671324e-12,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              536,
+              0,
+              4
+            ]
+          }
+        }
+      },
+      "checked_optimized_exact": true,
+      "jax": {
+        "sulfur_budget_passed": true,
+        "sulfur_budget_relative_tolerance": 1e-10,
+        "maximum_relative_sulfur_residual": 2.7409910797024026e-14,
+        "maximum_absolute_sulfur_residual_molecules_m3": 12.875,
+        "initial_sulfur_molecules_m3": 411120609284065.1,
+        "supplied_sulfur_molecules_m3": 60000000000000.0,
+        "final_sulfur_molecules_m3": 471120609284077.9,
+        "initial_number_m3": 100000000.0,
+        "final_number_m3": 6841305964.316716,
+        "final_h2so4_molecules_m3": 145348014393351.84,
+        "pure_sulfate_soluble_only": true,
+        "negative_water_values": 0,
+        "all_state_fields_finite": true,
+        "nonnegative_mass_number_gas": true,
+        "configuration": {
+          "steps": 600,
+          "timestep_s": 1.0,
+          "temperature_k": 280.0,
+          "pressure_pa": 101325.0,
+          "relative_humidity": 0.5,
+          "initial_h2so4_molecules_m3": 100000000000000.0,
+          "h2so4_source_molecules_m3_s": 100000000000.0,
+          "initial_number_m3": [
+            0.0,
+            0.0,
+            0.0,
+            100000000.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "nucleation_scheme": 2,
+          "growth_option": 1,
+          "coagulation_enabled": true,
+          "condensation_enabled": true,
+          "recalculate": true
+        }
+      },
+      "fortran": {
+        "sulfur_budget_passed": true,
+        "sulfur_budget_relative_tolerance": 1e-10,
+        "maximum_relative_sulfur_residual": 1.8866095202561162e-14,
+        "maximum_absolute_sulfur_residual_molecules_m3": 8.875,
+        "initial_sulfur_molecules_m3": 411120609284065.1,
+        "supplied_sulfur_molecules_m3": 60000000000000.0,
+        "final_sulfur_molecules_m3": 471120609284074.0,
+        "initial_number_m3": 100000000.0,
+        "final_number_m3": 6841305964.316732,
+        "final_h2so4_molecules_m3": 145348014393351.88,
+        "pure_sulfate_soluble_only": true,
+        "negative_water_values": 0,
+        "all_state_fields_finite": true,
+        "nonnegative_mass_number_gas": true,
+        "configuration": {
+          "steps": 600,
+          "timestep_s": 1.0,
+          "temperature_k": 280.0,
+          "pressure_pa": 101325.0,
+          "relative_humidity": 0.5,
+          "initial_h2so4_molecules_m3": 100000000000000.0,
+          "h2so4_source_molecules_m3_s": 100000000000.0,
+          "initial_number_m3": [
+            0.0,
+            0.0,
+            0.0,
+            100000000.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "nucleation_scheme": 2,
+          "growth_option": 1,
+          "coagulation_enabled": true,
+          "condensation_enabled": true,
+          "recalculate": true
+        }
+      },
+      "initial_array_sha256": {
+        "mass": "fa2c9444c3f712d2b22bc32e98d861ab3f6b73d9d7440451316fcfd7ef0f92c3",
+        "number": "d5d6ff7fd19c192bc0ce79405c0dfd931a696590cabd3d8bd747f98114262a31",
+        "gas": "9f580977a33e156842e76be89f817a51f411f6e958498774a1c827ce45a36c3e"
+      },
+      "accepted": true,
+      "checkpoints": [
+        {
+          "step": 1,
+          "time_s": 1.0,
+          "h2so4_molecules_m3": 100081643383579.84,
+          "number_m3_by_bin": [
+            8894775.873650065,
+            0.0,
+            0.0,
+            99992896.70774731,
+            7095.793472774969,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aerosol_sulfate_molecules_m3_by_bin": [
+            1412401460.9768937,
+            0.0,
+            0.0,
+            311098759503397.6,
+            38793995626.65433,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "step": 10,
+          "time_s": 10.0,
+          "h2so4_molecules_m3": 100815593811867.66,
+          "number_m3_by_bin": [
+            89455628.46836539,
+            0.0,
+            0.0,
+            99927773.81025177,
+            72151.21781757702,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aerosol_sulfate_molecules_m3_by_bin": [
+            14319731695.981161,
+            0.0,
+            0.0,
+            310896154177803.75,
+            394541562697.8824,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "step": 100,
+          "time_s": 100.0,
+          "h2so4_molecules_m3": 108072342208661.55,
+          "number_m3_by_bin": [
+            935120897.8400685,
+            0.0,
+            0.0,
+            99253109.45595637,
+            746142.4483493009,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aerosol_sulfate_molecules_m3_by_bin": [
+            162643062496.91077,
+            0.0,
+            0.0,
+            308797150856411.2,
+            4088473156497.133,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "step": 600,
+          "time_s": 600.0,
+          "h2so4_molecules_m3": 145348014393351.84,
+          "number_m3_by_bin": [
+            6741310393.357693,
+            0.0,
+            0.0,
+            94809239.52380826,
+            5186331.435214682,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aerosol_sulfate_molecules_m3_by_bin": [
+            1983184540314.647,
+            0.0,
+            0.0,
+            294971433106216.6,
+            28817977244194.812,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ]
+    },
+    "closed-activation": {
+      "configuration": {
+        "steps": 1000,
+        "timestep_s": 1.0,
+        "temperature_k": 280.0,
+        "pressure_pa": 101325.0,
+        "relative_humidity": 0.5,
+        "initial_h2so4_molecules_m3": 100000000000000.0,
+        "h2so4_source_molecules_m3_s": 0.0,
+        "initial_number_m3": [
+          0.0,
+          0.0,
+          0.0,
+          100000000.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "nucleation_scheme": 2,
+        "growth_option": 1,
+        "coagulation_enabled": true,
+        "condensation_enabled": true,
+        "recalculate": true
+      },
+      "comparison": {
+        "passed": true,
+        "relative_tolerance": 3e-11,
+        "absolute_tolerance": 0,
+        "water_cancellation_allowance": "32*eps*dry_particle_volume*water_density*number, per bin and step",
+        "fields": {
+          "mass": {
+            "passed": true,
+            "max_absolute_error": 1.2032687664031982e-05,
+            "max_relative_error_nonzero": 5.616084106898353e-12,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              650,
+              0,
+              11
+            ]
+          },
+          "number": {
+            "passed": true,
+            "max_absolute_error": 3.528594970703125e-05,
+            "max_relative_error_nonzero": 5.6160252615509855e-12,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              917,
+              0,
+              0
+            ]
+          },
+          "gas": {
+            "passed": true,
+            "max_absolute_error": 0.171875,
+            "max_relative_error_nonzero": 2.1032373427733426e-15,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              917,
+              0,
+              1
+            ]
+          },
+          "wet_radius_cm": {
+            "passed": true,
+            "max_absolute_error": 4.658681209898652e-20,
+            "max_relative_error_nonzero": 7.564754333468147e-15,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              983,
+              0,
+              4
+            ]
+          },
+          "dry_radius_cm": {
+            "passed": true,
+            "max_absolute_error": 3.5575383784680614e-20,
+            "max_relative_error_nonzero": 7.308863976139399e-15,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              975,
+              0,
+              4
+            ]
+          },
+          "density": {
+            "passed": true,
+            "max_absolute_error": 1.3322676295501878e-15,
+            "max_relative_error_nonzero": 8.31227697193889e-16,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              574,
+              0,
+              0
+            ]
+          },
+          "water_mass": {
+            "passed": true,
+            "max_absolute_error": 1.0679030955030299e-24,
+            "max_relative_error_nonzero": 5.615989694756811e-12,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              652,
+              0,
+              4
+            ]
+          }
+        }
+      },
+      "checked_optimized_exact": true,
+      "jax": {
+        "sulfur_budget_passed": true,
+        "sulfur_budget_relative_tolerance": 1e-10,
+        "maximum_relative_sulfur_residual": 5.214406555130319e-14,
+        "maximum_absolute_sulfur_residual_molecules_m3": 21.4375,
+        "initial_sulfur_molecules_m3": 411120609284065.1,
+        "supplied_sulfur_molecules_m3": 0.0,
+        "final_sulfur_molecules_m3": 411120609284086.44,
+        "initial_number_m3": 100000000.0,
+        "final_number_m3": 8070554623.330032,
+        "final_h2so4_molecules_m3": 81719260353833.45,
+        "pure_sulfate_soluble_only": true,
+        "negative_water_values": 0,
+        "all_state_fields_finite": true,
+        "nonnegative_mass_number_gas": true,
+        "configuration": {
+          "steps": 1000,
+          "timestep_s": 1.0,
+          "temperature_k": 280.0,
+          "pressure_pa": 101325.0,
+          "relative_humidity": 0.5,
+          "initial_h2so4_molecules_m3": 100000000000000.0,
+          "h2so4_source_molecules_m3_s": 0.0,
+          "initial_number_m3": [
+            0.0,
+            0.0,
+            0.0,
+            100000000.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "nucleation_scheme": 2,
+          "growth_option": 1,
+          "coagulation_enabled": true,
+          "condensation_enabled": true,
+          "recalculate": true
+        }
+      },
+      "fortran": {
+        "sulfur_budget_passed": true,
+        "sulfur_budget_relative_tolerance": 1e-10,
+        "maximum_relative_sulfur_residual": 3.922206679952252e-14,
+        "maximum_absolute_sulfur_residual_molecules_m3": 16.125,
+        "initial_sulfur_molecules_m3": 411120609284065.1,
+        "supplied_sulfur_molecules_m3": 0.0,
+        "final_sulfur_molecules_m3": 411120609284081.1,
+        "initial_number_m3": 100000000.0,
+        "final_number_m3": 8070554623.330004,
+        "final_h2so4_molecules_m3": 81719260353833.62,
+        "pure_sulfate_soluble_only": true,
+        "negative_water_values": 0,
+        "all_state_fields_finite": true,
+        "nonnegative_mass_number_gas": true,
+        "configuration": {
+          "steps": 1000,
+          "timestep_s": 1.0,
+          "temperature_k": 280.0,
+          "pressure_pa": 101325.0,
+          "relative_humidity": 0.5,
+          "initial_h2so4_molecules_m3": 100000000000000.0,
+          "h2so4_source_molecules_m3_s": 0.0,
+          "initial_number_m3": [
+            0.0,
+            0.0,
+            0.0,
+            100000000.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "nucleation_scheme": 2,
+          "growth_option": 1,
+          "coagulation_enabled": true,
+          "condensation_enabled": true,
+          "recalculate": true
+        }
+      },
+      "initial_array_sha256": {
+        "mass": "fa2c9444c3f712d2b22bc32e98d861ab3f6b73d9d7440451316fcfd7ef0f92c3",
+        "number": "d5d6ff7fd19c192bc0ce79405c0dfd931a696590cabd3d8bd747f98114262a31",
+        "gas": "9f580977a33e156842e76be89f817a51f411f6e958498774a1c827ce45a36c3e"
+      },
+      "accepted": true,
+      "checkpoints": [
+        {
+          "step": 1,
+          "time_s": 1.0,
+          "h2so4_molecules_m3": 99981661888225.75,
+          "number_m3_by_bin": [
+            8884842.084413836,
+            0.0,
+            0.0,
+            99992903.78629597,
+            7088.714924118156,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aerosol_sulfate_molecules_m3_by_bin": [
+            1410824074.5840733,
+            0.0,
+            0.0,
+            311098781276807.2,
+            38755294957.586716,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "step": 10,
+          "time_s": 10.0,
+          "h2so4_molecules_m3": 99816612644754.2,
+          "number_m3_by_bin": [
+            88909001.79294291,
+            0.0,
+            0.0,
+            99928167.40688387,
+            71757.62112794576,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aerosol_sulfate_molecules_m3_by_bin": [
+            14231626279.09431,
+            0.0,
+            0.0,
+            310897376214940.9,
+            392388798091.1829,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "step": 100,
+          "time_s": 100.0,
+          "h2so4_molecules_m3": 98166882808534.3,
+          "number_m3_by_bin": [
+            885168606.1892262,
+            0.0,
+            0.0,
+            99288897.15193936,
+            710354.6949436598,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aerosol_sulfate_molecules_m3_by_bin": [
+            153308832360.49612,
+            0.0,
+            0.0,
+            308908468950091.56,
+            3891948693081.0693,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "step": 1000,
+          "time_s": 1000.0,
+          "h2so4_molecules_m3": 81719260353833.45,
+          "number_m3_by_bin": [
+            7970561965.590683,
+            0.0,
+            0.0,
+            93661200.70180053,
+            6331457.037549337,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aerosol_sulfate_molecules_m3_by_bin": [
+            2689310076898.713,
+            0.0,
+            0.0,
+            291399492634782.3,
+            35312546218571.98,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ]
+    },
+    "coagulation-only": {
+      "configuration": {
+        "steps": 1000,
+        "timestep_s": 1.0,
+        "temperature_k": 280.0,
+        "pressure_pa": 101325.0,
+        "relative_humidity": 0.5,
+        "initial_h2so4_molecules_m3": 100000000000000.0,
+        "h2so4_source_molecules_m3_s": 0.0,
+        "initial_number_m3": [
+          10000000.0,
+          30000000.0,
+          60000000.0,
+          100000000.0,
+          50000000.0,
+          10000000.0,
+          1000000.0,
+          100000.0,
+          10000.0,
+          1000.0
+        ],
+        "nucleation_scheme": 0,
+        "growth_option": 1,
+        "coagulation_enabled": true,
+        "condensation_enabled": false,
+        "recalculate": true
+      },
+      "comparison": {
+        "passed": true,
+        "relative_tolerance": 3e-11,
+        "absolute_tolerance": 0,
+        "water_cancellation_allowance": "32*eps*dry_particle_volume*water_density*number, per bin and step",
+        "fields": {
+          "mass": {
+            "passed": true,
+            "max_absolute_error": 0.00017499923706054688,
+            "max_relative_error_nonzero": 1.384482432287304e-13,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              997,
+              0,
+              31
+            ]
+          },
+          "number": {
+            "passed": true,
+            "max_absolute_error": 4.0978193283081055e-06,
+            "max_relative_error_nonzero": 4.3273147380200226e-13,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              994,
+              0,
+              3
+            ]
+          },
+          "gas": {
+            "passed": true,
+            "max_absolute_error": 0.0,
+            "max_relative_error_nonzero": 0.0,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              0,
+              0,
+              0
+            ]
+          },
+          "wet_radius_cm": {
+            "passed": true,
+            "max_absolute_error": 2.0383000842727483e-17,
+            "max_relative_error_nonzero": 9.794777934142993e-14,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              997,
+              0,
+              8
+            ]
+          },
+          "dry_radius_cm": {
+            "passed": true,
+            "max_absolute_error": 1.5964876989849053e-17,
+            "max_relative_error_nonzero": 9.824742094935593e-14,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              997,
+              0,
+              8
+            ]
+          },
+          "density": {
+            "passed": true,
+            "max_absolute_error": 8.881784197001252e-16,
+            "max_relative_error_nonzero": 6.313005666535791e-16,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              122,
+              0,
+              2
+            ]
+          },
+          "water_mass": {
+            "passed": true,
+            "max_absolute_error": 1.6233419521353168e-23,
+            "max_relative_error_nonzero": 1.3927289365713714e-13,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              998,
+              0,
+              8
+            ]
+          }
+        }
+      },
+      "checked_optimized_exact": true,
+      "jax": {
+        "sulfur_budget_passed": true,
+        "sulfur_budget_relative_tolerance": 1e-10,
+        "maximum_relative_sulfur_residual": 1.0025105662245326e-13,
+        "maximum_absolute_sulfur_residual_molecules_m3": 1148.0,
+        "initial_sulfur_molecules_m3": 1.1451250876321258e+16,
+        "supplied_sulfur_molecules_m3": 0.0,
+        "final_sulfur_molecules_m3": 1.1451250876322406e+16,
+        "initial_number_m3": 261111000.0,
+        "final_number_m3": 260867618.69227272,
+        "final_h2so4_molecules_m3": 100000000000000.0,
+        "pure_sulfate_soluble_only": true,
+        "negative_water_values": 0,
+        "all_state_fields_finite": true,
+        "nonnegative_mass_number_gas": true,
+        "configuration": {
+          "steps": 1000,
+          "timestep_s": 1.0,
+          "temperature_k": 280.0,
+          "pressure_pa": 101325.0,
+          "relative_humidity": 0.5,
+          "initial_h2so4_molecules_m3": 100000000000000.0,
+          "h2so4_source_molecules_m3_s": 0.0,
+          "initial_number_m3": [
+            10000000.0,
+            30000000.0,
+            60000000.0,
+            100000000.0,
+            50000000.0,
+            10000000.0,
+            1000000.0,
+            100000.0,
+            10000.0,
+            1000.0
+          ],
+          "nucleation_scheme": 0,
+          "growth_option": 1,
+          "coagulation_enabled": true,
+          "condensation_enabled": false,
+          "recalculate": true
+        }
+      },
+      "fortran": {
+        "sulfur_budget_passed": true,
+        "sulfur_budget_relative_tolerance": 1e-10,
+        "maximum_relative_sulfur_residual": 6.357384078497036e-14,
+        "maximum_absolute_sulfur_residual_molecules_m3": 728.0,
+        "initial_sulfur_molecules_m3": 1.1451250876321258e+16,
+        "supplied_sulfur_molecules_m3": 0.0,
+        "final_sulfur_molecules_m3": 1.1451250876321984e+16,
+        "initial_number_m3": 261111000.0,
+        "final_number_m3": 260867618.69227245,
+        "final_h2so4_molecules_m3": 100000000000000.0,
+        "pure_sulfate_soluble_only": true,
+        "negative_water_values": 0,
+        "all_state_fields_finite": true,
+        "nonnegative_mass_number_gas": true,
+        "configuration": {
+          "steps": 1000,
+          "timestep_s": 1.0,
+          "temperature_k": 280.0,
+          "pressure_pa": 101325.0,
+          "relative_humidity": 0.5,
+          "initial_h2so4_molecules_m3": 100000000000000.0,
+          "h2so4_source_molecules_m3_s": 0.0,
+          "initial_number_m3": [
+            10000000.0,
+            30000000.0,
+            60000000.0,
+            100000000.0,
+            50000000.0,
+            10000000.0,
+            1000000.0,
+            100000.0,
+            10000.0,
+            1000.0
+          ],
+          "nucleation_scheme": 0,
+          "growth_option": 1,
+          "coagulation_enabled": true,
+          "condensation_enabled": false,
+          "recalculate": true
+        }
+      },
+      "initial_array_sha256": {
+        "mass": "8ae94b8e64b68defa5b15a07f8f63e720e8f5b57532228955f9595e01a5ffc8b",
+        "number": "44184e5b12dd45778cff71e497297553ba99478be14ace320c83b8f757310aa3",
+        "gas": "9f580977a33e156842e76be89f817a51f411f6e958498774a1c827ce45a36c3e"
+      },
+      "accepted": true,
+      "checkpoints": [
+        {
+          "step": 1,
+          "time_s": 1.0,
+          "h2so4_molecules_m3": 100000000000000.0,
+          "number_m3_by_bin": [
+            9999882.505254893,
+            29999927.25023954,
+            59999962.5220354,
+            99999974.57960859,
+            50000005.871322535,
+            10000002.884988721,
+            1000000.201895688,
+            100000.00519757916,
+            10000.000074159465,
+            1000.0000011882479,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aerosol_sulfate_molecules_m3_by_bin": [
+            14412194185.632908,
+            720616488805.1134,
+            24020588951264.773,
+            311120523944840.94,
+            1125886969757669.2,
+            1629749501879534.0,
+            1179551427593381.2,
+            1584151405370979.2,
+            2263073603637621.0,
+            3232961826502980.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "step": 10,
+          "time_s": 10.0,
+          "h2so4_molecules_m3": 100000000000000.0,
+          "number_m3_by_bin": [
+            9998825.113164406,
+            29999272.62984628,
+            59999631.15537459,
+            99999757.97751355,
+            50000068.78552507,
+            10000002.41386312,
+            1000000.1978002576,
+            100000.00516094029,
+            10000.000073821471,
+            1000.0000011855805,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aerosol_sulfate_molecules_m3_by_bin": [
+            14410670233.714315,
+            720600764404.0867,
+            24020456281095.066,
+            311119850998051.9,
+            1125887551383184.9,
+            1629749687563122.0,
+            1179551471043157.8,
+            1584151414786159.5,
+            2263073605812420.5,
+            3232961827019441.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "step": 100,
+          "time_s": 100.0,
+          "h2so4_molecules_m3": 100000000000000.0,
+          "number_m3_by_bin": [
+            9988257.390120642,
+            29992727.26137397,
+            59996317.85088089,
+            99997587.44269636,
+            50000702.18670834,
+            9999977.427369583,
+            1000020.4320872878,
+            100000.00208113751,
+            10000.00277530848,
+            1000.0000097061204,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aerosol_sulfate_molecules_m3_by_bin": [
+            14395439647.101954,
+            720443540677.2399,
+            24019129821612.2,
+            311113098017359.2,
+            1125893390895158.8,
+            1629745737930517.8,
+            1179557711994725.5,
+            1584151428592352.2,
+            2263073704289788.0,
+            3232961835799540.5,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "step": 1000,
+          "time_s": 1000.0,
+          "h2so4_molecules_m3": 100000000000000.0,
+          "number_m3_by_bin": [
+            9883197.469806297,
+            29927356.038143866,
+            59963195.64016945,
+            99975885.41923954,
+            50007033.785942696,
+            9999717.646730237,
+            1000232.6910724657,
+            99999.92582589174,
+            10000.075332867156,
+            1000.000009439377,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aerosol_sulfate_molecules_m3_by_bin": [
+            14244023470.768732,
+            718873284183.5969,
+            24005869564194.973,
+            311045578554285.06,
+            1125951770011061.5,
+            1629703400195933.2,
+            1179622961446880.0,
+            1584150220593811.5,
+            2263076071206836.0,
+            3232961887441749.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ]
+    },
+    "condensation-only": {
+      "configuration": {
+        "steps": 1000,
+        "timestep_s": 1.0,
+        "temperature_k": 280.0,
+        "pressure_pa": 101325.0,
+        "relative_humidity": 0.5,
+        "initial_h2so4_molecules_m3": 100000000000000.0,
+        "h2so4_source_molecules_m3_s": 0.0,
+        "initial_number_m3": [
+          0.0,
+          0.0,
+          0.0,
+          100000000.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "nucleation_scheme": 0,
+        "growth_option": 1,
+        "coagulation_enabled": false,
+        "condensation_enabled": true,
+        "recalculate": true
+      },
+      "comparison": {
+        "passed": true,
+        "relative_tolerance": 3e-11,
+        "absolute_tolerance": 0,
+        "water_cancellation_allowance": "32*eps*dry_particle_volume*water_density*number, per bin and step",
+        "fields": {
+          "mass": {
+            "passed": true,
+            "max_absolute_error": 2.267211675643921e-05,
+            "max_relative_error_nonzero": 2.2802666766236316e-12,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              999,
+              0,
+              11
+            ]
+          },
+          "number": {
+            "passed": true,
+            "max_absolute_error": 4.202127456665039e-06,
+            "max_relative_error_nonzero": 2.2801392601371004e-12,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              999,
+              0,
+              3
+            ]
+          },
+          "gas": {
+            "passed": true,
+            "max_absolute_error": 0.171875,
+            "max_relative_error_nonzero": 2.0405561898410304e-15,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              976,
+              0,
+              1
+            ]
+          },
+          "wet_radius_cm": {
+            "passed": true,
+            "max_absolute_error": 5.336307567702092e-20,
+            "max_relative_error_nonzero": 8.664371133053915e-15,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              986,
+              0,
+              4
+            ]
+          },
+          "dry_radius_cm": {
+            "passed": true,
+            "max_absolute_error": 4.1504614415460717e-20,
+            "max_relative_error_nonzero": 8.528617724830131e-15,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              935,
+              0,
+              4
+            ]
+          },
+          "density": {
+            "passed": true,
+            "max_absolute_error": 8.881784197001252e-16,
+            "max_relative_error_nonzero": 6.275514338177038e-16,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              730,
+              0,
+              4
+            ]
+          },
+          "water_mass": {
+            "passed": true,
+            "max_absolute_error": 2.014233259180639e-24,
+            "max_relative_error_nonzero": 2.280148235176979e-12,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              999,
+              0,
+              4
+            ]
+          }
+        }
+      },
+      "checked_optimized_exact": true,
+      "jax": {
+        "sulfur_budget_passed": true,
+        "sulfur_budget_relative_tolerance": 1e-10,
+        "maximum_relative_sulfur_residual": 5.928917074346427e-14,
+        "maximum_absolute_sulfur_residual_molecules_m3": 24.375,
+        "initial_sulfur_molecules_m3": 411120609284065.1,
+        "supplied_sulfur_molecules_m3": 0.0,
+        "final_sulfur_molecules_m3": 411120609284089.5,
+        "initial_number_m3": 100000000.0,
+        "final_number_m3": 99999999.99999982,
+        "final_h2so4_molecules_m3": 84229486478090.84,
+        "pure_sulfate_soluble_only": true,
+        "negative_water_values": 0,
+        "all_state_fields_finite": true,
+        "nonnegative_mass_number_gas": true,
+        "configuration": {
+          "steps": 1000,
+          "timestep_s": 1.0,
+          "temperature_k": 280.0,
+          "pressure_pa": 101325.0,
+          "relative_humidity": 0.5,
+          "initial_h2so4_molecules_m3": 100000000000000.0,
+          "h2so4_source_molecules_m3_s": 0.0,
+          "initial_number_m3": [
+            0.0,
+            0.0,
+            0.0,
+            100000000.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "nucleation_scheme": 0,
+          "growth_option": 1,
+          "coagulation_enabled": false,
+          "condensation_enabled": true,
+          "recalculate": true
+        }
+      },
+      "fortran": {
+        "sulfur_budget_passed": true,
+        "sulfur_budget_relative_tolerance": 1e-10,
+        "maximum_relative_sulfur_residual": 3.618159650498589e-14,
+        "maximum_absolute_sulfur_residual_molecules_m3": 14.875,
+        "initial_sulfur_molecules_m3": 411120609284065.1,
+        "supplied_sulfur_molecules_m3": 0.0,
+        "final_sulfur_molecules_m3": 411120609284080.0,
+        "initial_number_m3": 100000000.0,
+        "final_number_m3": 100000000.00000012,
+        "final_h2so4_molecules_m3": 84229486478091.02,
+        "pure_sulfate_soluble_only": true,
+        "negative_water_values": 0,
+        "all_state_fields_finite": true,
+        "nonnegative_mass_number_gas": true,
+        "configuration": {
+          "steps": 1000,
+          "timestep_s": 1.0,
+          "temperature_k": 280.0,
+          "pressure_pa": 101325.0,
+          "relative_humidity": 0.5,
+          "initial_h2so4_molecules_m3": 100000000000000.0,
+          "h2so4_source_molecules_m3_s": 0.0,
+          "initial_number_m3": [
+            0.0,
+            0.0,
+            0.0,
+            100000000.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "nucleation_scheme": 0,
+          "growth_option": 1,
+          "coagulation_enabled": false,
+          "condensation_enabled": true,
+          "recalculate": true
+        }
+      },
+      "initial_array_sha256": {
+        "mass": "fa2c9444c3f712d2b22bc32e98d861ab3f6b73d9d7440451316fcfd7ef0f92c3",
+        "number": "d5d6ff7fd19c192bc0ce79405c0dfd931a696590cabd3d8bd747f98114262a31",
+        "gas": "9f580977a33e156842e76be89f817a51f411f6e958498774a1c827ce45a36c3e"
+      },
+      "accepted": true,
+      "checkpoints": [
+        {
+          "step": 1,
+          "time_s": 1.0,
+          "h2so4_molecules_m3": 99983072472987.23,
+          "number_m3_by_bin": [
+            0.0,
+            0.0,
+            0.0,
+            99992920.94111855,
+            7079.058881453222,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aerosol_sulfate_molecules_m3_by_bin": [
+            0.0,
+            0.0,
+            0.0,
+            311098834308763.06,
+            38702502314.83551,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "step": 10,
+          "time_s": 10.0,
+          "h2so4_molecules_m3": 99830831524429.95,
+          "number_m3_by_bin": [
+            0.0,
+            0.0,
+            0.0,
+            99928335.75196409,
+            71664.24803586317,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aerosol_sulfate_molecules_m3_by_bin": [
+            0.0,
+            0.0,
+            0.0,
+            310897899657568.9,
+            391878102066.65155,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "step": 100,
+          "time_s": 100.0,
+          "h2so4_molecules_m3": 98318971510846.16,
+          "number_m3_by_bin": [
+            0.0,
+            0.0,
+            0.0,
+            99290110.88184895,
+            709889.1181510675,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aerosol_sulfate_molecules_m3_by_bin": [
+            0.0,
+            0.0,
+            0.0,
+            308912245138354.94,
+            3889392634866.4517,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "step": 1000,
+          "time_s": 1000.0,
+          "h2so4_molecules_m3": 84229486478090.84,
+          "number_m3_by_bin": [
+            0.0,
+            0.0,
+            0.0,
+            93608026.22622092,
+            6391973.773778901,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aerosol_sulfate_molecules_m3_by_bin": [
+            0.0,
+            0.0,
+            0.0,
+            291234061192980.94,
+            35657061613017.695,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ]
+    },
+    "closed-binary": {
+      "configuration": {
+        "steps": 1000,
+        "timestep_s": 1.0,
+        "temperature_k": 260.0,
+        "pressure_pa": 101325.0,
+        "relative_humidity": 0.5,
+        "initial_h2so4_molecules_m3": 100000000000000.0,
+        "h2so4_source_molecules_m3_s": 0.0,
+        "initial_number_m3": [
+          0.0,
+          0.0,
+          0.0,
+          100000000.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "nucleation_scheme": 1,
+        "growth_option": 1,
+        "coagulation_enabled": true,
+        "condensation_enabled": true,
+        "recalculate": true
+      },
+      "comparison": {
+        "passed": true,
+        "relative_tolerance": 3e-11,
+        "absolute_tolerance": 0,
+        "water_cancellation_allowance": "32*eps*dry_particle_volume*water_density*number, per bin and step",
+        "fields": {
+          "mass": {
+            "passed": true,
+            "max_absolute_error": 1.823529601097107e-05,
+            "max_relative_error_nonzero": 3.4592918893769707e-12,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              928,
+              0,
+              11
+            ]
+          },
+          "number": {
+            "passed": true,
+            "max_absolute_error": 4.9591064453125e-05,
+            "max_relative_error_nonzero": 3.4593151595580165e-12,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              966,
+              0,
+              0
+            ]
+          },
+          "gas": {
+            "passed": true,
+            "max_absolute_error": 0.03125,
+            "max_relative_error_nonzero": 3.8117721290032164e-16,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              805,
+              0,
+              1
+            ]
+          },
+          "wet_radius_cm": {
+            "passed": true,
+            "max_absolute_error": 4.912791094074942e-20,
+            "max_relative_error_nonzero": 7.985016515822136e-15,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              991,
+              0,
+              4
+            ]
+          },
+          "dry_radius_cm": {
+            "passed": true,
+            "max_absolute_error": 3.8116482626443515e-20,
+            "max_relative_error_nonzero": 7.833194663368896e-15,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              991,
+              0,
+              4
+            ]
+          },
+          "density": {
+            "passed": true,
+            "max_absolute_error": 1.3322676295501878e-15,
+            "max_relative_error_nonzero": 8.27961734949786e-16,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              793,
+              0,
+              0
+            ]
+          },
+          "water_mass": {
+            "passed": true,
+            "max_absolute_error": 1.6139715467587395e-24,
+            "max_relative_error_nonzero": 3.4594096482594402e-12,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              928,
+              0,
+              4
+            ]
+          }
+        }
+      },
+      "checked_optimized_exact": true,
+      "jax": {
+        "sulfur_budget_passed": true,
+        "sulfur_budget_relative_tolerance": 1e-10,
+        "maximum_relative_sulfur_residual": 5.624870044892764e-14,
+        "maximum_absolute_sulfur_residual_molecules_m3": 23.125,
+        "initial_sulfur_molecules_m3": 411120609284065.1,
+        "supplied_sulfur_molecules_m3": 0.0,
+        "final_sulfur_molecules_m3": 411120609284088.25,
+        "initial_number_m3": 100000000.0,
+        "final_number_m3": 9236492351.59553,
+        "final_h2so4_molecules_m3": 81982865035985.0,
+        "pure_sulfate_soluble_only": true,
+        "negative_water_values": 0,
+        "all_state_fields_finite": true,
+        "nonnegative_mass_number_gas": true,
+        "configuration": {
+          "steps": 1000,
+          "timestep_s": 1.0,
+          "temperature_k": 260.0,
+          "pressure_pa": 101325.0,
+          "relative_humidity": 0.5,
+          "initial_h2so4_molecules_m3": 100000000000000.0,
+          "h2so4_source_molecules_m3_s": 0.0,
+          "initial_number_m3": [
+            0.0,
+            0.0,
+            0.0,
+            100000000.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "nucleation_scheme": 1,
+          "growth_option": 1,
+          "coagulation_enabled": true,
+          "condensation_enabled": true,
+          "recalculate": true
+        }
+      },
+      "fortran": {
+        "sulfur_budget_passed": true,
+        "sulfur_budget_relative_tolerance": 1e-10,
+        "maximum_relative_sulfur_residual": 3.4357314328263913e-14,
+        "maximum_absolute_sulfur_residual_molecules_m3": 14.125,
+        "initial_sulfur_molecules_m3": 411120609284065.1,
+        "supplied_sulfur_molecules_m3": 0.0,
+        "final_sulfur_molecules_m3": 411120609284079.25,
+        "initial_number_m3": 100000000.0,
+        "final_number_m3": 9236492351.595577,
+        "final_h2so4_molecules_m3": 81982865035985.03,
+        "pure_sulfate_soluble_only": true,
+        "negative_water_values": 0,
+        "all_state_fields_finite": true,
+        "nonnegative_mass_number_gas": true,
+        "configuration": {
+          "steps": 1000,
+          "timestep_s": 1.0,
+          "temperature_k": 260.0,
+          "pressure_pa": 101325.0,
+          "relative_humidity": 0.5,
+          "initial_h2so4_molecules_m3": 100000000000000.0,
+          "h2so4_source_molecules_m3_s": 0.0,
+          "initial_number_m3": [
+            0.0,
+            0.0,
+            0.0,
+            100000000.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "nucleation_scheme": 1,
+          "growth_option": 1,
+          "coagulation_enabled": true,
+          "condensation_enabled": true,
+          "recalculate": true
+        }
+      },
+      "initial_array_sha256": {
+        "mass": "fa2c9444c3f712d2b22bc32e98d861ab3f6b73d9d7440451316fcfd7ef0f92c3",
+        "number": "d5d6ff7fd19c192bc0ce79405c0dfd931a696590cabd3d8bd747f98114262a31",
+        "gas": "9f580977a33e156842e76be89f817a51f411f6e958498774a1c827ce45a36c3e"
+      },
+      "accepted": true,
+      "checkpoints": [
+        {
+          "step": 1,
+          "time_s": 1.0,
+          "h2so4_molecules_m3": 99981458615056.06,
+          "number_m3_by_bin": [
+            16066245.263578681,
+            0.0,
+            0.0,
+            99993296.51890841,
+            6696.363004125947,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aerosol_sulfate_molecules_m3_by_bin": [
+            2551159085.403659,
+            0.0,
+            0.0,
+            311099989324289.75,
+            36610185633.92979,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "step": 10,
+          "time_s": 10.0,
+          "h2so4_molecules_m3": 99814592292731.47,
+          "number_m3_by_bin": [
+            160100596.41881585,
+            0.0,
+            0.0,
+            99932142.14873214,
+            67786.6845496063,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aerosol_sulfate_molecules_m3_by_bin": [
+            25618581589.65639,
+            0.0,
+            0.0,
+            310909728462075.8,
+            370669947668.4715,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "step": 100,
+          "time_s": 100.0,
+          "h2so4_molecules_m3": 98150176021115.17,
+          "number_m3_by_bin": [
+            1523639758.1329021,
+            0.0,
+            0.0,
+            99328164.04743542,
+            671125.6885472208,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aerosol_sulfate_molecules_m3_by_bin": [
+            263260104586.75208,
+            0.0,
+            0.0,
+            309030622737906.0,
+            3676550420460.02,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "step": 1000,
+          "time_s": 1000.0,
+          "h2so4_molecules_m3": 81982865035985.0,
+          "number_m3_by_bin": [
+            9136499329.127836,
+            0.0,
+            0.0,
+            93997091.88728021,
+            5995930.580414202,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aerosol_sulfate_molecules_m3_by_bin": [
+            3291074268963.4136,
+            0.0,
+            0.0,
+            292444509877489.0,
+            33402160101650.9,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ]
+    },
+    "closed-kinetic": {
+      "configuration": {
+        "steps": 1000,
+        "timestep_s": 1.0,
+        "temperature_k": 280.0,
+        "pressure_pa": 101325.0,
+        "relative_humidity": 0.5,
+        "initial_h2so4_molecules_m3": 100000000000000.0,
+        "h2so4_source_molecules_m3_s": 0.0,
+        "initial_number_m3": [
+          0.0,
+          0.0,
+          0.0,
+          100000000.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "nucleation_scheme": 3,
+        "growth_option": 1,
+        "coagulation_enabled": true,
+        "condensation_enabled": true,
+        "recalculate": true
+      },
+      "comparison": {
+        "passed": true,
+        "relative_tolerance": 3e-11,
+        "absolute_tolerance": 0,
+        "water_cancellation_allowance": "32*eps*dry_particle_volume*water_density*number, per bin and step",
+        "fields": {
+          "mass": {
+            "passed": true,
+            "max_absolute_error": 2.378597855567932e-05,
+            "max_relative_error_nonzero": 5.8145650336427884e-12,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              995,
+              0,
+              11
+            ]
+          },
+          "number": {
+            "passed": true,
+            "max_absolute_error": 0.00054931640625,
+            "max_relative_error_nonzero": 5.814812835853581e-12,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              897,
+              0,
+              0
+            ]
+          },
+          "gas": {
+            "passed": true,
+            "max_absolute_error": 0.087890625,
+            "max_relative_error_nonzero": 6.078593286659738e-15,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              989,
+              0,
+              1
+            ]
+          },
+          "wet_radius_cm": {
+            "passed": true,
+            "max_absolute_error": 4.743384504624082e-20,
+            "max_relative_error_nonzero": 1.0101428757655042e-14,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              987,
+              0,
+              4
+            ]
+          },
+          "dry_radius_cm": {
+            "passed": true,
+            "max_absolute_error": 3.6422416731934915e-20,
+            "max_relative_error_nonzero": 9.494332752600756e-15,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              986,
+              0,
+              4
+            ]
+          },
+          "density": {
+            "passed": true,
+            "max_absolute_error": 1.7763568394002505e-15,
+            "max_relative_error_nonzero": 1.1033918318901151e-15,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              938,
+              0,
+              0
+            ]
+          },
+          "water_mass": {
+            "passed": true,
+            "max_absolute_error": 2.114601609873719e-24,
+            "max_relative_error_nonzero": 5.81499019198801e-12,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              995,
+              0,
+              4
+            ]
+          }
+        }
+      },
+      "checked_optimized_exact": true,
+      "jax": {
+        "sulfur_budget_passed": true,
+        "sulfur_budget_relative_tolerance": 1e-10,
+        "maximum_relative_sulfur_residual": 6.430594672944971e-14,
+        "maximum_absolute_sulfur_residual_molecules_m3": 26.4375,
+        "initial_sulfur_molecules_m3": 411120609284065.1,
+        "supplied_sulfur_molecules_m3": 0.0,
+        "final_sulfur_molecules_m3": 411120609284091.56,
+        "initial_number_m3": 100000000.0,
+        "final_number_m3": 275392049910.1832,
+        "final_h2so4_molecules_m3": 14440169478109.506,
+        "pure_sulfate_soluble_only": true,
+        "negative_water_values": 0,
+        "all_state_fields_finite": true,
+        "nonnegative_mass_number_gas": true,
+        "configuration": {
+          "steps": 1000,
+          "timestep_s": 1.0,
+          "temperature_k": 280.0,
+          "pressure_pa": 101325.0,
+          "relative_humidity": 0.5,
+          "initial_h2so4_molecules_m3": 100000000000000.0,
+          "h2so4_source_molecules_m3_s": 0.0,
+          "initial_number_m3": [
+            0.0,
+            0.0,
+            0.0,
+            100000000.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "nucleation_scheme": 3,
+          "growth_option": 1,
+          "coagulation_enabled": true,
+          "condensation_enabled": true,
+          "recalculate": true
+        }
+      },
+      "fortran": {
+        "sulfur_budget_passed": true,
+        "sulfur_budget_relative_tolerance": 1e-10,
+        "maximum_relative_sulfur_residual": 3.785385516698104e-14,
+        "maximum_absolute_sulfur_residual_molecules_m3": 15.5625,
+        "initial_sulfur_molecules_m3": 411120609284065.1,
+        "supplied_sulfur_molecules_m3": 0.0,
+        "final_sulfur_molecules_m3": 411120609284080.7,
+        "initial_number_m3": 100000000.0,
+        "final_number_m3": 275392049910.1837,
+        "final_h2so4_molecules_m3": 14440169478109.592,
+        "pure_sulfate_soluble_only": true,
+        "negative_water_values": 0,
+        "all_state_fields_finite": true,
+        "nonnegative_mass_number_gas": true,
+        "configuration": {
+          "steps": 1000,
+          "timestep_s": 1.0,
+          "temperature_k": 280.0,
+          "pressure_pa": 101325.0,
+          "relative_humidity": 0.5,
+          "initial_h2so4_molecules_m3": 100000000000000.0,
+          "h2so4_source_molecules_m3_s": 0.0,
+          "initial_number_m3": [
+            0.0,
+            0.0,
+            0.0,
+            100000000.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "nucleation_scheme": 3,
+          "growth_option": 1,
+          "coagulation_enabled": true,
+          "condensation_enabled": true,
+          "recalculate": true
+        }
+      },
+      "initial_array_sha256": {
+        "mass": "fa2c9444c3f712d2b22bc32e98d861ab3f6b73d9d7440451316fcfd7ef0f92c3",
+        "number": "d5d6ff7fd19c192bc0ce79405c0dfd931a696590cabd3d8bd747f98114262a31",
+        "gas": "9f580977a33e156842e76be89f817a51f411f6e958498774a1c827ce45a36c3e"
+      },
+      "accepted": true,
+      "checkpoints": [
+        {
+          "step": 1,
+          "time_s": 1.0,
+          "h2so4_molecules_m3": 99282718597036.62,
+          "number_m3_by_bin": [
+            4411313364.227297,
+            0.0,
+            0.0,
+            99992953.27051593,
+            7039.230704154568,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aerosol_sulfate_molecules_m3_by_bin": [
+            700472449105.6525,
+            0.0,
+            0.0,
+            311098933488826.7,
+            38484749096.136314,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "step": 10,
+          "time_s": 10.0,
+          "h2so4_molecules_m3": 93308521997236.9,
+          "number_m3_by_bin": [
+            40785621592.783424,
+            0.0,
+            0.0,
+            99930701.83879335,
+            69223.1888394025,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aerosol_sulfate_molecules_m3_by_bin": [
+            6528314740329.583,
+            0.0,
+            0.0,
+            310905245597873.0,
+            378526948625.67053,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "step": 100,
+          "time_s": 100.0,
+          "h2so4_molecules_m3": 62015579129596.805,
+          "number_m3_by_bin": [
+            212087802516.26694,
+            0.0,
+            0.0,
+            99440708.81411396,
+            558542.7621295932,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aerosol_sulfate_molecules_m3_by_bin": [
+            36665547240160.23,
+            0.0,
+            0.0,
+            309380699736233.56,
+            3058783178076.216,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "step": 1000,
+          "time_s": 1000.0,
+          "h2so4_molecules_m3": 14440169478109.506,
+          "number_m3_by_bin": [
+            275292057329.2354,
+            0.0,
+            0.0,
+            97383204.38227879,
+            2609376.5655610897,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aerosol_sulfate_molecules_m3_by_bin": [
+            79319019889629.53,
+            0.0,
+            0.0,
+            302979262009320.94,
+            14382157907031.582,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ]
+    },
+    "scheme1-growth2": {
+      "configuration": {
+        "steps": 1000,
+        "timestep_s": 1.0,
+        "temperature_k": 260.0,
+        "pressure_pa": 101325.0,
+        "relative_humidity": 0.5,
+        "initial_h2so4_molecules_m3": 100000000000000.0,
+        "h2so4_source_molecules_m3_s": 0.0,
+        "initial_number_m3": [
+          0.0,
+          0.0,
+          0.0,
+          100000000.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "nucleation_scheme": 1,
+        "growth_option": 2,
+        "coagulation_enabled": true,
+        "condensation_enabled": true,
+        "recalculate": true
+      },
+      "comparison": {
+        "passed": true,
+        "relative_tolerance": 3e-11,
+        "absolute_tolerance": 0,
+        "water_cancellation_allowance": "32*eps*dry_particle_volume*water_density*number, per bin and step",
+        "fields": {
+          "mass": {
+            "passed": true,
+            "max_absolute_error": 1.5985220670700073e-05,
+            "max_relative_error_nonzero": 2.2546633818839085e-12,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              985,
+              0,
+              11
+            ]
+          },
+          "number": {
+            "passed": true,
+            "max_absolute_error": 9.34600830078125e-05,
+            "max_relative_error_nonzero": 2.2547964401442836e-12,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              972,
+              0,
+              0
+            ]
+          },
+          "gas": {
+            "passed": true,
+            "max_absolute_error": 0.046875,
+            "max_relative_error_nonzero": 5.721821925565342e-16,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              895,
+              0,
+              1
+            ]
+          },
+          "wet_radius_cm": {
+            "passed": true,
+            "max_absolute_error": 4.912791094074942e-20,
+            "max_relative_error_nonzero": 7.985953348607156e-15,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              971,
+              0,
+              4
+            ]
+          },
+          "dry_radius_cm": {
+            "passed": true,
+            "max_absolute_error": 3.8116482626443515e-20,
+            "max_relative_error_nonzero": 7.834060949403745e-15,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              972,
+              0,
+              4
+            ]
+          },
+          "density": {
+            "passed": true,
+            "max_absolute_error": 1.5543122344752192e-15,
+            "max_relative_error_nonzero": 9.636153547904822e-16,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              819,
+              0,
+              0
+            ]
+          },
+          "water_mass": {
+            "passed": true,
+            "max_absolute_error": 1.4168699164238384e-24,
+            "max_relative_error_nonzero": 2.254984415159295e-12,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              985,
+              0,
+              4
+            ]
+          }
+        }
+      },
+      "checked_optimized_exact": true,
+      "jax": {
+        "sulfur_budget_passed": true,
+        "sulfur_budget_relative_tolerance": 1e-10,
+        "maximum_relative_sulfur_residual": 5.2448112580756854e-14,
+        "maximum_absolute_sulfur_residual_molecules_m3": 21.5625,
+        "initial_sulfur_molecules_m3": 411120609284065.1,
+        "supplied_sulfur_molecules_m3": 0.0,
+        "final_sulfur_molecules_m3": 411120609284086.6,
+        "initial_number_m3": 100000000.0,
+        "final_number_m3": 9409043409.451134,
+        "final_h2so4_molecules_m3": 81923206646051.84,
+        "pure_sulfate_soluble_only": true,
+        "negative_water_values": 0,
+        "all_state_fields_finite": true,
+        "nonnegative_mass_number_gas": true,
+        "configuration": {
+          "steps": 1000,
+          "timestep_s": 1.0,
+          "temperature_k": 260.0,
+          "pressure_pa": 101325.0,
+          "relative_humidity": 0.5,
+          "initial_h2so4_molecules_m3": 100000000000000.0,
+          "h2so4_source_molecules_m3_s": 0.0,
+          "initial_number_m3": [
+            0.0,
+            0.0,
+            0.0,
+            100000000.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "nucleation_scheme": 1,
+          "growth_option": 2,
+          "coagulation_enabled": true,
+          "condensation_enabled": true,
+          "recalculate": true
+        }
+      },
+      "fortran": {
+        "sulfur_budget_passed": true,
+        "sulfur_budget_relative_tolerance": 1e-10,
+        "maximum_relative_sulfur_residual": 3.4053267298810246e-14,
+        "maximum_absolute_sulfur_residual_molecules_m3": 14.0,
+        "initial_sulfur_molecules_m3": 411120609284065.1,
+        "supplied_sulfur_molecules_m3": 0.0,
+        "final_sulfur_molecules_m3": 411120609284079.06,
+        "initial_number_m3": 100000000.0,
+        "final_number_m3": 9409043409.451225,
+        "final_h2so4_molecules_m3": 81923206646051.89,
+        "pure_sulfate_soluble_only": true,
+        "negative_water_values": 0,
+        "all_state_fields_finite": true,
+        "nonnegative_mass_number_gas": true,
+        "configuration": {
+          "steps": 1000,
+          "timestep_s": 1.0,
+          "temperature_k": 260.0,
+          "pressure_pa": 101325.0,
+          "relative_humidity": 0.5,
+          "initial_h2so4_molecules_m3": 100000000000000.0,
+          "h2so4_source_molecules_m3_s": 0.0,
+          "initial_number_m3": [
+            0.0,
+            0.0,
+            0.0,
+            100000000.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "nucleation_scheme": 1,
+          "growth_option": 2,
+          "coagulation_enabled": true,
+          "condensation_enabled": true,
+          "recalculate": true
+        }
+      },
+      "initial_array_sha256": {
+        "mass": "fa2c9444c3f712d2b22bc32e98d861ab3f6b73d9d7440451316fcfd7ef0f92c3",
+        "number": "d5d6ff7fd19c192bc0ce79405c0dfd931a696590cabd3d8bd747f98114262a31",
+        "gas": "9f580977a33e156842e76be89f817a51f411f6e958498774a1c827ce45a36c3e"
+      },
+      "accepted": true,
+      "checkpoints": [
+        {
+          "step": 1,
+          "time_s": 1.0,
+          "h2so4_molecules_m3": 99981375103121.92,
+          "number_m3_by_bin": [
+            16592256.286581641,
+            0.0,
+            0.0,
+            99993296.52449365,
+            6696.357418894459,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aerosol_sulfate_molecules_m3_by_bin": [
+            2634684375.746299,
+            0.0,
+            0.0,
+            311099989341469.7,
+            36610155097.78308,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "step": 10,
+          "time_s": 10.0,
+          "h2so4_molecules_m3": 99813807472241.05,
+          "number_m3_by_bin": [
+            165008584.92014143,
+            0.0,
+            0.0,
+            99932142.43481049,
+            67786.39847126241,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aerosol_sulfate_molecules_m3_by_bin": [
+            26404078477.441322,
+            0.0,
+            0.0,
+            310909729350330.3,
+            370668383016.62866,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "step": 100,
+          "time_s": 100.0,
+          "h2so4_molecules_m3": 98143598542015.45,
+          "number_m3_by_bin": [
+            1561843993.8836753,
+            0.0,
+            0.0,
+            99328186.39083302,
+            671103.3451146422,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aerosol_sulfate_molecules_m3_by_bin": [
+            269890733095.4557,
+            0.0,
+            0.0,
+            309030692237948.6,
+            3676427771008.1094,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "step": 1000,
+          "time_s": 1000.0,
+          "h2so4_molecules_m3": 81923206646051.84,
+          "number_m3_by_bin": [
+            9309050387.010105,
+            0.0,
+            0.0,
+            93998916.01244701,
+            5994106.42858198,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aerosol_sulfate_molecules_m3_by_bin": [
+            3355416605116.8335,
+            0.0,
+            0.0,
+            292450184981228.25,
+            33391801051689.676,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ]
+    },
+    "scheme1-growth3": {
+      "configuration": {
+        "steps": 1000,
+        "timestep_s": 1.0,
+        "temperature_k": 260.0,
+        "pressure_pa": 101325.0,
+        "relative_humidity": 0.5,
+        "initial_h2so4_molecules_m3": 100000000000000.0,
+        "h2so4_source_molecules_m3_s": 0.0,
+        "initial_number_m3": [
+          0.0,
+          0.0,
+          0.0,
+          100000000.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "nucleation_scheme": 1,
+        "growth_option": 3,
+        "coagulation_enabled": true,
+        "condensation_enabled": true,
+        "recalculate": true
+      },
+      "comparison": {
+        "passed": true,
+        "relative_tolerance": 3e-11,
+        "absolute_tolerance": 0,
+        "water_cancellation_allowance": "32*eps*dry_particle_volume*water_density*number, per bin and step",
+        "fields": {
+          "mass": {
+            "passed": true,
+            "max_absolute_error": 1.4230608940124512e-05,
+            "max_relative_error_nonzero": 4.844125673652556e-12,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              929,
+              0,
+              11
+            ]
+          },
+          "number": {
+            "passed": true,
+            "max_absolute_error": 5.91278076171875e-05,
+            "max_relative_error_nonzero": 4.843996034594908e-12,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              660,
+              0,
+              0
+            ]
+          },
+          "gas": {
+            "passed": true,
+            "max_absolute_error": 0.109375,
+            "max_relative_error_nonzero": 1.2949738704854117e-15,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              754,
+              0,
+              1
+            ]
+          },
+          "wet_radius_cm": {
+            "passed": true,
+            "max_absolute_error": 3.7269449679189215e-20,
+            "max_relative_error_nonzero": 7.719126821378899e-15,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              655,
+              0,
+              4
+            ]
+          },
+          "dry_radius_cm": {
+            "passed": true,
+            "max_absolute_error": 2.879912020664621e-20,
+            "max_relative_error_nonzero": 7.226901086812253e-15,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              663,
+              0,
+              4
+            ]
+          },
+          "density": {
+            "passed": true,
+            "max_absolute_error": 1.5543122344752192e-15,
+            "max_relative_error_nonzero": 9.65298789822526e-16,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              957,
+              0,
+              0
+            ]
+          },
+          "water_mass": {
+            "passed": true,
+            "max_absolute_error": 1.262581345137092e-24,
+            "max_relative_error_nonzero": 4.844103146496604e-12,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              964,
+              0,
+              4
+            ]
+          }
+        }
+      },
+      "checked_optimized_exact": true,
+      "jax": {
+        "sulfur_budget_passed": true,
+        "sulfur_budget_relative_tolerance": 1e-10,
+        "maximum_relative_sulfur_residual": 4.971168931567389e-14,
+        "maximum_absolute_sulfur_residual_molecules_m3": 20.4375,
+        "initial_sulfur_molecules_m3": 411120609284065.1,
+        "supplied_sulfur_molecules_m3": 0.0,
+        "final_sulfur_molecules_m3": 411120609284085.56,
+        "initial_number_m3": 100000000.0,
+        "final_number_m3": 9411226163.334076,
+        "final_h2so4_molecules_m3": 81922448706293.8,
+        "pure_sulfate_soluble_only": true,
+        "negative_water_values": 0,
+        "all_state_fields_finite": true,
+        "nonnegative_mass_number_gas": true,
+        "configuration": {
+          "steps": 1000,
+          "timestep_s": 1.0,
+          "temperature_k": 260.0,
+          "pressure_pa": 101325.0,
+          "relative_humidity": 0.5,
+          "initial_h2so4_molecules_m3": 100000000000000.0,
+          "h2so4_source_molecules_m3_s": 0.0,
+          "initial_number_m3": [
+            0.0,
+            0.0,
+            0.0,
+            100000000.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "nucleation_scheme": 1,
+          "growth_option": 3,
+          "coagulation_enabled": true,
+          "condensation_enabled": true,
+          "recalculate": true
+        }
+      },
+      "fortran": {
+        "sulfur_budget_passed": true,
+        "sulfur_budget_relative_tolerance": 1e-10,
+        "maximum_relative_sulfur_residual": 3.648564353443955e-14,
+        "maximum_absolute_sulfur_residual_molecules_m3": 15.0,
+        "initial_sulfur_molecules_m3": 411120609284065.1,
+        "supplied_sulfur_molecules_m3": 0.0,
+        "final_sulfur_molecules_m3": 411120609284080.0,
+        "initial_number_m3": 100000000.0,
+        "final_number_m3": 9411226163.334085,
+        "final_h2so4_molecules_m3": 81922448706293.84,
+        "pure_sulfate_soluble_only": true,
+        "negative_water_values": 0,
+        "all_state_fields_finite": true,
+        "nonnegative_mass_number_gas": true,
+        "configuration": {
+          "steps": 1000,
+          "timestep_s": 1.0,
+          "temperature_k": 260.0,
+          "pressure_pa": 101325.0,
+          "relative_humidity": 0.5,
+          "initial_h2so4_molecules_m3": 100000000000000.0,
+          "h2so4_source_molecules_m3_s": 0.0,
+          "initial_number_m3": [
+            0.0,
+            0.0,
+            0.0,
+            100000000.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "nucleation_scheme": 1,
+          "growth_option": 3,
+          "coagulation_enabled": true,
+          "condensation_enabled": true,
+          "recalculate": true
+        }
+      },
+      "initial_array_sha256": {
+        "mass": "fa2c9444c3f712d2b22bc32e98d861ab3f6b73d9d7440451316fcfd7ef0f92c3",
+        "number": "d5d6ff7fd19c192bc0ce79405c0dfd931a696590cabd3d8bd747f98114262a31",
+        "gas": "9f580977a33e156842e76be89f817a51f411f6e958498774a1c827ce45a36c3e"
+      },
+      "accepted": true,
+      "checkpoints": [
+        {
+          "step": 1,
+          "time_s": 1.0,
+          "h2so4_molecules_m3": 99981374347645.44,
+          "number_m3_by_bin": [
+            16597014.755723976,
+            0.0,
+            0.0,
+            99993296.52454418,
+            6696.357368361677,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aerosol_sulfate_molecules_m3_by_bin": [
+            2635439973.0614104,
+            0.0,
+            0.0,
+            311099989341625.1,
+            36610154821.505104,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "step": 10,
+          "time_s": 10.0,
+          "h2so4_molecules_m3": 99813799915532.81,
+          "number_m3_by_bin": [
+            165055849.35538688,
+            0.0,
+            0.0,
+            99932142.43751565,
+            67786.39576612116,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aerosol_sulfate_molecules_m3_by_bin": [
+            26411641581.94546,
+            0.0,
+            0.0,
+            310909729358729.25,
+            370668368221.36566,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "step": 100,
+          "time_s": 100.0,
+          "h2so4_molecules_m3": 98143522832557.64,
+          "number_m3_by_bin": [
+            1562285368.5895176,
+            0.0,
+            0.0,
+            99328186.63687049,
+            671103.099077005,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aerosol_sulfate_molecules_m3_by_bin": [
+            269967027821.45255,
+            0.0,
+            0.0,
+            309030693003250.7,
+            3676426420437.956,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "step": 1000,
+          "time_s": 1000.0,
+          "h2so4_molecules_m3": 81922448706293.8,
+          "number_m3_by_bin": [
+            9311233140.893383,
+            0.0,
+            0.0,
+            93998939.25488399,
+            5994083.185808455,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aerosol_sulfate_molecules_m3_by_bin": [
+            3356234225317.306,
+            0.0,
+            0.0,
+            292450257291644.06,
+            33391669060830.42,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ]
+    },
+    "scheme2-growth2": {
+      "configuration": {
+        "steps": 1000,
+        "timestep_s": 1.0,
+        "temperature_k": 280.0,
+        "pressure_pa": 101325.0,
+        "relative_humidity": 0.5,
+        "initial_h2so4_molecules_m3": 100000000000000.0,
+        "h2so4_source_molecules_m3_s": 0.0,
+        "initial_number_m3": [
+          0.0,
+          0.0,
+          0.0,
+          100000000.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "nucleation_scheme": 2,
+        "growth_option": 2,
+        "coagulation_enabled": true,
+        "condensation_enabled": true,
+        "recalculate": true
+      },
+      "comparison": {
+        "passed": true,
+        "relative_tolerance": 3e-11,
+        "absolute_tolerance": 0,
+        "water_cancellation_allowance": "32*eps*dry_particle_volume*water_density*number, per bin and step",
+        "fields": {
+          "mass": {
+            "passed": true,
+            "max_absolute_error": 1.8343329429626465e-05,
+            "max_relative_error_nonzero": 2.9469718446946584e-12,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              998,
+              0,
+              11
+            ]
+          },
+          "number": {
+            "passed": true,
+            "max_absolute_error": 3.0517578125e-05,
+            "max_relative_error_nonzero": 2.9472215112805307e-12,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              320,
+              0,
+              0
+            ]
+          },
+          "gas": {
+            "passed": true,
+            "max_absolute_error": 0.09375,
+            "max_relative_error_nonzero": 1.1479001082114777e-15,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              463,
+              0,
+              1
+            ]
+          },
+          "wet_radius_cm": {
+            "passed": true,
+            "max_absolute_error": 5.336307567702092e-20,
+            "max_relative_error_nonzero": 8.665466187897307e-15,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              976,
+              0,
+              4
+            ]
+          },
+          "dry_radius_cm": {
+            "passed": true,
+            "max_absolute_error": 4.2351647362715017e-20,
+            "max_relative_error_nonzero": 8.700355719487434e-15,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              988,
+              0,
+              4
+            ]
+          },
+          "density": {
+            "passed": true,
+            "max_absolute_error": 1.3322676295501878e-15,
+            "max_relative_error_nonzero": 8.309589816698547e-16,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              780,
+              0,
+              0
+            ]
+          },
+          "water_mass": {
+            "passed": true,
+            "max_absolute_error": 1.6313391084480853e-24,
+            "max_relative_error_nonzero": 2.946229700462432e-12,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              998,
+              0,
+              4
+            ]
+          }
+        }
+      },
+      "checked_optimized_exact": true,
+      "jax": {
+        "sulfur_budget_passed": true,
+        "sulfur_budget_relative_tolerance": 1e-10,
+        "maximum_relative_sulfur_residual": 5.2296089066030023e-14,
+        "maximum_absolute_sulfur_residual_molecules_m3": 21.5,
+        "initial_sulfur_molecules_m3": 411120609284065.1,
+        "supplied_sulfur_molecules_m3": 0.0,
+        "final_sulfur_molecules_m3": 411120609284086.6,
+        "initial_number_m3": 100000000.0,
+        "final_number_m3": 8216832985.071944,
+        "final_h2so4_molecules_m3": 81670869555078.33,
+        "pure_sulfate_soluble_only": true,
+        "negative_water_values": 0,
+        "all_state_fields_finite": true,
+        "nonnegative_mass_number_gas": true,
+        "configuration": {
+          "steps": 1000,
+          "timestep_s": 1.0,
+          "temperature_k": 280.0,
+          "pressure_pa": 101325.0,
+          "relative_humidity": 0.5,
+          "initial_h2so4_molecules_m3": 100000000000000.0,
+          "h2so4_source_molecules_m3_s": 0.0,
+          "initial_number_m3": [
+            0.0,
+            0.0,
+            0.0,
+            100000000.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "nucleation_scheme": 2,
+          "growth_option": 2,
+          "coagulation_enabled": true,
+          "condensation_enabled": true,
+          "recalculate": true
+        }
+      },
+      "fortran": {
+        "sulfur_budget_passed": true,
+        "sulfur_budget_relative_tolerance": 1e-10,
+        "maximum_relative_sulfur_residual": 3.298910269572243e-14,
+        "maximum_absolute_sulfur_residual_molecules_m3": 13.5625,
+        "initial_sulfur_molecules_m3": 411120609284065.1,
+        "supplied_sulfur_molecules_m3": 0.0,
+        "final_sulfur_molecules_m3": 411120609284078.7,
+        "initial_number_m3": 100000000.0,
+        "final_number_m3": 8216832985.071946,
+        "final_h2so4_molecules_m3": 81670869555078.42,
+        "pure_sulfate_soluble_only": true,
+        "negative_water_values": 0,
+        "all_state_fields_finite": true,
+        "nonnegative_mass_number_gas": true,
+        "configuration": {
+          "steps": 1000,
+          "timestep_s": 1.0,
+          "temperature_k": 280.0,
+          "pressure_pa": 101325.0,
+          "relative_humidity": 0.5,
+          "initial_h2so4_molecules_m3": 100000000000000.0,
+          "h2so4_source_molecules_m3_s": 0.0,
+          "initial_number_m3": [
+            0.0,
+            0.0,
+            0.0,
+            100000000.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "nucleation_scheme": 2,
+          "growth_option": 2,
+          "coagulation_enabled": true,
+          "condensation_enabled": true,
+          "recalculate": true
+        }
+      },
+      "initial_array_sha256": {
+        "mass": "fa2c9444c3f712d2b22bc32e98d861ab3f6b73d9d7440451316fcfd7ef0f92c3",
+        "number": "d5d6ff7fd19c192bc0ce79405c0dfd931a696590cabd3d8bd747f98114262a31",
+        "gas": "9f580977a33e156842e76be89f817a51f411f6e958498774a1c827ce45a36c3e"
+      },
+      "accepted": true,
+      "checkpoints": [
+        {
+          "step": 1,
+          "time_s": 1.0,
+          "h2so4_molecules_m3": 99981612442434.38,
+          "number_m3_by_bin": [
+            9196285.895386692,
+            0.0,
+            0.0,
+            99992903.78979667,
+            7088.711423420308,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aerosol_sulfate_molecules_m3_by_bin": [
+            1460278237.3284528,
+            0.0,
+            0.0,
+            311098781287575.3,
+            38755275818.16251,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "step": 10,
+          "time_s": 10.0,
+          "h2so4_molecules_m3": 99816139614130.12,
+          "number_m3_by_bin": [
+            91866374.27589165,
+            0.0,
+            0.0,
+            99928167.58864613,
+            71757.43936558091,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aerosol_sulfate_molecules_m3_by_bin": [
+            14705086689.295471,
+            0.0,
+            0.0,
+            310897376779295.3,
+            392387803950.5148,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "step": 100,
+          "time_s": 100.0,
+          "h2so4_molecules_m3": 98162766885271.95,
+          "number_m3_by_bin": [
+            909009770.4498477,
+            0.0,
+            0.0,
+            99288911.79120786,
+            710340.0556506534,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aerosol_sulfate_molecules_m3_by_bin": [
+            157459599328.65686,
+            0.0,
+            0.0,
+            308908514486020.7,
+            3891868313446.0234,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "step": 1000,
+          "time_s": 1000.0,
+          "h2so4_molecules_m3": 81670869555078.33,
+          "number_m3_by_bin": [
+            8116840327.353588,
+            0.0,
+            0.0,
+            93662634.67379417,
+            6330023.044562228,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aerosol_sulfate_molecules_m3_by_bin": [
+            2741402527897.788,
+            0.0,
+            0.0,
+            291403953909641.6,
+            35304383291468.89,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ]
+    },
+    "scheme2-growth3": {
+      "configuration": {
+        "steps": 1000,
+        "timestep_s": 1.0,
+        "temperature_k": 280.0,
+        "pressure_pa": 101325.0,
+        "relative_humidity": 0.5,
+        "initial_h2so4_molecules_m3": 100000000000000.0,
+        "h2so4_source_molecules_m3_s": 0.0,
+        "initial_number_m3": [
+          0.0,
+          0.0,
+          0.0,
+          100000000.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "nucleation_scheme": 2,
+        "growth_option": 3,
+        "coagulation_enabled": true,
+        "condensation_enabled": true,
+        "recalculate": true
+      },
+      "comparison": {
+        "passed": true,
+        "relative_tolerance": 3e-11,
+        "absolute_tolerance": 0,
+        "water_cancellation_allowance": "32*eps*dry_particle_volume*water_density*number, per bin and step",
+        "fields": {
+          "mass": {
+            "passed": true,
+            "max_absolute_error": 1.0680407285690308e-05,
+            "max_relative_error_nonzero": 2.3281772270271465e-12,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              793,
+              0,
+              11
+            ]
+          },
+          "number": {
+            "passed": true,
+            "max_absolute_error": 1.621246337890625e-05,
+            "max_relative_error_nonzero": 2.328036848586716e-12,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              997,
+              0,
+              0
+            ]
+          },
+          "gas": {
+            "passed": true,
+            "max_absolute_error": 0.1875,
+            "max_relative_error_nonzero": 2.2958151102983243e-15,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              997,
+              0,
+              1
+            ]
+          },
+          "wet_radius_cm": {
+            "passed": true,
+            "max_absolute_error": 3.9810548520952116e-20,
+            "max_relative_error_nonzero": 8.05754190814002e-15,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              984,
+              0,
+              4
+            ]
+          },
+          "dry_radius_cm": {
+            "passed": true,
+            "max_absolute_error": 3.134021904840911e-20,
+            "max_relative_error_nonzero": 7.618719090172573e-15,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              993,
+              0,
+              4
+            ]
+          },
+          "density": {
+            "passed": true,
+            "max_absolute_error": 1.5543122344752192e-15,
+            "max_relative_error_nonzero": 9.684417414496371e-16,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              909,
+              0,
+              0
+            ]
+          },
+          "water_mass": {
+            "passed": true,
+            "max_absolute_error": 9.515808218627604e-25,
+            "max_relative_error_nonzero": 2.3278469937931092e-12,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              797,
+              0,
+              4
+            ]
+          }
+        }
+      },
+      "checked_optimized_exact": true,
+      "jax": {
+        "sulfur_budget_passed": true,
+        "sulfur_budget_relative_tolerance": 1e-10,
+        "maximum_relative_sulfur_residual": 4.7127289565317755e-14,
+        "maximum_absolute_sulfur_residual_molecules_m3": 19.375,
+        "initial_sulfur_molecules_m3": 411120609284065.1,
+        "supplied_sulfur_molecules_m3": 0.0,
+        "final_sulfur_molecules_m3": 411120609284084.44,
+        "initial_number_m3": 100000000.0,
+        "final_number_m3": 8218631529.276053,
+        "final_h2so4_molecules_m3": 81670339723321.77,
+        "pure_sulfate_soluble_only": true,
+        "negative_water_values": 0,
+        "all_state_fields_finite": true,
+        "nonnegative_mass_number_gas": true,
+        "configuration": {
+          "steps": 1000,
+          "timestep_s": 1.0,
+          "temperature_k": 280.0,
+          "pressure_pa": 101325.0,
+          "relative_humidity": 0.5,
+          "initial_h2so4_molecules_m3": 100000000000000.0,
+          "h2so4_source_molecules_m3_s": 0.0,
+          "initial_number_m3": [
+            0.0,
+            0.0,
+            0.0,
+            100000000.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "nucleation_scheme": 2,
+          "growth_option": 3,
+          "coagulation_enabled": true,
+          "condensation_enabled": true,
+          "recalculate": true
+        }
+      },
+      "fortran": {
+        "sulfur_budget_passed": true,
+        "sulfur_budget_relative_tolerance": 1e-10,
+        "maximum_relative_sulfur_residual": 3.5725525960805396e-14,
+        "maximum_absolute_sulfur_residual_molecules_m3": 14.6875,
+        "initial_sulfur_molecules_m3": 411120609284065.1,
+        "supplied_sulfur_molecules_m3": 0.0,
+        "final_sulfur_molecules_m3": 411120609284079.8,
+        "initial_number_m3": 100000000.0,
+        "final_number_m3": 8218631529.276038,
+        "final_h2so4_molecules_m3": 81670339723321.95,
+        "pure_sulfate_soluble_only": true,
+        "negative_water_values": 0,
+        "all_state_fields_finite": true,
+        "nonnegative_mass_number_gas": true,
+        "configuration": {
+          "steps": 1000,
+          "timestep_s": 1.0,
+          "temperature_k": 280.0,
+          "pressure_pa": 101325.0,
+          "relative_humidity": 0.5,
+          "initial_h2so4_molecules_m3": 100000000000000.0,
+          "h2so4_source_molecules_m3_s": 0.0,
+          "initial_number_m3": [
+            0.0,
+            0.0,
+            0.0,
+            100000000.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "nucleation_scheme": 2,
+          "growth_option": 3,
+          "coagulation_enabled": true,
+          "condensation_enabled": true,
+          "recalculate": true
+        }
+      },
+      "initial_array_sha256": {
+        "mass": "fa2c9444c3f712d2b22bc32e98d861ab3f6b73d9d7440451316fcfd7ef0f92c3",
+        "number": "d5d6ff7fd19c192bc0ce79405c0dfd931a696590cabd3d8bd747f98114262a31",
+        "gas": "9f580977a33e156842e76be89f817a51f411f6e958498774a1c827ce45a36c3e"
+      },
+      "accepted": true,
+      "checkpoints": [
+        {
+          "step": 1,
+          "time_s": 1.0,
+          "h2so4_molecules_m3": 99981612205057.11,
+          "number_m3_by_bin": [
+            9197781.061572896,
+            0.0,
+            0.0,
+            99992903.78981344,
+            7088.711406629894,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aerosol_sulfate_molecules_m3_by_bin": [
+            1460515654.7671604,
+            0.0,
+            0.0,
+            311098781287626.9,
+            38755275726.36398,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "step": 10,
+          "time_s": 10.0,
+          "h2so4_molecules_m3": 99816137218858.98,
+          "number_m3_by_bin": [
+            91881351.65886912,
+            0.0,
+            0.0,
+            99928167.5895516,
+            71757.43846010725,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aerosol_sulfate_molecules_m3_by_bin": [
+            14707484101.54545,
+            0.0,
+            0.0,
+            310897376782106.7,
+            392387798998.06934,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "step": 100,
+          "time_s": 100.0,
+          "h2so4_molecules_m3": 98162740725945.72,
+          "number_m3_by_bin": [
+            909162130.6376537,
+            0.0,
+            0.0,
+            99288911.87845929,
+            710339.968399347,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aerosol_sulfate_molecules_m3_by_bin": [
+            157485966329.33878,
+            0.0,
+            0.0,
+            308908514757415.25,
+            3891867834377.4043,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "step": 1000,
+          "time_s": 1000.0,
+          "h2so4_molecules_m3": 81670339723321.77,
+          "number_m3_by_bin": [
+            8118638871.557881,
+            0.0,
+            0.0,
+            93662648.40274754,
+            6330009.315424893,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aerosol_sulfate_molecules_m3_by_bin": [
+            2741967798463.092,
+            0.0,
+            0.0,
+            291403996622065.2,
+            35304305140234.41,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ]
+    },
+    "scheme3-growth2": {
+      "configuration": {
+        "steps": 1000,
+        "timestep_s": 1.0,
+        "temperature_k": 280.0,
+        "pressure_pa": 101325.0,
+        "relative_humidity": 0.5,
+        "initial_h2so4_molecules_m3": 100000000000000.0,
+        "h2so4_source_molecules_m3_s": 0.0,
+        "initial_number_m3": [
+          0.0,
+          0.0,
+          0.0,
+          100000000.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "nucleation_scheme": 3,
+        "growth_option": 2,
+        "coagulation_enabled": true,
+        "condensation_enabled": true,
+        "recalculate": true
+      },
+      "comparison": {
+        "passed": true,
+        "relative_tolerance": 3e-11,
+        "absolute_tolerance": 0,
+        "water_cancellation_allowance": "32*eps*dry_particle_volume*water_density*number, per bin and step",
+        "fields": {
+          "mass": {
+            "passed": true,
+            "max_absolute_error": 2.237968146800995e-05,
+            "max_relative_error_nonzero": 1.7930133271475719e-12,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              998,
+              0,
+              11
+            ]
+          },
+          "number": {
+            "passed": true,
+            "max_absolute_error": 0.00042724609375,
+            "max_relative_error_nonzero": 1.7931913550230772e-12,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              673,
+              0,
+              0
+            ]
+          },
+          "gas": {
+            "passed": true,
+            "max_absolute_error": 0.150390625,
+            "max_relative_error_nonzero": 8.931797456370596e-15,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              995,
+              0,
+              1
+            ]
+          },
+          "wet_radius_cm": {
+            "passed": true,
+            "max_absolute_error": 6.522153693858113e-20,
+            "max_relative_error_nonzero": 1.0629852687766209e-14,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              984,
+              0,
+              4
+            ]
+          },
+          "dry_radius_cm": {
+            "passed": true,
+            "max_absolute_error": 5.082197683525802e-20,
+            "max_relative_error_nonzero": 1.0478997363341341e-14,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              988,
+              0,
+              4
+            ]
+          },
+          "density": {
+            "passed": true,
+            "max_absolute_error": 1.7763568394002505e-15,
+            "max_relative_error_nonzero": 1.1045602453609201e-15,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              816,
+              0,
+              0
+            ]
+          },
+          "water_mass": {
+            "passed": true,
+            "max_absolute_error": 1.9887877618218302e-24,
+            "max_relative_error_nonzero": 1.791900698086483e-12,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              998,
+              0,
+              4
+            ]
+          }
+        }
+      },
+      "checked_optimized_exact": true,
+      "jax": {
+        "sulfur_budget_passed": true,
+        "sulfur_budget_relative_tolerance": 1e-10,
+        "maximum_relative_sulfur_residual": 7.266724003942544e-14,
+        "maximum_absolute_sulfur_residual_molecules_m3": 29.875,
+        "initial_sulfur_molecules_m3": 411120609284065.1,
+        "supplied_sulfur_molecules_m3": 0.0,
+        "final_sulfur_molecules_m3": 411120609284095.0,
+        "initial_number_m3": 100000000.0,
+        "final_number_m3": 256942372732.30875,
+        "final_h2so4_molecules_m3": 16837666296690.672,
+        "pure_sulfate_soluble_only": true,
+        "negative_water_values": 0,
+        "all_state_fields_finite": true,
+        "nonnegative_mass_number_gas": true,
+        "configuration": {
+          "steps": 1000,
+          "timestep_s": 1.0,
+          "temperature_k": 280.0,
+          "pressure_pa": 101325.0,
+          "relative_humidity": 0.5,
+          "initial_h2so4_molecules_m3": 100000000000000.0,
+          "h2so4_source_molecules_m3_s": 0.0,
+          "initial_number_m3": [
+            0.0,
+            0.0,
+            0.0,
+            100000000.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "nucleation_scheme": 3,
+          "growth_option": 2,
+          "coagulation_enabled": true,
+          "condensation_enabled": true,
+          "recalculate": true
+        }
+      },
+      "fortran": {
+        "sulfur_budget_passed": true,
+        "sulfur_budget_relative_tolerance": 1e-10,
+        "maximum_relative_sulfur_residual": 4.2870631152966476e-14,
+        "maximum_absolute_sulfur_residual_molecules_m3": 17.625,
+        "initial_sulfur_molecules_m3": 411120609284065.1,
+        "supplied_sulfur_molecules_m3": 0.0,
+        "final_sulfur_molecules_m3": 411120609284082.75,
+        "initial_number_m3": 100000000.0,
+        "final_number_m3": 256942372732.30914,
+        "final_h2so4_molecules_m3": 16837666296690.822,
+        "pure_sulfate_soluble_only": true,
+        "negative_water_values": 0,
+        "all_state_fields_finite": true,
+        "nonnegative_mass_number_gas": true,
+        "configuration": {
+          "steps": 1000,
+          "timestep_s": 1.0,
+          "temperature_k": 280.0,
+          "pressure_pa": 101325.0,
+          "relative_humidity": 0.5,
+          "initial_h2so4_molecules_m3": 100000000000000.0,
+          "h2so4_source_molecules_m3_s": 0.0,
+          "initial_number_m3": [
+            0.0,
+            0.0,
+            0.0,
+            100000000.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "nucleation_scheme": 3,
+          "growth_option": 2,
+          "coagulation_enabled": true,
+          "condensation_enabled": true,
+          "recalculate": true
+        }
+      },
+      "initial_array_sha256": {
+        "mass": "fa2c9444c3f712d2b22bc32e98d861ab3f6b73d9d7440451316fcfd7ef0f92c3",
+        "number": "d5d6ff7fd19c192bc0ce79405c0dfd931a696590cabd3d8bd747f98114262a31",
+        "gas": "9f580977a33e156842e76be89f817a51f411f6e958498774a1c827ce45a36c3e"
+      },
+      "accepted": true,
+      "checkpoints": [
+        {
+          "step": 1,
+          "time_s": 1.0,
+          "h2so4_molecules_m3": 99258343940048.28,
+          "number_m3_by_bin": [
+            4564841821.393499,
+            0.0,
+            0.0,
+            99992954.9962087,
+            7037.5050113969555,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aerosol_sulfate_molecules_m3_by_bin": [
+            724851232819.0739,
+            0.0,
+            0.0,
+            311098938797007.44,
+            38475314190.404655,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "step": 10,
+          "time_s": 10.0,
+          "h2so4_molecules_m3": 93310187874890.64,
+          "number_m3_by_bin": [
+            40772470548.60059,
+            0.0,
+            0.0,
+            99930720.56926906,
+            69204.458358684,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aerosol_sulfate_molecules_m3_by_bin": [
+            6526693027057.306,
+            0.0,
+            0.0,
+            310905303877275.56,
+            378424504841.85834,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "step": 100,
+          "time_s": 100.0,
+          "h2so4_molecules_m3": 64243650126625.65,
+          "number_m3_by_bin": [
+            198552285608.79614,
+            0.0,
+            0.0,
+            99433615.80923787,
+            565635.7770402499,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aerosol_sulfate_molecules_m3_by_bin": [
+            34420628447698.49,
+            0.0,
+            0.0,
+            309358637281397.7,
+            3097693428346.6616,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "step": 1000,
+          "time_s": 1000.0,
+          "h2so4_molecules_m3": 16837666296690.672,
+          "number_m3_by_bin": [
+            256842380146.77332,
+            0.0,
+            0.0,
+            97184989.33946955,
+            2807596.195944943,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aerosol_sulfate_molecules_m3_by_bin": [
+            76436179998799.72,
+            0.0,
+            0.0,
+            302362579629223.06,
+            15484183359381.52,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ]
+    },
+    "scheme3-growth3": {
+      "configuration": {
+        "steps": 1000,
+        "timestep_s": 1.0,
+        "temperature_k": 280.0,
+        "pressure_pa": 101325.0,
+        "relative_humidity": 0.5,
+        "initial_h2so4_molecules_m3": 100000000000000.0,
+        "h2so4_source_molecules_m3_s": 0.0,
+        "initial_number_m3": [
+          0.0,
+          0.0,
+          0.0,
+          100000000.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "nucleation_scheme": 3,
+        "growth_option": 3,
+        "coagulation_enabled": true,
+        "condensation_enabled": true,
+        "recalculate": true
+      },
+      "comparison": {
+        "passed": true,
+        "relative_tolerance": 3e-11,
+        "absolute_tolerance": 0,
+        "water_cancellation_allowance": "32*eps*dry_particle_volume*water_density*number, per bin and step",
+        "fields": {
+          "mass": {
+            "passed": true,
+            "max_absolute_error": 8.253008127212524e-05,
+            "max_relative_error_nonzero": 2.2771898397718687e-12,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              401,
+              0,
+              0
+            ]
+          },
+          "number": {
+            "passed": true,
+            "max_absolute_error": 0.52374267578125,
+            "max_relative_error_nonzero": 2.277268535916911e-12,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              401,
+              0,
+              0
+            ]
+          },
+          "gas": {
+            "passed": true,
+            "max_absolute_error": 83.390625,
+            "max_relative_error_nonzero": 2.5496948406780794e-12,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              401,
+              0,
+              1
+            ]
+          },
+          "wet_radius_cm": {
+            "passed": true,
+            "max_absolute_error": 4.573977915173222e-20,
+            "max_relative_error_nonzero": 1.6818712575677547e-13,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              980,
+              0,
+              4
+            ]
+          },
+          "dry_radius_cm": {
+            "passed": true,
+            "max_absolute_error": 3.6422416731934915e-20,
+            "max_relative_error_nonzero": 1.5846634028790046e-13,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              999,
+              0,
+              4
+            ]
+          },
+          "density": {
+            "passed": true,
+            "max_absolute_error": 1.84297022087776e-14,
+            "max_relative_error_nonzero": 1.1373551275293029e-14,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              401,
+              0,
+              0
+            ]
+          },
+          "water_mass": {
+            "passed": true,
+            "max_absolute_error": 2.3926845452949883e-24,
+            "max_relative_error_nonzero": 2.2774262374391042e-12,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              997,
+              0,
+              4
+            ]
+          }
+        }
+      },
+      "checked_optimized_exact": true,
+      "jax": {
+        "sulfur_budget_passed": true,
+        "sulfur_budget_relative_tolerance": 1e-10,
+        "maximum_relative_sulfur_residual": 6.719439350925951e-14,
+        "maximum_absolute_sulfur_residual_molecules_m3": 27.625,
+        "initial_sulfur_molecules_m3": 411120609284065.1,
+        "supplied_sulfur_molecules_m3": 0.0,
+        "final_sulfur_molecules_m3": 411120609284092.7,
+        "initial_number_m3": 100000000.0,
+        "final_number_m3": 333735311112.77234,
+        "final_h2so4_molecules_m3": 7177224184244.145,
+        "pure_sulfate_soluble_only": true,
+        "negative_water_values": 0,
+        "all_state_fields_finite": true,
+        "nonnegative_mass_number_gas": true,
+        "configuration": {
+          "steps": 1000,
+          "timestep_s": 1.0,
+          "temperature_k": 280.0,
+          "pressure_pa": 101325.0,
+          "relative_humidity": 0.5,
+          "initial_h2so4_molecules_m3": 100000000000000.0,
+          "h2so4_source_molecules_m3_s": 0.0,
+          "initial_number_m3": [
+            0.0,
+            0.0,
+            0.0,
+            100000000.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "nucleation_scheme": 3,
+          "growth_option": 3,
+          "coagulation_enabled": true,
+          "condensation_enabled": true,
+          "recalculate": true
+        }
+      },
+      "fortran": {
+        "sulfur_budget_passed": true,
+        "sulfur_budget_relative_tolerance": 1e-10,
+        "maximum_relative_sulfur_residual": 4.1198372490971326e-14,
+        "maximum_absolute_sulfur_residual_molecules_m3": 16.9375,
+        "initial_sulfur_molecules_m3": 411120609284065.1,
+        "supplied_sulfur_molecules_m3": 0.0,
+        "final_sulfur_molecules_m3": 411120609284082.06,
+        "initial_number_m3": 100000000.0,
+        "final_number_m3": 333735311112.8491,
+        "final_h2so4_molecules_m3": 7177224184237.347,
+        "pure_sulfate_soluble_only": true,
+        "negative_water_values": 0,
+        "all_state_fields_finite": true,
+        "nonnegative_mass_number_gas": true,
+        "configuration": {
+          "steps": 1000,
+          "timestep_s": 1.0,
+          "temperature_k": 280.0,
+          "pressure_pa": 101325.0,
+          "relative_humidity": 0.5,
+          "initial_h2so4_molecules_m3": 100000000000000.0,
+          "h2so4_source_molecules_m3_s": 0.0,
+          "initial_number_m3": [
+            0.0,
+            0.0,
+            0.0,
+            100000000.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "nucleation_scheme": 3,
+          "growth_option": 3,
+          "coagulation_enabled": true,
+          "condensation_enabled": true,
+          "recalculate": true
+        }
+      },
+      "initial_array_sha256": {
+        "mass": "fa2c9444c3f712d2b22bc32e98d861ab3f6b73d9d7440451316fcfd7ef0f92c3",
+        "number": "d5d6ff7fd19c192bc0ce79405c0dfd931a696590cabd3d8bd747f98114262a31",
+        "gas": "9f580977a33e156842e76be89f817a51f411f6e958498774a1c827ce45a36c3e"
+      },
+      "accepted": true,
+      "checkpoints": [
+        {
+          "step": 1,
+          "time_s": 1.0,
+          "h2so4_molecules_m3": 99235267406086.72,
+          "number_m3_by_bin": [
+            4710193801.425733,
+            0.0,
+            0.0,
+            99992956.6299961,
+            7035.871223964337,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aerosol_sulfate_molecules_m3_by_bin": [
+            747931673728.3922,
+            0.0,
+            0.0,
+            311098943822489.94,
+            38466381760.13036,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "step": 10,
+          "time_s": 10.0,
+          "h2so4_molecules_m3": 93004769843341.34,
+          "number_m3_by_bin": [
+            42684549996.78384,
+            0.0,
+            0.0,
+            99930828.36193456,
+            69096.66567816223,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aerosol_sulfate_molecules_m3_by_bin": [
+            6832365991111.453,
+            0.0,
+            0.0,
+            310905638502344.2,
+            377834947268.3191,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "step": 100,
+          "time_s": 100.0,
+          "h2so4_molecules_m3": 61251154560619.46,
+          "number_m3_by_bin": [
+            216575182211.64227,
+            0.0,
+            0.0,
+            99444915.71696095,
+            554335.8508713623,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aerosol_sulfate_molecules_m3_by_bin": [
+            37439962291659.586,
+            0.0,
+            0.0,
+            309393786446668.8,
+            3035705985119.591,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "step": 1000,
+          "time_s": 1000.0,
+          "h2so4_molecules_m3": 7177224184244.145,
+          "number_m3_by_bin": [
+            333635318535.0551,
+            0.0,
+            0.0,
+            97634469.48530892,
+            2358108.231905329,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aerosol_sulfate_molecules_m3_by_bin": [
+            87195143937098.53,
+            0.0,
+            0.0,
+            303760982688095.7,
+            12987258474654.379,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ]
+    },
+    "empty-background": {
+      "configuration": {
+        "steps": 100,
+        "timestep_s": 1.0,
+        "temperature_k": 280.0,
+        "pressure_pa": 101325.0,
+        "relative_humidity": 0.5,
+        "initial_h2so4_molecules_m3": 100000000000000.0,
+        "h2so4_source_molecules_m3_s": 100000000000.0,
+        "initial_number_m3": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "nucleation_scheme": 2,
+        "growth_option": 1,
+        "coagulation_enabled": true,
+        "condensation_enabled": true,
+        "recalculate": true
+      },
+      "comparison": {
+        "passed": true,
+        "relative_tolerance": 3e-11,
+        "absolute_tolerance": 0,
+        "water_cancellation_allowance": "32*eps*dry_particle_volume*water_density*number, per bin and step",
+        "fields": {
+          "mass": {
+            "passed": true,
+            "max_absolute_error": 0.0,
+            "max_relative_error_nonzero": 0.0,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              0,
+              0,
+              0
+            ]
+          },
+          "number": {
+            "passed": true,
+            "max_absolute_error": 0.0,
+            "max_relative_error_nonzero": 0.0,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              0,
+              0,
+              0
+            ]
+          },
+          "gas": {
+            "passed": true,
+            "max_absolute_error": 0.0,
+            "max_relative_error_nonzero": 0.0,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              0,
+              0,
+              0
+            ]
+          },
+          "wet_radius_cm": {
+            "passed": true,
+            "max_absolute_error": 1.3552527156068805e-20,
+            "max_relative_error_nonzero": 2.1854168591658066e-16,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              0,
+              0,
+              7
+            ]
+          },
+          "dry_radius_cm": {
+            "passed": true,
+            "max_absolute_error": 1.3552527156068805e-20,
+            "max_relative_error_nonzero": 2.1854168591658046e-16,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              0,
+              0,
+              7
+            ]
+          },
+          "density": {
+            "passed": true,
+            "max_absolute_error": 0.0,
+            "max_relative_error_nonzero": 0.0,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              0,
+              0,
+              0
+            ]
+          },
+          "water_mass": {
+            "passed": true,
+            "max_absolute_error": 0.0,
+            "max_relative_error_nonzero": 0.0,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              0,
+              0,
+              0
+            ]
+          }
+        }
+      },
+      "checked_optimized_exact": true,
+      "jax": {
+        "sulfur_budget_passed": true,
+        "sulfur_budget_relative_tolerance": 1e-10,
+        "maximum_relative_sulfur_residual": 0.0,
+        "maximum_absolute_sulfur_residual_molecules_m3": 0.0,
+        "initial_sulfur_molecules_m3": 100000000000000.0,
+        "supplied_sulfur_molecules_m3": 10000000000000.0,
+        "final_sulfur_molecules_m3": 110000000000000.0,
+        "initial_number_m3": 0.0,
+        "final_number_m3": 0.0,
+        "final_h2so4_molecules_m3": 110000000000000.0,
+        "pure_sulfate_soluble_only": true,
+        "negative_water_values": 0,
+        "all_state_fields_finite": true,
+        "nonnegative_mass_number_gas": true,
+        "configuration": {
+          "steps": 100,
+          "timestep_s": 1.0,
+          "temperature_k": 280.0,
+          "pressure_pa": 101325.0,
+          "relative_humidity": 0.5,
+          "initial_h2so4_molecules_m3": 100000000000000.0,
+          "h2so4_source_molecules_m3_s": 100000000000.0,
+          "initial_number_m3": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "nucleation_scheme": 2,
+          "growth_option": 1,
+          "coagulation_enabled": true,
+          "condensation_enabled": true,
+          "recalculate": true
+        }
+      },
+      "fortran": {
+        "sulfur_budget_passed": true,
+        "sulfur_budget_relative_tolerance": 1e-10,
+        "maximum_relative_sulfur_residual": 0.0,
+        "maximum_absolute_sulfur_residual_molecules_m3": 0.0,
+        "initial_sulfur_molecules_m3": 100000000000000.0,
+        "supplied_sulfur_molecules_m3": 10000000000000.0,
+        "final_sulfur_molecules_m3": 110000000000000.0,
+        "initial_number_m3": 0.0,
+        "final_number_m3": 0.0,
+        "final_h2so4_molecules_m3": 110000000000000.0,
+        "pure_sulfate_soluble_only": true,
+        "negative_water_values": 0,
+        "all_state_fields_finite": true,
+        "nonnegative_mass_number_gas": true,
+        "configuration": {
+          "steps": 100,
+          "timestep_s": 1.0,
+          "temperature_k": 280.0,
+          "pressure_pa": 101325.0,
+          "relative_humidity": 0.5,
+          "initial_h2so4_molecules_m3": 100000000000000.0,
+          "h2so4_source_molecules_m3_s": 100000000000.0,
+          "initial_number_m3": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "nucleation_scheme": 2,
+          "growth_option": 1,
+          "coagulation_enabled": true,
+          "condensation_enabled": true,
+          "recalculate": true
+        }
+      },
+      "initial_array_sha256": {
+        "mass": "0345bffb28f80f4d0ded1a2af09a337b18ab3a80c68205bc8321a6ad4d409500",
+        "number": "b707241545a346265aab1ffb32ff64b55bf8f8dc1b56a46ef33ce3d15db11d33",
+        "gas": "9f580977a33e156842e76be89f817a51f411f6e958498774a1c827ce45a36c3e"
+      },
+      "accepted": true,
+      "checkpoints": [
+        {
+          "step": 1,
+          "time_s": 1.0,
+          "h2so4_molecules_m3": 100100000000000.0,
+          "number_m3_by_bin": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aerosol_sulfate_molecules_m3_by_bin": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "step": 10,
+          "time_s": 10.0,
+          "h2so4_molecules_m3": 101000000000000.0,
+          "number_m3_by_bin": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aerosol_sulfate_molecules_m3_by_bin": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "step": 100,
+          "time_s": 100.0,
+          "h2so4_molecules_m3": 110000000000000.0,
+          "number_m3_by_bin": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aerosol_sulfate_molecules_m3_by_bin": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ]
+    }
+  },
+  "timestep_sensitivity": {
+    "physical_duration_s": 600.0,
+    "coarse_timestep_s": 1.0,
+    "fine_timestep_s": 0.5,
+    "fine_comparison": {
+      "passed": true,
+      "relative_tolerance": 3e-11,
+      "absolute_tolerance": 0,
+      "water_cancellation_allowance": "32*eps*dry_particle_volume*water_density*number, per bin and step",
+      "fields": {
+        "mass": {
+          "passed": true,
+          "max_absolute_error": 3.235042095184326e-05,
+          "max_relative_error_nonzero": 2.82735371557154e-12,
+          "nonzero_at_zero_reference": 0,
+          "largest_absolute_error_index": [
+            1198,
+            0,
+            11
+          ]
+        },
+        "number": {
+          "passed": true,
+          "max_absolute_error": 4.100799560546875e-05,
+          "max_relative_error_nonzero": 2.827432197981943e-12,
+          "nonzero_at_zero_reference": 0,
+          "largest_absolute_error_index": [
+            1197,
+            0,
+            0
+          ]
+        },
+        "gas": {
+          "passed": true,
+          "max_absolute_error": 0.0625,
+          "max_relative_error_nonzero": 4.674400445805481e-16,
+          "nonzero_at_zero_reference": 0,
+          "largest_absolute_error_index": [
+            870,
+            0,
+            1
+          ]
+        },
+        "wet_radius_cm": {
+          "passed": true,
+          "max_absolute_error": 4.828087799349512e-20,
+          "max_relative_error_nonzero": 7.850946511905455e-15,
+          "nonzero_at_zero_reference": 0,
+          "largest_absolute_error_index": [
+            1151,
+            0,
+            4
+          ]
+        },
+        "dry_radius_cm": {
+          "passed": true,
+          "max_absolute_error": 3.8116482626443515e-20,
+          "max_relative_error_nonzero": 7.839720041998924e-15,
+          "nonzero_at_zero_reference": 0,
+          "largest_absolute_error_index": [
+            1195,
+            0,
+            4
+          ]
+        },
+        "density": {
+          "passed": true,
+          "max_absolute_error": 1.3322676295501878e-15,
+          "max_relative_error_nonzero": 8.283972863822517e-16,
+          "nonzero_at_zero_reference": 0,
+          "largest_absolute_error_index": [
+            1025,
+            0,
+            0
+          ]
+        },
+        "water_mass": {
+          "passed": true,
+          "max_absolute_error": 2.8717061304941537e-24,
+          "max_relative_error_nonzero": 2.827484951741441e-12,
+          "nonzero_at_zero_reference": 0,
+          "largest_absolute_error_index": [
+            1198,
+            0,
+            4
+          ]
+        }
+      }
+    },
+    "fine_jax": {
+      "sulfur_budget_passed": true,
+      "sulfur_budget_relative_tolerance": 1e-10,
+      "maximum_relative_sulfur_residual": 6.474613231836734e-14,
+      "maximum_absolute_sulfur_residual_molecules_m3": 30.5,
+      "initial_sulfur_molecules_m3": 411120609284065.1,
+      "supplied_sulfur_molecules_m3": 60000000000000.0,
+      "final_sulfur_molecules_m3": 471120609284095.5,
+      "initial_number_m3": 100000000.0,
+      "final_number_m3": 6840132947.336725,
+      "final_h2so4_molecules_m3": 145349087695616.9,
+      "pure_sulfate_soluble_only": true,
+      "negative_water_values": 0,
+      "all_state_fields_finite": true,
+      "nonnegative_mass_number_gas": true,
+      "configuration": {
+        "steps": 1200,
+        "timestep_s": 0.5,
+        "temperature_k": 280.0,
+        "pressure_pa": 101325.0,
+        "relative_humidity": 0.5,
+        "initial_h2so4_molecules_m3": 100000000000000.0,
+        "h2so4_source_molecules_m3_s": 100000000000.0,
+        "initial_number_m3": [
+          0.0,
+          0.0,
+          0.0,
+          100000000.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "nucleation_scheme": 2,
+        "growth_option": 1,
+        "coagulation_enabled": true,
+        "condensation_enabled": true,
+        "recalculate": true
+      }
+    },
+    "fine_fortran": {
+      "sulfur_budget_passed": true,
+      "sulfur_budget_relative_tolerance": 1e-10,
+      "maximum_relative_sulfur_residual": 3.4499551993487994e-14,
+      "maximum_absolute_sulfur_residual_molecules_m3": 16.25,
+      "initial_sulfur_molecules_m3": 411120609284065.1,
+      "supplied_sulfur_molecules_m3": 60000000000000.0,
+      "final_sulfur_molecules_m3": 471120609284081.4,
+      "initial_number_m3": 100000000.0,
+      "final_number_m3": 6840132947.336766,
+      "final_h2so4_molecules_m3": 145349087695616.97,
+      "pure_sulfate_soluble_only": true,
+      "negative_water_values": 0,
+      "all_state_fields_finite": true,
+      "nonnegative_mass_number_gas": true,
+      "configuration": {
+        "steps": 1200,
+        "timestep_s": 0.5,
+        "temperature_k": 280.0,
+        "pressure_pa": 101325.0,
+        "relative_humidity": 0.5,
+        "initial_h2so4_molecules_m3": 100000000000000.0,
+        "h2so4_source_molecules_m3_s": 100000000000.0,
+        "initial_number_m3": [
+          0.0,
+          0.0,
+          0.0,
+          100000000.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "nucleation_scheme": 2,
+        "growth_option": 1,
+        "coagulation_enabled": true,
+        "condensation_enabled": true,
+        "recalculate": true
+      }
+    },
+    "checked_optimized_exact": true,
+    "jax_changes": {
+      "mass_relative_L1_change": 1.805014910917602e-05,
+      "number_relative_L1_change": 0.00017166710798720348,
+      "gas_relative_L1_change": 7.3843068579154634e-06
+    },
+    "fortran_changes": {
+      "mass_relative_L1_change": 1.8050149217488973e-05,
+      "number_relative_L1_change": 0.00017166710798475736,
+      "gas_relative_L1_change": 7.38430685813046e-06
+    },
+    "interpretation": "One refinement measures native timestep sensitivity, not an established timestep-convergence rate."
+  },
+  "known_limitations": {
+    "sparse_coagulation_transfer": {
+      "scope": "Known relative-accuracy limitation; NOT accepted under the strict trajectory parity gate",
+      "configuration": {
+        "steps": 1,
+        "timestep_s": 1.0,
+        "temperature_k": 280.0,
+        "pressure_pa": 101325.0,
+        "relative_humidity": 0.5,
+        "initial_h2so4_molecules_m3": 100000000000000.0,
+        "h2so4_source_molecules_m3_s": 0.0,
+        "initial_number_m3": [
+          0.0,
+          0.0,
+          0.0,
+          100000000.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "nucleation_scheme": 0,
+        "growth_option": 1,
+        "coagulation_enabled": true,
+        "condensation_enabled": false,
+        "recalculate": true
+      },
+      "comparison": {
+        "passed": false,
+        "relative_tolerance": 3e-11,
+        "absolute_tolerance": 0,
+        "water_cancellation_allowance": "32*eps*dry_particle_volume*water_density*number, per bin and step",
+        "fields": {
+          "mass": {
+            "passed": false,
+            "max_absolute_error": 2.384185791015625e-07,
+            "max_relative_error_nonzero": 4.401216694448488e-09,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              0,
+              0,
+              6
+            ]
+          },
+          "number": {
+            "passed": false,
+            "max_absolute_error": 4.470348358154297e-08,
+            "max_relative_error_nonzero": 4.40121716528356e-09,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              0,
+              0,
+              3
+            ]
+          },
+          "gas": {
+            "passed": true,
+            "max_absolute_error": 0.0,
+            "max_relative_error_nonzero": 0.0,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              0,
+              0,
+              0
+            ]
+          },
+          "wet_radius_cm": {
+            "passed": true,
+            "max_absolute_error": 1.3552527156068805e-20,
+            "max_relative_error_nonzero": 2.1854168591658066e-16,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              0,
+              0,
+              7
+            ]
+          },
+          "dry_radius_cm": {
+            "passed": true,
+            "max_absolute_error": 1.3552527156068805e-20,
+            "max_relative_error_nonzero": 2.1854168591658046e-16,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              0,
+              0,
+              7
+            ]
+          },
+          "density": {
+            "passed": true,
+            "max_absolute_error": 2.220446049250313e-16,
+            "max_relative_error_nonzero": 1.5665265006977042e-16,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              0,
+              0,
+              3
+            ]
+          },
+          "water_mass": {
+            "passed": false,
+            "max_absolute_error": 2.261821987449685e-26,
+            "max_relative_error_nonzero": 4.401217471130166e-09,
+            "nonzero_at_zero_reference": 0,
+            "largest_absolute_error_index": [
+              0,
+              0,
+              3
+            ]
+          }
+        }
+      },
+      "initial_mass_component": 6,
+      "initial_mass_before": 311120609.2840651,
+      "initial_mass_after": 311120609.28406507,
+      "receiving_bin_fields": {
+        "number": {
+          "component_index": 4,
+          "fortran": 9.757211736706456,
+          "jax": 9.757211693762848,
+          "perturbed_fortran": 9.757211695027324,
+          "jax_relative_error": 4.40121716528356e-09,
+          "native_one_ulp_relative_sensitivity": 4.271623121656197e-09
+        },
+        "mass": {
+          "component_index": 11,
+          "fortran": 53.34313970424446,
+          "jax": 53.34313946946974,
+          "perturbed_fortran": 53.343139476382675,
+          "jax_relative_error": 4.401216694448488e-09,
+          "native_one_ulp_relative_sensitivity": 4.271623006049487e-09
+        },
+        "water_mass": {
+          "component_index": 4,
+          "fortran": 4.7364408570556465e-18,
+          "jax": 4.73644083620954e-18,
+          "perturbed_fortran": 4.7364408368233565e-18,
+          "jax_relative_error": 4.401217471130166e-09,
+          "native_one_ulp_relative_sensitivity": 4.271623070484542e-09
+        }
+      },
+      "jax": {
+        "sulfur_budget_passed": true,
+        "sulfur_budget_relative_tolerance": 1e-10,
+        "maximum_relative_sulfur_residual": 0.0,
+        "maximum_absolute_sulfur_residual_molecules_m3": 0.0,
+        "initial_sulfur_molecules_m3": 411120609284065.1,
+        "supplied_sulfur_molecules_m3": 0.0,
+        "final_sulfur_molecules_m3": 411120609284065.1,
+        "initial_number_m3": 100000000.0,
+        "final_number_m3": 99999992.50122008,
+        "final_h2so4_molecules_m3": 100000000000000.0,
+        "pure_sulfate_soluble_only": true,
+        "negative_water_values": 0,
+        "all_state_fields_finite": true,
+        "nonnegative_mass_number_gas": true,
+        "configuration": {
+          "steps": 1,
+          "timestep_s": 1.0,
+          "temperature_k": 280.0,
+          "pressure_pa": 101325.0,
+          "relative_humidity": 0.5,
+          "initial_h2so4_molecules_m3": 100000000000000.0,
+          "h2so4_source_molecules_m3_s": 0.0,
+          "initial_number_m3": [
+            0.0,
+            0.0,
+            0.0,
+            100000000.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "nucleation_scheme": 0,
+          "growth_option": 1,
+          "coagulation_enabled": true,
+          "condensation_enabled": false,
+          "recalculate": true
+        }
+      },
+      "fortran": {
+        "sulfur_budget_passed": true,
+        "sulfur_budget_relative_tolerance": 1e-10,
+        "maximum_relative_sulfur_residual": 0.0,
+        "maximum_absolute_sulfur_residual_molecules_m3": 0.0,
+        "initial_sulfur_molecules_m3": 411120609284065.1,
+        "supplied_sulfur_molecules_m3": 0.0,
+        "final_sulfur_molecules_m3": 411120609284065.1,
+        "initial_number_m3": 100000000.0,
+        "final_number_m3": 99999992.50122006,
+        "final_h2so4_molecules_m3": 100000000000000.0,
+        "pure_sulfate_soluble_only": true,
+        "negative_water_values": 0,
+        "all_state_fields_finite": true,
+        "nonnegative_mass_number_gas": true,
+        "configuration": {
+          "steps": 1,
+          "timestep_s": 1.0,
+          "temperature_k": 280.0,
+          "pressure_pa": 101325.0,
+          "relative_humidity": 0.5,
+          "initial_h2so4_molecules_m3": 100000000000000.0,
+          "h2so4_source_molecules_m3_s": 0.0,
+          "initial_number_m3": [
+            0.0,
+            0.0,
+            0.0,
+            100000000.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "nucleation_scheme": 0,
+          "growth_option": 1,
+          "coagulation_enabled": true,
+          "condensation_enabled": false,
+          "recalculate": true
+        }
+      },
+      "interpretation": "Sparse receiving-bin cancellation is present in original Fortran. No global tolerance widening, clipping or scientific repair is applied."
+    }
+  },
+  "accepted_scope": "Named standard scenarios and half-timestep check only; known limitations are reported separately and remain unaccepted.",
+  "accepted": true,
+  "implementation_sha256": {
+    "configs/sulfuric-acid.toml": "897001d1e5fcb0545acc1eeec78d900293c586e880ee0efa4ca2d8c2370743ec",
+    "tools/validate_sulfuric_acid.py": "d251204f4a60250dfeba4da46873efe769e61b2bd9be613c410526f38149bbea",
+    "tools/sulfuric_acid_oracle.py": "395f93fc175daedb7f4544e088cd5c52f45e0b1b6ffb68782973a5e335e33568",
+    "tools/sulfuric_acid_validation.py": "2794cfeaf058daf8dbabff8e6bb7a7f92f604ddd70fb33358126f5173474403c",
+    "tools/salsa_oracle.py": "b92fb35695aa16ad961ac1196d42ee6acbaa27b8a440d2199df08523571fdee9",
+    "src/salsa_jax/grid.py": "1788f8ca50581d868b7ae8336024e47c29de71622d61bbdec1b8ec3ca937a072",
+    "src/salsa_jax/aerosol_initialization.py": "55033e6c49720f17e054488b6477a4e2333ee13788297938fe25ff617c33a09a",
+    "src/salsa_jax/sulfuric_acid.py": "d1b091dca3cbbf59be13f3d10f804ea87153b861f0744a29fe4a2d96a9d509ab",
+    "src/salsa_jax/gas_conversion.py": "40018ab053f9748648bbf6b8d206745e2c99f1028591d689ac8c83597a122c0f",
+    "src/salsa_jax/constants.py": "8c4ad8b7d3a47a3d654904595fba86f247b1d8cf8a1039b8fcf00fc3bfa882b6",
+    "src/salsa_jax/interface.py": "2f4d7bc45e47cc70b77f69b86eff57766381d2c10bcd089baaf916bff686192d",
+    "src/salsa_jax/__init__.py": "d4ecd86e5b9a323ee19338915cef80066e66baffaede74ec27b88a6b2c1b4bae",
+    "src/salsa_jax/model.py": "30e2438bc0790bcc36465cda72185e9d41d9cbb3c2ca5f0a19b6e36adca2ad40",
+    "src/salsa_jax/initialization.py": "df9db82c6a1c1fa4050cd48b6633dba98c006bf9dbd9ec1d8d14f7d32742908b",
+    "src/salsa_jax/processes/nucleation_rates.py": "3e5238e343c1eb7c97ecb044ae34ccd7d0078b082ac2f6298770308a119f61ac",
+    "src/salsa_jax/processes/condensation_nucleation.py": "5ce13b323d243d0cbf08a1cdf6f2a3efa5a4a8cd8825b8586a9445b85acc8e6b",
+    "src/salsa_jax/processes/nucleation.py": "18ae61858bfda01d48e0ce7f2f14cc88caf2bbfcdb5e766086a65521d88747ac",
+    "src/salsa_jax/processes/coagulation.py": "7bd785be1492006b206724c8323a3e57b7c35a5b05d5824d0a1765a84076d3c2",
+    "src/salsa_jax/processes/__init__.py": "f74bfc7ae296f820d8110b870aa0336d33444e7fc0774b75b71ce954da7a5922",
+    "src/salsa_jax/processes/condensation.py": "e94e172ddce308e7ff64a556dda79e2582b16565da61ac39190bcd844711f673",
+    "src/salsa_jax/processes/coagulation_step.py": "2f7d8a61aa19f79f974595fec6424755471f2bdcac2b21ff637be36935243d75",
+    "src/salsa_jax/processes/hydration.py": "f19330b8b32f0e4648ccf7edef967407dc14be4c294f86506a4086d03acf6dbc",
+    "src/salsa_jax/processes/remapping_correction.py": "a2cb1c895320744c4526b6f5cad823ab300ea360f8b55490cb324fe38a6ef88d",
+    "src/salsa_jax/processes/remapping.py": "eb349aa308991125df22b10fa0b9f6a71e9b7358dd0ec73244d56bfed6b5b896"
+  }
+}
