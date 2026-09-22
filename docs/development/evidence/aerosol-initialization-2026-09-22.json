@@ -1,0 +1,301 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-22",
+  "scope": "H02 SALSA conc2mmr initialization leaf; checked standalone native reference only",
+  "native_driver_capture_acceptance": "pending; first curated case uses native fixture geometry/number/maps with explicit synthetic air density1.2kg/m3",
+  "benchmark": false,
+  "timing_note": "No performance measurement. Oracle incidental timing outputs discarded.",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "device": "cpu:0",
+  "dtype": "float64",
+  "versions": {
+    "jax": "0.11.2",
+    "jaxlib": "0.11.2",
+    "numpy": "2.5.3"
+  },
+  "source_revision": "2a663a3fb34c46c7a593d8cc04589df9e0d591f5",
+  "working_tree_status": "M src/salsa_jax/constants.py\n M tools/fortran_reference.py\n?? docs/development/aerosol-initialization.md\n?? src/salsa_jax/aerosol_initialization.py\n?? tests/test_aerosol_initialization.py\n?? tests/test_aerosol_initialization_oracle.py\n?? tests/test_ham_conversion_capture.py\n?? tools/aerosol_initialization_oracle.py\n?? tools/ham_conversion_capture.py\n?? tools/ham_conversion_fixture.py",
+  "implementation_sha256": {
+    "src/salsa_jax/aerosol_initialization.py": "55033e6c49720f17e054488b6477a4e2333ee13788297938fe25ff617c33a09a",
+    "src/salsa_jax/constants.py": "8c4ad8b7d3a47a3d654904595fba86f247b1d8cf8a1039b8fcf00fc3bfa882b6",
+    "src/salsa_jax/interface.py": "2f4d7bc45e47cc70b77f69b86eff57766381d2c10bcd089baaf916bff686192d",
+    "tools/aerosol_initialization_oracle.py": "f41bab52da8a7fd0163c045e1b378cb58836b1cc5bd06db7d4bc84fcd934571d",
+    "tests/test_aerosol_initialization.py": "c917549cf8b1b11b57064ddc41e36fb0d60675c26a989f44f4edceba127f9d5b"
+  },
+  "fortran_provenance": {
+    "source_sha256": {
+      "parkind1.F90": "bd7aa3a0f896829781c6c9c1924726def9bd8b2825778e26274c615c2642ff5a",
+      "mo_kind.F90": "e7d3a5f28d216e60828c395a704e33a7bfc5db6e966533776fc438f4d782d255",
+      "mo_math_constants.F90": "ceae6f761c288597f7fb495ff2a55030fee8f861e1ee0dcd8adc0ba3ba95734f",
+      "mo_physical_constants.F90": "12405902248f437d9f7ae9b03d1efe194cd7605f6b396156c3d820366b8a79b0",
+      "mo_convert_concentrations.F90": "f72f5304623cab88b5bffda5f519e9a0bf78dce1671c70552edcb706ba3b4d14",
+      "mo_ham.F90": "117e36d7a8dfbacc986e8736275de88d2deacda2cdd12c4287d3022afd042737",
+      "mo_ham_subm_species.F90": "de188b92adb2d07b121ad5e37f19573365fc0f228ddea75a7c3b882a2a34440a"
+    },
+    "routine_sha256": "aac300622f1348d35e55534e517ec8d628b6f6c631ae39e532f20278222d4bd3",
+    "wrapper_sha256": {
+      "stubs.f90": "c7fa0b4b0f8a75a782ae7153d9df0d970a7559a9f6712e7d36445d3e62997a7c",
+      "conc2mmr.F90": "e6089c077cf8b251476afe731fd483a6e7aa0a98f32957e7a5de286609fafe63",
+      "driver.f90": "7fa70b8a61f39905e995568680f9fa7e6473c7d37d6b2ab776b725a615d34c23"
+    },
+    "flags": [
+      "-O2",
+      "-fno-fast-math",
+      "-fno-lto",
+      "-ffree-line-length-none",
+      "-cpp",
+      "-fcheck=all",
+      "-ffpe-trap=invalid,zero,overflow",
+      "-fbacktrace"
+    ],
+    "checked": true,
+    "compiler": "GNU Fortran (Homebrew GCC 16.1.0) 16.1.0",
+    "compiled_constants": {
+      "avogadro": 6.02214179e+23,
+      "mw_so4": 96.0631,
+      "legacy_sulfate_prefactor": 6.022e+20
+    },
+    "configuration": {
+      "bins": 17,
+      "components": 69,
+      "nonwater_species": 5,
+      "nham_subm": "HAM_SALSA",
+      "mw_so4_units": "g/mol",
+      "number_input_units": "particles/m3",
+      "number_output_units": "particles/cm3",
+      "M7_branch_retained_but_untested": true
+    },
+    "registry_stub": "Per-component effective unit codes are represented by virtual species IDs6:74 and indices1:69; physical masses/densities remain canonical SO4/OC/BC/SS/DU entries1:5. Native lookup/assignment loops unchanged.",
+    "separate_compilation_without_lto": true
+  },
+  "case_count": 18,
+  "case_labels": [
+    "native-layout-density1.2",
+    "empty-number",
+    "heterogeneous-number",
+    "zero-core",
+    "scaled-core",
+    "low-air-density",
+    "high-air-density",
+    "heterogeneous-properties",
+    "independent-mw-so4",
+    "all-code2",
+    "all-code1",
+    "fallback-unit-codes",
+    "unrelated-tracer-sentinels",
+    "component-permutation",
+    "tracer-permutation",
+    "duplicate-component-targets",
+    "duplicate-number-targets",
+    "number-overwrites-mass"
+  ],
+  "case_hashes": {
+    "number": {
+      "shape": [
+        18,
+        17
+      ],
+      "encoding": "<f8 C-order",
+      "sha256": "1867eaef68901e313a83e230733471d67bb11612d2ead6c26542698595fb5db5"
+    },
+    "core": {
+      "shape": [
+        18,
+        17
+      ],
+      "encoding": "<f8 C-order",
+      "sha256": "d782b6c99ff3c1036e274211d9424a696f7c2be01dc392322760384a12619cc9"
+    },
+    "tracers": {
+      "shape": [
+        18,
+        109
+      ],
+      "encoding": "<f8 C-order",
+      "sha256": "36a5cb149eb591d98a9eef88b63d83b09a9229036129297577da5c039636dac0"
+    },
+    "air_density": {
+      "shape": [
+        18
+      ],
+      "encoding": "<f8 C-order",
+      "sha256": "91431392adb341eeeb1fd1ee0eabdcd0a5afd17a4632c36d5ad71faa6f8b53db"
+    },
+    "component_map": {
+      "shape": [
+        18,
+        17,
+        5
+      ],
+      "encoding": "<i8 C-order",
+      "sha256": "a0bdf159ec91fe7fab19980da6346983ed7fbdc6684afee41d2334e7ec7b7ee5"
+    },
+    "component_tracer_indices": {
+      "shape": [
+        18,
+        69
+      ],
+      "encoding": "<i8 C-order",
+      "sha256": "7fea489ac531d9bc881acf23d09e70002362fb36bc19424ee40bde173cc306fa"
+    },
+    "number_tracer_indices": {
+      "shape": [
+        18,
+        17
+      ],
+      "encoding": "<i8 C-order",
+      "sha256": "f5145c04e7f19206ddf9c060b1cf4607ddb8bed744fdb09b1436f2aeed43ad56"
+    },
+    "component_unit_codes": {
+      "shape": [
+        18,
+        69
+      ],
+      "encoding": "<i8 C-order",
+      "sha256": "0b142831adf703b8385697e0b29d367980262a766810f6355b330a1bd5426cf9"
+    },
+    "species_molar_mass": {
+      "shape": [
+        18,
+        5
+      ],
+      "encoding": "<f8 C-order",
+      "sha256": "78be12cc96bc23feccc177278807856a9955c5cce72e142b1c52dd63a1fb99c9"
+    },
+    "species_density": {
+      "shape": [
+        18,
+        5
+      ],
+      "encoding": "<f8 C-order",
+      "sha256": "c930767d5b06b7b4a76416739c73a965d92af70701506b619bfa74f775908e63"
+    },
+    "mw_so4": {
+      "shape": [
+        18
+      ],
+      "encoding": "<f8 C-order",
+      "sha256": "ab9da97a1769ee4cf977189fe970199724166f3960f0c2bfb1a8f9e244a90381"
+    }
+  },
+  "parity_tolerance": {
+    "rtol": 4e-15,
+    "atol": 0
+  },
+  "budget_tolerance": {
+    "rtol": 1e-15,
+    "atol": 0
+  },
+  "modes": {
+    "eager": {
+      "parity": {
+        "number": {
+          "maximum_absolute": 0.0,
+          "maximum_relative_nonzero": 0.0,
+          "maximum_absolute_at_reference_zero": 0.0,
+          "all_finite": true,
+          "reference_zero_count": 17
+        },
+        "mass": {
+          "maximum_absolute": 0.0001220703125,
+          "maximum_relative_nonzero": 2.1940130298928628e-16,
+          "maximum_absolute_at_reference_zero": 0.0,
+          "all_finite": true,
+          "reference_zero_count": 138
+        },
+        "tracers": {
+          "maximum_absolute": 9.313225746154785e-10,
+          "maximum_relative_nonzero": 3.7846873148016703e-16,
+          "maximum_absolute_at_reference_zero": 0.0,
+          "all_finite": true,
+          "reference_zero_count": 624
+        }
+      },
+      "volume_budget": {
+        "maximum_absolute": 5.551115123125783e-17,
+        "maximum_relative_nonzero": 3.4991233773739923e-16,
+        "maximum_absolute_at_reference_zero": 0.0,
+        "all_finite": true,
+        "reference_zero_count": 34
+      },
+      "material_fraction_volume_budget": {
+        "maximum_absolute": 5.551115123125783e-17,
+        "maximum_relative_nonzero": 4.380378826772622e-16,
+        "maximum_absolute_at_reference_zero": 0.0,
+        "all_finite": true,
+        "reference_zero_count": 426
+      },
+      "all_unselected_tracers_exactly_preserved": true,
+      "number_output_equals_input_times_1e_minus6": true,
+      "duplicate_component_and_number_cases_match_checked_oracle": true,
+      "number_overwrites_mass_final_bin_write_verified": true,
+      "second_call_matches_native_mutated_number_semantics": true
+    },
+    "jit": {
+      "parity": {
+        "number": {
+          "maximum_absolute": 0.0,
+          "maximum_relative_nonzero": 0.0,
+          "maximum_absolute_at_reference_zero": 0.0,
+          "all_finite": true,
+          "reference_zero_count": 17
+        },
+        "mass": {
+          "maximum_absolute": 0.0001220703125,
+          "maximum_relative_nonzero": 2.1940130298928628e-16,
+          "maximum_absolute_at_reference_zero": 0.0,
+          "all_finite": true,
+          "reference_zero_count": 138
+        },
+        "tracers": {
+          "maximum_absolute": 0.0078125,
+          "maximum_relative_nonzero": 3.7846873148016703e-16,
+          "maximum_absolute_at_reference_zero": 0.0,
+          "all_finite": true,
+          "reference_zero_count": 624
+        }
+      },
+      "volume_budget": {
+        "maximum_absolute": 5.551115123125783e-17,
+        "maximum_relative_nonzero": 3.4991233773739923e-16,
+        "maximum_absolute_at_reference_zero": 0.0,
+        "all_finite": true,
+        "reference_zero_count": 34
+      },
+      "material_fraction_volume_budget": {
+        "maximum_absolute": 5.551115123125783e-17,
+        "maximum_relative_nonzero": 4.380378826772622e-16,
+        "maximum_absolute_at_reference_zero": 0.0,
+        "all_finite": true,
+        "reference_zero_count": 426
+      },
+      "all_unselected_tracers_exactly_preserved": true,
+      "number_output_equals_input_times_1e_minus6": true,
+      "duplicate_component_and_number_cases_match_checked_oracle": true,
+      "number_overwrites_mass_final_bin_write_verified": true,
+      "second_call_matches_native_mutated_number_semantics": true
+    }
+  },
+  "original_inputs_unchanged": true,
+  "focused_tests": {
+    "command": ".venv/bin/python -m pytest -q -p no:cacheprovider tests/test_aerosol_initialization.py",
+    "observed_result": "9 passed in2.36s",
+    "tested_behaviors": [
+      "eager/JIT18case parity",
+      "immutable inputs",
+      "physical volume/material fractions",
+      "mutated number second call",
+      "component permutation",
+      "duplicate targets; number writes after mass",
+      "unknowncode mass ELSE",
+      "independent registry sulfateMW andlegacy mw_so4",
+      "scalar/multiaxis cases"
+    ]
+  },
+  "limitations": [
+    "No HAM driver-boundary capture acceptance",
+    "No full-wrapper, trajectory, accelerator or gradient acceptance",
+    "M7 branch retained by extracted Fortran but untested; JAX supports fixed17bin69componentSALSA layout",
+    "Caller must validate map bounds/physical values before JIT"
+  ]
+}

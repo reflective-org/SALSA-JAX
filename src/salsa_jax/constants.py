@@ -47,3 +47,10 @@ DENSITY_VOLUME_THRESHOLD = 1e-30  # m3 material and water per m3 air
 
 # gas2mmr unsuffixed 1e-3: binary32 literal promoted to double precision.
 GAS_MOLECULAR_CONVERSION_FACTOR = 1.0000000474974513e-3
+
+# conc2mmr uses this truncated molecular factor separately from native avo.
+AEROSOL_MOLECULAR_CONVERSION_FACTOR = 6.022e20
+# Fixed native initialization volume fractions: SO4/OC/BC/SS/DU, regions1a/2a/2b.
+INITIAL_MATERIAL_FRACTIONS = ((0.2, 0.8, 0.0, 0.0, 0.0),
+                              (0.5, 0.05, 0.05, 0.1, 0.3),
+                              (0.01, 0.01, 0.01, 0.0, 0.97))
