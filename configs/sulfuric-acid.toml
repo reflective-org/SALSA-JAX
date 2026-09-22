@@ -1,0 +1,17 @@
+# Pure sulfate, soluble bins only. This is a controlled experiment, not driver forcing.
+steps = 600
+timestep_s = 1.0
+temperature_k = 280.0
+pressure_pa = 101325.0
+relative_humidity = 0.5
+initial_h2so4_molecules_m3 = 1e14
+h2so4_source_molecules_m3_s = 1e11
+# Particles/m3 in soluble bins 1..10, at native midpoint dry size; bin 4 ~80 nm.
+# Insoluble bins 11..17 are empty. 1e8 particles/m3 = 100 particles/cm3.
+initial_number_m3 = [0.0, 0.0, 0.0, 1e8, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+# 0 disabled; 1 binary H2SO4/water; 2 activation in boundary layer; 3 kinetic.
+nucleation_scheme = 2
+growth_option = 1
+coagulation_enabled = true
+condensation_enabled = true
+recalculate = true
