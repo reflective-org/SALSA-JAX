@@ -41,3 +41,6 @@ REMAPPING_SATURATION_LIMIT = 1.005  # slim, relative water saturation
 REMAPPING_ION_FACTOR = 3.0  # ions, van't Hoff factor
 # mo_ham_salsa.F90: strict tiny-particle cleanup comparison.
 TINY_PARTICLE_DIAMETER = 1e-10  # m
+
+# mo_ham_salsa.F90: density fallback uses a strict total-volume threshold.
+DENSITY_VOLUME_THRESHOLD = 1e-30  # m3 material and water per m3 air
