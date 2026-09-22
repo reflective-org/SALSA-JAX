@@ -44,3 +44,6 @@ TINY_PARTICLE_DIAMETER = 1e-10  # m
 
 # mo_ham_salsa.F90: density fallback uses a strict total-volume threshold.
 DENSITY_VOLUME_THRESHOLD = 1e-30  # m3 material and water per m3 air
+
+# gas2mmr unsuffixed 1e-3: binary32 literal promoted to double precision.
+GAS_MOLECULAR_CONVERSION_FACTOR = 1.0000000474974513e-3
