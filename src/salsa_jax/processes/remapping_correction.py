@@ -32,23 +32,20 @@ class CorrectionState(NamedTuple):
     valid: jax.Array
 
 
-def correction(number, volume, gas, relative_humidity, temperature, dry_diameter, *,
-               soluble_mask=True, parameters=HydrationParameters(), organic_enabled=False):
-    """Run one cleanup → hydration → radii/water pass, with native policy.
+class CleanupState(NamedTuple):
+    """Native tiny-particle cleanup; validity flags absent organic-gas access."""
+    number: jax.Array
+    volume: jax.Array
+    gas: jax.Array
+    valid: jax.Array
 
-    State shapes are number (...,17), volume (...,17,5), gas (...,3), with
-    matching leading axes; RH/T/grid/parameters follow ``equilibrate``. The
-    number threshold must be positive. Cleanup includes N==threshold, while
-    hydration only processes N>threshold. For 1a, cleanup diameter counts only
-    sulfate+OC; for 2a/2b it counts every material. Removed material returns only
-    SO4/OC to their gas slots, even though all five particle volumes are cleared.
 
-    If cleanup executes without an organic gas mapping, native checked Fortran
-    indexes gas zero (D007). Such cells return valid=False, NaN floating outputs
-    and zero iteration counts. No repair or invented organic sink is applied.
-    Valid cells retain native unclipped water. Near-zero water is a subtraction
-    of nearly equal volumes, so roundoff signs can differ between backends.
-    Enable JAX float64 before use. Inputs remain immutable.
+def cleanup(number, volume, gas, *, parameters=HydrationParameters(), organic_enabled=False):
+    """Initial or post-remap native tiny cleanup in canonical SI particle/gas units.
+
+    Includes number == threshold, uses only sulfate/OC size in 1a, restores only
+    those two vapors, then clears every material. D007 cells return NaN physical
+    arrays and valid=False. The native threshold must be positive.
     """
     number, volume, gas = (jnp.asarray(value, dtype=jnp.float64) for value in (number, volume, gas))
     if (number.shape[-1:] != (17,) or volume.shape != number.shape+(5,) or
@@ -79,6 +76,32 @@ def correction(number, volume, gas, relative_humidity, temperature, dry_diameter
     restored_gas = jax.lax.fori_loop(0,17,restore_vapor,gas)
     new_number = jnp.where(tiny,0.0,number)
     new_volume = jnp.where(tiny[...,None],0.0,volume)
+    return CleanupState(jnp.where(valid[...,None], new_number, jnp.nan),
+                        jnp.where(valid[...,None,None], new_volume, jnp.nan),
+                        jnp.where(valid[...,None], restored_gas, jnp.nan), valid)
+
+
+def correction(number, volume, gas, relative_humidity, temperature, dry_diameter, *,
+               soluble_mask=True, parameters=HydrationParameters(), organic_enabled=False):
+    """Run one cleanup → hydration → radii/water pass, with native policy.
+
+    State shapes are number (...,17), volume (...,17,5), gas (...,3), with
+    matching leading axes; RH/T/grid/parameters follow ``equilibrate``. The
+    number threshold must be positive. Cleanup includes N==threshold, while
+    hydration only processes N>threshold. For 1a, cleanup diameter counts only
+    sulfate+OC; for 2a/2b it counts every material. Removed material returns only
+    SO4/OC to their gas slots, even though all five particle volumes are cleared.
+
+    If cleanup executes without an organic gas mapping, native checked Fortran
+    indexes gas zero (D007). Such cells return valid=False, NaN floating outputs
+    and zero iteration counts. No repair or invented organic sink is applied.
+    Valid cells retain native unclipped water. Near-zero water is a subtraction
+    of nearly equal volumes, so roundoff signs can differ between backends.
+    Enable JAX float64 before use. Inputs remain immutable.
+    """
+    cleaned = cleanup(number, volume, gas, parameters=parameters, organic_enabled=organic_enabled)
+    new_number, new_volume, restored_gas, valid = cleaned
+    leading = new_number.shape[:-1]
     # Invalid cells must not enter the native uncapped hydration loop with
     # partially failed cleanup state. Their public outputs are invalid below.
     safe_number = jnp.where(valid[...,None],new_number,0.0)
