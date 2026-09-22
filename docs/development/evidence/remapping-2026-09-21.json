@@ -1,0 +1,2341 @@
+{
+  "date": "2026-09-21",
+  "scope": "C15-C17/F13d: ordered remapping and both native cleanup/hydration/radius/water correction passes; excludes density/HAM wrapper and full SALSA composition",
+  "runs": {
+    "control": {
+      "status": "first_microphysics_completed_unvalidated",
+      "source_revision": "a267f09c853f3991fe5485dd310bd20461f4ad78",
+      "working_tree_status": "M src/salsa_jax/constants.py\n M tools/fortran_reference.py\n?? src/salsa_jax/processes/remapping.py\n?? src/salsa_jax/processes/remapping_correction.py\n?? tests/test_remapping.py\n?? tools/remapping_capture.py\n?? tools/remapping_oracle.py",
+      "compiler": "GNU Fortran (Homebrew GCC 16.1.0) 16.1.0\nCopyright (C) 2026 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+      "config": {
+        "build": {
+          "compiler": "gfortran",
+          "flags": [
+            "-cpp",
+            "-g",
+            "-fbacktrace",
+            "-std=legacy",
+            "-ffpe-trap=invalid,zero,overflow",
+            "-O0",
+            "-fcheck=all",
+            "-finit-real=snan",
+            "-DNOMPI",
+            "-DSALSA",
+            "-D__x86_64",
+            "-I./include"
+          ],
+          "jobs": 1,
+          "timeout_seconds": 180
+        },
+        "run": {
+          "timeout_seconds": 60
+        }
+      },
+      "config_sha256": "fb123db9c6ccda24778618ddbffa43613b3d3110a5b2ea758ed7d51174073db0",
+      "harness_sha256": "ec33b3b2f36d5935b22e3842bbeb651c0a8afdf138b367013e0287bb96b4017d",
+      "compiled_driver_sha256": "39d4f4ae68089f05ee7c16af891f7b3647784ef73849e4780c4259c43d56c7e3",
+      "executable_sha256": "ff010ed5e9a14d970a8eb17ebef8fd076e76754367e5b4ef43b380e6ede582eb",
+      "source_sha256": {
+        ".depend": "29085ec5b2671054e3d2775b8638d6500e362ebf3c6dc70a77941646dfdd145f",
+        "MPL_MODULE.F90": "f81ce8155a5a4ca9559a5bc70402e784c3664407be629de2f4da5912a0ca574a",
+        "Makefile": "1f52dba754d7392818673a2263d5fdb86ac2916085d8d5cc07a6abff4d876d5b",
+        "Makefile.in": "a56d1a2702e5c33ea6a598dda3ef97e5f4c825ed48fc947e59be87147b065a72",
+        "TM5M7_DATA.F90": "ba69c6ed04c74008e49de50715549ef66f985656d6c793015738a9c7295f1cca",
+        "TM5M7_INIT.F90": "1e489bfdce2259bf1ba70afebd922da82a87ed00480739eb29e8b73c983544b6",
+        "TM5M7_OPTICS_DATA.F90": "344b38d39e161f3f3216aac8e9bbb6e62ef97e040edb2a0f33cf3220bf9fa5a6",
+        "YOMMP0.F90": "8222ccd536edf2c94b56f333351df1ecabea61d69c74f77f2fd36997fc8ea6a3",
+        "configure": "84c2ad7b2905e5113c9e5dbc660a30d5e2b5560c7df7de32bd61627f032d5377",
+        "driver.F90": "ff59d164d894111da2f41263351fd815a062c9ae34502b91cae3436a3dafb5f2",
+        "driver_input.F90": "b04f5de31885362a1fd78e22c9634d9ed6f771968509e030fd5c17ba64557c2b",
+        "driver_tracer.F90": "faa3061223abe227a6f7d0c4c101e1815e76ee94c4b27501fbf3273bf55ee843",
+        "include/ham_salsactl.inc": "c5971a977bdf8a0f70589a0ad541dcc8e23018232837a35155c7e037471def94",
+        "include/hamctl.inc": "63cff48c3ffc46d98a721aa5c47f3a1bce8a8d4a236489ba27089967c900f73a",
+        "mo_activ.F90": "13d4a0e3852cc18111716f748fa4de520d34133f235bf06cbd79303d9fa4e5ec",
+        "mo_advection.F90": "b8e8bad91ffa1614dc00e5e9bb910b9fe00f0132edd90633f99f15b7ef1c50c4",
+        "mo_control.F90": "1eda37cd53d5d1c2753c576607110e4c5c9eac0d832d2b6655b781e4147ce3a7",
+        "mo_conv.F90": "15045bdee1fb6bf6aa606d0a79acef8a05121da90b48efe3d80ea7abcf1c0ee6",
+        "mo_convert_concentrations.F90": "f72f5304623cab88b5bffda5f519e9a0bf78dce1671c70552edcb706ba3b4d14",
+        "mo_exception.F90": "2a2e3a4fb973a70118cd7b7ef1974053af0a9355522846c74a99cafe916c5e73",
+        "mo_filename.F90": "e9b46c658222ce592166a83f665fe5d06f13d3e32726708788cd40f141075b66",
+        "mo_ham.F90": "117e36d7a8dfbacc986e8736275de88d2deacda2cdd12c4287d3022afd042737",
+        "mo_ham_activ.F90": "5954d4e39325041f65cf0c7021c71bb8b92da71fa384a63b4c49429a5c85b0df",
+        "mo_ham_drydep.F90": "a45785f6975fec4bff1de2676612c99233a80fb99d2387fbcc1a44951d5ad356",
+        "mo_ham_init.F90": "184c4abf33df411e874493d0476b0fddbcdc45813a82c3d7144afc451c123f1f",
+        "mo_ham_kappa.F90": "17608f5b55afaa1c1d98c0836c7fd7ebc2eeb7134263eb60e18fe3fe5175b12f",
+        "mo_ham_m7.F90": "4ef82634ad0e566f111e984ffb86a60d7069daec057aa130ae062277a677b1b6",
+        "mo_ham_m7_nucl.F90": "2b39fc6436c7cf6db1f385d39a3d9542ee35c2129d1b6096dc6cf20853c41c18",
+        "mo_ham_m7_trac.F90": "1200887fb0044bf0cc1bbe84d168080ffeb79b0f4a76f505cbc6840533b2ab80",
+        "mo_ham_m7ctl.F90": "890e9ea622897dd35b0df18a2070d89bfffb81c6953425dcf423a2dcd7d8c3e1",
+        "mo_ham_rad.F90": "025da81d8362f7648ac38393bf25e2d5eb04288d5f41e3be1bf3bef690a38108",
+        "mo_ham_rad_data.F90": "1e501439e53b8d7c2e398ad7527f876676df4350c15b54995c42677841bf74ed",
+        "mo_ham_salsa.F90": "af04c42794909550de39d2bdc0a5d1bcc430f59c729841114e35e8ce790b04df",
+        "mo_ham_salsa_cloud.F90": "7260b4c20a69987843f4f3c4816fb93210d0d6966a6a271422a9879d2d29ed69",
+        "mo_ham_salsa_dynamics.F90": "13db52f2e5e10bb0ad485348209a74e3b8bcbf25af77d05a995a8444050cff25",
+        "mo_ham_salsa_init.F90": "efc26ed1c4ab391f5fd288e7e5bd0f2998e722731c34ccd778063febf43faf50",
+        "mo_ham_salsa_nucleation.F90": "927c2f2d8056ce100a5e36563cc9fa04b407ea0033ff848e9c65de3c9a9f2445",
+        "mo_ham_salsa_properties.F90": "5292a5c9debcb6b3fd8bab7d477c463cbfd98d9ff7dc03d5f793f9c1aae76127",
+        "mo_ham_salsa_sizedist.F90": "83ea26e4adb9080a856a1bc670467b82505f26419b0c42d781536b6659f158e4",
+        "mo_ham_salsa_trac.F90": "7b3f37f19d0a0599ae114d876902a656b58a2418f6de6ca7657185e7c1f965f3",
+        "mo_ham_salsa_update.F90": "f01880e86935e4dd628ce9bdcd010df1530525f167cd6262e9e76b584caf1cf1",
+        "mo_ham_salsactl.F90": "95dc7bcd437bc2d9cb9bc9bd784ad912c71ccfb978bdfad0cadf641b1374c30c",
+        "mo_ham_sedimentation.F90": "797da26f5cbdb2c4e50e805967f5d917c8b96b706e03ff129d9ccd861b108cb4",
+        "mo_ham_soa.F90": "4b522cb8bba89b9e4f44be155ae09945688a1e0367a10b85dbcecd283df8619a",
+        "mo_ham_species.F90": "828b524dc894bf8423dd89328624f46c0a9b95ae907e7d58eac8d50d9e8e4cd0",
+        "mo_ham_subm.F90": "8752371dafdb956dfdc5e4f52f6a8d2f8b1d20c3395efa9e34d37513621bfb68",
+        "mo_ham_subm_species.F90": "de188b92adb2d07b121ad5e37f19573365fc0f228ddea75a7c3b882a2a34440a",
+        "mo_ham_tools.F90": "aa04c23b17637e8826a7c42519ebbdd1e381937776ba4d26fe8ee47cfa9eb380",
+        "mo_ham_vbs.F90": "3033ba0a960def111c20bd93caafdd05b7396ff4a981d64dc2fba34c22f5227f",
+        "mo_ham_vbs_partition.F90": "60065156e23c51113628a7a736b83a414bd88e91667ea76661a0302aee16eddc",
+        "mo_ham_vbsctl.F90": "1deb63bbb918eb53697ca63b10819f0e1ad1b0118eb8bc40403925d45850a1d6",
+        "mo_ham_wetdep.F90": "b07cd39214a76e649d3f3b76d6638f644ac7223cfb9890448c619e1384cf78b9",
+        "mo_ham_wetdep_data.F90": "d030c809372cf366126e2648aab6f62cd772eb5b5d2211526ae1c3aa5ef4609f",
+        "mo_hammoz_drydep.F90": "963afe88ead8a2ffb1bd32a4260b4d5d3ff18f5e63fe83ccb6a75fe526ff2ce5",
+        "mo_hammoz_sedimentation.F90": "ed73bf842331d8bd7c13bacddab237edad8a843637da39ebf16746caf692ed2f",
+        "mo_hammoz_wetdep.F90": "95086984150ea10dc880e0f37fd0ac44cef64a6668bc7123dbdb22af044dd53e",
+        "mo_io_units.F90": "72f15d0092912180c1b7fc7f6e5a21a8211a84b6aea851cf44c354eb58d5bb20",
+        "mo_kind.F90": "e7d3a5f28d216e60828c395a704e33a7bfc5db6e966533776fc438f4d782d255",
+        "mo_math_constants.F90": "ceae6f761c288597f7fb495ff2a55030fee8f861e1ee0dcd8adc0ba3ba95734f",
+        "mo_namelist.F90": "2a0fe92df278273ddbc451bc92186ff8d26c19bc2bea4fd995bf4d76faced69d",
+        "mo_netcdf.F90": "6aa41adf6bc64ef063259662df800f697d50cc954fa494a7fb6c18e74f0a73b4",
+        "mo_param_switches.F90": "7ae204fcfc15fbc978897240dde66a44d0d6bcede32a2bcdb8e4fc1434f6000b",
+        "mo_physical_constants.F90": "12405902248f437d9f7ae9b03d1efe194cd7605f6b396156c3d820366b8a79b0",
+        "mo_radiation_parameters.F90": "75a57cda851d90677e00212cbe6a96d8013185815eed3a58bd49d5325063b464",
+        "mo_read_netcdf77.F90": "b95a6d4a1e1e3b3204a07892856c6c9b35f54488a9c5a621782164114e7c57c3",
+        "mo_species.F90": "6e86c7a99f8c2d2cd274c245843dfcbebd367bcddc17a5e8b7420e0526ce9c78",
+        "mo_submodel.F90": "7d6af82f93b6ca95cc4d6361a2c05a01230b656cdd6c5b439d63508ef3b088b0",
+        "mo_time_control.F90": "a85be9de64fc6a124e74f7a8f9c1755741efcbd03d6f5265d8d16375c006cec0",
+        "mo_tracdef.F90": "3c8f53789b65fb86fe4cf0d31b7d16403589606508912b35087495a6fb7076cc",
+        "mo_tracer.F90": "49e5cd2de46d1912c0a24e92152fee8e94e37076bc34f5b8523707c196f85003",
+        "mo_tracer_processes.F90": "b0f44e56b9a6c590b84916e9dc115ce292b39eb523d35bcf3b43fdb97cb55dd4",
+        "mo_util_string.F90": "949b82b5441d4e2ae6fcb12fd3f699ed86d81fc5c4fa0f555ef1bc9ecdc79ee5",
+        "oifs_to_ham.F90": "981bf4b731c869b30ad9b5c54d3dedcbae060a1d77497a04dbc6f8b1dc62216d",
+        "parkind1.F90": "bd7aa3a0f896829781c6c9c1924726def9bd8b2825778e26274c615c2642ff5a",
+        "yomm7ctl.F90": "52031ef2febbc1660b2e136d1b03df1640d1d724282dc9442e081fb84612b66c"
+      },
+      "input_sha256": {
+        "input/GlobalTraj-CE_200801.01_activ_1step.nc": "5fc1460eda7fc233080996ba9bdcd5ab9d2ba7f22b959a47ab4e7e7f8badd769",
+        "input/GlobalTraj-CE_200801.01_vphysc_1step.nc": "a3ba8492fb4f0301a0f6247d8d1765cd0877986b4f4fb0452b71fc82b0ce1e1b",
+        "input/HAM_box_inp_200007.01_activ.nc": "565654fa162906fb4ee76ccba5a4ac1c8ce80abca482d412efe369f1506f0985",
+        "input/lut_optical_properties_M7.nc": "fff3657f3ec81bd4a3cb28abb0b4a0741d075af6258333213fe5bf4dba0d0814",
+        "input/lut_optical_properties_lw_M7.nc": "c4e0ee3db8fb106a7d5e2eb79ba4272c5545c6441ed7345c61e719b917584e87",
+        "lut_kappa.nc": "5dd7c435c237b08a506ee1a78e427ca46e0f67c8d9aea520242562503c4243ce",
+        "namelist.echam": "96787078d982b57351290cc6f12f5d1a482a02edc6294351c2a3eb9f9a49711c"
+      },
+      "diagnostic_sha256": {
+        "data/fracn.dat": "69aee57c77ac6996a562c04d1869d1f726f133e161d107c522be6c055734b367",
+        "data/nact.dat": "69aee57c77ac6996a562c04d1869d1f726f133e161d107c522be6c055734b367",
+        "data/num.dat": "292653dc36eeda253ad6588afff082777703319e0521dfbf3d446ac1ffa6c6e2",
+        "data/rdry.dat": "13948167ca4c1a602a27a277f661d0722248d6c3b60612242ac2421ff1681897"
+      },
+      "manifest_sha256": "3c15e709779dc56a71c6fc8953e68d2c49ce076b37c1ff7be0e2e743d2483616",
+      "scope_state_sha256": "0f89f44fc1fc67c404298ff8e0c7f38b460b9934f962a6bb18ba1f652a1a99f1",
+      "runtime_sha256": "536cc99f6699ec0d3456bdf75dab215f7e8393d854f7f6ce527efefdc061c432",
+      "runtime_metadata": {
+        "schema_version": 1,
+        "stage": "initialized_before_time_loop",
+        "values": {
+          "dp_kind": 8,
+          "dp_bits": 64,
+          "dp_precision": 15,
+          "dp_range": 307,
+          "default_real_bits": 32,
+          "kproma": 1,
+          "kbdim": 1,
+          "klev": 1,
+          "krow": 1,
+          "ntrac": 109,
+          "nspec": 14,
+          "nclass": 17,
+          "nsol": 17,
+          "naerocomp": 69,
+          "subm_ngasspec": 2,
+          "nham_subm": 3,
+          "nsnucl": 0,
+          "nj3": 1,
+          "ncd_activ": 2,
+          "nactivpdf": 1,
+          "nw": 20,
+          "in1a": 1,
+          "fn1a": 3,
+          "in2a": 4,
+          "fn2a": 10,
+          "in2b": 11,
+          "fn2b": 17,
+          "isubm_so4g": 2,
+          "isubm_ocnv": 0,
+          "idt_cdnc": 108,
+          "idt_icnc": 109,
+          "lham": true,
+          "laero_micro": true,
+          "lscoag": true,
+          "lscond": true,
+          "locgas": false,
+          "lsol2b": false,
+          "lhydr2b": true,
+          "recalc": false,
+          "lwetdep": true,
+          "ldrydep": true,
+          "lsedimentation": true,
+          "time_step_seconds": 1.0,
+          "pressure_pa_1_1": 101325.0,
+          "temperature_k_1_1": 298.0,
+          "specific_humidity_1_1": 0.0058535,
+          "saturation_specific_humidity_1_1": 0.019513061067820216,
+          "air_density_kg_m3_1_1": 1.1803627407320834,
+          "cloud_fraction_1_1": 1.0
+        },
+        "gas_species": [
+          {
+            "index": 1,
+            "species_index": 2,
+            "conversion_code": 2
+          },
+          {
+            "index": 2,
+            "species_index": 8,
+            "conversion_code": 2
+          }
+        ]
+      },
+      "captures": {}
+    },
+    "capture": {
+      "status": "first_microphysics_completed_unvalidated",
+      "source_revision": "a267f09c853f3991fe5485dd310bd20461f4ad78",
+      "working_tree_status": "M src/salsa_jax/constants.py\n M tools/fortran_reference.py\n?? src/salsa_jax/processes/remapping.py\n?? src/salsa_jax/processes/remapping_correction.py\n?? tests/test_remapping.py\n?? tools/remapping_capture.py\n?? tools/remapping_oracle.py",
+      "compiler": "GNU Fortran (Homebrew GCC 16.1.0) 16.1.0\nCopyright (C) 2026 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+      "config": {
+        "build": {
+          "compiler": "gfortran",
+          "flags": [
+            "-cpp",
+            "-g",
+            "-fbacktrace",
+            "-std=legacy",
+            "-ffpe-trap=invalid,zero,overflow",
+            "-O0",
+            "-fcheck=all",
+            "-finit-real=snan",
+            "-DNOMPI",
+            "-DSALSA",
+            "-D__x86_64",
+            "-I./include"
+          ],
+          "jobs": 1,
+          "timeout_seconds": 180
+        },
+        "run": {
+          "timeout_seconds": 60
+        }
+      },
+      "config_sha256": "fb123db9c6ccda24778618ddbffa43613b3d3110a5b2ea758ed7d51174073db0",
+      "harness_sha256": "ec33b3b2f36d5935b22e3842bbeb651c0a8afdf138b367013e0287bb96b4017d",
+      "compiled_driver_sha256": "39d4f4ae68089f05ee7c16af891f7b3647784ef73849e4780c4259c43d56c7e3",
+      "executable_sha256": "3ab6e4a6a8ec5c8a4bd80aa7d82cc8370b00574f397ef59c5aa887802f6ec0c6",
+      "source_sha256": {
+        ".depend": "29085ec5b2671054e3d2775b8638d6500e362ebf3c6dc70a77941646dfdd145f",
+        "MPL_MODULE.F90": "f81ce8155a5a4ca9559a5bc70402e784c3664407be629de2f4da5912a0ca574a",
+        "Makefile": "1f52dba754d7392818673a2263d5fdb86ac2916085d8d5cc07a6abff4d876d5b",
+        "Makefile.in": "a56d1a2702e5c33ea6a598dda3ef97e5f4c825ed48fc947e59be87147b065a72",
+        "TM5M7_DATA.F90": "ba69c6ed04c74008e49de50715549ef66f985656d6c793015738a9c7295f1cca",
+        "TM5M7_INIT.F90": "1e489bfdce2259bf1ba70afebd922da82a87ed00480739eb29e8b73c983544b6",
+        "TM5M7_OPTICS_DATA.F90": "344b38d39e161f3f3216aac8e9bbb6e62ef97e040edb2a0f33cf3220bf9fa5a6",
+        "YOMMP0.F90": "8222ccd536edf2c94b56f333351df1ecabea61d69c74f77f2fd36997fc8ea6a3",
+        "configure": "84c2ad7b2905e5113c9e5dbc660a30d5e2b5560c7df7de32bd61627f032d5377",
+        "driver.F90": "ff59d164d894111da2f41263351fd815a062c9ae34502b91cae3436a3dafb5f2",
+        "driver_input.F90": "b04f5de31885362a1fd78e22c9634d9ed6f771968509e030fd5c17ba64557c2b",
+        "driver_tracer.F90": "faa3061223abe227a6f7d0c4c101e1815e76ee94c4b27501fbf3273bf55ee843",
+        "include/ham_salsactl.inc": "c5971a977bdf8a0f70589a0ad541dcc8e23018232837a35155c7e037471def94",
+        "include/hamctl.inc": "63cff48c3ffc46d98a721aa5c47f3a1bce8a8d4a236489ba27089967c900f73a",
+        "mo_activ.F90": "13d4a0e3852cc18111716f748fa4de520d34133f235bf06cbd79303d9fa4e5ec",
+        "mo_advection.F90": "b8e8bad91ffa1614dc00e5e9bb910b9fe00f0132edd90633f99f15b7ef1c50c4",
+        "mo_control.F90": "1eda37cd53d5d1c2753c576607110e4c5c9eac0d832d2b6655b781e4147ce3a7",
+        "mo_conv.F90": "15045bdee1fb6bf6aa606d0a79acef8a05121da90b48efe3d80ea7abcf1c0ee6",
+        "mo_convert_concentrations.F90": "f72f5304623cab88b5bffda5f519e9a0bf78dce1671c70552edcb706ba3b4d14",
+        "mo_exception.F90": "2a2e3a4fb973a70118cd7b7ef1974053af0a9355522846c74a99cafe916c5e73",
+        "mo_filename.F90": "e9b46c658222ce592166a83f665fe5d06f13d3e32726708788cd40f141075b66",
+        "mo_ham.F90": "117e36d7a8dfbacc986e8736275de88d2deacda2cdd12c4287d3022afd042737",
+        "mo_ham_activ.F90": "5954d4e39325041f65cf0c7021c71bb8b92da71fa384a63b4c49429a5c85b0df",
+        "mo_ham_drydep.F90": "a45785f6975fec4bff1de2676612c99233a80fb99d2387fbcc1a44951d5ad356",
+        "mo_ham_init.F90": "184c4abf33df411e874493d0476b0fddbcdc45813a82c3d7144afc451c123f1f",
+        "mo_ham_kappa.F90": "17608f5b55afaa1c1d98c0836c7fd7ebc2eeb7134263eb60e18fe3fe5175b12f",
+        "mo_ham_m7.F90": "4ef82634ad0e566f111e984ffb86a60d7069daec057aa130ae062277a677b1b6",
+        "mo_ham_m7_nucl.F90": "2b39fc6436c7cf6db1f385d39a3d9542ee35c2129d1b6096dc6cf20853c41c18",
+        "mo_ham_m7_trac.F90": "1200887fb0044bf0cc1bbe84d168080ffeb79b0f4a76f505cbc6840533b2ab80",
+        "mo_ham_m7ctl.F90": "890e9ea622897dd35b0df18a2070d89bfffb81c6953425dcf423a2dcd7d8c3e1",
+        "mo_ham_rad.F90": "025da81d8362f7648ac38393bf25e2d5eb04288d5f41e3be1bf3bef690a38108",
+        "mo_ham_rad_data.F90": "1e501439e53b8d7c2e398ad7527f876676df4350c15b54995c42677841bf74ed",
+        "mo_ham_salsa.F90": "af04c42794909550de39d2bdc0a5d1bcc430f59c729841114e35e8ce790b04df",
+        "mo_ham_salsa_cloud.F90": "7260b4c20a69987843f4f3c4816fb93210d0d6966a6a271422a9879d2d29ed69",
+        "mo_ham_salsa_dynamics.F90": "13db52f2e5e10bb0ad485348209a74e3b8bcbf25af77d05a995a8444050cff25",
+        "mo_ham_salsa_init.F90": "efc26ed1c4ab391f5fd288e7e5bd0f2998e722731c34ccd778063febf43faf50",
+        "mo_ham_salsa_nucleation.F90": "927c2f2d8056ce100a5e36563cc9fa04b407ea0033ff848e9c65de3c9a9f2445",
+        "mo_ham_salsa_properties.F90": "5292a5c9debcb6b3fd8bab7d477c463cbfd98d9ff7dc03d5f793f9c1aae76127",
+        "mo_ham_salsa_sizedist.F90": "83ea26e4adb9080a856a1bc670467b82505f26419b0c42d781536b6659f158e4",
+        "mo_ham_salsa_trac.F90": "7b3f37f19d0a0599ae114d876902a656b58a2418f6de6ca7657185e7c1f965f3",
+        "mo_ham_salsa_update.F90": "f01880e86935e4dd628ce9bdcd010df1530525f167cd6262e9e76b584caf1cf1",
+        "mo_ham_salsactl.F90": "95dc7bcd437bc2d9cb9bc9bd784ad912c71ccfb978bdfad0cadf641b1374c30c",
+        "mo_ham_sedimentation.F90": "797da26f5cbdb2c4e50e805967f5d917c8b96b706e03ff129d9ccd861b108cb4",
+        "mo_ham_soa.F90": "4b522cb8bba89b9e4f44be155ae09945688a1e0367a10b85dbcecd283df8619a",
+        "mo_ham_species.F90": "828b524dc894bf8423dd89328624f46c0a9b95ae907e7d58eac8d50d9e8e4cd0",
+        "mo_ham_subm.F90": "8752371dafdb956dfdc5e4f52f6a8d2f8b1d20c3395efa9e34d37513621bfb68",
+        "mo_ham_subm_species.F90": "de188b92adb2d07b121ad5e37f19573365fc0f228ddea75a7c3b882a2a34440a",
+        "mo_ham_tools.F90": "aa04c23b17637e8826a7c42519ebbdd1e381937776ba4d26fe8ee47cfa9eb380",
+        "mo_ham_vbs.F90": "3033ba0a960def111c20bd93caafdd05b7396ff4a981d64dc2fba34c22f5227f",
+        "mo_ham_vbs_partition.F90": "60065156e23c51113628a7a736b83a414bd88e91667ea76661a0302aee16eddc",
+        "mo_ham_vbsctl.F90": "1deb63bbb918eb53697ca63b10819f0e1ad1b0118eb8bc40403925d45850a1d6",
+        "mo_ham_wetdep.F90": "b07cd39214a76e649d3f3b76d6638f644ac7223cfb9890448c619e1384cf78b9",
+        "mo_ham_wetdep_data.F90": "d030c809372cf366126e2648aab6f62cd772eb5b5d2211526ae1c3aa5ef4609f",
+        "mo_hammoz_drydep.F90": "963afe88ead8a2ffb1bd32a4260b4d5d3ff18f5e63fe83ccb6a75fe526ff2ce5",
+        "mo_hammoz_sedimentation.F90": "ed73bf842331d8bd7c13bacddab237edad8a843637da39ebf16746caf692ed2f",
+        "mo_hammoz_wetdep.F90": "95086984150ea10dc880e0f37fd0ac44cef64a6668bc7123dbdb22af044dd53e",
+        "mo_io_units.F90": "72f15d0092912180c1b7fc7f6e5a21a8211a84b6aea851cf44c354eb58d5bb20",
+        "mo_kind.F90": "e7d3a5f28d216e60828c395a704e33a7bfc5db6e966533776fc438f4d782d255",
+        "mo_math_constants.F90": "ceae6f761c288597f7fb495ff2a55030fee8f861e1ee0dcd8adc0ba3ba95734f",
+        "mo_namelist.F90": "2a0fe92df278273ddbc451bc92186ff8d26c19bc2bea4fd995bf4d76faced69d",
+        "mo_netcdf.F90": "6aa41adf6bc64ef063259662df800f697d50cc954fa494a7fb6c18e74f0a73b4",
+        "mo_param_switches.F90": "7ae204fcfc15fbc978897240dde66a44d0d6bcede32a2bcdb8e4fc1434f6000b",
+        "mo_physical_constants.F90": "12405902248f437d9f7ae9b03d1efe194cd7605f6b396156c3d820366b8a79b0",
+        "mo_radiation_parameters.F90": "75a57cda851d90677e00212cbe6a96d8013185815eed3a58bd49d5325063b464",
+        "mo_read_netcdf77.F90": "b95a6d4a1e1e3b3204a07892856c6c9b35f54488a9c5a621782164114e7c57c3",
+        "mo_species.F90": "6e86c7a99f8c2d2cd274c245843dfcbebd367bcddc17a5e8b7420e0526ce9c78",
+        "mo_submodel.F90": "7d6af82f93b6ca95cc4d6361a2c05a01230b656cdd6c5b439d63508ef3b088b0",
+        "mo_time_control.F90": "a85be9de64fc6a124e74f7a8f9c1755741efcbd03d6f5265d8d16375c006cec0",
+        "mo_tracdef.F90": "3c8f53789b65fb86fe4cf0d31b7d16403589606508912b35087495a6fb7076cc",
+        "mo_tracer.F90": "49e5cd2de46d1912c0a24e92152fee8e94e37076bc34f5b8523707c196f85003",
+        "mo_tracer_processes.F90": "b0f44e56b9a6c590b84916e9dc115ce292b39eb523d35bcf3b43fdb97cb55dd4",
+        "mo_util_string.F90": "949b82b5441d4e2ae6fcb12fd3f699ed86d81fc5c4fa0f555ef1bc9ecdc79ee5",
+        "oifs_to_ham.F90": "981bf4b731c869b30ad9b5c54d3dedcbae060a1d77497a04dbc6f8b1dc62216d",
+        "parkind1.F90": "bd7aa3a0f896829781c6c9c1924726def9bd8b2825778e26274c615c2642ff5a",
+        "yomm7ctl.F90": "52031ef2febbc1660b2e136d1b03df1640d1d724282dc9442e081fb84612b66c"
+      },
+      "input_sha256": {
+        "input/GlobalTraj-CE_200801.01_activ_1step.nc": "5fc1460eda7fc233080996ba9bdcd5ab9d2ba7f22b959a47ab4e7e7f8badd769",
+        "input/GlobalTraj-CE_200801.01_vphysc_1step.nc": "a3ba8492fb4f0301a0f6247d8d1765cd0877986b4f4fb0452b71fc82b0ce1e1b",
+        "input/HAM_box_inp_200007.01_activ.nc": "565654fa162906fb4ee76ccba5a4ac1c8ce80abca482d412efe369f1506f0985",
+        "input/lut_optical_properties_M7.nc": "fff3657f3ec81bd4a3cb28abb0b4a0741d075af6258333213fe5bf4dba0d0814",
+        "input/lut_optical_properties_lw_M7.nc": "c4e0ee3db8fb106a7d5e2eb79ba4272c5545c6441ed7345c61e719b917584e87",
+        "lut_kappa.nc": "5dd7c435c237b08a506ee1a78e427ca46e0f67c8d9aea520242562503c4243ce",
+        "namelist.echam": "96787078d982b57351290cc6f12f5d1a482a02edc6294351c2a3eb9f9a49711c"
+      },
+      "diagnostic_sha256": {
+        "data/fracn.dat": "69aee57c77ac6996a562c04d1869d1f726f133e161d107c522be6c055734b367",
+        "data/nact.dat": "69aee57c77ac6996a562c04d1869d1f726f133e161d107c522be6c055734b367",
+        "data/num.dat": "292653dc36eeda253ad6588afff082777703319e0521dfbf3d446ac1ffa6c6e2",
+        "data/rdry.dat": "13948167ca4c1a602a27a277f661d0722248d6c3b60612242ac2421ff1681897"
+      },
+      "manifest_sha256": "55226eed093d6638b75c375f65b78ee17ae2e996137f19a4f68ba58f406e8004",
+      "scope_state_sha256": "0f89f44fc1fc67c404298ff8e0c7f38b460b9934f962a6bb18ba1f652a1a99f1",
+      "runtime_sha256": "536cc99f6699ec0d3456bdf75dab215f7e8393d854f7f6ce527efefdc061c432",
+      "runtime_metadata": {
+        "schema_version": 1,
+        "stage": "initialized_before_time_loop",
+        "values": {
+          "dp_kind": 8,
+          "dp_bits": 64,
+          "dp_precision": 15,
+          "dp_range": 307,
+          "default_real_bits": 32,
+          "kproma": 1,
+          "kbdim": 1,
+          "klev": 1,
+          "krow": 1,
+          "ntrac": 109,
+          "nspec": 14,
+          "nclass": 17,
+          "nsol": 17,
+          "naerocomp": 69,
+          "subm_ngasspec": 2,
+          "nham_subm": 3,
+          "nsnucl": 0,
+          "nj3": 1,
+          "ncd_activ": 2,
+          "nactivpdf": 1,
+          "nw": 20,
+          "in1a": 1,
+          "fn1a": 3,
+          "in2a": 4,
+          "fn2a": 10,
+          "in2b": 11,
+          "fn2b": 17,
+          "isubm_so4g": 2,
+          "isubm_ocnv": 0,
+          "idt_cdnc": 108,
+          "idt_icnc": 109,
+          "lham": true,
+          "laero_micro": true,
+          "lscoag": true,
+          "lscond": true,
+          "locgas": false,
+          "lsol2b": false,
+          "lhydr2b": true,
+          "recalc": false,
+          "lwetdep": true,
+          "ldrydep": true,
+          "lsedimentation": true,
+          "time_step_seconds": 1.0,
+          "pressure_pa_1_1": 101325.0,
+          "temperature_k_1_1": 298.0,
+          "specific_humidity_1_1": 0.0058535,
+          "saturation_specific_humidity_1_1": 0.019513061067820216,
+          "air_density_kg_m3_1_1": 1.1803627407320834,
+          "cloud_fraction_1_1": 1.0
+        },
+        "gas_species": [
+          {
+            "index": 1,
+            "species_index": 2,
+            "conversion_code": 2
+          },
+          {
+            "index": 2,
+            "species_index": 8,
+            "conversion_code": 2
+          }
+        ]
+      },
+      "captures": {
+        "salsa_capture": {
+          "original_source_sha256": "af04c42794909550de39d2bdc0a5d1bcc430f59c729841114e35e8ce790b04df",
+          "instrumented_source_sha256": "dffc214403cb697007ae7ba2b5b1a44a8f2db6a1a3522a6644c51d4ac9202267",
+          "overlay_file": "salsa-state.patch",
+          "overlay_sha256": "9261bc8ab679bbaa78e0bd048fc4a402effe4aa72f46b0eb34aaeddd9441e4b9",
+          "helper_sha256": "9ea8cfcc5f88a5cb9fa84b8a471b4f4f1c4b9943b5a7a3b878c1829db54528f9",
+          "status": "captured",
+          "file_sha256": {
+            "salsa-entry.txt": "4e61007605ecb17993683dae2bbae4e3e88d00bdfc316b253abf5e2d61cd3c25",
+            "salsa-exit.txt": "cb1b7e9f56737cbfd0a9b50db3b8b0a673ef74029aac87ad9182fb46f8acc66d",
+            "salsa-mapping.txt": "ee17a59f441d0e1f7a0fd7eff27d49fee3b33ad9a03b028883e70edb889df53d"
+          }
+        },
+        "hydration_capture": {
+          "original_source_sha256": "dffc214403cb697007ae7ba2b5b1a44a8f2db6a1a3522a6644c51d4ac9202267",
+          "instrumented_source_sha256": "ce7c760da6f3384823d7ead3d34d026123f81f4280c376a6bae407c6d3ff7e64",
+          "overlay_file": "hydration-state.patch",
+          "overlay_sha256": "2dc45e615f12b14cf6a986669349c3b1492879471f84b1c923d3c55e8f636a0c",
+          "helper_sha256": "b758b5006bda559551b2725629fbd304dad7f29f8e53c0bb8cbfeb32bf87a2ef",
+          "status": "captured",
+          "file_sha256": {
+            "hydration-entry.txt": "fa6960a0a756a114bd5cedc64049ba7dd34f663103c3be4a2401777ce79e3bf1",
+            "hydration-exit.txt": "252474f5cd1bfc0f4bcd1e38608ff561b9dbb7589c5ded075e68e75e4a4f3839"
+          }
+        },
+        "coagulation_capture": {
+          "original_source_sha256": "ce7c760da6f3384823d7ead3d34d026123f81f4280c376a6bae407c6d3ff7e64",
+          "instrumented_source_sha256": "6db314c7a10ff46e7e09945eb6ceb566f71b34ebab9b2c62938143ac94c1f1ab",
+          "overlay_file": "coagulation-state.patch",
+          "overlay_sha256": "73f7458d816ba3b92caf94eeabc448aa8de85cbe2cd53a96af159386d1987569",
+          "helper_sha256": "67ec5cd6dbf5b8065b8061cd52c6ad45589db34e6e002ee5f275eb75280224ea",
+          "status": "captured",
+          "file_sha256": {
+            "coagulation-entry.txt": "835b67fb50d6bc9b24a9cbd43370cbdd35bd3df154ae8fea6d1d9fce38494aa7",
+            "coagulation-exit.txt": "ad96f8480ffce0a8ab2988aae302a22bfa325b90691e1dd055ec9b2c314a961b"
+          }
+        },
+        "condensation_capture": {
+          "original_source_sha256": "6db314c7a10ff46e7e09945eb6ceb566f71b34ebab9b2c62938143ac94c1f1ab",
+          "instrumented_source_sha256": "adb0a9394164d3431ace3d8e8eb99506d49629127565a796046882f638bdfac6",
+          "overlay_file": "condensation-state.patch",
+          "overlay_sha256": "e4c2a231dce016e5b4c181fd22227ca46085b50986dc11ea3ba71b2bae1d5134",
+          "helper_sha256": "69148f4ccd3d7d7deb6197801a9da15c4be51db3648dc662f374628fb11362ff",
+          "status": "captured",
+          "file_sha256": {
+            "condensation-entry.txt": "40ab0e2796a770526db30d21d1249cdec3e653783e2a530e0f67244671213d9f",
+            "condensation-exit.txt": "c4724b9bde2c76d68085b365f9fba34c7ed6d0da7a68185c5c3c9ec64e4e3983"
+          }
+        },
+        "remapping_capture": {
+          "original_source_sha256": "adb0a9394164d3431ace3d8e8eb99506d49629127565a796046882f638bdfac6",
+          "instrumented_source_sha256": "08a5ac6d7c64a63f32390c5d188fdd45630897bab6651cbc5ec00fed8de6a0f6",
+          "overlay_file": "remapping-state.patch",
+          "overlay_sha256": "8db636287a1ad091352b8b7deaef8cc23d61a878465c85a2eb5823c0a777659a",
+          "helper_sha256": "78458c36b991533e3a2c5b62e44c74fc946400c058edbb363dff99da154a5b90",
+          "hydration_schema_sha256": "b758b5006bda559551b2725629fbd304dad7f29f8e53c0bb8cbfeb32bf87a2ef",
+          "status": "captured",
+          "file_sha256": {
+            "remapping-pass-1-entry.txt": "7c22b9fad48724849c3cbb4af21a0aa97e1f0ec0d85086d2580c796c0ff2db0b",
+            "remapping-pass-1-remap-exit.txt": "65cefe4145decc4c73b7de7130bc83e92a1107b3a567fc6bf9f0cd791c4f04c2",
+            "remapping-pass-1-cleanup-exit.txt": "65cefe4145decc4c73b7de7130bc83e92a1107b3a567fc6bf9f0cd791c4f04c2",
+            "remapping-pass-1-correction-exit.txt": "62980d4435bc0bafbec3819ec752a8657b1db830a412f6dde8796bf556bf0769",
+            "remapping-pass-2-entry.txt": "19cb70f53e5a2c6441541789b77a80bd6d4faff20dbf632c09173359623485b9",
+            "remapping-pass-2-remap-exit.txt": "3c39a5f8b915d567f04f08e1f3b6487cb461e9b0112761e40dd0a1a3b943ab94",
+            "remapping-pass-2-cleanup-exit.txt": "3c39a5f8b915d567f04f08e1f3b6487cb461e9b0112761e40dd0a1a3b943ab94",
+            "remapping-pass-2-correction-exit.txt": "aed423dc5f684cfe26b51052898a878d1e5849e8c25bef4fe787bae19766f63c"
+          }
+        }
+      }
+    },
+    "repeat": {
+      "status": "first_microphysics_completed_unvalidated",
+      "source_revision": "a267f09c853f3991fe5485dd310bd20461f4ad78",
+      "working_tree_status": "M src/salsa_jax/constants.py\n M tools/fortran_reference.py\n?? benchmarks/benchmark_remapping.py\n?? src/salsa_jax/processes/remapping.py\n?? src/salsa_jax/processes/remapping_correction.py\n?? tests/test_remapping.py\n?? tests/test_remapping_oracle.py\n?? tools/remapping_capture.py\n?? tools/remapping_correction_oracle.py\n?? tools/remapping_oracle.py",
+      "compiler": "GNU Fortran (Homebrew GCC 16.1.0) 16.1.0\nCopyright (C) 2026 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+      "config": {
+        "build": {
+          "compiler": "gfortran",
+          "flags": [
+            "-cpp",
+            "-g",
+            "-fbacktrace",
+            "-std=legacy",
+            "-ffpe-trap=invalid,zero,overflow",
+            "-O0",
+            "-fcheck=all",
+            "-finit-real=snan",
+            "-DNOMPI",
+            "-DSALSA",
+            "-D__x86_64",
+            "-I./include"
+          ],
+          "jobs": 1,
+          "timeout_seconds": 180
+        },
+        "run": {
+          "timeout_seconds": 60
+        }
+      },
+      "config_sha256": "fb123db9c6ccda24778618ddbffa43613b3d3110a5b2ea758ed7d51174073db0",
+      "harness_sha256": "ec33b3b2f36d5935b22e3842bbeb651c0a8afdf138b367013e0287bb96b4017d",
+      "compiled_driver_sha256": "39d4f4ae68089f05ee7c16af891f7b3647784ef73849e4780c4259c43d56c7e3",
+      "executable_sha256": "36e943d3e935febd1fa3bdbd8f39f560766fac33a48e867374825d6b95ecf205",
+      "source_sha256": {
+        ".depend": "29085ec5b2671054e3d2775b8638d6500e362ebf3c6dc70a77941646dfdd145f",
+        "MPL_MODULE.F90": "f81ce8155a5a4ca9559a5bc70402e784c3664407be629de2f4da5912a0ca574a",
+        "Makefile": "1f52dba754d7392818673a2263d5fdb86ac2916085d8d5cc07a6abff4d876d5b",
+        "Makefile.in": "a56d1a2702e5c33ea6a598dda3ef97e5f4c825ed48fc947e59be87147b065a72",
+        "TM5M7_DATA.F90": "ba69c6ed04c74008e49de50715549ef66f985656d6c793015738a9c7295f1cca",
+        "TM5M7_INIT.F90": "1e489bfdce2259bf1ba70afebd922da82a87ed00480739eb29e8b73c983544b6",
+        "TM5M7_OPTICS_DATA.F90": "344b38d39e161f3f3216aac8e9bbb6e62ef97e040edb2a0f33cf3220bf9fa5a6",
+        "YOMMP0.F90": "8222ccd536edf2c94b56f333351df1ecabea61d69c74f77f2fd36997fc8ea6a3",
+        "configure": "84c2ad7b2905e5113c9e5dbc660a30d5e2b5560c7df7de32bd61627f032d5377",
+        "driver.F90": "ff59d164d894111da2f41263351fd815a062c9ae34502b91cae3436a3dafb5f2",
+        "driver_input.F90": "b04f5de31885362a1fd78e22c9634d9ed6f771968509e030fd5c17ba64557c2b",
+        "driver_tracer.F90": "faa3061223abe227a6f7d0c4c101e1815e76ee94c4b27501fbf3273bf55ee843",
+        "include/ham_salsactl.inc": "c5971a977bdf8a0f70589a0ad541dcc8e23018232837a35155c7e037471def94",
+        "include/hamctl.inc": "63cff48c3ffc46d98a721aa5c47f3a1bce8a8d4a236489ba27089967c900f73a",
+        "mo_activ.F90": "13d4a0e3852cc18111716f748fa4de520d34133f235bf06cbd79303d9fa4e5ec",
+        "mo_advection.F90": "b8e8bad91ffa1614dc00e5e9bb910b9fe00f0132edd90633f99f15b7ef1c50c4",
+        "mo_control.F90": "1eda37cd53d5d1c2753c576607110e4c5c9eac0d832d2b6655b781e4147ce3a7",
+        "mo_conv.F90": "15045bdee1fb6bf6aa606d0a79acef8a05121da90b48efe3d80ea7abcf1c0ee6",
+        "mo_convert_concentrations.F90": "f72f5304623cab88b5bffda5f519e9a0bf78dce1671c70552edcb706ba3b4d14",
+        "mo_exception.F90": "2a2e3a4fb973a70118cd7b7ef1974053af0a9355522846c74a99cafe916c5e73",
+        "mo_filename.F90": "e9b46c658222ce592166a83f665fe5d06f13d3e32726708788cd40f141075b66",
+        "mo_ham.F90": "117e36d7a8dfbacc986e8736275de88d2deacda2cdd12c4287d3022afd042737",
+        "mo_ham_activ.F90": "5954d4e39325041f65cf0c7021c71bb8b92da71fa384a63b4c49429a5c85b0df",
+        "mo_ham_drydep.F90": "a45785f6975fec4bff1de2676612c99233a80fb99d2387fbcc1a44951d5ad356",
+        "mo_ham_init.F90": "184c4abf33df411e874493d0476b0fddbcdc45813a82c3d7144afc451c123f1f",
+        "mo_ham_kappa.F90": "17608f5b55afaa1c1d98c0836c7fd7ebc2eeb7134263eb60e18fe3fe5175b12f",
+        "mo_ham_m7.F90": "4ef82634ad0e566f111e984ffb86a60d7069daec057aa130ae062277a677b1b6",
+        "mo_ham_m7_nucl.F90": "2b39fc6436c7cf6db1f385d39a3d9542ee35c2129d1b6096dc6cf20853c41c18",
+        "mo_ham_m7_trac.F90": "1200887fb0044bf0cc1bbe84d168080ffeb79b0f4a76f505cbc6840533b2ab80",
+        "mo_ham_m7ctl.F90": "890e9ea622897dd35b0df18a2070d89bfffb81c6953425dcf423a2dcd7d8c3e1",
+        "mo_ham_rad.F90": "025da81d8362f7648ac38393bf25e2d5eb04288d5f41e3be1bf3bef690a38108",
+        "mo_ham_rad_data.F90": "1e501439e53b8d7c2e398ad7527f876676df4350c15b54995c42677841bf74ed",
+        "mo_ham_salsa.F90": "af04c42794909550de39d2bdc0a5d1bcc430f59c729841114e35e8ce790b04df",
+        "mo_ham_salsa_cloud.F90": "7260b4c20a69987843f4f3c4816fb93210d0d6966a6a271422a9879d2d29ed69",
+        "mo_ham_salsa_dynamics.F90": "13db52f2e5e10bb0ad485348209a74e3b8bcbf25af77d05a995a8444050cff25",
+        "mo_ham_salsa_init.F90": "efc26ed1c4ab391f5fd288e7e5bd0f2998e722731c34ccd778063febf43faf50",
+        "mo_ham_salsa_nucleation.F90": "927c2f2d8056ce100a5e36563cc9fa04b407ea0033ff848e9c65de3c9a9f2445",
+        "mo_ham_salsa_properties.F90": "5292a5c9debcb6b3fd8bab7d477c463cbfd98d9ff7dc03d5f793f9c1aae76127",
+        "mo_ham_salsa_sizedist.F90": "83ea26e4adb9080a856a1bc670467b82505f26419b0c42d781536b6659f158e4",
+        "mo_ham_salsa_trac.F90": "7b3f37f19d0a0599ae114d876902a656b58a2418f6de6ca7657185e7c1f965f3",
+        "mo_ham_salsa_update.F90": "f01880e86935e4dd628ce9bdcd010df1530525f167cd6262e9e76b584caf1cf1",
+        "mo_ham_salsactl.F90": "95dc7bcd437bc2d9cb9bc9bd784ad912c71ccfb978bdfad0cadf641b1374c30c",
+        "mo_ham_sedimentation.F90": "797da26f5cbdb2c4e50e805967f5d917c8b96b706e03ff129d9ccd861b108cb4",
+        "mo_ham_soa.F90": "4b522cb8bba89b9e4f44be155ae09945688a1e0367a10b85dbcecd283df8619a",
+        "mo_ham_species.F90": "828b524dc894bf8423dd89328624f46c0a9b95ae907e7d58eac8d50d9e8e4cd0",
+        "mo_ham_subm.F90": "8752371dafdb956dfdc5e4f52f6a8d2f8b1d20c3395efa9e34d37513621bfb68",
+        "mo_ham_subm_species.F90": "de188b92adb2d07b121ad5e37f19573365fc0f228ddea75a7c3b882a2a34440a",
+        "mo_ham_tools.F90": "aa04c23b17637e8826a7c42519ebbdd1e381937776ba4d26fe8ee47cfa9eb380",
+        "mo_ham_vbs.F90": "3033ba0a960def111c20bd93caafdd05b7396ff4a981d64dc2fba34c22f5227f",
+        "mo_ham_vbs_partition.F90": "60065156e23c51113628a7a736b83a414bd88e91667ea76661a0302aee16eddc",
+        "mo_ham_vbsctl.F90": "1deb63bbb918eb53697ca63b10819f0e1ad1b0118eb8bc40403925d45850a1d6",
+        "mo_ham_wetdep.F90": "b07cd39214a76e649d3f3b76d6638f644ac7223cfb9890448c619e1384cf78b9",
+        "mo_ham_wetdep_data.F90": "d030c809372cf366126e2648aab6f62cd772eb5b5d2211526ae1c3aa5ef4609f",
+        "mo_hammoz_drydep.F90": "963afe88ead8a2ffb1bd32a4260b4d5d3ff18f5e63fe83ccb6a75fe526ff2ce5",
+        "mo_hammoz_sedimentation.F90": "ed73bf842331d8bd7c13bacddab237edad8a843637da39ebf16746caf692ed2f",
+        "mo_hammoz_wetdep.F90": "95086984150ea10dc880e0f37fd0ac44cef64a6668bc7123dbdb22af044dd53e",
+        "mo_io_units.F90": "72f15d0092912180c1b7fc7f6e5a21a8211a84b6aea851cf44c354eb58d5bb20",
+        "mo_kind.F90": "e7d3a5f28d216e60828c395a704e33a7bfc5db6e966533776fc438f4d782d255",
+        "mo_math_constants.F90": "ceae6f761c288597f7fb495ff2a55030fee8f861e1ee0dcd8adc0ba3ba95734f",
+        "mo_namelist.F90": "2a0fe92df278273ddbc451bc92186ff8d26c19bc2bea4fd995bf4d76faced69d",
+        "mo_netcdf.F90": "6aa41adf6bc64ef063259662df800f697d50cc954fa494a7fb6c18e74f0a73b4",
+        "mo_param_switches.F90": "7ae204fcfc15fbc978897240dde66a44d0d6bcede32a2bcdb8e4fc1434f6000b",
+        "mo_physical_constants.F90": "12405902248f437d9f7ae9b03d1efe194cd7605f6b396156c3d820366b8a79b0",
+        "mo_radiation_parameters.F90": "75a57cda851d90677e00212cbe6a96d8013185815eed3a58bd49d5325063b464",
+        "mo_read_netcdf77.F90": "b95a6d4a1e1e3b3204a07892856c6c9b35f54488a9c5a621782164114e7c57c3",
+        "mo_species.F90": "6e86c7a99f8c2d2cd274c245843dfcbebd367bcddc17a5e8b7420e0526ce9c78",
+        "mo_submodel.F90": "7d6af82f93b6ca95cc4d6361a2c05a01230b656cdd6c5b439d63508ef3b088b0",
+        "mo_time_control.F90": "a85be9de64fc6a124e74f7a8f9c1755741efcbd03d6f5265d8d16375c006cec0",
+        "mo_tracdef.F90": "3c8f53789b65fb86fe4cf0d31b7d16403589606508912b35087495a6fb7076cc",
+        "mo_tracer.F90": "49e5cd2de46d1912c0a24e92152fee8e94e37076bc34f5b8523707c196f85003",
+        "mo_tracer_processes.F90": "b0f44e56b9a6c590b84916e9dc115ce292b39eb523d35bcf3b43fdb97cb55dd4",
+        "mo_util_string.F90": "949b82b5441d4e2ae6fcb12fd3f699ed86d81fc5c4fa0f555ef1bc9ecdc79ee5",
+        "oifs_to_ham.F90": "981bf4b731c869b30ad9b5c54d3dedcbae060a1d77497a04dbc6f8b1dc62216d",
+        "parkind1.F90": "bd7aa3a0f896829781c6c9c1924726def9bd8b2825778e26274c615c2642ff5a",
+        "yomm7ctl.F90": "52031ef2febbc1660b2e136d1b03df1640d1d724282dc9442e081fb84612b66c"
+      },
+      "input_sha256": {
+        "input/GlobalTraj-CE_200801.01_activ_1step.nc": "5fc1460eda7fc233080996ba9bdcd5ab9d2ba7f22b959a47ab4e7e7f8badd769",
+        "input/GlobalTraj-CE_200801.01_vphysc_1step.nc": "a3ba8492fb4f0301a0f6247d8d1765cd0877986b4f4fb0452b71fc82b0ce1e1b",
+        "input/HAM_box_inp_200007.01_activ.nc": "565654fa162906fb4ee76ccba5a4ac1c8ce80abca482d412efe369f1506f0985",
+        "input/lut_optical_properties_M7.nc": "fff3657f3ec81bd4a3cb28abb0b4a0741d075af6258333213fe5bf4dba0d0814",
+        "input/lut_optical_properties_lw_M7.nc": "c4e0ee3db8fb106a7d5e2eb79ba4272c5545c6441ed7345c61e719b917584e87",
+        "lut_kappa.nc": "5dd7c435c237b08a506ee1a78e427ca46e0f67c8d9aea520242562503c4243ce",
+        "namelist.echam": "96787078d982b57351290cc6f12f5d1a482a02edc6294351c2a3eb9f9a49711c"
+      },
+      "diagnostic_sha256": {
+        "data/fracn.dat": "69aee57c77ac6996a562c04d1869d1f726f133e161d107c522be6c055734b367",
+        "data/nact.dat": "69aee57c77ac6996a562c04d1869d1f726f133e161d107c522be6c055734b367",
+        "data/num.dat": "292653dc36eeda253ad6588afff082777703319e0521dfbf3d446ac1ffa6c6e2",
+        "data/rdry.dat": "13948167ca4c1a602a27a277f661d0722248d6c3b60612242ac2421ff1681897"
+      },
+      "manifest_sha256": "1a4a8bc600a018ab9ebd804ff2b552e64c4a35c0fe4397d67585fad1e6dae7ba",
+      "scope_state_sha256": "0f89f44fc1fc67c404298ff8e0c7f38b460b9934f962a6bb18ba1f652a1a99f1",
+      "runtime_sha256": "536cc99f6699ec0d3456bdf75dab215f7e8393d854f7f6ce527efefdc061c432",
+      "runtime_metadata": {
+        "schema_version": 1,
+        "stage": "initialized_before_time_loop",
+        "values": {
+          "dp_kind": 8,
+          "dp_bits": 64,
+          "dp_precision": 15,
+          "dp_range": 307,
+          "default_real_bits": 32,
+          "kproma": 1,
+          "kbdim": 1,
+          "klev": 1,
+          "krow": 1,
+          "ntrac": 109,
+          "nspec": 14,
+          "nclass": 17,
+          "nsol": 17,
+          "naerocomp": 69,
+          "subm_ngasspec": 2,
+          "nham_subm": 3,
+          "nsnucl": 0,
+          "nj3": 1,
+          "ncd_activ": 2,
+          "nactivpdf": 1,
+          "nw": 20,
+          "in1a": 1,
+          "fn1a": 3,
+          "in2a": 4,
+          "fn2a": 10,
+          "in2b": 11,
+          "fn2b": 17,
+          "isubm_so4g": 2,
+          "isubm_ocnv": 0,
+          "idt_cdnc": 108,
+          "idt_icnc": 109,
+          "lham": true,
+          "laero_micro": true,
+          "lscoag": true,
+          "lscond": true,
+          "locgas": false,
+          "lsol2b": false,
+          "lhydr2b": true,
+          "recalc": false,
+          "lwetdep": true,
+          "ldrydep": true,
+          "lsedimentation": true,
+          "time_step_seconds": 1.0,
+          "pressure_pa_1_1": 101325.0,
+          "temperature_k_1_1": 298.0,
+          "specific_humidity_1_1": 0.0058535,
+          "saturation_specific_humidity_1_1": 0.019513061067820216,
+          "air_density_kg_m3_1_1": 1.1803627407320834,
+          "cloud_fraction_1_1": 1.0
+        },
+        "gas_species": [
+          {
+            "index": 1,
+            "species_index": 2,
+            "conversion_code": 2
+          },
+          {
+            "index": 2,
+            "species_index": 8,
+            "conversion_code": 2
+          }
+        ]
+      },
+      "captures": {
+        "salsa_capture": {
+          "original_source_sha256": "af04c42794909550de39d2bdc0a5d1bcc430f59c729841114e35e8ce790b04df",
+          "instrumented_source_sha256": "dffc214403cb697007ae7ba2b5b1a44a8f2db6a1a3522a6644c51d4ac9202267",
+          "overlay_file": "salsa-state.patch",
+          "overlay_sha256": "9261bc8ab679bbaa78e0bd048fc4a402effe4aa72f46b0eb34aaeddd9441e4b9",
+          "helper_sha256": "9ea8cfcc5f88a5cb9fa84b8a471b4f4f1c4b9943b5a7a3b878c1829db54528f9",
+          "status": "captured",
+          "file_sha256": {
+            "salsa-entry.txt": "4e61007605ecb17993683dae2bbae4e3e88d00bdfc316b253abf5e2d61cd3c25",
+            "salsa-exit.txt": "cb1b7e9f56737cbfd0a9b50db3b8b0a673ef74029aac87ad9182fb46f8acc66d",
+            "salsa-mapping.txt": "ee17a59f441d0e1f7a0fd7eff27d49fee3b33ad9a03b028883e70edb889df53d"
+          }
+        },
+        "hydration_capture": {
+          "original_source_sha256": "dffc214403cb697007ae7ba2b5b1a44a8f2db6a1a3522a6644c51d4ac9202267",
+          "instrumented_source_sha256": "ce7c760da6f3384823d7ead3d34d026123f81f4280c376a6bae407c6d3ff7e64",
+          "overlay_file": "hydration-state.patch",
+          "overlay_sha256": "2dc45e615f12b14cf6a986669349c3b1492879471f84b1c923d3c55e8f636a0c",
+          "helper_sha256": "b758b5006bda559551b2725629fbd304dad7f29f8e53c0bb8cbfeb32bf87a2ef",
+          "status": "captured",
+          "file_sha256": {
+            "hydration-entry.txt": "fa6960a0a756a114bd5cedc64049ba7dd34f663103c3be4a2401777ce79e3bf1",
+            "hydration-exit.txt": "252474f5cd1bfc0f4bcd1e38608ff561b9dbb7589c5ded075e68e75e4a4f3839"
+          }
+        },
+        "coagulation_capture": {
+          "original_source_sha256": "ce7c760da6f3384823d7ead3d34d026123f81f4280c376a6bae407c6d3ff7e64",
+          "instrumented_source_sha256": "6db314c7a10ff46e7e09945eb6ceb566f71b34ebab9b2c62938143ac94c1f1ab",
+          "overlay_file": "coagulation-state.patch",
+          "overlay_sha256": "73f7458d816ba3b92caf94eeabc448aa8de85cbe2cd53a96af159386d1987569",
+          "helper_sha256": "67ec5cd6dbf5b8065b8061cd52c6ad45589db34e6e002ee5f275eb75280224ea",
+          "status": "captured",
+          "file_sha256": {
+            "coagulation-entry.txt": "835b67fb50d6bc9b24a9cbd43370cbdd35bd3df154ae8fea6d1d9fce38494aa7",
+            "coagulation-exit.txt": "ad96f8480ffce0a8ab2988aae302a22bfa325b90691e1dd055ec9b2c314a961b"
+          }
+        },
+        "condensation_capture": {
+          "original_source_sha256": "6db314c7a10ff46e7e09945eb6ceb566f71b34ebab9b2c62938143ac94c1f1ab",
+          "instrumented_source_sha256": "adb0a9394164d3431ace3d8e8eb99506d49629127565a796046882f638bdfac6",
+          "overlay_file": "condensation-state.patch",
+          "overlay_sha256": "e4c2a231dce016e5b4c181fd22227ca46085b50986dc11ea3ba71b2bae1d5134",
+          "helper_sha256": "69148f4ccd3d7d7deb6197801a9da15c4be51db3648dc662f374628fb11362ff",
+          "status": "captured",
+          "file_sha256": {
+            "condensation-entry.txt": "40ab0e2796a770526db30d21d1249cdec3e653783e2a530e0f67244671213d9f",
+            "condensation-exit.txt": "c4724b9bde2c76d68085b365f9fba34c7ed6d0da7a68185c5c3c9ec64e4e3983"
+          }
+        },
+        "remapping_capture": {
+          "original_source_sha256": "adb0a9394164d3431ace3d8e8eb99506d49629127565a796046882f638bdfac6",
+          "instrumented_source_sha256": "08a5ac6d7c64a63f32390c5d188fdd45630897bab6651cbc5ec00fed8de6a0f6",
+          "overlay_file": "remapping-state.patch",
+          "overlay_sha256": "8db636287a1ad091352b8b7deaef8cc23d61a878465c85a2eb5823c0a777659a",
+          "helper_sha256": "78458c36b991533e3a2c5b62e44c74fc946400c058edbb363dff99da154a5b90",
+          "hydration_schema_sha256": "b758b5006bda559551b2725629fbd304dad7f29f8e53c0bb8cbfeb32bf87a2ef",
+          "status": "captured",
+          "file_sha256": {
+            "remapping-pass-1-entry.txt": "7c22b9fad48724849c3cbb4af21a0aa97e1f0ec0d85086d2580c796c0ff2db0b",
+            "remapping-pass-1-remap-exit.txt": "65cefe4145decc4c73b7de7130bc83e92a1107b3a567fc6bf9f0cd791c4f04c2",
+            "remapping-pass-1-cleanup-exit.txt": "65cefe4145decc4c73b7de7130bc83e92a1107b3a567fc6bf9f0cd791c4f04c2",
+            "remapping-pass-1-correction-exit.txt": "62980d4435bc0bafbec3819ec752a8657b1db830a412f6dde8796bf556bf0769",
+            "remapping-pass-2-entry.txt": "19cb70f53e5a2c6441541789b77a80bd6d4faff20dbf632c09173359623485b9",
+            "remapping-pass-2-remap-exit.txt": "3c39a5f8b915d567f04f08e1f3b6487cb461e9b0112761e40dd0a1a3b943ab94",
+            "remapping-pass-2-cleanup-exit.txt": "3c39a5f8b915d567f04f08e1f3b6487cb461e9b0112761e40dd0a1a3b943ab94",
+            "remapping-pass-2-correction-exit.txt": "aed423dc5f684cfe26b51052898a878d1e5849e8c25bef4fe787bae19766f63c"
+          }
+        }
+      }
+    }
+  },
+  "capture_control_six_ham_arrays_exact": true,
+  "runtime_and_diagnostics_exact": true,
+  "fresh_repeat_all_boundaries_exact": true,
+  "previous_hydration_coagulation_condensation_fixtures_exact": true,
+  "source_and_input_hashes_unchanged": true,
+  "numerical_acceptance": {
+    "tolerances": {
+      "remapping_relative": 3e-13,
+      "remapping_absolute": 0,
+      "remapping_budget_relative": 3e-14,
+      "correction_relative_except_water": 3e-13,
+      "correction_absolute_except_water": 0,
+      "water_error_bound": "3e-13*abs(reference_water)+32*float64_epsilon*(reference_core*water_density*reference_number)"
+    },
+    "oracle_provenance": {
+      "remapping": {
+        "source_sha256": {
+          "parkind1.F90": "bd7aa3a0f896829781c6c9c1924726def9bd8b2825778e26274c615c2642ff5a",
+          "mo_kind.F90": "e7d3a5f28d216e60828c395a704e33a7bfc5db6e966533776fc438f4d782d255",
+          "mo_math_constants.F90": "ceae6f761c288597f7fb495ff2a55030fee8f861e1ee0dcd8adc0ba3ba95734f",
+          "mo_physical_constants.F90": "12405902248f437d9f7ae9b03d1efe194cd7605f6b396156c3d820366b8a79b0",
+          "mo_ham_salsa_update.F90": "f01880e86935e4dd628ce9bdcd010df1530525f167cd6262e9e76b584caf1cf1",
+          "mo_ham_salsactl.F90": "95dc7bcd437bc2d9cb9bc9bd784ad912c71ccfb978bdfad0cadf641b1374c30c",
+          "mo_ham_species.F90": "828b524dc894bf8423dd89328624f46c0a9b95ae907e7d58eac8d50d9e8e4cd0",
+          "mo_ham.F90": "117e36d7a8dfbacc986e8736275de88d2deacda2cdd12c4287d3022afd042737"
+        },
+        "routine_sha256": "71d9defc1350d8b2d178dc7444ab6ba2b3fcc8d0812f5ba60e26b9f9f014d484",
+        "wrapper_sha256": {
+          "stubs.f90": "9b76d2cdd029f4e9f514598b8b098c1398241dd5c8afca00c0858ab8a627025e",
+          "remapping.F90": "7d0e195819ec39696bf993ed7cd43339604eb19ade489f19122b31754ed2ab11",
+          "driver.f90": "46853a206822cf3ac8ba16f21469e1abd8a05a6fd7bc2a5caad524490cabb4a1"
+        },
+        "diagnostic_overlay": "IF (capture_iterations) last_iterations=last_iterations+1",
+        "flags": [
+          "-O2",
+          "-fno-fast-math",
+          "-fno-lto",
+          "-ffree-line-length-none",
+          "-cpp",
+          "-fcheck=all",
+          "-ffpe-trap=invalid,zero,overflow",
+          "-fbacktrace"
+        ],
+        "checked": true,
+        "compiled_constants": {
+          "pi": 3.141592653589793,
+          "gas_constant": 8.314472
+        },
+        "configuration": {
+          "bins": 17,
+          "species": 5,
+          "boundaries": [
+            1,
+            3,
+            4,
+            10,
+            11,
+            17
+          ],
+          "native_loop_uncapped": true
+        },
+        "separate_compilation_without_lto": true,
+        "compiler": "GNU Fortran (Homebrew GCC 16.1.0) 16.1.0",
+        "executable_sha256": "0db872454973a1013cd80cc92b25ec2a9fde127f67f2744a7c1dffbd0887de73",
+        "measurement_provenance": "Reused checked test executable; all current generated wrapper contents verified byte-for-byte without writes or recompilation."
+      },
+      "correction": {
+        "source_sha256": {
+          "mo_ham_salsa.F90": "af04c42794909550de39d2bdc0a5d1bcc430f59c729841114e35e8ce790b04df"
+        },
+        "correction_block_sha256": "e2b31a40affa6ebdbdce73084b405ebe925cb459e6dc8db70691ae76b212af8f",
+        "wrapper_sha256": {
+          "correction.f90": "e71e2a8161b9ded4164c0f39ada7df2b8e73e3d0ec9e86b83bc32a95dcd86929",
+          "driver.f90": "4570647719117cd3143574fc7dca96ff7b611341cbdc7b62c6d4f96877f4ab7f"
+        },
+        "hydration_provenance": {
+          "source_sha256": {
+            "parkind1.F90": "bd7aa3a0f896829781c6c9c1924726def9bd8b2825778e26274c615c2642ff5a",
+            "mo_kind.F90": "e7d3a5f28d216e60828c395a704e33a7bfc5db6e966533776fc438f4d782d255",
+            "mo_math_constants.F90": "ceae6f761c288597f7fb495ff2a55030fee8f861e1ee0dcd8adc0ba3ba95734f",
+            "mo_physical_constants.F90": "12405902248f437d9f7ae9b03d1efe194cd7605f6b396156c3d820366b8a79b0",
+            "mo_ham_salsa_properties.F90": "5292a5c9debcb6b3fd8bab7d477c463cbfd98d9ff7dc03d5f793f9c1aae76127",
+            "mo_ham_salsa_init.F90": "efc26ed1c4ab391f5fd288e7e5bd0f2998e722731c34ccd778063febf43faf50",
+            "mo_ham_salsactl.F90": "95dc7bcd437bc2d9cb9bc9bd784ad912c71ccfb978bdfad0cadf641b1374c30c",
+            "mo_ham_species.F90": "828b524dc894bf8423dd89328624f46c0a9b95ae907e7d58eac8d50d9e8e4cd0",
+            "mo_ham.F90": "117e36d7a8dfbacc986e8736275de88d2deacda2cdd12c4287d3022afd042737"
+          },
+          "equilibration_sha256": "65f2b17ea5fec9237bf88214c44cb23c16b5c73bf2f638b46f5183111a9a94c7",
+          "molality_sha256": "1fe2941d0b794021070f60fe215dbec98275b47868de21fbc46e692a0dd61443",
+          "wrapper_sha256": {
+            "stubs.f90": "1730a972607bc4b4348bc3f677ecd6a9129e25f45b4a636719435373f08a9fa2",
+            "hydration.F90": "98dc94d02428242083c69d0d8807637bda05a6e22ebe5165a136f06584be8764",
+            "driver.f90": "8367c85514ee4b129f9d9f1d2ae74f51682e668aac0c25cc2f9de67bfc2624f0"
+          },
+          "diagnostic_overlay": "IF (capture_iterations) last_iterations(ii,jj,kk)=last_iterations(ii,jj,kk)+1",
+          "flags": [
+            "-O2",
+            "-fno-fast-math",
+            "-fno-lto",
+            "-ffree-line-length-none",
+            "-cpp",
+            "-fcheck=all",
+            "-ffpe-trap=invalid,zero,overflow",
+            "-fbacktrace"
+          ],
+          "checked": true,
+          "compiled_constants": {
+            "avogadro": 6.02214179e+23,
+            "boltzmann": 1.3806504e-23,
+            "pi": 3.141592653589793
+          },
+          "configuration": {
+            "nsoa": 0,
+            "HAMMOZ": false,
+            "bins": 17,
+            "material_order": [
+              "SO4",
+              "OC",
+              "BC",
+              "SS",
+              "DU"
+            ],
+            "lhydr2b_directly_used": false,
+            "soluble_mask_controls_hydration": true
+          },
+          "separate_compilation_without_lto": true,
+          "compiler": "GNU Fortran (Homebrew GCC 16.1.0) 16.1.0"
+        },
+        "flags": [
+          "-O2",
+          "-fno-fast-math",
+          "-fno-lto",
+          "-ffree-line-length-none",
+          "-cpp",
+          "-fcheck=all",
+          "-ffpe-trap=invalid,zero,overflow",
+          "-fbacktrace"
+        ],
+        "checked": true,
+        "scope": "one post-distr_update cleanup/hydration/radii-water pass; no redistribution or final density",
+        "gas_layout": [
+          "SO2",
+          "H2SO4",
+          "OC"
+        ],
+        "organic_absent_index": 0,
+        "D007": "original unguarded organic gas access retained; checked execution fails if cleanup reaches it",
+        "compiler": "GNU Fortran (Homebrew GCC 16.1.0) 16.1.0",
+        "executable_sha256": "2028ebedf4eb198fde17e66cf3f261572bc88877fcb31e078c7e7cb36d70478e",
+        "measurement_provenance": "Reused checked test executable; all current generated wrapper contents verified byte-for-byte without writes or recompilation."
+      }
+    },
+    "remapping_matrix": {
+      "count": 47,
+      "labels": [
+        "native-condensation-exit",
+        "empty",
+        "below-lower-bin1",
+        "partial-growth-bin1",
+        "below-lower-bin3",
+        "partial-growth-bin3",
+        "below-lower-bin4",
+        "partial-growth-bin4",
+        "below-lower-bin11",
+        "partial-growth-bin11",
+        "below-lower-bin12",
+        "partial-growth-bin12",
+        "below-lower-bin16",
+        "partial-growth-bin16",
+        "exact-lower",
+        "below-midpoint",
+        "exact-midpoint",
+        "above-midpoint",
+        "exact-upper",
+        "ignored-terminal-small-bin10",
+        "ignored-terminal-large-bin10",
+        "ignored-terminal-small-bin17",
+        "ignored-terminal-large-bin17",
+        "below-number-threshold",
+        "at-number-threshold",
+        "above-number-threshold",
+        "full-number-transfer-orphan-volume",
+        "descending-downward-cascade",
+        "below2b-to-regime1-no-regrowth",
+        "soluble-transfer-sulfate",
+        "soluble-transfer-organic",
+        "soluble-transfer-black-carbon",
+        "soluble-transfer-disabled",
+        "soluble-transfer-small-bin",
+        "below-soluble-fraction-threshold",
+        "at-soluble-fraction-threshold",
+        "above-soluble-fraction-threshold",
+        "zero-volume-first-bin",
+        "zero-volume-downward-bin",
+        "inactive-number-positive-volume",
+        "heterogeneous-solubility-parameters",
+        "mixed-0",
+        "mixed-1",
+        "mixed-2",
+        "mixed-3",
+        "mixed-4",
+        "mixed-5"
+      ],
+      "fortran_budgets": {
+        "number": {
+          "max_absolute": 5.960464477539063e-08,
+          "max_relative_nonzero_reference": 3.2038438560512873e-16,
+          "zero_reference_nonzero_actual_count": 0,
+          "max_absolute_at_zero_reference": 0.0,
+          "nonfinite_actual_count": 0,
+          "exact": false
+        },
+        "volume": {
+          "max_absolute": 2.0679515313825692e-25,
+          "max_relative_nonzero_reference": 4.13812217239356e-16,
+          "zero_reference_nonzero_actual_count": 0,
+          "max_absolute_at_zero_reference": 0.0,
+          "nonfinite_actual_count": 0,
+          "exact": false
+        }
+      },
+      "native_iteration_counts": [
+        1
+      ],
+      "eager": {
+        "one_call": {
+          "number": {
+            "max_absolute": 5.960464477539063e-08,
+            "max_relative_nonzero_reference": 3.1976599277852096e-14,
+            "zero_reference_nonzero_actual_count": 0,
+            "max_absolute_at_zero_reference": 0.0,
+            "nonfinite_actual_count": 0,
+            "exact": false
+          },
+          "volume": {
+            "max_absolute": 3.2311742677852644e-27,
+            "max_relative_nonzero_reference": 4.252791064640639e-15,
+            "zero_reference_nonzero_actual_count": 0,
+            "max_absolute_at_zero_reference": 0.0,
+            "nonfinite_actual_count": 0,
+            "exact": false
+          }
+        },
+        "budgets": {
+          "number": {
+            "max_absolute": 5.960464477539063e-08,
+            "max_relative_nonzero_reference": 3.2038438560512873e-16,
+            "zero_reference_nonzero_actual_count": 0,
+            "max_absolute_at_zero_reference": 0.0,
+            "nonfinite_actual_count": 0,
+            "exact": false
+          },
+          "volume": {
+            "max_absolute": 2.0679515313825692e-25,
+            "max_relative_nonzero_reference": 2.1025034613888157e-16,
+            "zero_reference_nonzero_actual_count": 0,
+            "max_absolute_at_zero_reference": 0.0,
+            "nonfinite_actual_count": 0,
+            "exact": false
+          }
+        },
+        "two_call": {
+          "number": {
+            "max_absolute": 5.960464477539063e-08,
+            "max_relative_nonzero_reference": 3.1976599277852096e-14,
+            "zero_reference_nonzero_actual_count": 0,
+            "max_absolute_at_zero_reference": 0.0,
+            "nonfinite_actual_count": 0,
+            "exact": false
+          },
+          "volume": {
+            "max_absolute": 6.462348535570529e-27,
+            "max_relative_nonzero_reference": 4.252791064640639e-15,
+            "zero_reference_nonzero_actual_count": 0,
+            "max_absolute_at_zero_reference": 0.0,
+            "nonfinite_actual_count": 0,
+            "exact": false
+          }
+        },
+        "two_call_budgets": {
+          "number": {
+            "max_absolute": 5.960464477539063e-08,
+            "max_relative_nonzero_reference": 2.1545561680942528e-16,
+            "zero_reference_nonzero_actual_count": 0,
+            "max_absolute_at_zero_reference": 0.0,
+            "nonfinite_actual_count": 0,
+            "exact": false
+          },
+          "volume": {
+            "max_absolute": 2.0679515313825692e-25,
+            "max_relative_nonzero_reference": 4.13812217239356e-16,
+            "zero_reference_nonzero_actual_count": 0,
+            "max_absolute_at_zero_reference": 0.0,
+            "nonfinite_actual_count": 0,
+            "exact": false
+          }
+        },
+        "iteration_counts_first_exact": true,
+        "iteration_counts_second_exact": true
+      },
+      "jit": {
+        "one_call": {
+          "number": {
+            "max_absolute": 5.960464477539063e-08,
+            "max_relative_nonzero_reference": 3.1976599277852096e-14,
+            "zero_reference_nonzero_actual_count": 0,
+            "max_absolute_at_zero_reference": 0.0,
+            "nonfinite_actual_count": 0,
+            "exact": false
+          },
+          "volume": {
+            "max_absolute": 3.2311742677852644e-27,
+            "max_relative_nonzero_reference": 4.252791064640639e-15,
+            "zero_reference_nonzero_actual_count": 0,
+            "max_absolute_at_zero_reference": 0.0,
+            "nonfinite_actual_count": 0,
+            "exact": false
+          }
+        },
+        "budgets": {
+          "number": {
+            "max_absolute": 5.960464477539063e-08,
+            "max_relative_nonzero_reference": 3.2038438560512873e-16,
+            "zero_reference_nonzero_actual_count": 0,
+            "max_absolute_at_zero_reference": 0.0,
+            "nonfinite_actual_count": 0,
+            "exact": false
+          },
+          "volume": {
+            "max_absolute": 2.0679515313825692e-25,
+            "max_relative_nonzero_reference": 2.1025034613888157e-16,
+            "zero_reference_nonzero_actual_count": 0,
+            "max_absolute_at_zero_reference": 0.0,
+            "nonfinite_actual_count": 0,
+            "exact": false
+          }
+        },
+        "two_call": {
+          "number": {
+            "max_absolute": 5.960464477539063e-08,
+            "max_relative_nonzero_reference": 3.1976599277852096e-14,
+            "zero_reference_nonzero_actual_count": 0,
+            "max_absolute_at_zero_reference": 0.0,
+            "nonfinite_actual_count": 0,
+            "exact": false
+          },
+          "volume": {
+            "max_absolute": 6.462348535570529e-27,
+            "max_relative_nonzero_reference": 4.252791064640639e-15,
+            "zero_reference_nonzero_actual_count": 0,
+            "max_absolute_at_zero_reference": 0.0,
+            "nonfinite_actual_count": 0,
+            "exact": false
+          }
+        },
+        "two_call_budgets": {
+          "number": {
+            "max_absolute": 5.960464477539063e-08,
+            "max_relative_nonzero_reference": 2.1545561680942528e-16,
+            "zero_reference_nonzero_actual_count": 0,
+            "max_absolute_at_zero_reference": 0.0,
+            "nonfinite_actual_count": 0,
+            "exact": false
+          },
+          "volume": {
+            "max_absolute": 2.0679515313825692e-25,
+            "max_relative_nonzero_reference": 4.13812217239356e-16,
+            "zero_reference_nonzero_actual_count": 0,
+            "max_absolute_at_zero_reference": 0.0,
+            "nonfinite_actual_count": 0,
+            "exact": false
+          }
+        },
+        "iteration_counts_first_exact": true,
+        "iteration_counts_second_exact": true
+      }
+    },
+    "native": {
+      "metadata": {
+        "native_cell_shape": [
+          1,
+          1
+        ],
+        "flatten_order": "C after Fortran record reconstruction",
+        "regime_limits": [
+          3e-09,
+          5e-08,
+          7e-07,
+          1e-05
+        ],
+        "recalculate": false,
+        "hydrate_insoluble": true,
+        "transfer_soluble": false,
+        "organic_enabled": false
+      },
+      "passes": [
+        {
+          "extracted_fortran": {
+            "remapping": {
+              "number": {
+                "max_absolute": 5.960464477539063e-08,
+                "max_relative_nonzero_reference": 3.1976599277851073e-14,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": false
+              },
+              "volume": {
+                "max_absolute": 1.6155871338926322e-27,
+                "max_relative_nonzero_reference": 4.252791064640621e-15,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": false
+              }
+            },
+            "correction": {
+              "number": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              },
+              "volume": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              },
+              "gas": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              },
+              "core": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              },
+              "wet_diameter": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              },
+              "dry_radius_cm": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              },
+              "wet_radius_cm": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              },
+              "water_mass": {
+                "max_absolute": 8.271806125530277e-25,
+                "max_relative_nonzero_reference": 1.3104533803438667e-14,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": false,
+                "max_absolute_error_over_dry_mass_scale": 1.1571206407602515e-16,
+                "within_mass_scaled_bound": true
+              }
+            },
+            "cleaned_state": {
+              "number": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              },
+              "volume": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              },
+              "gas": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              }
+            }
+          },
+          "eager": {
+            "remapping": {
+              "number": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              },
+              "volume": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              }
+            },
+            "correction": {
+              "number": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              },
+              "volume": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              },
+              "gas": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              },
+              "core": {
+                "max_absolute": 3.0814879110195774e-33,
+                "max_relative_nonzero_reference": 1.9279416695372296e-16,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": false
+              },
+              "wet_diameter": {
+                "max_absolute": 4.235164736271502e-22,
+                "max_relative_nonzero_reference": 1.8221105543446922e-16,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": false
+              },
+              "dry_radius_cm": {
+                "max_absolute": 2.710505431213761e-20,
+                "max_relative_nonzero_reference": 1.620303372694374e-16,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": false
+              },
+              "wet_radius_cm": {
+                "max_absolute": 2.710505431213761e-20,
+                "max_relative_nonzero_reference": 2.3323015095612064e-16,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": false
+              },
+              "water_mass": {
+                "max_absolute": 2.0679515313825692e-24,
+                "max_relative_nonzero_reference": 9.121254350045222e-14,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": false,
+                "max_absolute_error_over_dry_mass_scale": 5.357622285272392e-16,
+                "within_mass_scaled_bound": true
+              }
+            },
+            "remapping_iteration_counts_exact": true,
+            "correction_iteration_counts_exact": true,
+            "all_valid": true
+          },
+          "jit": {
+            "remapping": {
+              "number": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              },
+              "volume": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              }
+            },
+            "correction": {
+              "number": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              },
+              "volume": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              },
+              "gas": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              },
+              "core": {
+                "max_absolute": 3.0814879110195774e-33,
+                "max_relative_nonzero_reference": 2.8062220841229107e-16,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": false
+              },
+              "wet_diameter": {
+                "max_absolute": 4.235164736271502e-22,
+                "max_relative_nonzero_reference": 1.8221105543446922e-16,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": false
+              },
+              "dry_radius_cm": {
+                "max_absolute": 2.710505431213761e-20,
+                "max_relative_nonzero_reference": 1.620303372694374e-16,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": false
+              },
+              "wet_radius_cm": {
+                "max_absolute": 2.710505431213761e-20,
+                "max_relative_nonzero_reference": 2.3323015095612064e-16,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": false
+              },
+              "water_mass": {
+                "max_absolute": 1.4475660719677984e-24,
+                "max_relative_nonzero_reference": 8.375832374930085e-14,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": false,
+                "max_absolute_error_over_dry_mass_scale": 4.324916636764929e-16,
+                "within_mass_scaled_bound": true
+              }
+            },
+            "remapping_iteration_counts_exact": true,
+            "correction_iteration_counts_exact": true,
+            "all_valid": true
+          }
+        },
+        {
+          "extracted_fortran": {
+            "remapping": {
+              "number": {
+                "max_absolute": 5.960464477539063e-08,
+                "max_relative_nonzero_reference": 1.5659440431614552e-16,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": false
+              },
+              "volume": {
+                "max_absolute": 1.9721522630525295e-31,
+                "max_relative_nonzero_reference": 1.8166859309706277e-16,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": false
+              }
+            },
+            "correction": {
+              "number": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              },
+              "volume": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              },
+              "gas": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              },
+              "core": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              },
+              "wet_diameter": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              },
+              "dry_radius_cm": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              },
+              "wet_radius_cm": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              },
+              "water_mass": {
+                "max_absolute": 8.271806125530277e-25,
+                "max_relative_nonzero_reference": 1.3104533803438667e-14,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": false,
+                "max_absolute_error_over_dry_mass_scale": 1.1571206407602515e-16,
+                "within_mass_scaled_bound": true
+              }
+            },
+            "cleaned_state": {
+              "number": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              },
+              "volume": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              },
+              "gas": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              }
+            }
+          },
+          "eager": {
+            "remapping": {
+              "number": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              },
+              "volume": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              }
+            },
+            "correction": {
+              "number": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              },
+              "volume": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              },
+              "gas": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              },
+              "core": {
+                "max_absolute": 3.0814879110195774e-33,
+                "max_relative_nonzero_reference": 1.7649598294272912e-16,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": false
+              },
+              "wet_diameter": {
+                "max_absolute": 4.235164736271502e-22,
+                "max_relative_nonzero_reference": 2.028622418268439e-16,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": false
+              },
+              "dry_radius_cm": {
+                "max_absolute": 2.710505431213761e-20,
+                "max_relative_nonzero_reference": 1.620303372694374e-16,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": false
+              },
+              "wet_radius_cm": {
+                "max_absolute": 2.710505431213761e-20,
+                "max_relative_nonzero_reference": 2.596636695383602e-16,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": false
+              },
+              "water_mass": {
+                "max_absolute": 2.0679515313825692e-24,
+                "max_relative_nonzero_reference": 9.121254350045222e-14,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": false,
+                "max_absolute_error_over_dry_mass_scale": 7.209888956019609e-16,
+                "within_mass_scaled_bound": true
+              }
+            },
+            "remapping_iteration_counts_exact": true,
+            "correction_iteration_counts_exact": true,
+            "all_valid": true
+          },
+          "jit": {
+            "remapping": {
+              "number": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              },
+              "volume": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              }
+            },
+            "correction": {
+              "number": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              },
+              "volume": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              },
+              "gas": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              },
+              "core": {
+                "max_absolute": 3.0814879110195774e-33,
+                "max_relative_nonzero_reference": 2.8062220841229107e-16,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": false
+              },
+              "wet_diameter": {
+                "max_absolute": 4.235164736271502e-22,
+                "max_relative_nonzero_reference": 2.028622418268439e-16,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": false
+              },
+              "dry_radius_cm": {
+                "max_absolute": 2.710505431213761e-20,
+                "max_relative_nonzero_reference": 2.185416868940822e-16,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": false
+              },
+              "wet_radius_cm": {
+                "max_absolute": 2.710505431213761e-20,
+                "max_relative_nonzero_reference": 2.596636695383602e-16,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": false
+              },
+              "water_mass": {
+                "max_absolute": 1.4475660719677984e-24,
+                "max_relative_nonzero_reference": 8.936191468931319e-14,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": false,
+                "max_absolute_error_over_dry_mass_scale": 7.354086735140001e-16,
+                "within_mass_scaled_bound": true
+              }
+            },
+            "remapping_iteration_counts_exact": true,
+            "correction_iteration_counts_exact": true,
+            "all_valid": true
+          }
+        }
+      ],
+      "interleaved_two_pass_chain": {
+        "eager": [
+          {
+            "remapping": {
+              "number": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              },
+              "volume": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              }
+            },
+            "correction": {
+              "number": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              },
+              "volume": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              },
+              "gas": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              },
+              "core": {
+                "max_absolute": 3.0814879110195774e-33,
+                "max_relative_nonzero_reference": 1.9279416695372296e-16,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": false
+              },
+              "wet_diameter": {
+                "max_absolute": 4.235164736271502e-22,
+                "max_relative_nonzero_reference": 1.8221105543446922e-16,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": false
+              },
+              "dry_radius_cm": {
+                "max_absolute": 2.710505431213761e-20,
+                "max_relative_nonzero_reference": 1.620303372694374e-16,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": false
+              },
+              "wet_radius_cm": {
+                "max_absolute": 2.710505431213761e-20,
+                "max_relative_nonzero_reference": 2.3323015095612064e-16,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": false
+              },
+              "water_mass": {
+                "max_absolute": 2.0679515313825692e-24,
+                "max_relative_nonzero_reference": 9.121254350045222e-14,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": false,
+                "max_absolute_error_over_dry_mass_scale": 5.357622285272392e-16,
+                "within_mass_scaled_bound": true
+              }
+            },
+            "all_valid": true
+          },
+          {
+            "remapping": {
+              "number": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              },
+              "volume": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              }
+            },
+            "correction": {
+              "number": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              },
+              "volume": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              },
+              "gas": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              },
+              "core": {
+                "max_absolute": 3.0814879110195774e-33,
+                "max_relative_nonzero_reference": 1.7649598294272912e-16,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": false
+              },
+              "wet_diameter": {
+                "max_absolute": 4.235164736271502e-22,
+                "max_relative_nonzero_reference": 2.028622418268439e-16,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": false
+              },
+              "dry_radius_cm": {
+                "max_absolute": 2.710505431213761e-20,
+                "max_relative_nonzero_reference": 1.620303372694374e-16,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": false
+              },
+              "wet_radius_cm": {
+                "max_absolute": 2.710505431213761e-20,
+                "max_relative_nonzero_reference": 2.596636695383602e-16,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": false
+              },
+              "water_mass": {
+                "max_absolute": 2.0679515313825692e-24,
+                "max_relative_nonzero_reference": 9.121254350045222e-14,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": false,
+                "max_absolute_error_over_dry_mass_scale": 7.209888956019609e-16,
+                "within_mass_scaled_bound": true
+              }
+            },
+            "all_valid": true
+          }
+        ],
+        "jit": [
+          {
+            "remapping": {
+              "number": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              },
+              "volume": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              }
+            },
+            "correction": {
+              "number": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              },
+              "volume": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              },
+              "gas": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              },
+              "core": {
+                "max_absolute": 3.0814879110195774e-33,
+                "max_relative_nonzero_reference": 2.8062220841229107e-16,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": false
+              },
+              "wet_diameter": {
+                "max_absolute": 4.235164736271502e-22,
+                "max_relative_nonzero_reference": 1.8221105543446922e-16,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": false
+              },
+              "dry_radius_cm": {
+                "max_absolute": 2.710505431213761e-20,
+                "max_relative_nonzero_reference": 1.620303372694374e-16,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": false
+              },
+              "wet_radius_cm": {
+                "max_absolute": 2.710505431213761e-20,
+                "max_relative_nonzero_reference": 2.3323015095612064e-16,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": false
+              },
+              "water_mass": {
+                "max_absolute": 1.4475660719677984e-24,
+                "max_relative_nonzero_reference": 8.375832374930085e-14,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": false,
+                "max_absolute_error_over_dry_mass_scale": 4.324916636764929e-16,
+                "within_mass_scaled_bound": true
+              }
+            },
+            "all_valid": true
+          },
+          {
+            "remapping": {
+              "number": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              },
+              "volume": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              }
+            },
+            "correction": {
+              "number": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              },
+              "volume": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              },
+              "gas": {
+                "max_absolute": 0.0,
+                "max_relative_nonzero_reference": 0.0,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": true
+              },
+              "core": {
+                "max_absolute": 3.0814879110195774e-33,
+                "max_relative_nonzero_reference": 2.8062220841229107e-16,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": false
+              },
+              "wet_diameter": {
+                "max_absolute": 4.235164736271502e-22,
+                "max_relative_nonzero_reference": 2.028622418268439e-16,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": false
+              },
+              "dry_radius_cm": {
+                "max_absolute": 2.710505431213761e-20,
+                "max_relative_nonzero_reference": 2.185416868940822e-16,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": false
+              },
+              "wet_radius_cm": {
+                "max_absolute": 2.710505431213761e-20,
+                "max_relative_nonzero_reference": 2.596636695383602e-16,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": false
+              },
+              "water_mass": {
+                "max_absolute": 1.4475660719677984e-24,
+                "max_relative_nonzero_reference": 8.936191468931319e-14,
+                "zero_reference_nonzero_actual_count": 0,
+                "max_absolute_at_zero_reference": 0.0,
+                "nonfinite_actual_count": 0,
+                "exact": false,
+                "max_absolute_error_over_dry_mass_scale": 7.354086735140001e-16,
+                "within_mass_scaled_bound": true
+              }
+            },
+            "all_valid": true
+          }
+        ]
+      }
+    },
+    "correction_matrix": {
+      "count": 54,
+      "labels": [
+        "native-final-state",
+        "pure-SO4-soluble",
+        "pure-OC-soluble",
+        "pure-BC-soluble",
+        "pure-SS-soluble",
+        "pure-DU-soluble",
+        "mixed-soluble",
+        "all-insoluble",
+        "region2b-insoluble",
+        "empty",
+        "below-count-threshold",
+        "at-count-threshold",
+        "above-count-threshold",
+        "rh--0.1",
+        "rh-0.0",
+        "rh-0.05",
+        "rh-0.3",
+        "rh-0.8",
+        "rh-0.95",
+        "rh-1.0",
+        "rh-1.2",
+        "temperature-230.0",
+        "temperature-310.0",
+        "zero-organic-solubility",
+        "heterogeneous-material-properties",
+        "random-0",
+        "random-1",
+        "random-2",
+        "random-3",
+        "random-4",
+        "random-5",
+        "tiny-bin1-scale0.999999",
+        "tiny-bin1-scale1.0",
+        "tiny-bin1-scale1.000001",
+        "tiny-bin3-scale0.999999",
+        "tiny-bin3-scale1.0",
+        "tiny-bin3-scale1.000001",
+        "tiny-bin4-scale0.999999",
+        "tiny-bin4-scale1.0",
+        "tiny-bin4-scale1.000001",
+        "tiny-bin10-scale0.999999",
+        "tiny-bin10-scale1.0",
+        "tiny-bin10-scale1.000001",
+        "tiny-bin11-scale0.999999",
+        "tiny-bin11-scale1.0",
+        "tiny-bin11-scale1.000001",
+        "tiny-bin17-scale0.999999",
+        "tiny-bin17-scale1.0",
+        "tiny-bin17-scale1.000001",
+        "number-threshold-0.99999999999999989",
+        "number-threshold-1",
+        "number-threshold-1.0000000000000002",
+        "orphan-volume-zero-number",
+        "tiny-nonvolatile-loss"
+      ],
+      "eager": {
+        "fields": {
+          "number": {
+            "max_absolute": 0.0,
+            "max_relative_nonzero_reference": 0.0,
+            "zero_reference_nonzero_actual_count": 0,
+            "max_absolute_at_zero_reference": 0.0,
+            "nonfinite_actual_count": 0,
+            "exact": true
+          },
+          "volume": {
+            "max_absolute": 0.0,
+            "max_relative_nonzero_reference": 0.0,
+            "zero_reference_nonzero_actual_count": 0,
+            "max_absolute_at_zero_reference": 0.0,
+            "nonfinite_actual_count": 0,
+            "exact": true
+          },
+          "gas": {
+            "max_absolute": 0.0,
+            "max_relative_nonzero_reference": 0.0,
+            "zero_reference_nonzero_actual_count": 0,
+            "max_absolute_at_zero_reference": 0.0,
+            "nonfinite_actual_count": 0,
+            "exact": true
+          },
+          "core": {
+            "max_absolute": 3.0814879110195774e-33,
+            "max_relative_nonzero_reference": 3.5299189816043814e-16,
+            "zero_reference_nonzero_actual_count": 0,
+            "max_absolute_at_zero_reference": 0.0,
+            "nonfinite_actual_count": 0,
+            "exact": false
+          },
+          "wet_diameter": {
+            "max_absolute": 1.6940658945086007e-21,
+            "max_relative_nonzero_reference": 2.074553764638993e-16,
+            "zero_reference_nonzero_actual_count": 0,
+            "max_absolute_at_zero_reference": 0.0,
+            "nonfinite_actual_count": 0,
+            "exact": false
+          },
+          "dry_radius_cm": {
+            "max_absolute": 2.710505431213761e-20,
+            "max_relative_nonzero_reference": 2.1136657120756978e-16,
+            "zero_reference_nonzero_actual_count": 0,
+            "max_absolute_at_zero_reference": 0.0,
+            "nonfinite_actual_count": 0,
+            "exact": false
+          },
+          "wet_radius_cm": {
+            "max_absolute": 5.421010862427522e-20,
+            "max_relative_nonzero_reference": 2.596636695383602e-16,
+            "zero_reference_nonzero_actual_count": 0,
+            "max_absolute_at_zero_reference": 0.0,
+            "nonfinite_actual_count": 0,
+            "exact": false
+          },
+          "water_mass": {
+            "max_absolute": 2.710505431213761e-20,
+            "max_relative_nonzero_reference": 1.0,
+            "zero_reference_nonzero_actual_count": 0,
+            "max_absolute_at_zero_reference": 0.0,
+            "nonfinite_actual_count": 0,
+            "exact": false,
+            "max_absolute_error_over_dry_mass_scale": 1.7278649059327323e-15,
+            "within_mass_scaled_bound": true
+          }
+        },
+        "iteration_counts_exact": true,
+        "all_valid": true
+      },
+      "jit": {
+        "fields": {
+          "number": {
+            "max_absolute": 0.0,
+            "max_relative_nonzero_reference": 0.0,
+            "zero_reference_nonzero_actual_count": 0,
+            "max_absolute_at_zero_reference": 0.0,
+            "nonfinite_actual_count": 0,
+            "exact": true
+          },
+          "volume": {
+            "max_absolute": 0.0,
+            "max_relative_nonzero_reference": 0.0,
+            "zero_reference_nonzero_actual_count": 0,
+            "max_absolute_at_zero_reference": 0.0,
+            "nonfinite_actual_count": 0,
+            "exact": true
+          },
+          "gas": {
+            "max_absolute": 0.0,
+            "max_relative_nonzero_reference": 0.0,
+            "zero_reference_nonzero_actual_count": 0,
+            "max_absolute_at_zero_reference": 0.0,
+            "nonfinite_actual_count": 0,
+            "exact": true
+          },
+          "core": {
+            "max_absolute": 4.930380657631324e-32,
+            "max_relative_nonzero_reference": 3.5299189816043814e-16,
+            "zero_reference_nonzero_actual_count": 0,
+            "max_absolute_at_zero_reference": 0.0,
+            "nonfinite_actual_count": 0,
+            "exact": false
+          },
+          "wet_diameter": {
+            "max_absolute": 1.6940658945086007e-21,
+            "max_relative_nonzero_reference": 2.074553764638993e-16,
+            "zero_reference_nonzero_actual_count": 0,
+            "max_absolute_at_zero_reference": 0.0,
+            "nonfinite_actual_count": 0,
+            "exact": false
+          },
+          "dry_radius_cm": {
+            "max_absolute": 2.710505431213761e-20,
+            "max_relative_nonzero_reference": 2.185416868940822e-16,
+            "zero_reference_nonzero_actual_count": 0,
+            "max_absolute_at_zero_reference": 0.0,
+            "nonfinite_actual_count": 0,
+            "exact": false
+          },
+          "wet_radius_cm": {
+            "max_absolute": 1.0842021724855044e-19,
+            "max_relative_nonzero_reference": 2.652884362173267e-16,
+            "zero_reference_nonzero_actual_count": 0,
+            "max_absolute_at_zero_reference": 0.0,
+            "nonfinite_actual_count": 0,
+            "exact": false
+          },
+          "water_mass": {
+            "max_absolute": 2.0328790734103208e-20,
+            "max_relative_nonzero_reference": 0.2367005129535057,
+            "zero_reference_nonzero_actual_count": 0,
+            "max_absolute_at_zero_reference": 0.0,
+            "nonfinite_actual_count": 0,
+            "exact": false,
+            "max_absolute_error_over_dry_mass_scale": 1.7278649059327323e-15,
+            "within_mass_scaled_bound": true
+          }
+        },
+        "iteration_counts_exact": true,
+        "all_valid": true
+      }
+    }
+  },
+  "tests": {
+    "command": ".venv/bin/python -m pytest -q",
+    "passed": 541,
+    "duration_seconds": 59.49,
+    "native_acceptance_tests": 8
+  },
+  "benchmark_artifacts": [
+    "remapping-benchmark-single-2026-09-21.json",
+    "remapping-benchmark-batch-2026-09-21.json"
+  ],
+  "implementation_commits": {
+    "remapping_reference": "db7342f",
+    "correction_reference": "2872745",
+    "capture": "1266a2c",
+    "fixture": "5b6589b",
+    "remapping_jax": "7cae9e5",
+    "correction_jax": "7a38c0d",
+    "native_acceptance": "585e001",
+    "benchmark": "538117a"
+  },
+  "implementation_sha256": {
+    "src/salsa_jax/constants.py": "a4f7c5782ece86bf98278a3ab54c895d7225aa2d73ff7389fd43150f9fb38baf",
+    "src/salsa_jax/processes/remapping.py": "eb349aa308991125df22b10fa0b9f6a71e9b7358dd0ec73244d56bfed6b5b896",
+    "src/salsa_jax/processes/remapping_correction.py": "9a2a3b9c26fae78cc2d74369d1cff007eefaf4e37f87d48f35760c3577b7ff98",
+    "tools/remapping_oracle.py": "9f4229969bc28c73a20f8f13d917830ff9a714dc2187ca2e3b8c24ee8b3d0272",
+    "tools/remapping_correction_oracle.py": "2f5b962507f66f24e0e227a618e6613743b1284fe299d1f8619f36957d0af79c",
+    "tools/remapping_capture.py": "78458c36b991533e3a2c5b62e44c74fc946400c058edbb363dff99da154a5b90",
+    "tools/remapping_fixture.py": "da2ada936112f00c69c5fbbd70722e431b6beda1023eb62f9f0bda52333d16f8",
+    "tests/test_remapping_native.py": "7a0e260b006d07709c9c774087d3248f60734a391e77c38d3c43ea5505e4e681",
+    "benchmarks/benchmark_remapping.py": "9809715d806e1c74ce941672336bd331d6f5dd37a833d28a1e367898f4c83660"
+  },
+  "limits": [
+    "Fixed 17-bin/five-material standalone configuration; no HAMMOZ/VBS",
+    "Actual native acceptance uses default lsol2b=False, lhydr2b=True, recalc=False and nucleation off; other remapping/correction branches have isolated reference cases",
+    "Pre-remap process chain and following two-pass remap/correction chain accepted separately; no complete C18/N08 API or all-process composition claim",
+    "Final density/HAM conversions, initialization and full trajectories remain open",
+    "D007 absent-organic cleanup access and D009-D012 inherited physical/domain defects remain unrepaired",
+    "JAX invalid-domain NaN signaling is not a scientific repair",
+    "One-call remapping CPU timing excludes both complete correction passes; no speedup or accelerator claim"
+  ],
+  "strict_threshold_rewrite": {
+    "native_threshold": 1.237845360884854e-07,
+    "jit_before_denominator_barrier": 1.2378453608848549e-07,
+    "fix": "array-shaped optimization barrier on denominator1000 in three native molar-mass divisions",
+    "neighbor_decisions_verified_in_scalar_and_batched_forms": true
+  }
+}

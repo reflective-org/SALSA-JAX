@@ -114,7 +114,10 @@ This does not enable unsupported nucleation modes or validate full trajectories.
 
 Six evaporation/cleanup branches in `salsa` access organic gas index zero
 without a guard. The checked default fixture avoids these branches. This is
-an outstanding reproducer/repair task; D001 and D006 do not cover it.
+an outstanding repair task; D001 and D006 do not cover it. The extracted C17
+correction oracle now reproduces the original checked bounds failure. JAX
+signals invalid affected cells without inventing an organic sink; see the
+[remapping/correction contract](remapping.md).
 
 ## D008 — initialization overwrites registered component maps
 
@@ -167,3 +170,42 @@ that literal unchecked arithmetic could produce. `tests/test_hydration.py`
 checks that signaling while preserving other bins. A scientific repair or
 stronger caller invariant needs a separate decision before accepting such
 inputs. See the [grid/hydration contract](grid-and-hydration.md).
+
+## D011 — remapping leaves orphan material and oversized receivers
+
+The original `distr_update` caps the transferred number fraction at one but
+computes material transfer from its extrapolated receiving volume. A bin whose
+mean volume is ten times its upper bound transfers all particle number while
+retaining about 7.1394% of its material at zero number. Material/number totals
+remain conserved across bins; the resulting bin state is inconsistent.
+
+The descending scan checks only the donor after a transfer. It can leave an
+already-visited receiver above its upper bound without requesting another
+scan. SALSA calls redistribution twice with cleanup/hydration between calls;
+this is not a general guarantee of bin-bound convergence. Terminal bins 10/17
+also do not undergo their own size correction. These behaviors are reproduced
+by the checked original oracle and preserved in JAX. No extra sweeps, clipping
+or orphan removal are introduced. Enabling soluble transfer for an active
+zero-volume terminal bin additionally divides by zero in the native fraction
+calculation; JAX signals NaN for that invalid cell.
+
+See [remapping acceptance](remapping.md) and
+`tests/test_remapping_oracle.py`. A conservative, internally consistent remap
+requires a separate scientific decision and reference change.
+
+## D012 — tiny-particle cleanup discards nonvolatile material
+
+Each native post-remap cleanup removes all five material volumes when its
+particle diameter is below 1e-10 m, but returns only sulfate and organic
+material to gas. A checked case with registered organic gas and tiny BC
+particles therefore loses BC without a compensating reservoir. This is
+independent of the absent-organic indexing failure D007: registering the gas
+avoids the bounds error but does not conserve nonvolatile material.
+
+The cleanup diameter in bins 1–3 counts only sulfate/OC, while shrinking bin 11
+can move all five materials into bin 3. That pathway can expose the same loss.
+The C17 port retains this behavior explicitly; matching the original does not
+establish unrestricted material-budget validity. `tests/test_remapping_correction.py`
+checks both the loss and D007's original bounds failure. Invalid D007 JAX cells
+return `valid=False` and NaN physical outputs; this is failure signaling, not
+an absent-gas repair. See the [correction contract](remapping.md).
