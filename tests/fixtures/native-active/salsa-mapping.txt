@@ -1,0 +1,357 @@
+SALSA_MAPPING 1
+S 1
+DMS
+S 2
+SO2
+S 3
+OH
+S 4
+H2O2
+S 5
+O3
+S 6
+NO2
+S 7
+NO3
+S 8
+H2SO4
+S 9
+SO4
+S 10
+OC
+S 11
+BC
+S 12
+SS
+S 13
+DU
+S 14
+WAT
+T 1 1 0 1
+DMS
+kg kg-1
+T 2 2 0 1
+SO2
+kg kg-1
+T 3 8 0 1
+H2SO4
+kg kg-1
+T 4 10 0 1
+OC_gas
+kg kg-1
+T 5 9 1 2
+SO4_1a1
+kg kg-1
+T 6 9 2 2
+SO4_1a2
+kg kg-1
+T 7 9 3 2
+SO4_1a3
+kg kg-1
+T 8 9 4 2
+SO4_2a1
+kg kg-1
+T 9 9 5 2
+SO4_2a2
+kg kg-1
+T 10 9 6 2
+SO4_2a3
+kg kg-1
+T 11 9 7 2
+SO4_2a4
+kg kg-1
+T 12 9 8 2
+SO4_2a5
+kg kg-1
+T 13 9 9 2
+SO4_2a6
+kg kg-1
+T 14 9 10 2
+SO4_2a7
+kg kg-1
+T 15 9 11 2
+SO4_2b1
+kg kg-1
+T 16 9 12 2
+SO4_2b2
+kg kg-1
+T 17 9 13 2
+SO4_2b3
+kg kg-1
+T 18 9 14 2
+SO4_2b4
+kg kg-1
+T 19 9 15 2
+SO4_2b5
+kg kg-1
+T 20 9 16 2
+SO4_2b6
+kg kg-1
+T 21 9 17 2
+SO4_2b7
+kg kg-1
+T 22 10 1 2
+OC_1a1
+kg kg-1
+T 23 10 2 2
+OC_1a2
+kg kg-1
+T 24 10 3 2
+OC_1a3
+kg kg-1
+T 25 10 4 2
+OC_2a1
+kg kg-1
+T 26 10 5 2
+OC_2a2
+kg kg-1
+T 27 10 6 2
+OC_2a3
+kg kg-1
+T 28 10 7 2
+OC_2a4
+kg kg-1
+T 29 10 8 2
+OC_2a5
+kg kg-1
+T 30 10 9 2
+OC_2a6
+kg kg-1
+T 31 10 10 2
+OC_2a7
+kg kg-1
+T 32 10 11 2
+OC_2b1
+kg kg-1
+T 33 10 12 2
+OC_2b2
+kg kg-1
+T 34 10 13 2
+OC_2b3
+kg kg-1
+T 35 10 14 2
+OC_2b4
+kg kg-1
+T 36 10 15 2
+OC_2b5
+kg kg-1
+T 37 10 16 2
+OC_2b6
+kg kg-1
+T 38 10 17 2
+OC_2b7
+kg kg-1
+T 39 11 4 2
+BC_2a1
+kg kg-1
+T 40 11 5 2
+BC_2a2
+kg kg-1
+T 41 11 6 2
+BC_2a3
+kg kg-1
+T 42 11 7 2
+BC_2a4
+kg kg-1
+T 43 11 8 2
+BC_2a5
+kg kg-1
+T 44 11 9 2
+BC_2a6
+kg kg-1
+T 45 11 10 2
+BC_2a7
+kg kg-1
+T 46 11 11 2
+BC_2b1
+kg kg-1
+T 47 11 12 2
+BC_2b2
+kg kg-1
+T 48 11 13 2
+BC_2b3
+kg kg-1
+T 49 11 14 2
+BC_2b4
+kg kg-1
+T 50 11 15 2
+BC_2b5
+kg kg-1
+T 51 11 16 2
+BC_2b6
+kg kg-1
+T 52 11 17 2
+BC_2b7
+kg kg-1
+T 53 13 4 2
+DU_2a1
+kg kg-1
+T 54 13 5 2
+DU_2a2
+kg kg-1
+T 55 13 6 2
+DU_2a3
+kg kg-1
+T 56 13 7 2
+DU_2a4
+kg kg-1
+T 57 13 8 2
+DU_2a5
+kg kg-1
+T 58 13 9 2
+DU_2a6
+kg kg-1
+T 59 13 10 2
+DU_2a7
+kg kg-1
+T 60 13 11 2
+DU_2b1
+kg kg-1
+T 61 13 12 2
+DU_2b2
+kg kg-1
+T 62 13 13 2
+DU_2b3
+kg kg-1
+T 63 13 14 2
+DU_2b4
+kg kg-1
+T 64 13 15 2
+DU_2b5
+kg kg-1
+T 65 13 16 2
+DU_2b6
+kg kg-1
+T 66 13 17 2
+DU_2b7
+kg kg-1
+T 67 12 4 2
+SS_2a1
+kg kg-1
+T 68 12 5 2
+SS_2a2
+kg kg-1
+T 69 12 6 2
+SS_2a3
+kg kg-1
+T 70 12 7 2
+SS_2a4
+kg kg-1
+T 71 12 8 2
+SS_2a5
+kg kg-1
+T 72 12 9 2
+SS_2a6
+kg kg-1
+T 73 12 10 2
+SS_2a7
+kg kg-1
+T 74 0 1 -2
+NUM_1a1
+1 kg-1
+T 75 0 2 -2
+NUM_1a2
+1 kg-1
+T 76 0 3 -2
+NUM_1a3
+1 kg-1
+T 77 0 4 -2
+NUM_2a1
+1 kg-1
+T 78 0 5 -2
+NUM_2a2
+1 kg-1
+T 79 0 6 -2
+NUM_2a3
+1 kg-1
+T 80 0 7 -2
+NUM_2a4
+1 kg-1
+T 81 0 8 -2
+NUM_2a5
+1 kg-1
+T 82 0 9 -2
+NUM_2a6
+1 kg-1
+T 83 0 10 -2
+NUM_2a7
+1 kg-1
+T 84 0 11 -2
+NUM_2b1
+1 kg-1
+T 85 0 12 -2
+NUM_2b2
+1 kg-1
+T 86 0 13 -2
+NUM_2b3
+1 kg-1
+T 87 0 14 -2
+NUM_2b4
+1 kg-1
+T 88 0 15 -2
+NUM_2b5
+1 kg-1
+T 89 0 16 -2
+NUM_2b6
+1 kg-1
+T 90 0 17 -2
+NUM_2b7
+1 kg-1
+T 91 14 1 2
+WAT_1a1
+kg kg-1
+T 92 14 1 2
+WAT_1a2
+kg kg-1
+T 93 14 1 2
+WAT_1a3
+kg kg-1
+T 94 14 1 2
+WAT_2a1
+kg kg-1
+T 95 14 1 2
+WAT_2a2
+kg kg-1
+T 96 14 1 2
+WAT_2a3
+kg kg-1
+T 97 14 1 2
+WAT_2a4
+kg kg-1
+T 98 14 1 2
+WAT_2a5
+kg kg-1
+T 99 14 1 2
+WAT_2a6
+kg kg-1
+T 100 14 1 2
+WAT_2a7
+kg kg-1
+T 101 14 1 2
+WAT_2b1
+kg kg-1
+T 102 14 1 2
+WAT_2b2
+kg kg-1
+T 103 14 1 2
+WAT_2b3
+kg kg-1
+T 104 14 1 2
+WAT_2b4
+kg kg-1
+T 105 14 1 2
+WAT_2b5
+kg kg-1
+T 106 14 1 2
+WAT_2b6
+kg kg-1
+T 107 14 1 2
+WAT_2b7
+kg kg-1
+T 108 0 0 0
+CDNC
+1 kg-1
+T 109 0 0 0
+ICNC
+1 kg-1
+END_SALSA_MAPPING
