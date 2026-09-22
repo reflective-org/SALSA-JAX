@@ -1,0 +1,21 @@
+# Checked audit profile; compare against compatibility before accepting repairs.
+# NetCDF include/link paths are discovered through nf-config and nc-config.
+[build]
+compiler = "gfortran"
+flags = ["-cpp", "-g", "-fbacktrace", "-std=legacy", "-ffpe-trap=invalid,zero,overflow", "-O0", "-fcheck=all", "-finit-real=snan", "-DNOMPI", "-DSALSA", "-D__x86_64", "-I./include"]
+jobs = 1
+timeout_seconds = 180
+
+[run]
+timeout_seconds = 60
+
+# Explicit initialized first-call test case, not the default driver trajectory.
+# The standalone build ignores HAMMOZ's SALSA namelist; configure only its copy.
+[reference_case]
+nsnucl = 2
+nj3 = 1
+sulfate_molecules_m3 = 1.0e14
+
+# Recompute wet geometry after coagulation before active condensation.
+[process_switches]
+recalc = true

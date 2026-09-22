@@ -145,11 +145,12 @@ def export_fixture(run_directory: Path, target: Path) -> None:
     if hashes != capture.get("file_sha256"):
         raise ValueError("Run coagulation files changed after manifest creation")
     state = load_capture(run_directory)
-    fixture = {"schema_version": 1, "scope": "one default coagulation call; not trajectory acceptance",
+    fixture = {"schema_version": 1, "scope": "one configured coagulation call; not trajectory acceptance",
                "files": hashes, "run_manifest_sha256": hashlib.sha256(manifest_path.read_bytes()).hexdigest(),
                "source_revision": manifest["source_revision"], "working_tree_status": manifest["working_tree_status"],
                "source_sha256": manifest["source_sha256"], "input_sha256": manifest["input_sha256"],
                "compiler": manifest["compiler"], "config": manifest["config"],
+               **({"reference_configuration": manifest["reference_configuration"]} if "reference_configuration" in manifest else {}),
                "dimensions": state["dimensions"], "stage": state["stage"],
                "coagulation_overlay": {key: value for key, value in capture.items() if key not in ("state", "file_sha256")},
                "runtime_metadata": manifest["runtime_capture"]["metadata"],

@@ -24,19 +24,22 @@ def export_fixture(run_directory: Path, target: Path) -> None:
         raise ValueError("Run capture files changed after manifest creation")
     state = load_capture(run_directory)
     fixture = {
-        "schema_version": 1, "scope": "one default native SALSA call; not trajectory acceptance",
+        "schema_version": 1, "scope": "one configured native SALSA call; not trajectory acceptance",
         "files": hashes, "run_manifest_sha256": hashlib.sha256(manifest_path.read_bytes()).hexdigest(),
         "source_revision": manifest["source_revision"], "working_tree_status": manifest["working_tree_status"],
         "source_sha256": manifest["source_sha256"], "input_sha256": manifest["input_sha256"],
         "compiler": manifest["compiler"], "config": manifest["config"],
+        **({"reference_configuration": manifest["reference_configuration"]} if "reference_configuration" in manifest else {}),
         "dimensions": state["dimensions"], "options": state["options"],
         "salsa_overlay": {key: value for key, value in capture.items() if key not in ("state", "file_sha256")},
         "runtime_metadata": manifest["runtime_capture"]["metadata"],
         "scope_state_sha256": manifest["scope_capture"]["state_sha256"],
-        "regeneration": ".venv/bin/python tools/fortran_reference.py --config configs/fortran-checked.toml "
-                        "--scope first-microphysics --capture-salsa-state --run --output build/native-state-new; "
-                        ".venv/bin/python tools/export_state_fixture.py --run-directory build/native-state-new "
-                        "--output /path/to/new-fixture",
+        "regeneration": {
+            "config": manifest["config"],
+            "config_path_at_capture": manifest.get("config_path"),
+            "instructions": "Use the recorded complete TOML configuration with --scope first-microphysics "
+                            "--capture-salsa-state --run and a new output directory, then export_state_fixture.py.",
+        },
     }
     target.mkdir(parents=True, exist_ok=False)
     for name in FILES.values():

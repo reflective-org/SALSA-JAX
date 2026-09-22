@@ -108,11 +108,12 @@ def main() -> int:
         args.capture_runtime = True
     config = tomllib.loads(args.config.read_text())
     reference_case = config.get("reference_case")
-    if reference_case is not None:
+    process_switches = config.get("process_switches")
+    if reference_case is not None or process_switches is not None:
         if args.scope != "first-microphysics":
-            parser.error("reference_case requires --scope first-microphysics")
+            parser.error("reference_case/process_switches requires --scope first-microphysics")
         if any(flag.startswith("-DHAMMOZ") for flag in config["build"]["flags"]):
-            parser.error("reference_case supports standalone builds without HAMMOZ")
+            parser.error("reference_case/process_switches supports standalone builds without HAMMOZ")
         args.capture_runtime = True
     if args.capture_nucleation_state and reference_case is None:
         parser.error("--capture-nucleation-state requires an explicit reference_case profile")
@@ -126,6 +127,7 @@ def main() -> int:
         "schema_version": 1, "purpose": "compatibility audit; not performance measurement",
         "platform": platform.platform(), "machine": platform.machine(),
         "config": config,
+        "config_path": str(args.config.resolve()),
         "scope": args.scope,
         "environment": {key: os.environ.get(key) for key in
                         ["FC", "FFLAGS", "LDFLAGS", "OMP_NUM_THREADS"]},
@@ -144,8 +146,9 @@ def main() -> int:
             destination.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(path, destination)
         (target / "data").mkdir()
-        if reference_case is not None:
-            manifest["reference_configuration"] = configure_driver(target / "driver.F90", reference_case)
+        if reference_case is not None or process_switches is not None:
+            manifest["reference_configuration"] = configure_driver(
+                target / "driver.F90", reference_case, process_switches=process_switches)
         if args.capture_runtime:
             manifest["runtime_capture"] = instrument_driver(target / "driver.F90")
             manifest["runtime_capture"]["status"] = "instrumented_not_run"
@@ -205,6 +208,9 @@ def main() -> int:
                         for key in ("nsnucl", "nj3"):
                             if capture["metadata"]["values"][key] != reference_case[key]:
                                 raise ValueError(f"Runtime {key} differs from requested reference_case")
+                    if process_switches is not None:
+                        if capture["metadata"]["values"]["recalc"] != process_switches["recalc"]:
+                            raise ValueError("Runtime recalc differs from requested process_switches")
                     capture["status"] = "captured"
                 except (OSError, ValueError) as error:
                     capture["status"] = "capture_failed"

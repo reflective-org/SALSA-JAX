@@ -72,3 +72,38 @@ def test_requested_capture_must_exist_even_on_success(tmp_path, monkeypatch, com
     manifest = json.loads((target / 'manifest.json').read_text())
     assert manifest['status'] == ('first_microphysics_completed_unvalidated' if complete else f'{process}_capture_failed')
     assert manifest[f'{process}_capture']['status'] == ('captured' if complete else 'capture_failed')
+
+
+def test_process_profile_requires_first_call_scope(tmp_path, monkeypatch):
+    config = tmp_path / "profile.toml"
+    config.write_text('[build]\nflags = []\n[process_switches]\nrecalc = true\n')
+    monkeypatch.setattr(sys, "argv", ["reference", "--config", str(config), "--output", str(tmp_path / "run")])
+    with pytest.raises(SystemExit) as error:
+        harness.main()
+    assert error.value.code == 2
+    assert not (tmp_path / "run").exists()
+
+
+def test_runtime_recalc_mismatch_fails_profile_capture(tmp_path, monkeypatch):
+    root, target = tmp_path / "source", tmp_path / "run"
+    root.mkdir()
+    real_root = harness.ROOT
+    shutil.copy2(real_root / "driver.F90", root / "driver.F90")
+    for name in ("Makefile", "Makefile.in", ".depend", "configure", "namelist.echam", "lut_kappa.nc"):
+        (root / name).write_text("fixture\n")
+    monkeypatch.setattr(harness, "ROOT", root)
+    monkeypatch.setattr(harness, "output", lambda *args: "test-version")
+    monkeypatch.setattr(harness, "parse_metadata", lambda text: {"values": {"recalc": False}})
+    def fake_run(command, directory, log, timeout):
+        if command[0] == "make":
+            (directory / "ham_box").write_bytes(b"executable")
+        else:
+            (directory / "runtime-metadata.txt").write_text("runtime\n")
+        return {"status": "finished", "returncode": 0}
+    monkeypatch.setattr(harness, "logged_run", fake_run)
+    monkeypatch.setattr(sys, "argv", ["reference", "--config", str(real_root / "configs/fortran-recalc.toml"),
+                                     "--output", str(target), "--scope", "first-microphysics", "--run"])
+    assert harness.main() == 1
+    manifest = json.loads((target / "manifest.json").read_text())
+    assert manifest["status"] == "runtime_capture_failed"
+    assert "Runtime recalc differs" in manifest["runtime_capture"]["error"]

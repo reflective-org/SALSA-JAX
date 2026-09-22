@@ -49,3 +49,27 @@ def test_unaccepted_export_leaves_no_target(tmp_path, failure):
     with pytest.raises(ValueError):
         export_fixture(run, target)
     assert not target.exists()
+
+
+@pytest.mark.parametrize("active", [False, True])
+def test_configured_export_preserves_exact_profile_provenance(tmp_path, active):
+    run, target = tmp_path / "run", tmp_path / "fixture"
+    manifest = make_run(run)
+    manifest["config"]["process_switches"] = {"recalc": True}
+    profile = {"settings": None, "process_switches": {"recalc": True},
+               "original_driver_sha256": "original", "configured_driver_sha256": "configured",
+               "overlay_sha256": "patch", "scope": "first-microphysics"}
+    if active:
+        settings = {"nsnucl": 2, "nj3": 1, "sulfate_molecules_m3": 1e14}
+        manifest["config"]["reference_case"] = settings
+        profile["settings"] = settings
+    manifest["reference_configuration"] = profile
+    manifest["config_path"] = "/captured/profile.toml"
+    (run / "manifest.json").write_text(json.dumps(manifest))
+    export_fixture(run, target)
+    fixture = json.loads((target / "manifest.json").read_text())
+    assert fixture["reference_configuration"] == profile
+    assert fixture["regeneration"]["config"] == manifest["config"]
+    assert fixture["regeneration"]["config_path_at_capture"] == manifest["config_path"]
+    assert "default" not in fixture["scope"]
+    assert fixture["input_sha256"] == manifest["input_sha256"]
