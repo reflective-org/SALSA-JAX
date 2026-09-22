@@ -1,0 +1,758 @@
+{
+  "scope": "complete original native SALSA call; 17 bins, 5 materials, 69 mass components; no HAM driver",
+  "scientific_limit": "Numerical compatibility retains native defects. No initialization, forcing, radiation, full box-model trajectory, accelerator or gradient claim.",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "device": "cpu:0",
+  "dtype": "float64",
+  "versions": {
+    "jax": "0.11.2",
+    "jaxlib": "0.11.2",
+    "numpy": "2.5.3"
+  },
+  "thread_environment": {
+    "XLA_FLAGS": null,
+    "OMP_NUM_THREADS": null,
+    "OPENBLAS_NUM_THREADS": null,
+    "MKL_NUM_THREADS": null,
+    "VECLIB_MAXIMUM_THREADS": null,
+    "JAX_NUM_THREADS": null,
+    "TF_NUM_INTRAOP_THREADS": null,
+    "TF_NUM_INTEROP_THREADS": null
+  },
+  "case_count": 27,
+  "native_levels_per_case": 2,
+  "physical_cells_per_batch": 54,
+  "case_labels": [
+    "captured-default",
+    "flags-coag0-cond0-recalc0",
+    "flags-coag0-cond0-recalc1",
+    "flags-coag0-cond1-recalc0",
+    "flags-coag0-cond1-recalc1",
+    "flags-coag1-cond0-recalc0",
+    "flags-coag1-cond0-recalc1",
+    "flags-coag1-cond1-recalc0",
+    "flags-coag1-cond1-recalc1",
+    "soluble-transfer",
+    "unhydrated-insoluble",
+    "zero-timestep",
+    "empty",
+    "active-scheme1-growth1",
+    "active-scheme1-growth2",
+    "active-scheme1-growth3",
+    "active-scheme2-growth1",
+    "active-scheme2-growth2",
+    "active-scheme2-growth3",
+    "active-scheme3-growth1",
+    "active-scheme3-growth2",
+    "active-scheme3-growth3",
+    "active-above-boundary",
+    "active-organic",
+    "initial-tiny-cleanup-bin1",
+    "initial-tiny-cleanup-bin4",
+    "initial-tiny-cleanup-bin11"
+  ],
+  "case_selection": "complete reference matrix",
+  "boundary_layer_by_native_level": [
+    false,
+    true
+  ],
+  "case_sha256": {
+    "mass": "f615707cddf966139754a7e95a4b1ed994c6bedf2cfa562275abe46f883586fb",
+    "number": "b10f9208ac0cae875c3b39f7110b067e1a1a0c4fd771c3098f3ca132b897ed99",
+    "gas": "208587c37d7e017127d7cc206a45350cdcfc178099b06f4f9eb3ef10ec6311eb",
+    "temperature": "34c4a22df06d9c9815ce23f164b178d5920c9c28218e4eb9e8785e599cff7af2",
+    "pressure": "7d145f4d5f7e06d191e5e225e5680a482ad9e244c64b35d89418788af49b918e",
+    "relative_humidity": "513967e0204e6d6f3829f67c66faa24e2b8fd176558405715341c8d067688931",
+    "timestep": "eeb3b52937581f86a7fa34c3ae56cad3602ff656d53c1cad0b8b81e1d073c22e",
+    "species_molar_mass": "38d54390090376c0c63a32196e017e278225e1b01c806095f1278dcb7920ceac",
+    "species_density": "7e7ae2028cecc2549133561f108cd5f3fb9409095bd3043c3476a660195b9462",
+    "water_molar_mass": "fe9da1bc0d78aaff745f5d0aa93fff03b5cb558450d6268ab51abd842e14aa91",
+    "water_density": "80ea5c425c0553f971466716a6da2761f99a8846efc0c425ea15fc7858445b35",
+    "component_map": "1d501c4e778ed13203bf26cd349310f242deb948a872c4244edb8b60ee04787e",
+    "regime_limits": "d04a2aaed8fa2c091574d8e635c55850210ad91bb4f8bca35804b8bb13f40f66",
+    "mass_accommodation": "be42422c4454d17de51ab10a214a752fa327faeb2b7d6658b3448b45d942122a",
+    "number_threshold": "ea1fad13fb695e103e49625a8a6016d18f70f8e894b7616f0594cba43b4eb27c",
+    "cluster_molecules": "552460f885dce1049c53892381a5d3c2f6599d9a8822065d12078f58d2935c50",
+    "acid_diameter": "a4f328b0e70ae205348e1bd70e5c439d1cbeae3aa0ee19bffe4d4d30e2569da2",
+    "organic_soluble_fraction": "e277058b588a618b32f51f5f9017dbb79231fab88d9e345c01c92fead2305ae7",
+    "saturation_limit": "be6588bceaaab41fbcfdf63ea73ecbe6577712466d41fb0ab980b00b756a70b8",
+    "ion_count": "9c2bd8fbae2e2eb1647d17698590ca191bba266ae1dd486232b59852b15b4afb",
+    "water_surface_tension": "9458a1610bd754fbd01c966c18e773582388df764050c9b8b7d8215a4c28d4af",
+    "activation_coefficient": "9a7c7660917095583dbe78c32d15edea21e37e06eb65cce124c6f0cd142d1b2f",
+    "coagulation_enabled": "fe30505c10a786a76176635b6fa875499ea408caad5f0506cd95cc03e6b44146",
+    "condensation_enabled": "1f66f1043180ebd9938fa8ce9023af12646f6ef6d855cd8f092cf3c601c2c9b5",
+    "recalculate": "92bbc4e318cc26518f8bd49e0aab4edb18fe479cf2aa75a9e73e7b2d24637822",
+    "transfer_soluble": "e32676c7a56b741cba10c14be8600e15faa995bd6c8de77e3892d1faeb8d87d5",
+    "hydrate_insoluble": "ca25363630df9f0de10b3a017adf09fa7860662e1ef872b5d229f74da838526e",
+    "organic_enabled": "417a4c4ed84a848cbcad4fa7f419681e167005ac0e0cb232c84627228575d8cd",
+    "scheme": "250b1d4e4a251f3c31c6ca6e904d75990a818c9529a7014b3690494d17379883",
+    "growth": "4ab3fa86361a031d4c62b0601c44217b31108a4816e511e7c4219b2e8a5b64a1",
+    "boundary_layer": "9e711e87c824442ef2e4ef8fac189007e07abd474dd52b5ac6fa372c37e00efa"
+  },
+  "case_hash_encoding": "named arrays, C-order IEEE float64 little endian; booleans/maps encoded numerically",
+  "implementation_sha256": {
+    "src/salsa_jax/__init__.py": "d4ecd86e5b9a323ee19338915cef80066e66baffaede74ec27b88a6b2c1b4bae",
+    "src/salsa_jax/constants.py": "4cfa36f7f3642327e226245ed4346e0d2619e76a95c47d26878da8f5a92bcd75",
+    "src/salsa_jax/grid.py": "1788f8ca50581d868b7ae8336024e47c29de71622d61bbdec1b8ec3ca937a072",
+    "src/salsa_jax/interface.py": "2f4d7bc45e47cc70b77f69b86eff57766381d2c10bcd089baaf916bff686192d",
+    "src/salsa_jax/model.py": "30e2438bc0790bcc36465cda72185e9d41d9cbb3c2ca5f0a19b6e36adca2ad40",
+    "src/salsa_jax/processes/__init__.py": "f74bfc7ae296f820d8110b870aa0336d33444e7fc0774b75b71ce954da7a5922",
+    "src/salsa_jax/processes/coagulation.py": "7bd785be1492006b206724c8323a3e57b7c35a5b05d5824d0a1765a84076d3c2",
+    "src/salsa_jax/processes/coagulation_step.py": "2f7d8a61aa19f79f974595fec6424755471f2bdcac2b21ff637be36935243d75",
+    "src/salsa_jax/processes/condensation.py": "e94e172ddce308e7ff64a556dda79e2582b16565da61ac39190bcd844711f673",
+    "src/salsa_jax/processes/condensation_nucleation.py": "5ce13b323d243d0cbf08a1cdf6f2a3efa5a4a8cd8825b8586a9445b85acc8e6b",
+    "src/salsa_jax/processes/hydration.py": "f19330b8b32f0e4648ccf7edef967407dc14be4c294f86506a4086d03acf6dbc",
+    "src/salsa_jax/processes/nucleation.py": "18ae61858bfda01d48e0ce7f2f14cc88caf2bbfcdb5e766086a65521d88747ac",
+    "src/salsa_jax/processes/nucleation_rates.py": "3e5238e343c1eb7c97ecb044ae34ccd7d0078b082ac2f6298770308a119f61ac",
+    "src/salsa_jax/processes/remapping.py": "eb349aa308991125df22b10fa0b9f6a71e9b7358dd0ec73244d56bfed6b5b896",
+    "src/salsa_jax/processes/remapping_correction.py": "a2cb1c895320744c4526b6f5cad823ab300ea360f8b55490cb324fe38a6ef88d",
+    "tools/salsa_inputs.py": "ecfefc4425f77cef88423adca68c006debe2151400e3d0940491246de5fb59bb",
+    "tools/salsa_oracle.py": "b92fb35695aa16ad961ac1196d42ee6acbaa27b8a440d2199df08523571fdee9",
+    "benchmarks/benchmark_salsa.py": "0ba6643d78d6fed3bbbdf98d0c38b42bc724178407d70ec4c022ab383d868518"
+  },
+  "checked_fortran_provenance": {
+    "source_sha256": {
+      "parkind1.F90": "bd7aa3a0f896829781c6c9c1924726def9bd8b2825778e26274c615c2642ff5a",
+      "mo_kind.F90": "e7d3a5f28d216e60828c395a704e33a7bfc5db6e966533776fc438f4d782d255",
+      "mo_math_constants.F90": "ceae6f761c288597f7fb495ff2a55030fee8f861e1ee0dcd8adc0ba3ba95734f",
+      "mo_physical_constants.F90": "12405902248f437d9f7ae9b03d1efe194cd7605f6b396156c3d820366b8a79b0",
+      "mo_ham_salsa_nucleation.F90": "927c2f2d8056ce100a5e36563cc9fa04b407ea0033ff848e9c65de3c9a9f2445",
+      "mo_ham_salsa_properties.F90": "5292a5c9debcb6b3fd8bab7d477c463cbfd98d9ff7dc03d5f793f9c1aae76127",
+      "mo_ham_salsa_dynamics.F90": "13db52f2e5e10bb0ad485348209a74e3b8bcbf25af77d05a995a8444050cff25",
+      "mo_ham_salsa_update.F90": "f01880e86935e4dd628ce9bdcd010df1530525f167cd6262e9e76b584caf1cf1",
+      "mo_ham_salsa.F90": "af04c42794909550de39d2bdc0a5d1bcc430f59c729841114e35e8ce790b04df",
+      "mo_ham_salsa_init.F90": "efc26ed1c4ab391f5fd288e7e5bd0f2998e722731c34ccd778063febf43faf50"
+    },
+    "wrapper_sha256": {
+      "stubs.f90": "7cc7fcf5ebbd8b2307d8d3d2306a3f4a1e3b0b5215f2527419c1306b43c8dafc",
+      "init.F90": "17ef9dc65c41c544eb587e438e86ebbd398bd190cfa39bd7a4ca1909433ce274",
+      "driver.f90": "2cf96a43ceba9f6b10b4a58d138a7905103ddafd2af16e59590faa42c61d7afe"
+    },
+    "extracted_routine_sha256": {
+      "coagc": "90591d2a1b5498deefb1fe02ec6052729407da8222812ca485f2aa55ae74b3fe",
+      "set_sizebins": "9d1ab956e4ec67b5059b247d88e3d702bae72d298853bc18db8b5b584a1daf5f"
+    },
+    "flags": [
+      "-O2",
+      "-fno-fast-math",
+      "-fno-lto",
+      "-ffree-line-length-none",
+      "-cpp",
+      "-fcheck=all",
+      "-ffpe-trap=invalid,zero,overflow",
+      "-fbacktrace"
+    ],
+    "checked": true,
+    "compiled_constants": {
+      "avogadro": 6.02214179e+23,
+      "gas_constant": 8.314472,
+      "boltzmann": 1.3806504e-23,
+      "reference_pressure": 101325.0,
+      "pi": 3.141592653589793
+    },
+    "compiler": "GNU Fortran (Homebrew GCC 16.1.0) 16.1.0",
+    "scientific_modules_byte_identical": [
+      "mo_ham_salsa_nucleation.F90",
+      "mo_ham_salsa_properties.F90",
+      "mo_ham_salsa_dynamics.F90",
+      "mo_ham_salsa_update.F90",
+      "mo_ham_salsa.F90"
+    ],
+    "scope": "complete salsa call; nsoa=0, no HAMMOZ, native 69-component mapping, 17 bins, five nonwater species",
+    "separate_compilation_without_lto": true
+  },
+  "fortran_provenance": {
+    "source_sha256": {
+      "parkind1.F90": "bd7aa3a0f896829781c6c9c1924726def9bd8b2825778e26274c615c2642ff5a",
+      "mo_kind.F90": "e7d3a5f28d216e60828c395a704e33a7bfc5db6e966533776fc438f4d782d255",
+      "mo_math_constants.F90": "ceae6f761c288597f7fb495ff2a55030fee8f861e1ee0dcd8adc0ba3ba95734f",
+      "mo_physical_constants.F90": "12405902248f437d9f7ae9b03d1efe194cd7605f6b396156c3d820366b8a79b0",
+      "mo_ham_salsa_nucleation.F90": "927c2f2d8056ce100a5e36563cc9fa04b407ea0033ff848e9c65de3c9a9f2445",
+      "mo_ham_salsa_properties.F90": "5292a5c9debcb6b3fd8bab7d477c463cbfd98d9ff7dc03d5f793f9c1aae76127",
+      "mo_ham_salsa_dynamics.F90": "13db52f2e5e10bb0ad485348209a74e3b8bcbf25af77d05a995a8444050cff25",
+      "mo_ham_salsa_update.F90": "f01880e86935e4dd628ce9bdcd010df1530525f167cd6262e9e76b584caf1cf1",
+      "mo_ham_salsa.F90": "af04c42794909550de39d2bdc0a5d1bcc430f59c729841114e35e8ce790b04df",
+      "mo_ham_salsa_init.F90": "efc26ed1c4ab391f5fd288e7e5bd0f2998e722731c34ccd778063febf43faf50"
+    },
+    "wrapper_sha256": {
+      "stubs.f90": "7cc7fcf5ebbd8b2307d8d3d2306a3f4a1e3b0b5215f2527419c1306b43c8dafc",
+      "init.F90": "17ef9dc65c41c544eb587e438e86ebbd398bd190cfa39bd7a4ca1909433ce274",
+      "driver.f90": "2cf96a43ceba9f6b10b4a58d138a7905103ddafd2af16e59590faa42c61d7afe"
+    },
+    "extracted_routine_sha256": {
+      "coagc": "90591d2a1b5498deefb1fe02ec6052729407da8222812ca485f2aa55ae74b3fe",
+      "set_sizebins": "9d1ab956e4ec67b5059b247d88e3d702bae72d298853bc18db8b5b584a1daf5f"
+    },
+    "flags": [
+      "-O2",
+      "-fno-fast-math",
+      "-fno-lto",
+      "-ffree-line-length-none",
+      "-cpp"
+    ],
+    "checked": false,
+    "compiled_constants": {
+      "avogadro": 6.02214179e+23,
+      "gas_constant": 8.314472,
+      "boltzmann": 1.3806504e-23,
+      "reference_pressure": 101325.0,
+      "pi": 3.141592653589793
+    },
+    "compiler": "GNU Fortran (Homebrew GCC 16.1.0) 16.1.0",
+    "scientific_modules_byte_identical": [
+      "mo_ham_salsa_nucleation.F90",
+      "mo_ham_salsa_properties.F90",
+      "mo_ham_salsa_dynamics.F90",
+      "mo_ham_salsa_update.F90",
+      "mo_ham_salsa.F90"
+    ],
+    "scope": "complete salsa call; nsoa=0, no HAMMOZ, native 69-component mapping, 17 bins, five nonwater species",
+    "separate_compilation_without_lto": true
+  },
+  "checked_optimized_exact_match": true,
+  "parity": {
+    "mass": {
+      "max_absolute": 3.0517578125e-05,
+      "max_relative_nonzero": 2.0018941647605866e-14,
+      "max_absolute_at_reference_zero": 0.0
+    },
+    "number": {
+      "max_absolute": 1.7881393432617188e-07,
+      "max_relative_nonzero": 1.5193421865075287e-13,
+      "max_absolute_at_reference_zero": 0.0
+    },
+    "gas": {
+      "max_absolute": 0.0,
+      "max_relative_nonzero": 0.0,
+      "max_absolute_at_reference_zero": 0.0
+    },
+    "wet_radius_cm": {
+      "max_absolute": 1.7943545954635098e-17,
+      "max_relative_nonzero": 4.413104275325427e-14,
+      "max_absolute_at_reference_zero": 0.0
+    },
+    "dry_radius_cm": {
+      "max_absolute": 1.7943545954635098e-17,
+      "max_relative_nonzero": 4.4207293819810345e-14,
+      "max_absolute_at_reference_zero": 0.0
+    },
+    "density": {
+      "max_absolute": 2.6645352591003757e-15,
+      "max_relative_nonzero": 1.2461003701519494e-15,
+      "max_absolute_at_reference_zero": 0.0
+    },
+    "water_mass": {
+      "max_absolute": 3.9291079096268815e-24,
+      "max_relative_nonzero": 0.19544371455489476,
+      "max_absolute_at_reference_zero": 0.0,
+      "max_absolute_over_dry_water_mass_scale": 1.9161375420349303e-15,
+      "negative_fortran_values": 0,
+      "negative_jax_values": 0,
+      "cancellation_ulps": 32
+    }
+  },
+  "rtol": 3e-13,
+  "atol": 0,
+  "output_fields": [
+    "mass",
+    "number",
+    "gas",
+    "wet_radius_cm",
+    "dry_radius_cm",
+    "density",
+    "water_mass"
+  ],
+  "jax_output_checksums": {
+    "mass": 3942377990584.465,
+    "number": 50326313858.15477,
+    "gas": 4145244588589497.5,
+    "wet_radius_cm": 0.07949488038208881,
+    "dry_radius_cm": 0.07553986360999732,
+    "density": 1873.2388053474988,
+    "water_mass": 2.841698643121018e-07
+  },
+  "fortran_output_checksums": {
+    "mass": 3942377990584.465,
+    "number": 50326313858.15478,
+    "gas": 4145244588589497.5,
+    "wet_radius_cm": 0.07949488038208853,
+    "dry_radius_cm": 0.07553986360999704,
+    "density": 1873.238805347499,
+    "water_mass": 2.8416986431210175e-07
+  },
+  "repetitions": 500,
+  "steps_per_repetition": 1,
+  "input_reset_each_repetition": true,
+  "trials": 5,
+  "trial_orders": [
+    [
+      "jax",
+      "fortran"
+    ],
+    [
+      "fortran",
+      "jax"
+    ],
+    [
+      "jax",
+      "fortran"
+    ],
+    [
+      "fortran",
+      "jax"
+    ],
+    [
+      "jax",
+      "fortran"
+    ]
+  ],
+  "jax_static_groups": [
+    {
+      "case_indices": [
+        0,
+        11,
+        12
+      ],
+      "options": {
+        "return_trace": false,
+        "scheme": 0,
+        "growth": 1,
+        "coagulation_enabled": true,
+        "condensation_enabled": true,
+        "recalculate": false,
+        "transfer_soluble": false,
+        "hydrate_insoluble": true,
+        "organic_enabled": false
+      },
+      "physical_cells": 6,
+      "compile_seconds": 0.45978233398636803,
+      "first_execution_seconds": 0.0009727079886943102
+    },
+    {
+      "case_indices": [
+        1,
+        24,
+        25,
+        26
+      ],
+      "options": {
+        "return_trace": false,
+        "scheme": 0,
+        "growth": 1,
+        "coagulation_enabled": false,
+        "condensation_enabled": false,
+        "recalculate": false,
+        "transfer_soluble": false,
+        "hydrate_insoluble": true,
+        "organic_enabled": true
+      },
+      "physical_cells": 8,
+      "compile_seconds": 0.32559791702078655,
+      "first_execution_seconds": 0.0006559170433320105
+    },
+    {
+      "case_indices": [
+        2
+      ],
+      "options": {
+        "return_trace": false,
+        "scheme": 0,
+        "growth": 1,
+        "coagulation_enabled": false,
+        "condensation_enabled": false,
+        "recalculate": true,
+        "transfer_soluble": false,
+        "hydrate_insoluble": true,
+        "organic_enabled": true
+      },
+      "physical_cells": 2,
+      "compile_seconds": 0.29998383403290063,
+      "first_execution_seconds": 0.0006388330366462469
+    },
+    {
+      "case_indices": [
+        3
+      ],
+      "options": {
+        "return_trace": false,
+        "scheme": 0,
+        "growth": 1,
+        "coagulation_enabled": false,
+        "condensation_enabled": true,
+        "recalculate": false,
+        "transfer_soluble": false,
+        "hydrate_insoluble": true,
+        "organic_enabled": true
+      },
+      "physical_cells": 2,
+      "compile_seconds": 0.30986241600476205,
+      "first_execution_seconds": 0.0007123329560272396
+    },
+    {
+      "case_indices": [
+        4
+      ],
+      "options": {
+        "return_trace": false,
+        "scheme": 0,
+        "growth": 1,
+        "coagulation_enabled": false,
+        "condensation_enabled": true,
+        "recalculate": true,
+        "transfer_soluble": false,
+        "hydrate_insoluble": true,
+        "organic_enabled": true
+      },
+      "physical_cells": 2,
+      "compile_seconds": 0.33935541700338945,
+      "first_execution_seconds": 0.0007094580214470625
+    },
+    {
+      "case_indices": [
+        5
+      ],
+      "options": {
+        "return_trace": false,
+        "scheme": 0,
+        "growth": 1,
+        "coagulation_enabled": true,
+        "condensation_enabled": false,
+        "recalculate": false,
+        "transfer_soluble": false,
+        "hydrate_insoluble": true,
+        "organic_enabled": true
+      },
+      "physical_cells": 2,
+      "compile_seconds": 0.35233949997927994,
+      "first_execution_seconds": 0.0009152499842457473
+    },
+    {
+      "case_indices": [
+        6
+      ],
+      "options": {
+        "return_trace": false,
+        "scheme": 0,
+        "growth": 1,
+        "coagulation_enabled": true,
+        "condensation_enabled": false,
+        "recalculate": true,
+        "transfer_soluble": false,
+        "hydrate_insoluble": true,
+        "organic_enabled": true
+      },
+      "physical_cells": 2,
+      "compile_seconds": 0.35621379199437797,
+      "first_execution_seconds": 0.0009037920390255749
+    },
+    {
+      "case_indices": [
+        7
+      ],
+      "options": {
+        "return_trace": false,
+        "scheme": 0,
+        "growth": 1,
+        "coagulation_enabled": true,
+        "condensation_enabled": true,
+        "recalculate": false,
+        "transfer_soluble": false,
+        "hydrate_insoluble": true,
+        "organic_enabled": true
+      },
+      "physical_cells": 2,
+      "compile_seconds": 0.39980595896486193,
+      "first_execution_seconds": 0.0009603750077076256
+    },
+    {
+      "case_indices": [
+        8
+      ],
+      "options": {
+        "return_trace": false,
+        "scheme": 0,
+        "growth": 1,
+        "coagulation_enabled": true,
+        "condensation_enabled": true,
+        "recalculate": true,
+        "transfer_soluble": false,
+        "hydrate_insoluble": true,
+        "organic_enabled": true
+      },
+      "physical_cells": 2,
+      "compile_seconds": 0.38676783395931125,
+      "first_execution_seconds": 0.00088283303193748
+    },
+    {
+      "case_indices": [
+        9
+      ],
+      "options": {
+        "return_trace": false,
+        "scheme": 0,
+        "growth": 1,
+        "coagulation_enabled": true,
+        "condensation_enabled": true,
+        "recalculate": false,
+        "transfer_soluble": true,
+        "hydrate_insoluble": true,
+        "organic_enabled": false
+      },
+      "physical_cells": 2,
+      "compile_seconds": 0.44570137502159923,
+      "first_execution_seconds": 0.0009283749968744814
+    },
+    {
+      "case_indices": [
+        10
+      ],
+      "options": {
+        "return_trace": false,
+        "scheme": 0,
+        "growth": 1,
+        "coagulation_enabled": true,
+        "condensation_enabled": true,
+        "recalculate": false,
+        "transfer_soluble": false,
+        "hydrate_insoluble": false,
+        "organic_enabled": false
+      },
+      "physical_cells": 2,
+      "compile_seconds": 0.3737066669855267,
+      "first_execution_seconds": 0.0009093330008909106
+    },
+    {
+      "case_indices": [
+        13
+      ],
+      "options": {
+        "return_trace": false,
+        "scheme": 1,
+        "growth": 1,
+        "coagulation_enabled": true,
+        "condensation_enabled": true,
+        "recalculate": false,
+        "transfer_soluble": false,
+        "hydrate_insoluble": true,
+        "organic_enabled": false
+      },
+      "physical_cells": 2,
+      "compile_seconds": 0.5137877910165116,
+      "first_execution_seconds": 0.0008912910125218332
+    },
+    {
+      "case_indices": [
+        14
+      ],
+      "options": {
+        "return_trace": false,
+        "scheme": 1,
+        "growth": 2,
+        "coagulation_enabled": true,
+        "condensation_enabled": true,
+        "recalculate": false,
+        "transfer_soluble": false,
+        "hydrate_insoluble": true,
+        "organic_enabled": false
+      },
+      "physical_cells": 2,
+      "compile_seconds": 0.4650853339699097,
+      "first_execution_seconds": 0.0009691250161267817
+    },
+    {
+      "case_indices": [
+        15
+      ],
+      "options": {
+        "return_trace": false,
+        "scheme": 1,
+        "growth": 3,
+        "coagulation_enabled": true,
+        "condensation_enabled": true,
+        "recalculate": false,
+        "transfer_soluble": false,
+        "hydrate_insoluble": true,
+        "organic_enabled": false
+      },
+      "physical_cells": 2,
+      "compile_seconds": 0.7136960419593379,
+      "first_execution_seconds": 0.0009946670033968985
+    },
+    {
+      "case_indices": [
+        16,
+        22
+      ],
+      "options": {
+        "return_trace": false,
+        "scheme": 2,
+        "growth": 1,
+        "coagulation_enabled": true,
+        "condensation_enabled": true,
+        "recalculate": false,
+        "transfer_soluble": false,
+        "hydrate_insoluble": true,
+        "organic_enabled": false
+      },
+      "physical_cells": 4,
+      "compile_seconds": 0.5002756249741651,
+      "first_execution_seconds": 0.0008908329764381051
+    },
+    {
+      "case_indices": [
+        17
+      ],
+      "options": {
+        "return_trace": false,
+        "scheme": 2,
+        "growth": 2,
+        "coagulation_enabled": true,
+        "condensation_enabled": true,
+        "recalculate": false,
+        "transfer_soluble": false,
+        "hydrate_insoluble": true,
+        "organic_enabled": false
+      },
+      "physical_cells": 2,
+      "compile_seconds": 0.5838786250096746,
+      "first_execution_seconds": 0.0009299580124206841
+    },
+    {
+      "case_indices": [
+        18
+      ],
+      "options": {
+        "return_trace": false,
+        "scheme": 2,
+        "growth": 3,
+        "coagulation_enabled": true,
+        "condensation_enabled": true,
+        "recalculate": false,
+        "transfer_soluble": false,
+        "hydrate_insoluble": true,
+        "organic_enabled": false
+      },
+      "physical_cells": 2,
+      "compile_seconds": 0.6481245419709012,
+      "first_execution_seconds": 0.0010318750282749534
+    },
+    {
+      "case_indices": [
+        19
+      ],
+      "options": {
+        "return_trace": false,
+        "scheme": 3,
+        "growth": 1,
+        "coagulation_enabled": true,
+        "condensation_enabled": true,
+        "recalculate": false,
+        "transfer_soluble": false,
+        "hydrate_insoluble": true,
+        "organic_enabled": false
+      },
+      "physical_cells": 2,
+      "compile_seconds": 0.5679026660509408,
+      "first_execution_seconds": 0.0009680409566499293
+    },
+    {
+      "case_indices": [
+        20
+      ],
+      "options": {
+        "return_trace": false,
+        "scheme": 3,
+        "growth": 2,
+        "coagulation_enabled": true,
+        "condensation_enabled": true,
+        "recalculate": false,
+        "transfer_soluble": false,
+        "hydrate_insoluble": true,
+        "organic_enabled": false
+      },
+      "physical_cells": 2,
+      "compile_seconds": 0.4711919580004178,
+      "first_execution_seconds": 0.0008905000286176801
+    },
+    {
+      "case_indices": [
+        21
+      ],
+      "options": {
+        "return_trace": false,
+        "scheme": 3,
+        "growth": 3,
+        "coagulation_enabled": true,
+        "condensation_enabled": true,
+        "recalculate": false,
+        "transfer_soluble": false,
+        "hydrate_insoluble": true,
+        "organic_enabled": false
+      },
+      "physical_cells": 2,
+      "compile_seconds": 0.6463186249602586,
+      "first_execution_seconds": 0.0013103330275043845
+    },
+    {
+      "case_indices": [
+        23
+      ],
+      "options": {
+        "return_trace": false,
+        "scheme": 2,
+        "growth": 1,
+        "coagulation_enabled": true,
+        "condensation_enabled": true,
+        "recalculate": false,
+        "transfer_soluble": false,
+        "hydrate_insoluble": true,
+        "organic_enabled": true
+      },
+      "physical_cells": 2,
+      "compile_seconds": 0.44134066702099517,
+      "first_execution_seconds": 0.0009878749842755497
+    }
+  ],
+  "jax_compile_seconds": 9.600718919886276,
+  "jax_preparation_seconds_including_diagnostic_compiles": 18.939451874990482,
+  "jax_persistent_compilation_cache": false,
+  "jax_warm_wall_seconds_per_batch": {
+    "minimum": 0.0021214947500266135,
+    "median": 0.002149489999981597,
+    "maximum": 0.00215857099997811,
+    "samples": [
+      0.00215857099997811,
+      0.0021497878339141606,
+      0.0021214947500266135,
+      0.002149489999981597,
+      0.00214075350004714
+    ]
+  },
+  "fortran_warm_wall_seconds_per_batch": {
+    "minimum": 0.00040462399999999997,
+    "median": 0.00040591,
+    "maximum": 0.000410358,
+    "samples": [
+      0.000410358,
+      0.000405786,
+      0.000407458,
+      0.00040462399999999997,
+      0.00040591
+    ]
+  },
+  "fortran_cpu_seconds_per_batch": {
+    "minimum": 0.00040399399999999997,
+    "median": 0.000405862,
+    "maximum": 0.00041034999999999997,
+    "samples": [
+      0.00041034999999999997,
+      0.000405604,
+      0.00040744800000000003,
+      0.00040399399999999997,
+      0.000405862
+    ]
+  },
+  "fortran_clock_ticks_per_second": 1000000000.0,
+  "median_fortran_over_jax": 0.18884014347751102,
+  "timing_notes": "Each trial repeats the same complete case batch, resetting inputs for one native call; no trajectory is advanced between repetitions. Both implementations evaluate two levels per case, above and within the boundary layer. Fortran includes copying fixed inputs, setting species/flags, native grid setup, both correction passes and final output copies. JAX computes the grid and all native outputs in the compiled call, dispatches each static configuration group, then synchronizes every physical output once per complete batch. Immutable JAX inputs require no reset copies. The timed JAX wrapper returns exactly the seven native caller fields; internal volume/core/diameter/valid diagnostics are checked outside timing and unused outputs may be eliminated. Compilation, initial transfers, native process startup/I/O, checksum and comparison work are excluded from warm timing. Fortran uses separately compiled O2 source without fast-math/LTO, runtime checks disabled; checked and optimized outputs must agree exactly before any trials. Trial order alternates. Thread settings are recorded, not standardized. This is composed microphysics performance, not complete HAM box-model performance."
+}
