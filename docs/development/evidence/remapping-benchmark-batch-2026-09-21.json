@@ -1,0 +1,507 @@
+{
+  "scope": "one isolated native distr_update call; 17 bins, 5 materials, optional lsol2b transfer",
+  "scientific_limit": "Fixed case inputs; excludes cleanup, hydration/corrections and second native pass. Preserves terminal bins, descending transfers and orphan material; no full SALSA or trajectory claim.",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "device": "cpu:0",
+  "dtype": "float64",
+  "versions": {
+    "jax": "0.11.2",
+    "jaxlib": "0.11.2",
+    "numpy": "2.5.3"
+  },
+  "thread_environment": {
+    "XLA_FLAGS": null,
+    "OMP_NUM_THREADS": null,
+    "OPENBLAS_NUM_THREADS": null,
+    "MKL_NUM_THREADS": null,
+    "VECLIB_MAXIMUM_THREADS": null,
+    "JAX_NUM_THREADS": null,
+    "TF_NUM_INTRAOP_THREADS": null,
+    "TF_NUM_INTEROP_THREADS": null
+  },
+  "implementation_sha256": {
+    "src/salsa_jax/constants.py": "a4f7c5782ece86bf98278a3ab54c895d7225aa2d73ff7389fd43150f9fb38baf",
+    "src/salsa_jax/processes/remapping.py": "eb349aa308991125df22b10fa0b9f6a71e9b7358dd0ec73244d56bfed6b5b896",
+    "tools/remapping_oracle.py": "9f4229969bc28c73a20f8f13d917830ff9a714dc2187ca2e3b8c24ee8b3d0272",
+    "tools/coagulation_process_oracle.py": "bbae27058afd6fdf0915e0cb30348cb35b877108716c5b6518367d336b0e4f98",
+    "benchmarks/benchmark_remapping.py": "9809715d806e1c74ce941672336bd331d6f5dd37a833d28a1e367898f4c83660"
+  },
+  "case_count": 47,
+  "physical_cells_per_batch": 47,
+  "bins_per_cell": 17,
+  "case_labels": [
+    "native-condensation-exit",
+    "empty",
+    "below-lower-bin1",
+    "partial-growth-bin1",
+    "below-lower-bin3",
+    "partial-growth-bin3",
+    "below-lower-bin4",
+    "partial-growth-bin4",
+    "below-lower-bin11",
+    "partial-growth-bin11",
+    "below-lower-bin12",
+    "partial-growth-bin12",
+    "below-lower-bin16",
+    "partial-growth-bin16",
+    "exact-lower",
+    "below-midpoint",
+    "exact-midpoint",
+    "above-midpoint",
+    "exact-upper",
+    "ignored-terminal-small-bin10",
+    "ignored-terminal-large-bin10",
+    "ignored-terminal-small-bin17",
+    "ignored-terminal-large-bin17",
+    "below-number-threshold",
+    "at-number-threshold",
+    "above-number-threshold",
+    "full-number-transfer-orphan-volume",
+    "descending-downward-cascade",
+    "below2b-to-regime1-no-regrowth",
+    "soluble-transfer-sulfate",
+    "soluble-transfer-organic",
+    "soluble-transfer-black-carbon",
+    "soluble-transfer-disabled",
+    "soluble-transfer-small-bin",
+    "below-soluble-fraction-threshold",
+    "at-soluble-fraction-threshold",
+    "above-soluble-fraction-threshold",
+    "zero-volume-first-bin",
+    "zero-volume-downward-bin",
+    "inactive-number-positive-volume",
+    "heterogeneous-solubility-parameters",
+    "mixed-0",
+    "mixed-1",
+    "mixed-2",
+    "mixed-3",
+    "mixed-4",
+    "mixed-5"
+  ],
+  "case_selection": "all reference_cases entries",
+  "case_sha256": {
+    "number": "0a1210eab3473e311288855b76cf243045e355aa953b5808c1617eefd4c3d5af",
+    "volume": "fdd9f9550594817e62916a9622a3b12b4b2f75d32658edb10cda5ede50b72e43",
+    "temperature": "7295d6b9dfaa1ed9f73402b936b2b5752387e840aa1d2fcdd1f8bf45ef34e783",
+    "dry_diameter": "e503ba99134af3eaa760f8ec0c4f4e0f2b6c29238df6058f2841c0cafc9ed860",
+    "lower_volume": "62291ad739cbb340cb2ea11d594c9d19abacaa261225c603f2c1a83dc724e03e",
+    "upper_volume": "667e47c41ca9af7fa18d406c1932bd9a3962501db632616c0989783513f4b41b",
+    "sulfate_molar_mass": "b4bca37e177514129c849fd91a39021303b8ccfd8e83d9f078b07002a4fd64bd",
+    "sulfate_density": "67840569aa620bfbdb52cb04c67831e01cf9e6f7811c7d2932cd261980f42015",
+    "water_molar_mass": "156e18cc8572569480680f7d033d595b863cddcc3d34ea297eba3ca9cef09544",
+    "water_density": "206dc31887b866ef2090ea9f9f879ff5c04a49daa1af22f72f720834704f7b13",
+    "water_surface_tension": "e0462fea8fe79053cb3695ab8d69f2eb7599abc76a75b5d1f22c869c0a5d302e",
+    "organic_soluble_fraction": "0d3c10f7a680994465b35a1264ea1cd3c64b44a0d701cae0ab3bbbf676431232",
+    "saturation_limit": "bd534862dd64fa78596ba9be5c62a7ee176a3be74feb22faa27a29f92170b831",
+    "ion_count": "adff905a3a737a41fc615b57a5d587973e7d9b5588054495312b0dcade84b285",
+    "number_threshold": "8f632c6677ed2df55a477442f43574e6949c5677500461552a6a50cedc126867",
+    "soluble_transfer": "4b389f29176bbec5ed4342183c70fa3fb52e5aafe1e3311dbce468dbe28e137b"
+  },
+  "case_hash_encoding": "named arrays, C-order IEEE float64 little endian; boolean mask encoded as 0/1 float64",
+  "soluble_transfer": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    true,
+    true,
+    true,
+    false,
+    true,
+    true,
+    true,
+    true,
+    false,
+    false,
+    false,
+    true,
+    false,
+    true,
+    false,
+    true,
+    false,
+    true
+  ],
+  "checked_fortran_provenance": {
+    "source_sha256": {
+      "parkind1.F90": "bd7aa3a0f896829781c6c9c1924726def9bd8b2825778e26274c615c2642ff5a",
+      "mo_kind.F90": "e7d3a5f28d216e60828c395a704e33a7bfc5db6e966533776fc438f4d782d255",
+      "mo_math_constants.F90": "ceae6f761c288597f7fb495ff2a55030fee8f861e1ee0dcd8adc0ba3ba95734f",
+      "mo_physical_constants.F90": "12405902248f437d9f7ae9b03d1efe194cd7605f6b396156c3d820366b8a79b0",
+      "mo_ham_salsa_update.F90": "f01880e86935e4dd628ce9bdcd010df1530525f167cd6262e9e76b584caf1cf1",
+      "mo_ham_salsactl.F90": "95dc7bcd437bc2d9cb9bc9bd784ad912c71ccfb978bdfad0cadf641b1374c30c",
+      "mo_ham_species.F90": "828b524dc894bf8423dd89328624f46c0a9b95ae907e7d58eac8d50d9e8e4cd0",
+      "mo_ham.F90": "117e36d7a8dfbacc986e8736275de88d2deacda2cdd12c4287d3022afd042737"
+    },
+    "routine_sha256": "71d9defc1350d8b2d178dc7444ab6ba2b3fcc8d0812f5ba60e26b9f9f014d484",
+    "wrapper_sha256": {
+      "stubs.f90": "9b76d2cdd029f4e9f514598b8b098c1398241dd5c8afca00c0858ab8a627025e",
+      "remapping.F90": "7d0e195819ec39696bf993ed7cd43339604eb19ade489f19122b31754ed2ab11",
+      "driver.f90": "46853a206822cf3ac8ba16f21469e1abd8a05a6fd7bc2a5caad524490cabb4a1"
+    },
+    "diagnostic_overlay": "IF (capture_iterations) last_iterations=last_iterations+1",
+    "flags": [
+      "-O2",
+      "-fno-fast-math",
+      "-fno-lto",
+      "-ffree-line-length-none",
+      "-cpp",
+      "-fcheck=all",
+      "-ffpe-trap=invalid,zero,overflow",
+      "-fbacktrace"
+    ],
+    "checked": true,
+    "compiled_constants": {
+      "pi": 3.141592653589793,
+      "gas_constant": 8.314472
+    },
+    "configuration": {
+      "bins": 17,
+      "species": 5,
+      "boundaries": [
+        1,
+        3,
+        4,
+        10,
+        11,
+        17
+      ],
+      "native_loop_uncapped": true
+    },
+    "separate_compilation_without_lto": true,
+    "compiler": "GNU Fortran (Homebrew GCC 16.1.0) 16.1.0"
+  },
+  "fortran_provenance": {
+    "source_sha256": {
+      "parkind1.F90": "bd7aa3a0f896829781c6c9c1924726def9bd8b2825778e26274c615c2642ff5a",
+      "mo_kind.F90": "e7d3a5f28d216e60828c395a704e33a7bfc5db6e966533776fc438f4d782d255",
+      "mo_math_constants.F90": "ceae6f761c288597f7fb495ff2a55030fee8f861e1ee0dcd8adc0ba3ba95734f",
+      "mo_physical_constants.F90": "12405902248f437d9f7ae9b03d1efe194cd7605f6b396156c3d820366b8a79b0",
+      "mo_ham_salsa_update.F90": "f01880e86935e4dd628ce9bdcd010df1530525f167cd6262e9e76b584caf1cf1",
+      "mo_ham_salsactl.F90": "95dc7bcd437bc2d9cb9bc9bd784ad912c71ccfb978bdfad0cadf641b1374c30c",
+      "mo_ham_species.F90": "828b524dc894bf8423dd89328624f46c0a9b95ae907e7d58eac8d50d9e8e4cd0",
+      "mo_ham.F90": "117e36d7a8dfbacc986e8736275de88d2deacda2cdd12c4287d3022afd042737"
+    },
+    "routine_sha256": "71d9defc1350d8b2d178dc7444ab6ba2b3fcc8d0812f5ba60e26b9f9f014d484",
+    "wrapper_sha256": {
+      "stubs.f90": "9b76d2cdd029f4e9f514598b8b098c1398241dd5c8afca00c0858ab8a627025e",
+      "remapping.F90": "7d0e195819ec39696bf993ed7cd43339604eb19ade489f19122b31754ed2ab11",
+      "driver.f90": "46853a206822cf3ac8ba16f21469e1abd8a05a6fd7bc2a5caad524490cabb4a1"
+    },
+    "diagnostic_overlay": "IF (capture_iterations) last_iterations=last_iterations+1",
+    "flags": [
+      "-O2",
+      "-fno-fast-math",
+      "-fno-lto",
+      "-ffree-line-length-none",
+      "-cpp"
+    ],
+    "checked": false,
+    "compiled_constants": {
+      "pi": 3.141592653589793,
+      "gas_constant": 8.314472
+    },
+    "configuration": {
+      "bins": 17,
+      "species": 5,
+      "boundaries": [
+        1,
+        3,
+        4,
+        10,
+        11,
+        17
+      ],
+      "native_loop_uncapped": true
+    },
+    "separate_compilation_without_lto": true,
+    "compiler": "GNU Fortran (Homebrew GCC 16.1.0) 16.1.0"
+  },
+  "checked_optimized_exact_match": true,
+  "parity": {
+    "number": {
+      "max_absolute": 5.960464477539063e-08,
+      "max_relative_nonzero": 3.1976599277852096e-14,
+      "max_absolute_at_reference_zero": 0.0
+    },
+    "volume": {
+      "max_absolute": 3.2311742677852644e-27,
+      "max_relative_nonzero": 4.252791064640639e-15,
+      "max_absolute_at_reference_zero": 0.0
+    }
+  },
+  "iterations": {
+    "jax_fortran_exact_match": true,
+    "timed_diagnostics": false,
+    "maximum_scans_per_call": 1,
+    "total_per_batch": 47,
+    "per_case_total": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "per_case_per_pass": [
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ]
+    ]
+  },
+  "repetitions": 500,
+  "trials": 5,
+  "trial_orders": [
+    [
+      "jax",
+      "fortran"
+    ],
+    [
+      "fortran",
+      "jax"
+    ],
+    [
+      "jax",
+      "fortran"
+    ],
+    [
+      "fortran",
+      "jax"
+    ],
+    [
+      "jax",
+      "fortran"
+    ]
+  ],
+  "jax_compile_seconds": 0.12982558301882818,
+  "jax_persistent_compilation_cache": false,
+  "jax_first_execution_seconds": 0.0006129579851403832,
+  "jax_warm_wall_seconds_per_batch": [
+    0.00015985558391548693,
+    0.00015013250010088085,
+    0.00014907375001348556,
+    0.00014809475000947714,
+    0.00015028325002640485
+  ],
+  "fortran_warm_wall_seconds_per_batch": [
+    5.916000000000001e-06,
+    5.806e-06,
+    5.836e-06,
+    6.086000000000001e-06,
+    5.964e-06
+  ],
+  "fortran_cpu_seconds_per_batch": [
+    5.902000000000001e-06,
+    5.81e-06,
+    5.847999999999999e-06,
+    6.088e-06,
+    5.9679999999999994e-06
+  ],
+  "fortran_clock_ticks_per_second": 1000000000,
+  "median_fortran_over_jax": 0.03940519205385091,
+  "timing_notes": "Alternating warmed wall-time trials on the same physical cells. Fortran uses separately compiled original arithmetic with O2, no fast-math/LTO, and runtime checks disabled. Timed iteration capture is off; its conditional branch remains. Fortran includes copying fixed number/volume/environment/geometry, setting species properties and the soluble-transfer switch, and copying physical outputs. Startup, I/O, iteration diagnostics and checksums are excluded. Checked and optimized outputs and iteration counts are first verified identical outside timing. The timed JAX wrapper returns only number and material volume, leaving its iteration counter unused for compilation to eliminate; exact counts are validated in a separate untimed call. JAX includes dispatch plus synchronization of both outputs, excluding transfer and compilation. Fortran loops over cells/bins; JAX batches them and retains masked bins until every native descending scan finishes. Thread settings are recorded, not normalized. Neither path advances a trajectory across timing repetitions. These measurements are CPU process timings, not full-model or GPU performance."
+}
