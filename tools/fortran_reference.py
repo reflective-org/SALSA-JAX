@@ -18,6 +18,7 @@ import time
 import tomllib
 
 if __package__:
+    from .ham_conversion_capture import FILES as HAM_CONVERSION_FILES, instrument_driver_ham_conversion, load_capture as load_ham_conversion_capture
     from .initialization_capture import FILES as INITIALIZATION_FILES, instrument_driver_initialization, load_capture as load_initialization_capture
     from .remapping_capture import FILES as REMAPPING_FILES, instrument_salsa_remapping, load_capture as load_remapping_capture
     from .hydration_capture import FILES as HYDRATION_FILES, instrument_salsa_hydration, load_capture as load_hydration_capture
@@ -29,6 +30,7 @@ if __package__:
     from .coagulation_capture import FILES as COAGULATION_FILES, instrument_salsa_coagulation, load_capture as load_coagulation_capture
     from .condensation_capture import FILES as CONDENSATION_FILES, instrument_salsa_condensation, load_capture as load_condensation_capture
 else:
+    from ham_conversion_capture import FILES as HAM_CONVERSION_FILES, instrument_driver_ham_conversion, load_capture as load_ham_conversion_capture
     from initialization_capture import FILES as INITIALIZATION_FILES, instrument_driver_initialization, load_capture as load_initialization_capture
     from remapping_capture import FILES as REMAPPING_FILES, instrument_salsa_remapping, load_capture as load_remapping_capture
     from hydration_capture import FILES as HYDRATION_FILES, instrument_salsa_hydration, load_capture as load_hydration_capture
@@ -93,7 +95,11 @@ def main() -> int:
                         help="capture both remapping and correction passes in the first native call")
     parser.add_argument("--capture-initialization-state", action="store_true",
                         help="capture actual driver size_distribution before initial conc2mmr")
+    parser.add_argument("--capture-ham-conversion-state", action="store_true",
+                        help="capture native driver conc2mmr and first gas2mmr boundaries")
     args = parser.parse_args()
+    if args.capture_ham_conversion_state and args.scope != "first-microphysics":
+        parser.error("--capture-ham-conversion-state requires --scope first-microphysics")
     if args.capture_initialization_state and args.scope != "first-microphysics":
         parser.error("--capture-initialization-state requires --scope first-microphysics")
     if args.capture_remapping_state and args.scope != "first-microphysics":
@@ -110,7 +116,7 @@ def main() -> int:
         parser.error("--capture-coagulation-state requires --scope first-microphysics")
     if args.capture_condensation_state and args.scope != "first-microphysics":
         parser.error("--capture-condensation-state requires --scope first-microphysics")
-    if args.capture_salsa_state or args.capture_coagulation_state or args.capture_condensation_state or args.capture_hydration_state or args.capture_remapping_state or args.capture_initialization_state:
+    if args.capture_salsa_state or args.capture_coagulation_state or args.capture_condensation_state or args.capture_hydration_state or args.capture_remapping_state or args.capture_initialization_state or args.capture_ham_conversion_state:
         args.capture_runtime = True
     config = tomllib.loads(args.config.read_text())
     reference_case = config.get("reference_case")
@@ -164,6 +170,9 @@ def main() -> int:
         if args.capture_initialization_state:
             manifest["initialization_capture"] = instrument_driver_initialization(target / "driver.F90")
             manifest["initialization_capture"]["status"] = "instrumented_not_run"
+        if args.capture_ham_conversion_state:
+            manifest["ham_conversion_capture"] = instrument_driver_ham_conversion(target / "driver.F90")
+            manifest["ham_conversion_capture"]["status"] = "instrumented_not_run"
         if args.capture_salsa_state:
             manifest["salsa_capture"] = instrument_salsa(target / "mo_ham_salsa.F90")
             manifest["salsa_capture"]["status"] = "instrumented_not_run"
@@ -306,6 +315,18 @@ def main() -> int:
                     capture["error"] = str(error)
                     if manifest["run"]["returncode"] == 0:
                         manifest["status"] = "hydration_capture_failed"
+                    return 1
+            if args.capture_ham_conversion_state:
+                capture = manifest["ham_conversion_capture"]
+                try:
+                    capture["file_sha256"] = {name: sha256(target / name) for name in HAM_CONVERSION_FILES.values()}
+                    capture["state"] = load_ham_conversion_capture(target)
+                    capture["status"] = "captured"
+                except (OSError, ValueError) as error:
+                    capture["status"] = "capture_failed"
+                    capture["error"] = str(error)
+                    if manifest["run"]["returncode"] == 0:
+                        manifest["status"] = "ham_conversion_capture_failed"
                     return 1
             if args.capture_initialization_state:
                 capture = manifest["initialization_capture"]
