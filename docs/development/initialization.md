@@ -39,8 +39,9 @@ them with ideal decimal64 defaults. Mode settings are runtime inputs to the
 kernel, not a second hardcoded configuration.
 
 This initializes **number only**. Native `conc2mmr` next assigns material
-composition, changes number units and constructs HAM tracers. That separate
-routine remains required before initialization can feed the full HAM wrapper.
+composition, changes number units and constructs HAM tracers. Its separate
+[material/tracer port](aerosol-initialization.md) now accepts this initializer
+output against checked driver captures; the full HAM wrapper remains open.
 The [HAM audit](ham-conversion-audit.md) describes these boundaries.
 
 ## Verification and regeneration
@@ -68,7 +69,8 @@ exports a checked, hash-verified capture to a new fixture directory. The loader
 rejects changed files, incompatible shapes/options and modified pure inputs.
 
 
-The complete suite passes **740 tests** in the repository `.venv`. The 23-case
+At this milestone the complete suite passed **740 tests** in the repository
+`.venv`; see [current status](../plans/STATUS.md) for subsequent validation. The 23-case
 initializer comparison has maximum relative error 2.84e-14; no negative or
 nonfinite populations occur. Checked control/capture outputs and fresh repeats
 are exact. Independent reference output also matches the actual initialized
@@ -78,8 +80,8 @@ The [kernel evidence](evidence/initialization-2026-09-22.json) records source,
 compiler and case hashes, per-case errors, modal/bin totals and literal rounding.
 The [capture evidence](evidence/initialization-native-2026-09-22.json) records
 three checked native runs and their output hashes. The complete box model still
-requires material/tracer initialization, HAM coupling and the remaining driver
-processes; this milestone does not validate those steps.
+requires HAM coupling and the remaining driver processes. Material/tracer
+initialization was subsequently accepted in its [own milestone](aerosol-initialization.md).
 
 ## Isolated CPU measurement
 

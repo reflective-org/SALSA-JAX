@@ -1,6 +1,7 @@
 # SALSA-JAX development documentation
 
 - [Seven-mode number initialization](development/initialization.md)
+- [Aerosol material and HAM tracer initialization](development/aerosol-initialization.md)
 - [HAM gas conversion and remaining wrapper audit](development/ham-conversion-audit.md)
 - [Complete native SALSA API, validation and benchmarks](development/salsa-composition.md)
 - [Master plan and commit-sized backlog](plans/ULTRAPLAN.md)
@@ -29,7 +30,7 @@
 The Python package composes the supported native SALSA call for 17 bins and
 five materials, with independently tested process APIs. Complete-call checks
 cover process switches, native captures, recalculation and short repeated calls.
-Seven-mode number initialization and the HAM gas conversion leaf also pass
-reference checks. Material/tracer initialization, full HAM coupling, longer
-trajectories and the box driver remain planned. See the [current validation status](plans/STATUS.md)
+Number/material/tracer initialization and the first HAM gas conversion also pass
+reference and actual driver-boundary checks. Diagnostic conversion, full HAM
+coupling, longer trajectories and the box driver remain planned. See the [current validation status](plans/STATUS.md)
 for evidence and inherited scientific limitations.

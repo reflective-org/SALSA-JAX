@@ -60,23 +60,28 @@ The [master plan](ULTRAPLAN.md) defines the remaining commit-sized backlog.
 | F14–F16 | Expanded scoped capture acceptance | Active, recalc and active+recalc control/capture/repeat exact; all four default/configured call boundaries match JAX |
 | P04e | Initial complete-call measurement | Matched native/JAX workloads, seven caller outputs, checked/optimized parity, separate compilation and warm execution |
 | C03.R/J | Seven-mode number initializer accepted | 23 original-Fortran cases, eager/JIT/vmap, actual checked driver boundary and exact capture/control/repeat |
-| H01.R/J1 | Independent gas-conversion leaf accepted | All three native codes, precision, runtime tracer mapping, duplicate writes, unchanged tracers and native padding; caller capture pending |
+| H01.R/J1 | Independent gas-conversion leaf accepted | All three native codes, precision, runtime tracer mapping, duplicate writes, unchanged tracers and native padding |
+| H01.F/J2 | Actual gas caller accepted | Default/active first gas2mmr boundaries, complete tracers, full-cell meteorology, preserved driver scaling |
+| H02.R/J | Material/tracer initialization accepted | 18 original-Fortran cases, all 69 materials, native fractions/constants/number mutation, duplicate writes and budgets |
+| H02 native composition | Initialization chain accepted | Six checked control/capture/repeat runs; linked number → material → gas JAX chain matches default/active boundaries |
+| P04g | Initial material-initialization measurement | One/18 curated cases, three outputs synchronized, checked/optimized parity; no measured CPU speedup |
 | Q01 | Implemented | Quickstart, capability limits and reproduction commands |
 
-All **740 tests pass** in this repository's `.venv` (129.33 seconds), including
-mandatory original-Fortran comparisons, native initialization and gas conversion. Original Fortran sources,
+All **837 tests pass** in this repository's `.venv` (137.39 seconds), including
+mandatory original-Fortran comparisons, native number/material initialization
+and first gas conversion. Original Fortran sources,
 scientific inputs and `AGENTS.md` are unchanged. Generated builds/outputs remain
 ignored, and source relocation has not started.
 
 ## Next ready tasks, in order
 
-1. **H01.F / H01.J2 / F11b:** capture actual driver gas conversion inputs,
-   full-cell meteorology and initialized tracer metadata; replay that boundary
-   with the accepted gas-conversion leaf.
-2. **H02.R/J / H03.R/J / I03:** port material/tracer initialization and diagnostic
-   conversion in separate reference/JAX commits, then complete the HAM wrapper.
-   Expand longer core trajectories with checkpoints and budget reports before
-   evolving driver forcing.
+1. **H03.R / H03.J / H03.F:** extract and port `mmr2conc` diagnostic
+   conversion in separate commits, preserving native units, constants and
+   mapping order. Verify native numerical round trips and captured tracer states.
+2. **F11b / H04–H07 / I03:** capture remaining full-wrapper metadata and
+   tendencies, then port boundary conversions, water writes, `xt_borrow` and
+   wrapper composition separately. Expand core trajectories with checkpoints
+   and budget reports before evolving driver forcing.
 3. **C11.D009.A/F/J / D011/D012:** review scientific repairs for coagulation
    volume creation, orphan material after remapping and tiny nonvolatile loss;
    preserve current compatibility until each reference decision is made.
@@ -88,8 +93,9 @@ ignored, and source relocation has not started.
 
 Processes remain independently callable and tested. Complete supported native
 SALSA composition now includes their shared call order and native interface.
-HAM wrapper conversions, initialization, long trajectories and full-driver
-acceptance remain pending.
+Number/material/tracer initialization and first gas conversion are accepted.
+Remaining HAM wrapper conversions, long trajectories and full-driver acceptance
+remain pending.
 
 ## Initial implementation commits
 
@@ -412,3 +418,39 @@ and the complete HAM wrapper remain open. See the
 
 Initializer CPU medians: 5.712/1.070 µs (JAX/Fortran) for default and
 38.399/21.308 µs for 23 cases; no speedup is measured.
+
+## Material initialization and native gas boundary milestone (2026-09-22)
+
+Final validation: `.venv/bin/python -m pytest -q` — **837 passed in 137.39 s**.
+
+H02 ports the native SALSA `conc2mmr` branch with all 69 material components,
+fixed volume fractions, native mixed units and ordered tracer writes. Eighteen
+reference cases have exact number output and mass/tracer relative errors below
+`3.8e-16`; physical volume/fraction budgets are within `4.4e-16`. The distinct
+registry molecular mass, native Avogadro constant and truncated sulfate tracer
+factor are retained. Unknown material unit codes follow the native ELSE branch.
+
+H01.F/J2 and H02 native acceptance use six checked runs: default and active
+forcing, each control/capture/repeat. Scope outputs are identical with capture
+on/off; all captured boundaries repeat exactly. Linked same-run number fixtures
+allow eager/JIT number → material → gas tracer composition without substituting
+captured intermediate outputs. Production Fortran, scientific inputs and
+`AGENTS.md` are unchanged. See the [material API and evidence](../development/aerosol-initialization.md).
+
+Warm CPU JAX/Fortran medians are 42.15/0.352 µs for one curated case and
+68.49/5.630 µs for 18 cases; no speedup is observed. Compilation is separate;
+all three outputs are synchronized. These timings exclude number generation,
+gas conversion and the complete HAM wrapper.
+
+| Commit | Deliverable |
+|---|---|
+| `577223f` | H02.R: verbatim conc2mmr oracle and 18-case matrix |
+| `b819b69` | H02.J: material/tracer initializer, budgets and fieldwise evidence |
+| `619a1d4` | H01.F/H02 capture: copy-only driver boundaries and strict loader |
+| `9559aac` | H01.J2/H02 native acceptance: linked fixtures and composed chain |
+| `7ea390a` | P04g: matched initialization benchmark and raw CPU measurements |
+
+Next is H03 diagnostic conversion; F11b and H04–H07 remain open for full
+wrapper metadata, tendencies, water pseudo-tracers and negative-tracer borrowing.
+The checked full driver still fails in radiation before its later diagnostic
+call, so no full-timestep or evolving-trajectory acceptance is claimed.

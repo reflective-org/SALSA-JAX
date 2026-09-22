@@ -165,7 +165,7 @@ condensation tests pass with native `recalc=False`. Remapping and corrections
 now extend native-boundary acceptance through both default passes; see below.
 Run the full suite in the repository’s `.venv`. The
 [current status](../plans/STATUS.md) tracks validation evidence and the remaining
-initialization, HAM coupling and longer-trajectory gates.
+diagnostic conversion, HAM coupling and longer-trajectory gates.
 
 ```sh
 .venv/bin/python -m pytest -q tests/test_grid.py tests/test_inverse_molality.py \
@@ -243,7 +243,7 @@ sources before initialization. Original Fortran files and inputs remain intact.
 ```
 
 Add `--capture-nucleation-state` for the active profile. Commit-sized remaining
-gates cover aerosol material/tracer initialization (H02), HAM metadata/conversions, longer
+gates cover diagnostic conversion (H03), remaining HAM metadata/conversions, longer
 core trajectories (I03), and the complete box driver.
 
 ## Seven-mode initialization and HAM gas conversion
@@ -262,5 +262,24 @@ Use a fresh output directory. Read the [initialization guide](initialization.md)
 for units, midpoint quadrature and native mode-literal precision. The
 [gas conversion guide](ham-conversion-audit.md) distinguishes molecules/cm³
 from SALSA's molecules/m³ and documents all three native conversion codes.
-The gas leaf is independently accepted; its actual HAM caller capture and
-material/tracer initialization are the next integration gates.
+Material/tracer initialization and actual first-call gas conversion now pass
+checked default and active-forcing captures. Reproduce both boundaries with:
+
+```sh
+.venv/bin/python tools/fortran_reference.py \
+  --config configs/fortran-checked.toml --scope first-microphysics \
+  --capture-initialization-state --capture-ham-conversion-state \
+  --capture-salsa-state --run --output build/ham-conversion-new
+.venv/bin/python -m pytest -q tests/test_aerosol_initialization.py \
+  tests/test_aerosol_initialization_oracle.py tests/test_ham_conversion_capture.py \
+  tests/test_ham_conversion_native.py
+```
+
+Use `configs/fortran-nucleation-active.toml` and another fresh directory for the
+active profile. Six checked runs (control/capture/repeat for each profile) preserve
+outputs exactly. Export with `tools.ham_conversion_capture.export_fixture`;
+export the number capture from that same run with
+`tools.initialization_capture.export_fixture` into `number-initialization/`
+inside the HAM fixture. Shared run hashes associate the complete initialization
+chain. The [material guide](aerosol-initialization.md) explains units and limits;
+H03 diagnostic conversion and the remaining HAM wrapper are next.

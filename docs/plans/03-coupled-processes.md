@@ -17,20 +17,33 @@ JAX units. Reference tasks require F14–F16. Preserve the driver's execution or
 | H06.R / H06.J | H05 | `xt_borrow` negative-tracer correction | Negative/zero/positive cases; match redistribution and resulting budget |
 | H07.R / H07.J | H06 | `ham_subm_interface` composition | Full state/tendencies match, including conditional process switches |
 
-### H01 leaf milestone and remaining capture gates
+### Accepted initialization boundaries and next diagnostic conversion
 
 H01.R and H01.J1 now pass checked original `gas2mmr` comparisons for all three
 unit codes, runtime mappings, duplicate write order and untouched tracers.
-They retain the default-real molecular conversion factor. This accepts the
-independent leaf; native caller acceptance remains open. See the
+They retain the default-real molecular conversion factor. H01.F/J2 and H02.R/J
+also pass actual checked default/active caller boundaries. Eighteen material
+cases verify all components, volume fractions, unit mutation and ordered writes;
+the number → material → gas chain passes eager/JIT. See the
 [contract and metadata audit](../development/ham-conversion-audit.md).
 
 | Child | Depends on | Commit-sized deliverable | Verification |
 |---|---|---|---|
-| H01.F | H01.R,F11b | Capture actual driver gas2mmr input/output and full-cell registry/environment | Checked control/capture/repeat exact; all tracer fields and units retained |
-| H01.J2 | H01.F,H01.J1 | Replay actual gas-conversion boundary through JAX | Every overwritten and untouched tracer matches native, including forcing scale |
-| H02.R | C03,H01.F | Capture and reference conc2mmr initialization composition | Actual fractions, all 69 components, number mutation and tracer registry |
-| H02.J | H02.R | Port material/tracer initialization with explicit output units | Eager/JIT parity and volume-fraction budgets; joins accepted number initializer |
+| H01.F (complete) | H01.R,F11b | Capture actual driver gas2mmr input/output and full-cell registry/environment | Checked control/capture/repeat exact; all tracer fields and units retained |
+| H01.J2 (complete) | H01.F,H01.J1 | Replay actual gas-conversion boundary through JAX | Every overwritten and untouched tracer matches native, including forcing scale |
+| H02.R (complete) | C03,H01.F | Capture and reference conc2mmr initialization composition | Actual fractions, all 69 components, number mutation and tracer registry |
+| H02.J (complete) | H02.R (complete) | Port material/tracer initialization with explicit output units | Eager/JIT parity and volume-fraction budgets; joins accepted number initializer |
+
+Next, keep diagnostic conversion in separate reviewable commits:
+
+| Child | Depends on | Commit-sized deliverable | Verification |
+|---|---|---|---|
+| H03.R | H02 | Extract verbatim SALSA `mmr2conc` with initialized registry fixtures | Checked/optimized equality; native codes, mappings, padding, number/mass units and gas behavior |
+| H03.J | H03.R | Pure diagnostic-conversion kernel and output contract | Eager/JIT per-field parity, untouched outputs and native numerical round trips |
+| H03.F | H03.J | Accept diagnostic conversion against captured initialized tracer states | Replay actual states without claiming the radiation-blocked driver reached its later diagnostic call |
+
+H04–H07 still require full wrapper metadata, tendencies, water updates and
+`xt_borrow`; H01/H02 captures do not close F11b in full.
 
 ## P4.2 — Cloud activation
 

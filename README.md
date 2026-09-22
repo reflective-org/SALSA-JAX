@@ -9,7 +9,8 @@ kernels, optional diameter recalculation, both remapping/correction passes,
 density and native mass conversions. Original-Fortran comparisons cover process
 switches, actual native captures and short repeated calls. See the
 [complete-call API and evidence](docs/development/salsa-composition.md).
-HAM initialization and coupling, long trajectories and the full box driver
+Number/material initialization and the first HAM gas conversion also pass native
+boundary checks. Remaining HAM coupling, long trajectories and the full box driver
 remain in the [commit-sized roadmap](docs/plans/ULTRAPLAN.md).
 
 ## Quick start
@@ -84,8 +85,9 @@ shows no speedup: 47 cases take 150.13 µs in JAX versus 5.916 µs in Fortran.
 The [seven-mode number initializer](docs/development/initialization.md) now
 matches 23 original-Fortran cases and the actual initialized driver boundary.
 The [HAM gas conversion leaf](docs/development/ham-conversion-audit.md) also
-passes independent reference checks; material/tracer initialization and complete
-HAM wrapper acceptance remain separate tasks.
+passes independent and actual caller checks. The [material/tracer initializer](docs/development/aerosol-initialization.md)
+constructs all 69 aerosol components, and the combined initialization chain matches
+checked default and active-forcing captures. Complete HAM wrapper acceptance remains open.
 
 ## Fortran reference and current limitation
 
@@ -150,8 +152,9 @@ and condensation are separately captured and ported; nucleation is ported and
 coupled using both explicit kernel fixtures and a checked active native capture.
 Complete C18/N08 microphysics composition now joins those processes, including
 initial cleanup, density, native mixed-unit conversions and optional diameter
-recalculation. Short fixed-environment repeats are tested; longer trajectories,
-aerosol material/tracer initialization and the remaining HAM conversions are pending.
+recalculation. Number/material/tracer initialization is accepted separately.
+Short fixed-environment repeats are tested; longer trajectories and the remaining
+HAM conversions are pending.
 Full-driver radiation requires valid optical tables and a separate
 initialization repair.
 

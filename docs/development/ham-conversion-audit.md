@@ -1,9 +1,9 @@
 # HAM concentration conversion audit
 
-The H01 gas-conversion leaf now has a checked native reference and a pure JAX
-implementation. The surrounding H02–H07 contracts below remain audit/proposed
-work; no complete HAM adapter or native HAM capture acceptance is claimed. The
-existing complete SALSA-call port starts inside these tracer conversions.
+The H01 gas conversion and H02 material/tracer initialization now have checked
+native references, JAX implementations and actual default/active driver captures.
+The surrounding H03–H07 contracts remain proposed work; the complete HAM adapter
+is not yet accepted. The complete SALSA-call port starts inside these conversions.
 
 ## Actual driver and wrapper order
 
@@ -103,42 +103,46 @@ previous gas wrote the same tracer. Negative finite gas values are not clipped.
   with `rho=P/[T*rd*(1+vtmpc1*q)]`; RH is clipped `q/qs`, not the separately
   calculated cloud-adjusted ambient humidity. Preserve both call boundaries.
 
-## Missing native evidence
+## Native boundary evidence and remaining metadata
 
-Existing SALSA fixtures already contain component/number/gas tracer mappings,
-species molar masses/densities, gas conversion codes, full SALSA pressure/T/RH,
-and native state before/after SALSA. Runtime metadata records only first-cell
-air density. These do not prove the surrounding conversions.
+Copy-only captures now surround actual `conc2mmr` and first-step `gas2mmr`.
+They contain full tracer vectors, initial core/number, all 69 resulting masses,
+mutated number, gas after driver scaling, full-cell density/P/T, active extents,
+component/number/gas tracer maps, effective conversion codes, species properties,
+`mw_so4`, `avo` and `argas`. Uninitialized entry aerosol mass is never read.
 
-Add copy-only captures of full `pxtm1` before/after `gas2mmr`, its exact gas
-input, full-cell density/P/T, active extents, initialized gas mapping/code/mass,
-and effective `avo`/`argas` plus default-real precision. Associate source,
-profile, input and raw-file hashes with each fixture. For H02/H03, additionally
-capture `subm_aero_idx`, `subm_aerounitconv`, `mw_so4`, initial core/number,
-all overwritten aerosol masses and mutated number outputs. For H05–H07 add
+Default and active-forcing profiles each pass checked control/capture/repeat runs.
+All six HAM scope outputs are identical with capture enabled, and all capture
+files repeat byte for byte. Independent native oracles replay both boundaries;
+eager/JIT tests compose number → material → gas tracer initialization using
+same-run fixtures. See the [material contract](aerosol-initialization.md) and
+[native evidence](evidence/ham-conversion-native-2026-09-22.json).
+
+H03 still needs diagnostic conversion evidence. H05–H07 additionally need
 water-tracer indices, incoming/outgoing tendencies, full q/qs and effective
-`rd`/`vtmpc1`. Existing first-call scope arrays only record wrapper outputs.
+`rd`/`vtmpc1`. First-call scope arrays only record wrapper outputs, and the
+checked full driver stops in radiation before the later diagnostic boundary.
 
 ## Commit-sized next sequence
 
 1. **H01.R (complete):** actual gas2mmr extraction, checked reference executable and cases
    for all codes, reordered tracers, inactive padding and literal precision.
    Verify untouched sentinels and preserve invalid-code behavior explicitly.
-2. **H01.F:** copy-only before/after native gas conversion capture and fixture.
+2. **H01.F (complete):** copy-only before/after native gas conversion capture and fixture.
    Verify capture/control/repeat equality and all-cell metadata association.
-3. **H01.J1 (complete) / H01.J2:** the pure float64 leaf passes eager/JIT
-   reference checks. Next accept actual native caller fixtures after H01.F;
-   document the SI→native gas scaling boundary.
-4. **H02.R:** capture/extract actual SALSA initialization composition and
+3. **H01.J1 / H01.J2 (complete):** the pure float64 leaf passes eager/JIT
+   reference checks and actual native caller fixtures; the SI→native gas scaling
+   boundary is captured explicitly.
+4. **H02.R (complete):** capture/extract actual SALSA initialization composition and
    conversion. Test volume-fraction budgets and the number-array mutation.
-5. **H02.J:** initialization adapter returning explicit mass, number and tracer
+5. **H02.J (complete):** initialization adapter returning explicit mass, number and tracer
    results; connect the accepted size-distribution output without hidden units.
 6. **H03.R/J:** separate diagnostic conversion reference, then JAX implementation.
    Verify round trips numerically against Fortran rather than idealized algebra.
 7. **H04–H07:** wrapper boundary conversions, water writes, negative-tracer
    borrowing and composition, each retaining its own reference/JAX commits.
 
-These are proposed units for the existing [HAM roadmap](../plans/03-coupled-processes.md).
+These units track the existing [HAM roadmap](../plans/03-coupled-processes.md).
 The implemented H01 leaf is covered by 14 focused tests (eager/JIT, all three
 codes, unknown-code no-op, duplicate mappings, untouched tracers/padding,
 nonunity meteorology, scalar/multiple case axes and binary32 literal promotion):
@@ -148,5 +152,6 @@ nonunity meteorology, scalar/multiple case axes and binary32 literal promotion):
 ```
 
 Physical comparisons use rtol=3e-15 and atol=0; unchanged tracer/padding checks
-are exact. This is leaf acceptance only. Native gas2mmr capture, full-wrapper
-acceptance, benchmarks and trajectories remain pending.
+are exact. Native gas2mmr caller acceptance also passes in default and active
+fixtures (`tests/test_ham_conversion_native.py`). Full-wrapper acceptance and
+trajectories remain pending; the material initializer has a separate scoped benchmark.

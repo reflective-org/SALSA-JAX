@@ -18,6 +18,7 @@ slowdowns as readily as improvements. One row is one intended commit.
 | P04d2 | P03,C17.J | Benchmark bin remapping; one-call evidence recorded | Preserve transfer order; distinguish one redistribution call from both complete correction passes |
 | P04e | P04a,P04b,P04c,P04d1,P04d2,I01 | Benchmark original native process composition | Coupled parity passes; distinguish composed timing from sum of isolated times |
 | P04f | C03.J | Benchmark seven-mode number initialization independently | One and 23 cases, checked/optimized equality and eager/JIT acceptance; excludes material/tracer initialization |
+| P04g | H02.J,H01.J2 | Benchmark aerosol material/tracer initialization independently | One and 18 curated cases, all three outputs synchronized, checked/optimized equality; excludes number generation and gas conversion |
 | P05 | B03.J | Add matched full-driver timing mode | Equal initialization, forcing, steps, diagnostics and output cadence |
 | P06 | P05 | Compare full-driver repeated runs | Startup/I/O and compute totals separately reported with trajectories |
 | P07 | P04e | Batch independent columns using `vmap` | Batch size 1 and heterogeneous ensembles match serial accepted cases |
