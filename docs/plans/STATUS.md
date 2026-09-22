@@ -78,6 +78,8 @@ ignored, and source relocation has not started.
 ## Current priority and next tasks
 
 The user priority is sulfuric-acid coagulation, condensation and nucleation.
+The [six owner-review items](../development/salsa-owner-review.md) track scientific
+assumptions and standalone switch behavior separately from compatibility work.
 The [runnable pure-sulfate experiment](../development/sulfuric-acid.md) now covers
 that coupled core with controlled source forcing and selected long trajectories.
 

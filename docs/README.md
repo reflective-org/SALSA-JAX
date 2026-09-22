@@ -1,6 +1,7 @@
 # SALSA-JAX development documentation
 
 - [Runnable sulfuric-acid-only experiment and trajectories](development/sulfuric-acid.md)
+- [Six SALSA owner-review items](development/salsa-owner-review.md)
 - [Seven-mode number initialization](development/initialization.md)
 - [Aerosol material and HAM tracer initialization](development/aerosol-initialization.md)
 - [HAM gas conversion and remaining wrapper audit](development/ham-conversion-audit.md)

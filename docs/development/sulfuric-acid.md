@@ -62,6 +62,15 @@ inventory is initial sulfur plus source rate × elapsed time. Water contains no
 sulfur. The native sulfate species molar mass is 96.0631 g/mol; replacing it with
 98 g/mol would change the reference. SO₂ chemistry is outside this experiment.
 
+## Model assumptions awaiting owner review
+
+See the [six owner-review items](salsa-owner-review.md) for density assumptions,
+dry-midpoint kernel rescaling, pair-mean Fuchs distance, RH clamping, D009 and
+standalone switch configuration. In particular, **RH = 0 is not a dry mode**:
+the native hydration calculation clamps it to 0.05. The example exposes its
+nucleation switches directly, bypassing the standalone namelist-read limitation.
+These modeling choices remain unchanged despite numerical agreement with Fortran.
+
 ## Validation and scientific limits
 
 The dedicated reference compiles the original five SALSA scientific modules
