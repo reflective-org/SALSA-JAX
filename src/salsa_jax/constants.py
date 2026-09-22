@@ -35,3 +35,9 @@ WATER_DENSITY = 1000.0  # kg/m3
 WATER_SURFACE_TENSION = 0.073  # J/m2, surfw0
 ORGANIC_SOLUBLE_FRACTION = 0.15  # epsoc
 HYDRATION_NUMBER_THRESHOLD = 1.0  # particles/m3, strict greater-than
+
+# mo_ham_salsactl.F90: insoluble-to-soluble remapping criterion.
+REMAPPING_SATURATION_LIMIT = 1.005  # slim, relative water saturation
+REMAPPING_ION_FACTOR = 3.0  # ions, van't Hoff factor
+# mo_ham_salsa.F90: strict tiny-particle cleanup comparison.
+TINY_PARTICLE_DIAMETER = 1e-10  # m
