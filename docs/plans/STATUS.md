@@ -65,37 +65,39 @@ The [master plan](ULTRAPLAN.md) defines the remaining commit-sized backlog.
 | H02.R/J | Material/tracer initialization accepted | 18 original-Fortran cases, all 69 materials, native fractions/constants/number mutation, duplicate writes and budgets |
 | H02 native composition | Initialization chain accepted | Six checked control/capture/repeat runs; linked number → material → gas JAX chain matches default/active boundaries |
 | P04g | Initial material-initialization measurement | One/18 curated cases, three outputs synchronized, checked/optimized parity; no measured CPU speedup |
+| I03.S.R / I04.S.J | Sulfuric-acid experiment implemented | Pure sulfate soluble initialization, configured environment/source and original native trajectory driver |
+| I03.S.A / I03.S.L | Scoped longer trajectories accepted | 13 standard scenarios plus half timestep; sparse-transfer limitation reproduced separately; every-step parity and sulfur budgets |
 | Q01 | Implemented | Quickstart, capability limits and reproduction commands |
 
-All **837 tests pass** in this repository's `.venv` (137.39 seconds), including
-mandatory original-Fortran comparisons, native number/material initialization
-and first gas conversion. Original Fortran sources,
+All **932 tests pass** in this repository's `.venv` (201.24 seconds), including
+mandatory original-Fortran comparisons, native number/material initialization,
+first gas conversion and the new sulfuric-acid trajectories. Original Fortran sources,
 scientific inputs and `AGENTS.md` are unchanged. Generated builds/outputs remain
 ignored, and source relocation has not started.
 
-## Next ready tasks, in order
+## Current priority and next tasks
 
-1. **H03.R / H03.J / H03.F:** extract and port `mmr2conc` diagnostic
-   conversion in separate commits, preserving native units, constants and
-   mapping order. Verify native numerical round trips and captured tracer states.
-2. **F11b / H04–H07 / I03:** capture remaining full-wrapper metadata and
-   tendencies, then port boundary conversions, water writes, `xt_borrow` and
-   wrapper composition separately. Expand core trajectories with checkpoints
-   and budget reports before evolving driver forcing.
-3. **C11.D009.A/F/J / D011/D012:** review scientific repairs for coagulation
-   volume creation, orphan material after remapping and tiny nonvolatile loss;
-   preserve current compatibility until each reference decision is made.
-4. **D007/D010:** repair the reproduced absent-organic cleanup access and resolve
-   invalid active zero-volume hydration before accepting those native inputs.
-5. **D005:** obtain valid optical tables and repair standalone radiation before
-   full-driver acceptance. Source relocation still depends on reference gates.
-6. **O01–O04:** improve build portability and artifact cleanup separately.
+The user priority is sulfuric-acid coagulation, condensation and nucleation.
+The [runnable pure-sulfate experiment](../development/sulfuric-acid.md) now covers
+that coupled core with controlled source forcing and selected long trajectories.
 
-Processes remain independently callable and tested. Complete supported native
-SALSA composition now includes their shared call order and native interface.
-Number/material/tracer initialization and first gas conversion are accepted.
-Remaining HAM wrapper conversions, long trajectories and full-driver acceptance
-remain pending.
+1. **I03.S.T1:** extend duration/timestep studies for the physical scenario of
+   interest, retaining equal-time checkpoints and independent sulfur budgets.
+2. **I03.S.T2 / I03.S.F1:** quantify sparse receiving-bin transfer conditioning;
+   propose any numerical/scientific correction separately from compatibility.
+3. **C11.D009.A/F/J / D011/D012 / D007/D010:** retain separate reference repairs
+   for broader configurations; the soluble-only experiment does not claim these
+   defects are repaired.
+
+Deferred broader migration: H03 diagnostic conversion, remaining F11b/H04–H07
+HAM metadata, tendencies, water and borrowing, and the complete driver. D005
+radiation and valid optical tables still block checked full-driver acceptance.
+O01–O04 portability and source relocation remain separate gated work.
+
+Processes remain independently callable. Complete supported SALSA composition,
+number/material/tracer initialization and first gas conversion are accepted
+within their documented scope. Parent I03 remains open for broader trajectories;
+the current experiment does not replace full HAM/driver validation.
 
 ## Initial implementation commits
 
@@ -454,3 +456,42 @@ Next is H03 diagnostic conversion; F11b and H04–H07 remain open for full
 wrapper metadata, tendencies, water pseudo-tracers and negative-tracer borrowing.
 The checked full driver still fails in radiation before its later diagnostic
 call, so no full-timestep or evolving-trajectory acceptance is claimed.
+
+
+## Sulfuric-acid experiment milestone (2026-09-22)
+
+Final validation: `.venv/bin/python -m pytest -q` — **932 passed in 201.24 s**.
+The user's current scope is sulfuric-acid coagulation, condensation and
+nucleation; broader HAM work is deferred from this runnable core workflow.
+
+The [experiment guide](../development/sulfuric-acid.md) provides a configured
+600 s example with pure sulfate soluble particles and additive H₂SO₄ forcing.
+The CLI writes every-step gas/sulfur inventories, number distributions, all
+seven native fields and optional checked Fortran comparison artifacts.
+Initialization uses native grid midpoints and pure sulfate, not mixed-material
+HAM fractions. All simulation settings are in `configs/sulfuric-acid.toml`.
+
+Thirteen standard scenarios and a half-timestep run pass every-step parity.
+They cover 1000-step separate coagulation/condensation, all nine active sulfate
+nucleation/growth combinations, closed and source-fed sulfur, and native empty
+background behavior. Checked/optimized Fortran arrays match exactly. Standard
+field errors stay below `5.82e-12`; sulfur residuals below `1.01e-13` in both
+implementations. The 1 s → 0.5 s refinement changes the final number distribution
+by 0.0172% in both implementations; it is a sensitivity check, not a convergence
+proof. No new speedup claim or scientific-kernel modification is made.
+
+A sparse coagulation-only receiving-bin transfer fails the strict relative gate
+at about `4.4e-9`. A one-ULP native initial-mass perturbation reproduces `4.3e-9`
+within Fortran. This is retained separately as an unaccepted accuracy limitation;
+no tolerance is widened. Standard coagulation acceptance populates all ten
+soluble bins. Empty-background particle insertion remains blocked by the native
+positive-sink gate, and empty 2b bins avoid rather than repair D009.
+
+See the [full evidence](../development/evidence/sulfuric-acid-trajectories-2026-09-22.json).
+Parent I03/I04 remain open for broader configurations and full driver behavior.
+
+| Commit | Deliverable |
+|---|---|
+| `605e4f2` | I03.S.R: unchanged scientific Fortran, source forcing and saved trajectories |
+| `28e9969` | I04.S.J: pure-sulfate configuration, initialization and JAX loop |
+| `3b3ff97` | I03.S.A/L: CLI artifacts, longer acceptance, budgets and conditioning evidence |

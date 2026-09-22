@@ -22,6 +22,11 @@ have separate gates. No numerical algorithm or physical constant is modernized
 inside a compatibility port. Changes to suspicious existing behavior require a
 separate reproducer, scientific rationale, and reviewed baseline change.
 
+Current user priority: sulfuric-acid coagulation, condensation and nucleation.
+The [focused experiment](../development/sulfuric-acid.md) now provides a runnable
+core workflow and selected long trajectories. Further HAM/driver migration is
+deferred from that immediate objective; the broader backlog below is retained.
+
 ## 2. Plans, subplans, and dependency gates
 
 | Plan | Subplans | Entry → exit |

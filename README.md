@@ -10,8 +10,25 @@ density and native mass conversions. Original-Fortran comparisons cover process
 switches, actual native captures and short repeated calls. See the
 [complete-call API and evidence](docs/development/salsa-composition.md).
 Number/material initialization and the first HAM gas conversion also pass native
-boundary checks. Remaining HAM coupling, long trajectories and the full box driver
+boundary checks. A pure-sulfate experiment adds selected 1000-step trajectories.
+Remaining HAM coupling, broader trajectories and the full box driver
 remain in the [commit-sized roadmap](docs/plans/ULTRAPLAN.md).
+
+## Sulfuric-acid-only simulation
+
+Run coagulation, H₂SO₄ condensation and nucleation together with configurable
+initial particles, vapor supply, environment and timestep:
+
+```sh
+.venv/bin/python -m tools.run_sulfuric_acid \
+  --config configs/sulfuric-acid.toml \
+  --output outputs/sulfuric-acid --compare-fortran
+```
+
+Use a fresh output directory. The [experiment guide](docs/development/sulfuric-acid.md)
+explains CSV/array outputs, all-step native comparisons, sulfur budgets and
+known restrictions. Selected 1000-step soluble-only trajectories are accepted;
+the broader HAM wrapper is not needed for this experiment.
 
 ## Quick start
 
@@ -153,8 +170,8 @@ coupled using both explicit kernel fixtures and a checked active native capture.
 Complete C18/N08 microphysics composition now joins those processes, including
 initial cleanup, density, native mixed-unit conversions and optional diameter
 recalculation. Number/material/tracer initialization is accepted separately.
-Short fixed-environment repeats are tested; longer trajectories and the remaining
-HAM conversions are pending.
+Short mixed-material repeats and selected longer pure-sulfate trajectories are
+tested; broader trajectories and the remaining HAM conversions are pending.
 Full-driver radiation requires valid optical tables and a separate
 initialization repair.
 

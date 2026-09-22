@@ -93,6 +93,32 @@ Fortran case and a new `.R`/`.J` pair after scientific configuration is establis
 | I03 | I02 | Add longer core trajectories and budget report | Drift measured at checkpoints; baseline defects remain explicit |
 | I04 | I03 | Document supported core API and minimal example | Example runs from installed package with no sibling repository imports |
 
+## Sulfuric-acid priority: scoped I03/I04 children
+
+The user priority is coagulation, H₂SO₄ condensation and sulfate nucleation.
+The following commit-sized units are complete for the soluble-only experiment;
+parent I03/I04 still include broader state/configuration coverage.
+
+| Child | Deliverable | Verification |
+|---|---|---|
+| I03.S.R | Original SALSA trajectory driver with additive source and every-step capture | Existing-oracle prefixes, manually forced step, repeated/checked/optimized equality |
+| I04.S.J | Configured pure-sulfate initializer and JAX simulation loop | Units, process switches, input validation, inventory and soluble-only state |
+| I03.S.A | CLI outputs and long trajectory report | 13 scenarios, all nine nucleation/growth pairs, half timestep, sulfur budgets and every output field |
+| I03.S.L | Sparse coagulation-transfer conditioning reproducer | One-ULP native initial change reproduces sensitivity; strict failing stress stays explicit |
+| I04.S.D | Runnable example, evidence and scope documentation | Reproduction command, output units, limitations and source hashes |
+
+Next useful sulfur-specific work, each a separate commit:
+
+| Child | Deliverable | Verification |
+|---|---|---|
+| I03.S.T1 | Extend timestep/duration matrix for a chosen physical scenario | Equal-duration refinements; number/size/sulfur checkpoints against Fortran |
+| I03.S.T2 | Quantify sparse-transfer conditioning over concentration/timestep | Native perturbation experiments and absolute errors; no global tolerance change |
+| I03.S.F1 | Propose any scientific correction separately from compatibility | Reproducer and sulfur/number budgets before changing native/JAX algorithms |
+
+See the [experiment and recorded results](../development/sulfuric-acid.md).
+The HAM diagnostic conversion and broader coupled driver remain deferred from
+this focused workflow; they are not required to run the example.
+
 ## Coagulation milestone and discovered follow-up
 
 C07–C11 are implemented together as a standalone 17-bin/five-material process,

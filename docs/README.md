@@ -1,5 +1,6 @@
 # SALSA-JAX development documentation
 
+- [Runnable sulfuric-acid-only experiment and trajectories](development/sulfuric-acid.md)
 - [Seven-mode number initialization](development/initialization.md)
 - [Aerosol material and HAM tracer initialization](development/aerosol-initialization.md)
 - [HAM gas conversion and remaining wrapper audit](development/ham-conversion-audit.md)
@@ -32,5 +33,7 @@ five materials, with independently tested process APIs. Complete-call checks
 cover process switches, native captures, recalculation and short repeated calls.
 Number/material/tracer initialization and the first HAM gas conversion also pass
 reference and actual driver-boundary checks. Diagnostic conversion, full HAM
-coupling, longer trajectories and the box driver remain planned. See the [current validation status](plans/STATUS.md)
+coupling, broader trajectories and the box driver remain planned. A separate
+pure-sulfate experiment now checks selected 1000-step trajectories and sulfur
+budgets against original Fortran. See the [current validation status](plans/STATUS.md)
 for evidence and inherited scientific limitations.

@@ -283,3 +283,21 @@ export the number capture from that same run with
 inside the HAM fixture. Shared run hashes associate the complete initialization
 chain. The [material guide](aerosol-initialization.md) explains units and limits;
 H03 diagnostic conversion and the remaining HAM wrapper are next.
+
+
+## Sulfuric-acid-only trajectories
+
+The focused experiment runs without the remaining HAM wrapper or radiation:
+
+```sh
+.venv/bin/python -m tools.run_sulfuric_acid \
+  --config configs/sulfuric-acid.toml \
+  --output outputs/sulfuric-acid --compare-fortran
+```
+
+Read the [experiment guide](sulfuric-acid.md) before changing initial populations
+or process switches. Outputs include every-bin number distributions, vapor and
+sulfur inventories, full native fields and comparison reports. Source forcing
+is additive; a zero source closes the sulfur inventory. The larger validation
+matrix covers all nine nucleation scheme/growth combinations and separate
+coagulation/condensation cases, with known sparse-transfer sensitivity retained.

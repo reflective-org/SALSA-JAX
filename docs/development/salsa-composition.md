@@ -97,7 +97,9 @@ nonvolatile loss (D012) remain inherited behavior. Read the
 Three-call checks feed each returned mass/number/gas state back through the
 native interface with fixed environment. Default, active nucleation,
 recalculation, disabled processes and insoluble-hydration configurations retain
-the strict comparison. These are core trajectories, not evolving box forcing.
+the strict comparison. These are core trajectories, not evolving box forcing. The subsequent
+[sulfuric-acid experiment](sulfuric-acid.md) adds selected 1000-step pure-sulfate
+runs and a constant additive source, with every-step comparisons and budgets.
 
 The soluble-transfer case almost empties native bin 13. By call three its number
 is about 0.634 particles/m³, compared with an initial 5.53e7; the JAX/native
@@ -128,7 +130,8 @@ record the complete configuration and regeneration instructions; the
 
 ## Complete-call CPU benchmark
 
-The final full suite passes **658 tests in 128.53 s** in the repository `.venv`.
+At the composition milestone the full suite passed **658 tests in 128.53 s**
+in the repository `.venv`; see [current status](../plans/STATUS.md) for later work.
 After validation jobs stopped, five trials of 500 fixed-input repetitions gave:
 
 | Complete native workload | JAX warm median | Fortran warm median | Fortran/JAX |

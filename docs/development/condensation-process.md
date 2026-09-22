@@ -108,7 +108,9 @@ A separate test chains the ported coagulation and condensation outputs against
 their captured boundaries. A subsequent [grid/hydration test](grid-and-hydration.md)
 adds computed geometry and water uptake to that chain. Both subsequent
 [remap/correction passes](remapping.md) are now separately accepted from this
-native condensation boundary; complete composition remains pending.
+native condensation boundary. [Complete composition](salsa-composition.md) and
+a runnable [sulfuric-acid trajectory](sulfuric-acid.md) were subsequently accepted
+within their documented scope.
 
 ## CPU benchmark
 
