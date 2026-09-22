@@ -144,7 +144,7 @@ for native invariance and actual-boundary parity evidence:
 | N08b.J | N08b.R,N08a.J | Accept JAX source/coupled outputs against active native fixture | Eager/JIT parity, physical budgets and configuration documented |
 
 Grid generation C02, hydration C04–C06 and remapping C15–C17 are now accepted
-as described below; complete composition remains pending. Inherited nucleation
+as described below; complete composition is accepted in the later milestone. Inherited nucleation
 arithmetic quirks are recorded in the process guide and require separate scientific decisions
 before any repair. They are not silently corrected in the compatibility port.
 
@@ -181,7 +181,7 @@ loss during tiny cleanup, D007 absent-organic failure and signed water roundoff.
 No scientific repair is implied by numerical parity. Final density and HAM
 tracer conversion are outside C17.
 
-Next work remains commit-sized; each `.R` reference commit precedes its `.J`
+The composition work was split into these units; each `.R` reference commit precedes its `.J`
 implementation and acceptance commit:
 
 | Child task | Depends on | Deliverable | Verification |
@@ -193,9 +193,16 @@ implementation and acceptance commit:
 | N08.R/J | C18d,N08b | Active nucleation in complete native composition | Reviewed active capture, coupled source/insertion and final state |
 | I01 | N08,S08 | Expand complete one-step configuration matrix | Supported switches, mapping/configuration checks and documented invalid domains |
 
-C18 remains the parent acceptance gate until C18a–d pass. HAM-wrapper
-conversion beyond the native SALSA interface remains in the coupled-process
-plan. Follow I01 with I02/I03 repeated trajectories.
+C18a–d and N08 now pass for the supported standalone 17-bin/five-material path.
+I01 has a selected 27-case/two-level matrix and four actual initialized captures;
+I02 has three-call fixed-environment repeats with a documented depleted-bin
+roundoff bound. See the [composition guide](../development/salsa-composition.md)
+and [commit ledger](STATUS.md#complete-native-composition-milestone).
+General shared reporting (S08), HAM-wrapper conversion beyond this native
+interface, longer core trajectories (I03) and full-driver gates remain open.
 
-C03 seven-mode initialization remains a separate prerequisite for the box model.
-Parent C18/N08/I01, complete core trajectories and full-driver gates remain open.
+C03 seven-mode initialization is the next independent reference/JAX pair. Its
+`.R` commit must compile the unchanged `size_distribution` routine and capture
+initialized mode parameters. Its `.J` commit ports that routine only and compares
+empty, each single mode, mixed modes and actual native initialization under eager
+and JIT execution. Integration into the HAM/box driver follows its own gates.

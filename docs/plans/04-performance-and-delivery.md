@@ -29,9 +29,13 @@ Fortran parity, untimed iteration checks, separate compilation and synchronized
 warm timings. It excludes cleanup, hydration and the second SALSA pass.
 The [remapping guide](../development/remapping.md) records one/47-case results
 and raw measurements; no CPU speedup is observed. A one-call result does not close the planned
-both-pass benchmark or P04e native-composition gate. C18/N08 composition,
-including initial cleanup, final density/HAM conversion and optional hydration
-recalculation, must pass numerical acceptance before composed timing.
+both-pass benchmark. P04e now separately measures accepted complete native
+composition, including both corrections, interface conversions, density and
+optional recalculation. Its equal-work adapter and raw evidence are documented
+in the [composition guide](../development/salsa-composition.md). Native oracle
+case/property/grid setup and JAX static-group dispatch are included; HAM driver,
+initialization and evolving forcing are excluded. Full-driver timing remains
+behind P05/P06.
 
 ## P5.2 — Optimize only measured bottlenecks
 

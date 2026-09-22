@@ -53,24 +53,27 @@ The [master plan](ULTRAPLAN.md) defines the remaining commit-sized backlog.
 | C17.R/J | Native correction passes | 54 cleanup/hydration/radii-water cases; D007 reproduced, no clipping or scientific repair |
 | F13d | Both native passes verified | Eight capture stages; control/repeat exact; remapping and interleaved corrections match actual boundaries |
 | P04d2 | Initial isolated remapping measurement | Matched one-call CPU workload; corrections and second pass excluded |
+| C18a–c.R/J | Native interface passes | Initial cleanup, all69 mixed-unit mass components, runtime maps and per-region density; checked original blocks |
+| C18d / N08 | Supported native composition passes | Complete call order, optional recalculation, active nucleation, both correction passes and final output |
+| I01 | Selected complete-call matrix passes | 27 cases × two levels, all coagulation/condensation/recalc combinations, supported nucleation scheme/growth pairs |
+| I02 | Short fixed-environment acceptance | Three native mass-interface calls in six configurations; depleted soluble residual has an explicit conditioning bound |
+| F14–F16 | Expanded scoped capture acceptance | Active, recalc and active+recalc control/capture/repeat exact; all four default/configured call boundaries match JAX |
+| P04e | Initial complete-call measurement | Matched native/JAX workloads, seven caller outputs, checked/optimized parity, separate compilation and warm execution |
 | Q01 | Implemented | Quickstart, capability limits and reproduction commands |
 
-All **541 current tests pass** in this repository's `.venv` (59.49 seconds).
-The latest 82 checks cover ordered redistribution, strict transfer boundaries,
-cleanup/hydration/radius/water corrections, capture integrity and both native
-passes. Original Fortran sources and scientific inputs are unchanged. Generated
-builds/outputs remain ignored. Source relocation has not started. The existing
-`AGENTS.md` remains unchanged; this ledger and the repair record carry current
-validation status.
+All **658 tests pass** in this repository's `.venv` (128.53 seconds), including
+mandatory original-Fortran comparisons and the four complete native profiles. Original Fortran sources,
+scientific inputs and `AGENTS.md` are unchanged. Generated builds/outputs remain
+ignored, and source relocation has not started.
 
 ## Next ready tasks, in order
 
-1. **C18 / N08 / F14–F16:** compose initial cleanup, all microphysics processes,
-   optional diameter recalculation, both remap/correction passes, density and
-   final material/tracer conversion. Accept `recalc` off/on, active nucleation,
-   process switches and trajectories. Finish F11b HAM wrapper metadata.
-2. **C03:** port seven-mode `size_distribution` initialization independently
-   before claiming a standalone JAX box model.
+1. **C03.R / C03.J:** independently capture and port seven-mode
+   `size_distribution` initialization, testing empty/single/mixed modes before
+   claiming a standalone JAX box model.
+2. **F11b / H01–H07 / I03:** finish HAM wrapper metadata and gas/tracer
+   conversions in separate reference/JAX commits; expand longer core trajectories
+   with checkpoints and budget reports before evolving driver forcing.
 3. **C11.D009.A/F/J / D011/D012:** review scientific repairs for coagulation
    volume creation, orphan material after remapping and tiny nonvolatile loss;
    preserve current compatibility until each reference decision is made.
@@ -80,11 +83,10 @@ validation status.
    full-driver acceptance. Source relocation still depends on reference gates.
 6. **O01–O04:** improve build portability and artifact cleanup separately.
 
-Processes are tracked independently. Grid, hydration, coagulation, condensation,
-supported nucleation, remapping and post-remap corrections have JAX kernels
-and original-Fortran references. The default pre-remap chain and both following
-remap/correction passes match their respective native boundaries. Complete
-SALSA composition, its wrapper conversions and trajectories remain pending.
+Processes remain independently callable and tested. Complete supported native
+SALSA composition now includes their shared call order and native interface.
+HAM wrapper conversions, initialization, long trajectories and full-driver
+acceptance remain pending.
 
 ## Initial implementation commits
 
@@ -278,7 +280,7 @@ Three checked native runs establish capture invariance and exact fresh repeats.
 The new JAX grid → hydration → coagulation → condensation test supplies computed
 geometry and wet diameters; number and gas match exactly and material-volume
 error is below 2.19e-16 relative. This default `nsnucl=0`, `recalc=False` chain
-ends before remapping. C18/N08/I01 remain open. D010 records a native zero-volume
+ends before remapping. C18/N08/I01 remained open at that milestone. D010 records a native zero-volume
 hydration failure; the JAX API signals NaN for that invalid domain.
 
 Warm JAX/Fortran CPU medians are 29.14/1.346 µs for one curated native-final-state
@@ -315,7 +317,7 @@ Three checked native runs establish capture invariance and fresh-repeat identity
 Eight captured boundaries cover both full remap/correction passes. The JAX chain
 starting at native condensation output matches number/material/gas exactly;
 geometry error is below 2.81e-16, and water absolute error below 2.07e-24 kg/m³.
-This does not close C18/N08 or the final density/HAM conversion and trajectory gates.
+That milestone alone did not close C18/N08 or the final density/HAM conversion and trajectory gates.
 
 The isolated one-call CPU benchmark shows no speedup. Warm JAX/Fortran medians
 are 60.45/0.222 µs for one case and 150.13/5.916 µs for 47 cases. Both complete
@@ -332,3 +334,42 @@ and linked raw measurements.
 | `7a38c0d` | C17.J: cleanup/hydration/geometry correction and failure signaling |
 | `585e001` | C17: native adapter and independent/interleaved two-pass acceptance |
 | `538117a` | P04d2: isolated one-call CPU benchmark and raw evidence |
+
+## Complete native composition milestone
+
+Final validation: `.venv/bin/python -m pytest -q` — **658 passed in 128.53 s**.
+
+C18a–d and N08 now compose the supported native SALSA path. The complete
+27-case/54-cell matrix passes eager and JIT comparisons against five unchanged
+scientific Fortran modules. Maximum relative error is `2.01e-14` in mass and
+`1.52e-13` in number; gas is exact. Water uses the documented dry-mass
+cancellation bound, with maximum normalized error below `1.92e-15`.
+
+Fresh checked active, recalc and active+recalc runs have identical capture/control
+outputs and byte-identical process repeats. Eight tests compare every captured
+process boundary and final output for these profiles plus default. Three-call
+fixed-environment repeats feed back native mass/number/gas. The almost depleted
+soluble-transfer bin has relative residual sensitivity near `2e-8`, reproduced
+by one-ULP native input perturbations; its narrow absolute bound is documented.
+No scientific defect was repaired or hidden by these acceptance checks.
+
+Final isolated CPU medians are 100.84/17.028 µs (JAX/Fortran) for two default
+cells and 2149.49/405.91 µs for the 54-cell matrix. No CPU speedup is measured.
+
+See the [API, scope, measurements and evidence](../development/salsa-composition.md).
+This closes supported microphysics composition, not HAM/driver or long-trajectory
+gates. S08's general shared report and the broader state/driver contracts remain
+separate tasks; the current matrix has its own fieldwise error/budget evidence.
+
+| Commit | Deliverable |
+|---|---|
+| `1a59112` | C18a.R: initial cleanup oracle |
+| `c55fa8d` | C18b–c.R: conversion and density oracle |
+| `11a02a6` | C18b–c.J: native interface kernels and 20 tests |
+| `0df0eb8` | C18a.J: shared cleanup and 6 tests |
+| `5481daf` | C18d.R: complete native oracle and fixture adapter |
+| `0c11ec9` | C18d.J/N08/I01/I02: composition, selected matrix, short repeats |
+| `f955a96` | Copy-only checked recalculation profiles and provenance |
+| `e11170c` | Actual configured boundaries and capture invariance |
+| `43e9009` | P04e: matched complete-call benchmark adapter |
+| `ab093be` | P04e: isolated CPU raw measurements and parity evidence |

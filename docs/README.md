@@ -1,5 +1,6 @@
 # SALSA-JAX development documentation
 
+- [Complete native SALSA API, validation and benchmarks](development/salsa-composition.md)
 - [Master plan and commit-sized backlog](plans/ULTRAPLAN.md)
 - [Execution status and next tasks](plans/STATUS.md)
 - [Development quickstart](development/quickstart.md)
@@ -23,11 +24,9 @@
 - [First coagulation-coefficient port](development/coagulation-coefficient.md)
 - [2026-09-21 baseline and benchmark results](development/results-2026-09-21.md)
 
-The Python package implements grid generation, hydration, coagulation,
-condensation, remapping and post-remap correction for 17 bins and five materials.
-The default pre-remap chain and the following two-pass remap/correction chain
-separately match native boundaries. Condensation has a separate coupled API for validated nucleation
-schemes and growth options 1–3. Complete SALSA composition, seven-mode
-initialization and box-model trajectories remain planned. All 541 tests pass in
-the repository’s `.venv`; see the [current validation status](plans/STATUS.md)
-and process guides for evidence and inherited scientific limitations.
+The Python package composes the supported native SALSA call for 17 bins and
+five materials, with independently tested process APIs. Complete-call checks
+cover process switches, native captures, recalculation and short repeated calls.
+Seven-mode initialization, HAM coupling, longer trajectories and the full box
+driver remain planned. See the [current validation status](plans/STATUS.md)
+for evidence and inherited scientific limitations.

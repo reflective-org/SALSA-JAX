@@ -131,8 +131,9 @@ constants before flattening native cell axes.
 
 These boundaries support independent acceptance of both native passes and
 composition with grid, initial hydration, coagulation and condensation.
-**Density calculation, final HAM tracer conversion, the complete SALSA call
-and box-model trajectories remain separate acceptance work.** Capturing a
+**The [complete SALSA composition](salsa-composition.md) now adds density and
+native material conversions. HAM coupling and box-model trajectories remain
+separate acceptance work.** Capturing a
 finite first microphysics call does not establish full-model validity.
 
 ## Reproduce reference checks and capture
@@ -192,8 +193,8 @@ at the captured condensation output. Geometry errors stay below 2.81e-16 relativ
 water error is below 2.07e-24 kg/m³ and 7.36e-16 of dry mass. The extracted remap
 oracle differs from the full-driver capture by up to 3.20e-14 in number and
 4.26e-15 in volume, within the same roundoff tolerance. The complete earlier
-process chain is separately accepted; a single complete SALSA API and its
-all-process composition gate remain open.
+process chain is now joined by the [complete SALSA API](salsa-composition.md),
+which has its own all-process acceptance checks.
 
 Three strict native runs give identical capture/control HAM arrays, runtime
 metadata and ordinary diagnostics; all eight new boundaries repeat exactly.
@@ -232,6 +233,6 @@ Recorded CPU medians over five trials of 500 fixed-input repetitions:
 There is **no measured CPU speedup**. Compilation is separate: 0.112 s for one
 case and 0.130 s for the batch. Raw [single-case](evidence/remapping-benchmark-single-2026-09-21.json)
 and [batch](evidence/remapping-benchmark-batch-2026-09-21.json) records include
-all trials and workload/provenance details. Timing both complete correction
-passes remains a separate task. No full-model, accelerator or gradient
+all trials and workload/provenance details. Both corrections are included in
+the separate [complete-call benchmark](salsa-composition.md#complete-call-cpu-benchmark). No full-model, accelerator or gradient
 performance claim follows from this isolated benchmark.

@@ -163,9 +163,9 @@ Enable float64 and supply number/material volume plus RH and temperature.
 The initial hydration capture and composed grid → hydration → coagulation →
 condensation tests pass with native `recalc=False`. Remapping and corrections
 now extend native-boundary acceptance through both default passes; see below.
-The full suite passes 541 tests in the repository’s `.venv`. The
+Run the full suite in the repository’s `.venv`. The
 [current status](../plans/STATUS.md) tracks validation evidence and the remaining
-composition, initialization and trajectory gates.
+initialization, HAM coupling and longer-trajectory gates.
 
 ```sh
 .venv/bin/python -m pytest -q tests/test_grid.py tests/test_inverse_molality.py \
@@ -213,7 +213,35 @@ cleanup, hydration and the second pass are excluded. The measured one-call CPU
 results show no speedup; see the [raw timing links](remapping.md#isolated-cpu-benchmark).
 They do not establish composed or full-model performance.
 
-Next, C18/N08 must integrate initial cleanup, final density and HAM tracer/unit
-conversion, optional hydration recalculation, and default/active nucleation
-composition. Seven-mode initialization (C03), the one-step acceptance matrix
-and repeated trajectories remain separate pending gates.
+## Complete native SALSA call
+
+The [composition guide](salsa-composition.md) documents `salsa_step`, its native
+mixed-unit mass interface, static JIT switches and process traces. It includes
+initial cleanup, final density, recalculation and both complete correction passes.
+
+```sh
+.venv/bin/python -m pytest -q tests/test_salsa.py tests/test_salsa_native.py
+.venv/bin/python -m benchmarks.benchmark_salsa --single-case --repetitions 500 --trials 5
+.venv/bin/python -m benchmarks.benchmark_salsa --repetitions 500 --trials 5
+```
+
+Run benchmarks after all validation jobs finish. Single-case timing covers two
+native vertical cells; the full matrix covers 54 cells in 21 static groups.
+Compilation and synchronized warm execution are reported separately.
+
+To capture a checked native call with diameter recalculation, use a fresh output
+path and `configs/fortran-recalc.toml`; for active nucleation plus recalculation,
+use `configs/fortran-nucleation-active-recalc.toml`. Both configure copied driver
+sources before initialization. Original Fortran files and inputs remain intact.
+
+```sh
+.venv/bin/python tools/fortran_reference.py \
+  --config configs/fortran-recalc.toml --scope first-microphysics \
+  --capture-salsa-state --capture-hydration-state --capture-coagulation-state \
+  --capture-condensation-state --capture-remapping-state \
+  --run --output build/salsa-recalc-new
+```
+
+Add `--capture-nucleation-state` for the active profile. Commit-sized remaining
+gates cover seven-mode initialization (C03), HAM metadata/conversions, longer
+core trajectories (I03), and the complete box driver.
