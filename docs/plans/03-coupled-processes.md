@@ -17,6 +17,21 @@ JAX units. Reference tasks require F14–F16. Preserve the driver's execution or
 | H06.R / H06.J | H05 | `xt_borrow` negative-tracer correction | Negative/zero/positive cases; match redistribution and resulting budget |
 | H07.R / H07.J | H06 | `ham_subm_interface` composition | Full state/tendencies match, including conditional process switches |
 
+### H01 leaf milestone and remaining capture gates
+
+H01.R and H01.J1 now pass checked original `gas2mmr` comparisons for all three
+unit codes, runtime mappings, duplicate write order and untouched tracers.
+They retain the default-real molecular conversion factor. This accepts the
+independent leaf; native caller acceptance remains open. See the
+[contract and metadata audit](../development/ham-conversion-audit.md).
+
+| Child | Depends on | Commit-sized deliverable | Verification |
+|---|---|---|---|
+| H01.F | H01.R,F11b | Capture actual driver gas2mmr input/output and full-cell registry/environment | Checked control/capture/repeat exact; all tracer fields and units retained |
+| H01.J2 | H01.F,H01.J1 | Replay actual gas-conversion boundary through JAX | Every overwritten and untouched tracer matches native, including forcing scale |
+| H02.R | C03,H01.F | Capture and reference conc2mmr initialization composition | Actual fractions, all 69 components, number mutation and tracer registry |
+| H02.J | H02.R | Port material/tracer initialization with explicit output units | Eager/JIT parity and volume-fraction budgets; joins accepted number initializer |
+
 ## P4.2 — Cloud activation
 
 | Unit (two commits) | Depends on | Scope | Acceptance |

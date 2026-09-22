@@ -12,9 +12,9 @@ the native interface conversions and executes their actual shared call order:
 5. Perform **two** ordered remapping → cleanup → hydration → radii/water passes.
 6. Compute per-region density and convert represented material volumes to mass.
 
-This covers a native microphysics call. Seven-mode initialization, the HAM
-wrapper, evolving forcing, radiation and the complete box driver remain separate
-roadmap tasks. The preserved Fortran files and scientific inputs are unchanged.
+This covers a native microphysics call. The [seven-mode number initializer](initialization.md) is now independently
+accepted. Material/tracer initialization, the HAM wrapper, evolving forcing,
+radiation and the complete box driver remain separate roadmap tasks. The preserved Fortran files and scientific inputs are unchanged.
 
 ## Inputs, outputs and configuration
 

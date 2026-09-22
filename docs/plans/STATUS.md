@@ -1,6 +1,6 @@
 # Execution status
 
-Updated 2026-09-21. Baseline HEAD:
+Updated 2026-09-22. Baseline HEAD:
 `d87dc072084336fd351d00a2ade863304c6f313d`.
 Development repository: [reflective-org/SALSA-JAX](https://github.com/reflective-org/SALSA-JAX).
 Reference repairs and native state capture extend the initial implementation below.
@@ -59,21 +59,24 @@ The [master plan](ULTRAPLAN.md) defines the remaining commit-sized backlog.
 | I02 | Short fixed-environment acceptance | Three native mass-interface calls in six configurations; depleted soluble residual has an explicit conditioning bound |
 | F14–F16 | Expanded scoped capture acceptance | Active, recalc and active+recalc control/capture/repeat exact; all four default/configured call boundaries match JAX |
 | P04e | Initial complete-call measurement | Matched native/JAX workloads, seven caller outputs, checked/optimized parity, separate compilation and warm execution |
+| C03.R/J | Seven-mode number initializer accepted | 23 original-Fortran cases, eager/JIT/vmap, actual checked driver boundary and exact capture/control/repeat |
+| H01.R/J1 | Independent gas-conversion leaf accepted | All three native codes, precision, runtime tracer mapping, duplicate writes, unchanged tracers and native padding; caller capture pending |
 | Q01 | Implemented | Quickstart, capability limits and reproduction commands |
 
-All **658 tests pass** in this repository's `.venv` (128.53 seconds), including
-mandatory original-Fortran comparisons and the four complete native profiles. Original Fortran sources,
+All **740 tests pass** in this repository's `.venv` (129.33 seconds), including
+mandatory original-Fortran comparisons, native initialization and gas conversion. Original Fortran sources,
 scientific inputs and `AGENTS.md` are unchanged. Generated builds/outputs remain
 ignored, and source relocation has not started.
 
 ## Next ready tasks, in order
 
-1. **C03.R / C03.J:** independently capture and port seven-mode
-   `size_distribution` initialization, testing empty/single/mixed modes before
-   claiming a standalone JAX box model.
-2. **F11b / H01–H07 / I03:** finish HAM wrapper metadata and gas/tracer
-   conversions in separate reference/JAX commits; expand longer core trajectories
-   with checkpoints and budget reports before evolving driver forcing.
+1. **H01.F / H01.J2 / F11b:** capture actual driver gas conversion inputs,
+   full-cell meteorology and initialized tracer metadata; replay that boundary
+   with the accepted gas-conversion leaf.
+2. **H02.R/J / H03.R/J / I03:** port material/tracer initialization and diagnostic
+   conversion in separate reference/JAX commits, then complete the HAM wrapper.
+   Expand longer core trajectories with checkpoints and budget reports before
+   evolving driver forcing.
 3. **C11.D009.A/F/J / D011/D012:** review scientific repairs for coagulation
    volume creation, orphan material after remapping and tiny nonvolatile loss;
    preserve current compatibility until each reference decision is made.
@@ -373,3 +376,39 @@ separate tasks; the current matrix has its own fieldwise error/budget evidence.
 | `e11170c` | Actual configured boundaries and capture invariance |
 | `43e9009` | P04e: matched complete-call benchmark adapter |
 | `ab093be` | P04e: isolated CPU raw measurements and parity evidence |
+
+## Number initialization and first HAM conversion milestone (2026-09-22)
+
+Final validation: `.venv/bin/python -m pytest -q` — **740 passed in 129.33 s**.
+
+C03 now has a JAX number initializer and unchanged-module Fortran oracle.
+The 23-case matrix passes eager/JIT with maximum relative error 2.84e-14 and
+zero nonfinite/negative results. Native midpoint-density quadrature and duplicate
+2a/2b populations are preserved. The default 17-bin count is about 0.88536 times
+the sum of modal inputs; no normalization was introduced. Driver binary32
+literals are captured and retained rather than replaced with decimal64 values.
+
+Actual driver initialization capture passes control/repeat equality and four
+native acceptance tests. Its output reaches the already accepted SALSA entry
+through the native unit conversions within tolerance. This validates number
+initialization; `conc2mmr` material fractions and HAM tracers remain separate.
+
+H01.R/J1 adds the original `gas2mmr` reference and pure gas-to-tracer conversion.
+Fourteen focused tests cover all 3 conversion codes, untouched values, duplicate
+mapping order and unsuffixed-literal precision. H01.F/J2 actual caller capture
+and the complete HAM wrapper remain open. See the
+[initialization guide](../development/initialization.md) and
+[HAM conversion audit](../development/ham-conversion-audit.md).
+
+| Commit | Deliverable |
+|---|---|
+| `9d60de3` | C03.R: unchanged Fortran initializer and case matrix |
+| `5888609` | C03.J: JAX initializer and fieldwise evidence |
+| `cafe944` | Actual initialized-driver capture overlay and tests |
+| `fcdc98e` | Checked native fixture, adapter and capture invariance |
+| `32e4dd3` | H01.R: original gas conversion reference |
+| `49d77a1` | H01.J1: gas conversion leaf and precision/mapping tests |
+| `fd331ae` | P04f: isolated initialization CPU benchmark and raw evidence |
+
+Initializer CPU medians: 5.712/1.070 µs (JAX/Fortran) for default and
+38.399/21.308 µs for 23 cases; no speedup is measured.

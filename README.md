@@ -9,8 +9,8 @@ kernels, optional diameter recalculation, both remapping/correction passes,
 density and native mass conversions. Original-Fortran comparisons cover process
 switches, actual native captures and short repeated calls. See the
 [complete-call API and evidence](docs/development/salsa-composition.md).
-Seven-mode initialization, HAM coupling, long trajectories and the full box
-driver remain in the [commit-sized roadmap](docs/plans/ULTRAPLAN.md).
+HAM initialization and coupling, long trajectories and the full box driver
+remain in the [commit-sized roadmap](docs/plans/ULTRAPLAN.md).
 
 ## Quick start
 
@@ -81,6 +81,12 @@ and absent-organic cleanup failure remain explicit. Complete-call composition
 adds final density and native material conversion; HAM coupling is separate. Isolated remapping CPU timing
 shows no speedup: 47 cases take 150.13 µs in JAX versus 5.916 µs in Fortran.
 
+The [seven-mode number initializer](docs/development/initialization.md) now
+matches 23 original-Fortran cases and the actual initialized driver boundary.
+The [HAM gas conversion leaf](docs/development/ham-conversion-audit.md) also
+passes independent reference checks; material/tracer initialization and complete
+HAM wrapper acceptance remain separate tasks.
+
 ## Fortran reference and current limitation
 
 This repository preserves the history and original reference revision of
@@ -145,7 +151,7 @@ coupled using both explicit kernel fixtures and a checked active native capture.
 Complete C18/N08 microphysics composition now joins those processes, including
 initial cleanup, density, native mixed-unit conversions and optional diameter
 recalculation. Short fixed-environment repeats are tested; longer trajectories,
-seven-mode initialization and HAM wrapper conversions remain pending.
+aerosol material/tracer initialization and the remaining HAM conversions are pending.
 Full-driver radiation requires valid optical tables and a separate
 initialization repair.
 

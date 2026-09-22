@@ -201,8 +201,9 @@ and [commit ledger](STATUS.md#complete-native-composition-milestone).
 General shared reporting (S08), HAM-wrapper conversion beyond this native
 interface, longer core trajectories (I03) and full-driver gates remain open.
 
-C03 seven-mode initialization is the next independent reference/JAX pair. Its
-`.R` commit must compile the unchanged `size_distribution` routine and capture
-initialized mode parameters. Its `.J` commit ports that routine only and compares
-empty, each single mode, mixed modes and actual native initialization under eager
-and JIT execution. Integration into the HAM/box driver follows its own gates.
+C03.R/J now passes 23 independent cases and an actual initialized-driver
+capture, retaining midpoint quadrature, overlapping-bin duplication and native
+binary32 mode literals. See the [initializer guide](../development/initialization.md).
+HAM material/tracer initialization (H02) is the next integration step after
+capturing the surrounding metadata; number initialization alone cannot replace
+`conc2mmr`. Longer fixed-environment trajectories and driver gates remain open.

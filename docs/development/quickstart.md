@@ -243,5 +243,24 @@ sources before initialization. Original Fortran files and inputs remain intact.
 ```
 
 Add `--capture-nucleation-state` for the active profile. Commit-sized remaining
-gates cover seven-mode initialization (C03), HAM metadata/conversions, longer
+gates cover aerosol material/tracer initialization (H02), HAM metadata/conversions, longer
 core trajectories (I03), and the complete box driver.
+
+## Seven-mode initialization and HAM gas conversion
+
+Number initialization now has an independent JAX API and actual driver capture:
+
+```sh
+.venv/bin/python -m pytest -q tests/test_initialization.py tests/test_initialization_native.py
+.venv/bin/python tools/fortran_reference.py \
+  --config configs/fortran-checked.toml --scope first-microphysics \
+  --capture-initialization-state --run --output build/initialization-new
+.venv/bin/python -m pytest -q tests/test_gas_conversion.py
+```
+
+Use a fresh output directory. Read the [initialization guide](initialization.md)
+for units, midpoint quadrature and native mode-literal precision. The
+[gas conversion guide](ham-conversion-audit.md) distinguishes molecules/cm³
+from SALSA's molecules/m³ and documents all three native conversion codes.
+The gas leaf is independently accepted; its actual HAM caller capture and
+material/tracer initialization are the next integration gates.
