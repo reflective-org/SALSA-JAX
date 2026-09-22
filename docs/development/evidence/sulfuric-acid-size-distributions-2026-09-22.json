@@ -1,0 +1,60 @@
+{
+  "scope": "Saved sulfuric-acid example only; shared initial state and matching native timesteps; no interpolation or smoothing",
+  "run_directory": "outputs/sulfuric-acid-2026-09-22",
+  "matplotlib_version": "3.11.2",
+  "snapshot_times_s": [
+    0.0,
+    1.0,
+    10.0,
+    100.0,
+    300.0,
+    600.0
+  ],
+  "bin_edges_nm": [
+    3.0,
+    7.663094538109244,
+    19.574339299999917,
+    50.0,
+    96.71682101338347,
+    187.08286933869707,
+    361.8812077700194,
+    700.0,
+    1698.4992971117028,
+    4121.2855175556415,
+    10000.0
+  ],
+  "maximum_absolute_number_difference_cm3": 1.621246337890625e-11,
+  "maximum_relative_number_difference_nonzero": 2.6035670177898356e-12,
+  "nonzero_jax_at_zero_fortran": 0,
+  "final_number_cm3_by_soluble_bin": [
+    6741.310393357692,
+    0.0,
+    0.0,
+    94.80923952380824,
+    5.186331435214681,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "final_dndlog10d_cm3": [
+    16551.910032811356,
+    0.0,
+    0.0,
+    330.8853341771837,
+    18.100356238631207,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "input_sha256": {
+    "trajectory.npz": "4e2314f25e17431beadbc4cfca61a200680b9a424501f0f5697a1714e394e7ef",
+    "fortran-trajectory.npz": "2570e2024f7f52afb343722aa468741aa46ce396b3a180cff8191424bb8dd254",
+    "bins.csv": "5612cb556d27bcb929c80b8d0ea9702ebbebcd799a44d8587bccb98301563187",
+    "report.json": "e70ecc9a11aa579882e807766bfdb1c6edfbb0cb1e44c9b3edcc2201727b7c14"
+  },
+  "plot_script_sha256": "b675caed9a8a276326efe3888b16e53e9a6bc3475934febad3337520474512a1"
+}

@@ -140,3 +140,43 @@ to the fine result. Fortran shows the same changes. These quantify timestep
 sensitivity for this example; they do not assert universal convergence or a
 scientific repair. Existing process CPU benchmarks remain applicable to their
 own workloads; these trajectory comparisons make no new speedup claim.
+
+
+## Visual comparison of size distributions
+
+The saved 600 s example has now been plotted side by side and overlaid with its
+checked Fortran trajectory. Both show the same sparse, stepped distribution.
+The maximum per-bin number difference over all saved times is
+`1.62e-11 particles/cm³` (maximum nonzero relative difference `2.61e-12`).
+See the [plot data and input hashes](evidence/sulfuric-acid-size-distributions-2026-09-22.json).
+
+![Fortran and JAX size distributions, final overlay and numerical differences](figures/sulfuric-acid-size-distributions-2026-09-22.png)
+
+This example initially puts all particles in soluble bin 4, near 80 nm.
+Nucleation adds particles to bin 1; bins 2 and 3 remain empty during the recorded
+600 s. The first three bin intervals span approximately 3–7.66, 7.66–19.57 and
+19.57–50 nm. Such coarse bins and a deliberately concentrated seed cannot
+provide a smooth size spectrum. The figure establishes that the visible shape
+is shared with Fortran; it does not establish grid convergence or explain the
+jaggedness of every other SALSA scenario.
+
+Distributions use `dN/dlog10(D)`, normalized by each bin's actual logarithmic
+width, and are drawn as steps without smoothing. The seven empty 2b bins are
+excluded: their diameter range duplicates 2a and should not be appended as if
+all 17 bins formed one increasing diameter axis. Distribution y-axes are linear
+below 1 and logarithmic above 1 so true zero counts remain visible.
+
+Reproduce the PNG, editable SVG and numerical report with optional plotting
+support installed in the same virtual environment:
+
+```sh
+.venv/bin/python -m pip install -e '.[plot]'
+.venv/bin/python -m tools.plot_sulfuric_acid \
+  --run-directory outputs/sulfuric-acid \
+  --output outputs/sulfuric-acid-figures
+```
+
+The input run must include `--compare-fortran`. The plotting command verifies
+input hashes and matching times before drawing, and requires a fresh output
+directory. Recorded rendering used Matplotlib 3.11.2. Scientific kernels and
+trajectory data are unchanged.
