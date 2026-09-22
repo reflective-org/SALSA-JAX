@@ -13,7 +13,7 @@ from tools.state_capture import FILES
 FIXTURE = Path(__file__).resolve().parent / 'fixtures/native-default'
 
 
-@pytest.mark.parametrize("flag", ["--capture-salsa-state", "--capture-coagulation-state", "--capture-condensation-state", "--capture-nucleation-state", "--capture-hydration-state"])
+@pytest.mark.parametrize("flag", ["--capture-salsa-state", "--capture-coagulation-state", "--capture-condensation-state", "--capture-nucleation-state", "--capture-hydration-state", "--capture-remapping-state"])
 def test_capture_requires_single_call_scope(monkeypatch, flag):
     monkeypatch.setattr(sys, 'argv', ['reference', '--output', 'unused', flag])
     with pytest.raises(SystemExit) as error:
@@ -22,13 +22,14 @@ def test_capture_requires_single_call_scope(monkeypatch, flag):
 
 
 @pytest.mark.parametrize('complete', [False, True])
-@pytest.mark.parametrize('process', ['salsa', 'coagulation', 'condensation', 'nucleation', 'hydration'])
+@pytest.mark.parametrize('process', ['salsa', 'coagulation', 'condensation', 'nucleation', 'hydration', 'remapping'])
 def test_requested_capture_must_exist_even_on_success(tmp_path, monkeypatch, complete, process):
     from tools.coagulation_capture import FILES as COAG_FILES
     from tools.condensation_capture import FILES as COND_FILES
     from tools.nucleation_capture import FILES as NUC_FILES
     from tools.hydration_capture import FILES as HYD_FILES
-    files = {'salsa': FILES, 'coagulation': COAG_FILES, 'condensation': COND_FILES, 'nucleation': NUC_FILES, 'hydration': HYD_FILES}[process]
+    from tools.remapping_capture import FILES as REMAP_FILES
+    files = {'salsa': FILES, 'coagulation': COAG_FILES, 'condensation': COND_FILES, 'nucleation': NUC_FILES, 'hydration': HYD_FILES, 'remapping': REMAP_FILES}[process]
     fixture = FIXTURE if process == 'salsa' else FIXTURE.parent / f'{process}-default'
     if process == 'nucleation':
         fixture = FIXTURE.parent / 'nucleation-active'
