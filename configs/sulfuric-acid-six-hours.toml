@@ -1,0 +1,18 @@
+label = "Six hours: constant sulfuric acid"
+duration_hours = 6.0
+timestep_s = 1.0
+save_interval_s = 60.0
+temperature_k = 280.0
+pressure_pa = 101325.0
+relative_humidity = 0.5
+# Bin-integrated lognormal number, represented at native midpoint volumes.
+initial_number_cm3 = 1000.0
+geometric_mean_diameter_nm = 50.0
+geometric_stddev = 1.6
+h2so4_molecules_cm3 = 1e8
+constant_h2so4 = true
+nucleation_scheme = 2
+growth_option = 1
+coagulation_enabled = true
+condensation_enabled = true
+recalculate = true
