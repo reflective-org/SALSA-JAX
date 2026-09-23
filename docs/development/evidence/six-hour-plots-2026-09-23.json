@@ -1,0 +1,95 @@
+{
+  "configuration": {
+    "label": "Six hours: constant sulfuric acid",
+    "duration_hours": 6.0,
+    "timestep_s": 1.0,
+    "save_interval_s": 60.0,
+    "temperature_k": 280.0,
+    "pressure_pa": 101325.0,
+    "relative_humidity": 0.5,
+    "initial_number_cm3": 1000.0,
+    "geometric_mean_diameter_nm": 50.0,
+    "geometric_stddev": 1.6,
+    "h2so4_molecules_cm3": 100000000.0,
+    "constant_h2so4": true,
+    "nucleation_scheme": 2,
+    "growth_option": 1,
+    "coagulation_enabled": true,
+    "condensation_enabled": true,
+    "recalculate": true
+  },
+  "source_sha256": {
+    "jax.npz": "d8cf8599941ccffd62201781e48a0d1479f968cdd9725fb4ada90f6b8842c9ee",
+    "fortran.npz": "acc5e31bb3d2dedc0180dd23ae676ae9d12a554422c5de0e079f38f8fe75076f",
+    "initial.npz": "b539f96ba115f45b3c8475fea6d8f1c5a84de438ddc4808eab91f8c4ca14ed17",
+    "bins.csv": "7f8a8ecb6d758351c73ca21610cc28dbcca1a75c87ca58858e49fc7c36b00580",
+    "report.json": "b134f66758603e3afae2f7f99f60824d1d72e523149cc1a5eaa1dc0498a54ce3"
+  },
+  "plotting_script_sha256": "5194f57b68c33d6f0d81da9909de7daf5dddac419cc583c0cde36026579aaef4",
+  "saved_times_including_initial": 361,
+  "hourly_times": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "diameter_coordinate": "nominal dry size-bin edges, not wet or per-bin mean particle diameter",
+  "number_normalization": "particles/cm3 divided by log10(upper diameter/lower diameter)",
+  "source_soluble_bins": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "omitted_insoluble_bins": [
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17
+  ],
+  "primary_diameter_limits_nm": [
+    3.0,
+    1000.0
+  ],
+  "primary_display_floor_dNdlog10D_cm3": 0.001,
+  "primary_below_floor_display": "gray positive heatmap cells; below hourly y-axis limit",
+  "full_range_figures": "files with -full-range retain all positive number values and all soluble bin diameters",
+  "omitted_bins_verified_zero": true,
+  "smoothing": false,
+  "interpolation": false,
+  "heatmap_time_cells": "midpoint boundaries between saved times; endpoint cells clipped to simulation interval",
+  "zero_number_display": "masked white heatmap cells; gaps in logarithmic hourly curves",
+  "full_range_heatmap_number_limits_cm3": [
+    8.022338911735659e-18,
+    47933.310753817896
+  ],
+  "primary_heatmap_number_limits_cm3": [
+    0.001,
+    47933.310753817896
+  ],
+  "max_abs_number_difference_cm3": 6.41375663690269e-09,
+  "max_abs_dNdlog10D_difference_cm3": 1.5745172277092934e-08,
+  "files_sha256": {
+    "hourly-size-distributions.csv": "103bb0183d3e9edf57146fe018c7a6b1c039b363088c321f119b5138d81059fa",
+    "hourly-size-distributions-full-range.png": "6311cf7265bd0e7f686512d16995e74c7a0748da4eb5bcc2ea1fd3bc628b4f6a",
+    "banana-size-distributions-full-range.png": "3909a2334bf662cd0b7681908970cae24a4d7803309a5d90ee258de556e7c703",
+    "banana-size-distributions-full-range.svg": "9ae68266d1c59409abcfb0232bb260a10f6a5a7d0232346edd7338674cb81957",
+    "hourly-size-distributions-full-range.svg": "9c607a91536ce4c2332b7b69dd8dc84750524240169e294d809fd47c21b80f93",
+    "banana-size-distributions.png": "3c701bb636a96f89f1a3cbd8e438a5077e05e457c5ab95583cea39f2f55ff116",
+    "hourly-size-distributions.svg": "6312a5f623f75094e55cebbec0a249f2061a23740506806408a9fda1faf404eb",
+    "banana-size-distributions.svg": "f541ea93e35b0d1f331ed3f12397bca43da1bf747ee4317932ca0c4f06879994",
+    "hourly-size-distributions.png": "6798159d281808018ddc832170a959a9696caa013eae85ef9a505a85c7e12ab8"
+  }
+}

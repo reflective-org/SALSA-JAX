@@ -1,6 +1,6 @@
 # Execution status
 
-Updated 2026-09-22. Baseline HEAD:
+Updated 2026-09-23. Baseline HEAD:
 `d87dc072084336fd351d00a2ade863304c6f313d`.
 Development repository: [reflective-org/SALSA-JAX](https://github.com/reflective-org/SALSA-JAX).
 Reference repairs and native state capture extend the initial implementation below.
@@ -67,11 +67,15 @@ The [master plan](ULTRAPLAN.md) defines the remaining commit-sized backlog.
 | P04g | Initial material-initialization measurement | One/18 curated cases, three outputs synchronized, checked/optimized parity; no measured CPU speedup |
 | I03.S.R / I04.S.J | Sulfuric-acid experiment implemented | Pure sulfate soluble initialization, configured environment/source and original native trajectory driver |
 | I03.S.A / I03.S.L | Scoped longer trajectories accepted | 13 standard scenarios plus half timestep; sparse-transfer limitation reproduced separately; every-step parity and sulfur budgets |
+| I03.S.T1 diagnostic extension | Runs and plots complete; strict parity remains open | Six-hour fixed 10⁸ cm⁻³ acid, 24-hour coagulation, half-timestep repeats and remapping-only control; native/JAX visible steps agree, tiny per-bin strict failures retained |
 | Q01 | Implemented | Quickstart, capability limits and reproduction commands |
 
-All **932 tests pass** in this repository's `.venv` (201.24 seconds), including
+All **966 tests pass** in this repository's `.venv` (214.17 seconds), including
 mandatory original-Fortran comparisons, native number/material initialization,
-first gas conversion and the new sulfuric-acid trajectories. Original Fortran sources,
+first gas conversion and short native tests of the long-experiment runner.
+The requested 6-hour/24-hour diagnostic runs retain strict comparison failures
+as described above; a passing test suite does not override those run verdicts.
+Original Fortran sources,
 scientific inputs and `AGENTS.md` are unchanged. Generated builds/outputs remain
 ignored, and source relocation has not started.
 
@@ -83,8 +87,11 @@ assumptions and standalone switch behavior separately from compatibility work.
 The [runnable pure-sulfate experiment](../development/sulfuric-acid.md) now covers
 that coupled core with controlled source forcing and selected long trajectories.
 
-1. **I03.S.T1:** extend duration/timestep studies for the physical scenario of
-   interest, retaining equal-time checkpoints and independent sulfur budgets.
+1. **I03.S.T1:** the [requested six-hour/24-hour study](../development/long-sulfuric-acid-experiments.md)
+   is complete as diagnostic evidence, including half-timestep repeats. Resolve
+   long-run strict per-bin comparison failures before extending acceptance.
+   Test growth/remapping against an independent finer-grid reference to assess
+   shared bin-to-bin steps; native parity and sulfur conservation are insufficient.
 2. **I03.S.T2 / I03.S.F1:** quantify sparse receiving-bin transfer conditioning;
    propose any numerical/scientific correction separately from compatibility.
 3. **C11.D009.A/F/J / D011/D012 / D007/D010:** retain separate reference repairs

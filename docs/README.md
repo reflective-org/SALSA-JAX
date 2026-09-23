@@ -1,6 +1,7 @@
 # SALSA-JAX development documentation
 
 - [Runnable sulfuric-acid-only experiment and trajectories](development/sulfuric-acid.md)
+- [Six-hour growth and 24-hour coagulation: hourly/banana plots](development/long-sulfuric-acid-experiments.md)
 - [Six SALSA owner-review items](development/salsa-owner-review.md)
 - [Seven-mode number initialization](development/initialization.md)
 - [Aerosol material and HAM tracer initialization](development/aerosol-initialization.md)

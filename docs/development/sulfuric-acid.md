@@ -180,3 +180,12 @@ The input run must include `--compare-fortran`. The plotting command verifies
 input hashes and matching times before drawing, and requires a fresh output
 directory. Recorded rendering used Matplotlib 3.11.2. Scientific kernels and
 trajectory data are unchanged.
+
+## Six-hour and 24-hour experiments
+
+The [long-experiment study](long-sulfuric-acid-experiments.md) adds a
+10⁸ molecules/cm³ fixed H₂SO₄ reservoir for six hours and a 24-hour coagulation-only
+run from a lognormal-number distribution. It includes hourly spectra, banana
+plots, half-timestep repeats and a no-process remapping control. Both languages
+show the same visible steps; small per-bin discrepancies still fail the unchanged
+strict trajectory gate. These diagnostics do not establish remapping accuracy.

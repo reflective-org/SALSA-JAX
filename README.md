@@ -30,6 +30,12 @@ explains CSV/array outputs, all-step native comparisons, sulfur budgets and
 known restrictions. Selected 1000-step soluble-only trajectories are accepted;
 the broader HAM wrapper is not needed for this experiment.
 
+[Six-hour constant-H₂SO₄ and 24-hour coagulation experiments](docs/development/long-sulfuric-acid-experiments.md)
+include hourly spectra, banana plots, timestep refinements and original Fortran
+comparisons. Their visible steps are shared by both implementations; tiny
+per-bin differences exceed the existing strict trajectory tolerance and remain
+reported as failures.
+
 ## Quick start
 
 Use a dedicated virtual environment. GNU Fortran must be on `PATH` for the

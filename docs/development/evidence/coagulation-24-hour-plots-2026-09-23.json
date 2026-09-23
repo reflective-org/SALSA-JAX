@@ -1,0 +1,113 @@
+{
+  "configuration": {
+    "label": "24 hours: coagulation only",
+    "duration_hours": 24.0,
+    "timestep_s": 1.0,
+    "save_interval_s": 60.0,
+    "temperature_k": 280.0,
+    "pressure_pa": 101325.0,
+    "relative_humidity": 0.5,
+    "initial_number_cm3": 1000.0,
+    "geometric_mean_diameter_nm": 50.0,
+    "geometric_stddev": 1.6,
+    "h2so4_molecules_cm3": 0.0,
+    "constant_h2so4": false,
+    "nucleation_scheme": 0,
+    "growth_option": 1,
+    "coagulation_enabled": true,
+    "condensation_enabled": false,
+    "recalculate": true
+  },
+  "source_sha256": {
+    "jax.npz": "1bd38d5379120ba6b706ecec81728acf76a882bd42a14e8dc559992b7571b6c4",
+    "fortran.npz": "423257fc86683665bfbf401b0c27f2da0d838eb82f0582d0391692a09d7bf886",
+    "initial.npz": "da0524842041ff0cf0140a539f818ec32767bf8e9bc6df6fd2ff616d65e866e9",
+    "bins.csv": "7f8a8ecb6d758351c73ca21610cc28dbcca1a75c87ca58858e49fc7c36b00580",
+    "report.json": "7743c0874efad564d7db1573fd4b9415e60dc8e5e26a17515e07b61ea3ebccc2"
+  },
+  "plotting_script_sha256": "5194f57b68c33d6f0d81da9909de7daf5dddac419cc583c0cde36026579aaef4",
+  "saved_times_including_initial": 1441,
+  "hourly_times": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24
+  ],
+  "diameter_coordinate": "nominal dry size-bin edges, not wet or per-bin mean particle diameter",
+  "number_normalization": "particles/cm3 divided by log10(upper diameter/lower diameter)",
+  "source_soluble_bins": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "omitted_insoluble_bins": [
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17
+  ],
+  "primary_diameter_limits_nm": [
+    3.0,
+    1000.0
+  ],
+  "primary_display_floor_dNdlog10D_cm3": 0.001,
+  "primary_below_floor_display": "gray positive heatmap cells; below hourly y-axis limit",
+  "full_range_figures": "files with -full-range retain all positive number values and all soluble bin diameters",
+  "omitted_bins_verified_zero": true,
+  "smoothing": false,
+  "interpolation": false,
+  "heatmap_time_cells": "midpoint boundaries between saved times; endpoint cells clipped to simulation interval",
+  "zero_number_display": "masked white heatmap cells; gaps in logarithmic hourly curves",
+  "full_range_heatmap_number_limits_cm3": [
+    8.022338911735659e-18,
+    1468.1879148562168
+  ],
+  "primary_heatmap_number_limits_cm3": [
+    0.001,
+    1468.1879148562168
+  ],
+  "max_abs_number_difference_cm3": 1.1988845471933018e-09,
+  "max_abs_dNdlog10D_difference_cm3": 3.6984602047596127e-09,
+  "files_sha256": {
+    "hourly-size-distributions.csv": "5eb3ab39e686edb55ac289dff05c9c549e9dedaa3196810a9c22593b1b6e10d3",
+    "hourly-size-distributions-full-range.png": "46a03933161d859abef9108e6bd129111c11595617e9c4cd5321096c33ab7541",
+    "banana-size-distributions-full-range.png": "4c3e1166dbf7760eeb532d04699ed4d42888b22b96ee3eb1cc507b195a34efd9",
+    "banana-size-distributions-full-range.svg": "bf443af399d786ff41ec1ba609457320fca3c10dfdea04495fa520a348945dab",
+    "hourly-size-distributions-full-range.svg": "f1c940b7064a29d05be0b258186bb70fe6b5f37f975172369880eac1de484d50",
+    "banana-size-distributions.png": "22682004cdef2dd1ebd2948d0cef1c27d616eaf755fc6e86fc37ab72cef5b6ab",
+    "hourly-size-distributions.svg": "539bae7bd8e8ddfcd9733c5192f6af0e21e3e60073674ff1338cd92eea4f297c",
+    "banana-size-distributions.svg": "34bc6a20aaed5e6b4375299c35ee1a88f621f8bf1a1c87f11836c8761f3c7d39",
+    "hourly-size-distributions.png": "4d54d92b82edadf19ebe906297c553b2ed36789aa7d1014182005d43836f3df6"
+  }
+}
