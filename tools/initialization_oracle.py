@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """Execute the byte-identical native seven-mode size-distribution initializer.
 
 Only geometry data are stubbed. The driver-default mode assignments are extracted

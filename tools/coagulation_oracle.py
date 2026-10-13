@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """Compile and run the unchanged coagc function extracted from its actual source."""
 
 from __future__ import annotations

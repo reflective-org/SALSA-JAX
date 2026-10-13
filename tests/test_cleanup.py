@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """Public initial cleanup versus an independently compiled actual native block."""
 import hashlib
 import json

@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """Checkpointed long trajectories through byte-identical native SALSA modules.
 
 A constant H2SO4 reservoir restores the initial concentration after every native

@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """Copy-only native SALSA boundary capture for the standalone five-species case."""
 from __future__ import annotations
 

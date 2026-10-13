@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """Nested capture retains actual initialized sources and their unchanged inputs."""
 import hashlib
 import json

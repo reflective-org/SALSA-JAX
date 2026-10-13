@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """Verify the native isolated/coupled nucleation oracle and its state contract."""
 import numpy as np
 import pytest

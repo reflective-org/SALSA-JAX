@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """Actual SALSA nucleation and condensation oracle for schemes/growth modes 1–3.
 
 The complete native nucleation module is copied byte-for-byte before a mechanical

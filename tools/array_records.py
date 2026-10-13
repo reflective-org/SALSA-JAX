@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """Full-precision, shape-tagged Fortran array records with strict stdlib parsing."""
 import math
 import re

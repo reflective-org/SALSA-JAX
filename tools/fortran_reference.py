@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """Build/run an isolated copy of the current Fortran tree, retaining provenance.
 
 This is a compatibility audit, not yet a scientific validation or timing harness.

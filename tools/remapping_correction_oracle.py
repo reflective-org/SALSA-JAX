@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """Execute the actual native post-remap cleanup/hydration/radii-water block."""
 from __future__ import annotations
 

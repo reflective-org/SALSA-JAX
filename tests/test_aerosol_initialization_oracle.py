@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """Actual conc2mmr fractions, units, registry lookup and write ordering."""
 import numpy as np
 import pytest

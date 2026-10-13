@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """Checked oracle executing verbatim native set_sizebins with its actual layout."""
 from __future__ import annotations
 

@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """Native five-material SALSA hydration with its original convergence criterion."""
 from typing import NamedTuple
 

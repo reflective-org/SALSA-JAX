@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """Actual SALSA initialization branch must preserve HAM's registered components."""
 from pathlib import Path
 import re

@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """Complete native boundary adaptation keeps registry, flags and cell ordering."""
 import json
 import shutil

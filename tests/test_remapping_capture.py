@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """Two-pass remapping capture preserves boundaries, pure inputs and provenance."""
 
 import hashlib

@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """Adapt actual initial-hydration captures to the standalone kernel contract."""
 from pathlib import Path
 

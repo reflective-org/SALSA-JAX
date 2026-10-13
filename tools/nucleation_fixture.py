@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """Adapt checked nested nucleation and parent condensation captures to JAX inputs.
 
 The adapter preserves native (horizontal, vertical) ordering, flattening cells

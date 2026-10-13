@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """Replay both actual native remapping/correction passes and their JAX chain."""
 from copy import deepcopy
 from pathlib import Path

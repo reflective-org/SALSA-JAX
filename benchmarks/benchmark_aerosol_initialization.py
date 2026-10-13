@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """Equal-work CPU timing of native SALSA conc2mmr aerosol initialization."""
 import argparse
 import hashlib

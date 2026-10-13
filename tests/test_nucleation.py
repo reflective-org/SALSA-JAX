@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """Independent source, growth and coupled insertion acceptance against Fortran."""
 import jax
 import numpy as np

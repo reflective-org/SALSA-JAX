@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """Explicit first-call settings applied only to an isolated standalone driver."""
 from __future__ import annotations
 import difflib

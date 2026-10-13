@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """Capture the actual coagulation boundary in a copied, checked first SALSA call."""
 from __future__ import annotations
 

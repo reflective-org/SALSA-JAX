@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """CPU float64 standalone condensation parity/timing, with nucleation disabled."""
 import argparse
 import hashlib

@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """Plot hourly native-bin distributions and time-size heatmaps without smoothing."""
 from __future__ import annotations
 

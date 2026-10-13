@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """Copy-only capture of the driver's native seven-mode initialization call."""
 from __future__ import annotations
 

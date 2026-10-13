@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """Accept the initializer against an actual checked native driver boundary."""
 import hashlib
 import json

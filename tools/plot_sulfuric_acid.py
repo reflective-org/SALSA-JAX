@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """Plot saved JAX/Fortran sulfuric-acid size distributions without smoothing."""
 import argparse
 import hashlib

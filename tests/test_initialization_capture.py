@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """Native initialization capture preserves caller order, inputs and provenance."""
 import hashlib
 import json

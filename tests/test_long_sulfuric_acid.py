@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """Long-experiment initialization, reservoir forcing and observation contracts."""
 from dataclasses import replace
 from pathlib import Path

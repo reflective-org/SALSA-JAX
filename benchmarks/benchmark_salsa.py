@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """Matched CPU timing of the complete native SALSA call, excluding the HAM driver."""
 import argparse
 import hashlib

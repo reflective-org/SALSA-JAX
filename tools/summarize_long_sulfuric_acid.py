@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """Summarize paired long runs, timestep refinements and the remapping control."""
 import argparse
 import hashlib

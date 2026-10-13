@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """Long pure-sulfate trajectories compare every step to checked original SALSA."""
 from dataclasses import replace
 

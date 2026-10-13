@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """Adapt the actual initialized-driver size distribution boundary to JAX inputs."""
 from pathlib import Path
 import numpy as np

@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """Native checkpoints retain complete scientific calls and explicit reservoirs."""
 import numpy as np
 import pytest

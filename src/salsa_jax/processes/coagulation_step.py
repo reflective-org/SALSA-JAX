@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """Complete standalone SALSA coagulation on the 17-bin, five-material grid.
 
 Port of mo_ham_salsa_dynamics.F90:coagulation without HAMMOZ/VBS. Hydration

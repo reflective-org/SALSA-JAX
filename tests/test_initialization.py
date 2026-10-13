@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """Seven-mode initializer: original Fortran parity and native population policy."""
 import jax
 import numpy as np

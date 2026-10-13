@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """Native SALSA dry size-bin geometry on the fixed 17-bin standalone layout."""
 from typing import NamedTuple
 

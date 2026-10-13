@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """Brownian collision coefficient from mo_ham_salsa_init.F90:coagc."""
 
 import jax.numpy as jnp

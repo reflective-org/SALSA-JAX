@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """Native ordered redistribution, branch semantics and material budgets."""
 import jax
 import numpy as np

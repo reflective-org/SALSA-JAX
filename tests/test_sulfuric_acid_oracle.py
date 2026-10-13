@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """Actual Fortran trajectory reference preserves native calls and source units."""
 import hashlib
 

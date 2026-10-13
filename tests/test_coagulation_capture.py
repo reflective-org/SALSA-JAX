@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """Capture real hydrated coagulation arguments, preserving the production source."""
 import hashlib
 import json

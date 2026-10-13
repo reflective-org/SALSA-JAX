@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """The first-call gate must reject nonfinite state and false completion claims."""
 
 import hashlib

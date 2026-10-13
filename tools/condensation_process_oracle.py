@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """Original SALSA condensation oracle, without nucleation or HAMMOZ/VBS.
 
 Data-only module stubs provide the native species constants and supported grid.

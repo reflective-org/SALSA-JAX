@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """CPU float64 native hydration parity and warmed timing on identical case cells."""
 import argparse
 import hashlib

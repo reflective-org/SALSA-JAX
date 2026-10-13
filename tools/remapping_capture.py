@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """Capture both actual remapping/correction passes in a copied SALSA source."""
 from __future__ import annotations
 

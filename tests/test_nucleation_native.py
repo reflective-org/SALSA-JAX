@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """Actual checked model-boundary acceptance for active nested nucleation."""
 from copy import deepcopy
 from pathlib import Path

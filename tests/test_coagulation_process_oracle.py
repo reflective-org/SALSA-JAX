@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """Check the complete-process oracle's extraction, I/O and repetition semantics."""
 import hashlib
 

@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """Checked standalone oracle for the original five-species SALSA coagulation.
 
 Only dependencies are stubbed: the process and coagc text are extracted from

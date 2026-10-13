@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """Compare the first JAX leaf against the actual repository Fortran routine."""
 
 import jax

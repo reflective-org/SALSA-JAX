@@ -1,5 +1,3 @@
-# Copyright 2026 Reflective
-# SPDX-License-Identifier: Apache-2.0
 """CPU float64 complete-coagulation parity/timing, excluding hydration/remapping."""
 import argparse
 import hashlib
