@@ -1,5 +1,3 @@
-! Copyright 2026 Reflective
-! SPDX-License-Identifier: Apache-2.0
 PROGRAM condensation_regression
   USE mo_kind, ONLY: dp
   USE mo_ham, ONLY: subm_ngasspec

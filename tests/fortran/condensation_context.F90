@@ -1,5 +1,3 @@
-! Copyright 2026 Reflective
-! SPDX-License-Identifier: Apache-2.0
 ! Minimal explicit state for the unchanged condensation routine, with nucleation
 ! disabled. These fixture modules supply data only; no transport formula is stubbed.
 MODULE mo_species

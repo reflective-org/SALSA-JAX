@@ -1,5 +1,3 @@
-! Copyright 2026 Reflective
-! SPDX-License-Identifier: Apache-2.0
 PROGRAM updraft_regression
   USE mo_kind, ONLY: dp, wp
   USE mo_physical_constants, ONLY: grav
