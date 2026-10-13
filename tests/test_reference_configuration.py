@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Controlled first-call activation changes only an isolated driver copy."""
 import hashlib
 from pathlib import Path

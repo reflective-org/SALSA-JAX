@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Copy-only capture of nucleation called inside native standalone condensation."""
 from __future__ import annotations
 

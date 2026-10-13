@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Fixture export requires checked, intact captured evidence and a new directory."""
 import json
 from pathlib import Path

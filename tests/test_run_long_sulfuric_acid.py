@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Saved long-experiment reports retain native evidence and strict failures."""
 from dataclasses import replace
 import hashlib

@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Checked verbatim gas2mmr oracle using native constants and unit-code declarations."""
 from pathlib import Path
 import hashlib

@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Scoped CPU float64 benchmark; does not measure a complete SALSA time step."""
 
 import argparse

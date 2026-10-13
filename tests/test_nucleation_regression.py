@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Checked actual Fortran nucleation, isolated and nested in condensation."""
 from pathlib import Path
 import re

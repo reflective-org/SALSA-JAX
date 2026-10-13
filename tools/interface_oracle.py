@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Checked verbatim native HAM/SALSA conversions and final density oracle."""
 from __future__ import annotations
 

@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Run matching long JAX/Fortran sulfate experiments and save comparison data."""
 import argparse
 from dataclasses import asdict

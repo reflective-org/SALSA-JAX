@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Original conc2mmr aerosol initialization with data-only registry stubs.
 
 The complete routine, including its unused M7 branch, is extracted verbatim.

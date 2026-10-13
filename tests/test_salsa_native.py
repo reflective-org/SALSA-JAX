@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Complete composition matches every captured process boundary in native calls."""
 import json
 from pathlib import Path

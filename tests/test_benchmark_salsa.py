@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Guard complete-call benchmark workload accounting and parity acceptance."""
 from types import SimpleNamespace
 

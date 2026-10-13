@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Whole original SALSA call independently validates its native process order."""
 import subprocess
 import numpy as np

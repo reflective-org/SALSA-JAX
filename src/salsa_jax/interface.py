@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Native SALSA/HAM aerosol conversions and final particle density.
 
 The fixed 69-component interface represents SO4/OC in bins 1–3, all five

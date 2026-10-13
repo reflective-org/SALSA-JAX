@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Constants copied from the repository's Fortran modules for numerical parity."""
 
 # mo_physical_constants.F90: ak and p0sl_bg. Do not substitute newer values.

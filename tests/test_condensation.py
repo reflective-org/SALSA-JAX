@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Separate condensation acceptance against current repaired Fortran, nsnucl=0."""
 from pathlib import Path
 

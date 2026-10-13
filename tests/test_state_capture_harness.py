@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """An executable success cannot replace valid requested native capture evidence."""
 import json
 from pathlib import Path

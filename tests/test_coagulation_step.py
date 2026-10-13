@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Complete coagulation parity uses verbatim Fortran, not a Python formula oracle."""
 from pathlib import Path
 

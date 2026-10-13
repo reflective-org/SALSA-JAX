@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Verbatim SALSA equilibrium hydration and inverse-molality Fortran oracle.
 
 The native loop has no iteration cap. Copy-only diagnostics count its actual

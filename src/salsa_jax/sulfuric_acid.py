@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """A fixed-environment, pure-sulfate experiment using the accepted SALSA core.
 
 This experiment has an additive H2SO4 source, not the legacy driver's prescribed

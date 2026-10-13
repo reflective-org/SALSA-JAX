@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Capture standalone condensation boundaries in a copied source."""
 from __future__ import annotations
 

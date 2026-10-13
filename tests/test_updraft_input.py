@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Actual driver wiring and unchanged activation kernels reproduce D003."""
 from pathlib import Path
 import re

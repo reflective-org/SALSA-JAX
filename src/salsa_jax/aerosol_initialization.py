@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Native SALSA material recipe and initial HAM tracer conversion."""
 from typing import NamedTuple
 

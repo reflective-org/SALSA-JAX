@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Independent checks on native condensation extraction and oracle semantics."""
 import hashlib
 

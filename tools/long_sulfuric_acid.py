@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Long controlled sulfate experiments with fixed vapor or coagulation only."""
 from dataclasses import dataclass, asdict, replace
 import math

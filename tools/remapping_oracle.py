@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Verbatim standalone SALSA distribution-update oracle, including native quirks.
 
 Only data modules are stubbed. Descending updates, repeated donor checks and

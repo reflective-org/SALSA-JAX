@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Native water uptake, empty-bin policy and per-bin convergence acceptance."""
 import jax
 import numpy as np

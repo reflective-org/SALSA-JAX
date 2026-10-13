@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """H01 leaf parity with actual gas2mmr arithmetic, mapping and mutation order."""
 import hashlib
 

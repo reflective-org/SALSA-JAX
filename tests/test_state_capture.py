@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Native-state fixtures retain real mappings, precision and material budgets."""
 import hashlib
 import json

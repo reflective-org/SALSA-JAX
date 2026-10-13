@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Supported SALSA sulfate nucleation sources and legacy growth/survival.
 
 Schemes 1/2/3 and growth options 1/2/3 retain the repaired native arithmetic.

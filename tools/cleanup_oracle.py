@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Checked oracle for the verbatim initial SALSA tiny-particle cleanup block."""
 from pathlib import Path
 import hashlib

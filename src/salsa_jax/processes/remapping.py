@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Ordered native SALSA bin redistribution; fixed 17-bin/five-material layout."""
 from typing import NamedTuple
 

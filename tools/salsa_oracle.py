@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Complete unmodified native SALSA call with fixture-initialized data modules.
 
 The five scientific modules are compiled byte-for-byte. Only initialization

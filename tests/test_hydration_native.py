@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Native initial hydration and composed pre-remapping microphysics acceptance."""
 from pathlib import Path
 

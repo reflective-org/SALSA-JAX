@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Driver conversion captures retain initialized state and complete tracer maps."""
 import hashlib
 import json

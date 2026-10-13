@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Shared host-side grouping and argument adaptation for complete SALSA cases."""
 import numpy as np
 from salsa_jax import constants

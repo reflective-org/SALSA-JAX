@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Adapt checked native remapping/correction captures to independent process APIs."""
 from pathlib import Path
 

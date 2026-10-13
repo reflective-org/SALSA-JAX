@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """One native post-remapping cleanup/hydration/geometry correction pass.
 
 This preserves the existing tiny-particle removal policy, including its loss of

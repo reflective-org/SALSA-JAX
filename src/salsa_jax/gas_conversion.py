@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Native HAM gas concentration-to-tracer conversion, independent of SALSA."""
 import jax
 import jax.numpy as jnp

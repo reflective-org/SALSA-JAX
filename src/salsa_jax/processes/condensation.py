@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Standalone SALSA condensation, with nucleation disabled (nsnucl=0).
 
 Ports the D001/D002-repaired mo_ham_salsa_dynamics.F90:condensation without

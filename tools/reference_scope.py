@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Explicit first-call reference scope applied only to a copied box driver."""
 
 import difflib

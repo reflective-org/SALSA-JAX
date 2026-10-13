@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Fixed native grid, including default-real spacing exponents, against Fortran."""
 import hashlib
 from pathlib import Path

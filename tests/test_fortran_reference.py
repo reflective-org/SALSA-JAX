@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """A failed reference setup must leave usable diagnostic provenance."""
 
 import json

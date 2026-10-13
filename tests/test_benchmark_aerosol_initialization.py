@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Lightweight output/accounting checks; final timing runs are separate."""
 import numpy as np
 import pytest

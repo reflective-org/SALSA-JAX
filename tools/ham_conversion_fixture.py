@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Adapt verified driver HAM conversion boundaries without substituting metadata."""
 import hashlib
 import json

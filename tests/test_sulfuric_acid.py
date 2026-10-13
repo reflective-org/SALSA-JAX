@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """User-facing pure-sulfate experiment contracts and process isolation."""
 from dataclasses import replace
 from pathlib import Path

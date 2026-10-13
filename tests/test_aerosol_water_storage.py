@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Check the box driver's actual water allocation against the HAM output extent."""
 
 from pathlib import Path

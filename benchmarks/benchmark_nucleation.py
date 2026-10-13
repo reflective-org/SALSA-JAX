@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """CPU float64 isolated nucleation and coupled condensation/nucleation timings.
 
 Run as ``.venv/bin/python -m benchmarks.benchmark_nucleation``. Each measured

@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """First hydration capture preserves inputs, source bytes and fixture provenance."""
 
 import hashlib

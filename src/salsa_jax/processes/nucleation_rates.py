@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Native SALSA binary, activation and kinetic critical-cluster rates.
 
 The binary polynomial and its collision fallback are transcribed from

@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Forced trajectories through unchanged native SALSA scientific modules.
 
 The source adds H2SO4 molecules/m3/s before each complete SALSA call. Every

@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """One actual native post-remap correction, including its unrepaired D007 branch."""
 import hashlib
 import subprocess

@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Actual distribution-update behavior, including source artifacts and failures."""
 import subprocess
 

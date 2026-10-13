@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Native component conversion and final-density parity, including absent slots."""
 import hashlib
 from pathlib import Path

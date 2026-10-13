@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Actual driver conc2mmr and first gas2mmr boundaries, copied sources only."""
 from __future__ import annotations
 

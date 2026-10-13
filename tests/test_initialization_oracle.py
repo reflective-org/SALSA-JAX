@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Independent native seven-mode midpoint quadrature and initialization loops."""
 import numpy as np
 import pytest

@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Record all-step sulfuric-acid acceptance and timestep sensitivity evidence."""
 from dataclasses import asdict, replace
 import hashlib

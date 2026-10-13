@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Equal-work CPU timing of native seven-mode size initialization."""
 import argparse
 import hashlib

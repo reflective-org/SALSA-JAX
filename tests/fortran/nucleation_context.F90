@@ -1,3 +1,5 @@
+! Copyright 2026 Reflective
+! SPDX-License-Identifier: Apache-2.0
 ! Explicit fixture state for actual nucleation and condensation routines.
 ! Defaults below match mo_ham_salsactl; no scientific routines are stubbed.
 MODULE mo_species

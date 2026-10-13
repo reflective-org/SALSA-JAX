@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Complete standalone native SALSA call on its mixed-unit mass interface."""
 from typing import NamedTuple
 

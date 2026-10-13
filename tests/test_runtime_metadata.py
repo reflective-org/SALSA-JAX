@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Reject incomplete runtime evidence and fail closed when source anchors drift."""
 
 from pathlib import Path

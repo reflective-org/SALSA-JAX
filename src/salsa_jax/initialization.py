@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Seven-mode native SALSA number initialization on the sectional size grid."""
 import jax.numpy as jnp
 

@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Bounds/uninitialized regressions using the actual isolated Fortran routine.
 
 Fixture modules provide initialized state, not alternate physics. The nucleation

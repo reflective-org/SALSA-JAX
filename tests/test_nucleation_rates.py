@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Critical-cluster rates checked against extracted actual SALSA Fortran leaves."""
 from functools import partial
 from pathlib import Path

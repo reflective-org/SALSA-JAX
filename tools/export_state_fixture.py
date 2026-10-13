@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Export a small verified native-state fixture from a successful checked capture."""
 import argparse
 import hashlib

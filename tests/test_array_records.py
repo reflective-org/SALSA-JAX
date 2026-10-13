@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Scientific array records must preserve precision, shape and Fortran order."""
 import subprocess
 

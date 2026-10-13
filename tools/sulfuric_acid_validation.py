@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Fortran case adapter and explicit gates for the pure-sulfate experiment."""
 from dataclasses import asdict
 import numpy as np

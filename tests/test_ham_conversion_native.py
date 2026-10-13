@@ -1,3 +1,5 @@
+# Copyright 2026 Reflective
+# SPDX-License-Identifier: Apache-2.0
 """Actual HAM boundaries and number→material→gas initialization composition."""
 import json
 from pathlib import Path
