@@ -3,13 +3,13 @@ Copyright 2026 Reflective
 
 This repository contains code under two licenses.
 
-Apache License 2.0 (LICENSE-APACHE.txt)
+Apache License 2.0 (LICENSE.txt)
   The JAX implementation and its supporting code written for SALSA-JAX:
   src/, tests/ (including tests/fortran/), tools/, benchmarks/, configs/,
   docs/ (except docs/fortran-overview.md), pyproject.toml and
   requirements-dev.txt.
 
-BSD 3-Clause License (LICENSE.txt), Copyright (c) 2026, HAMMOZ Consortium
+BSD 3-Clause License (LICENSE-BSD.txt), Copyright (c) 2026, HAMMOZ Consortium
   The HAM-SALSA Fortran box model and its data: the Fortran sources, build
   files, include/, input/ and data/ in the repository root, and
   docs/fortran-overview.md. Changes made to these files in this repository

@@ -182,9 +182,9 @@ Full-driver radiation requires valid optical tables and a separate
 initialization repair.
 
 The JAX implementation (`src/`, `tests/`, `tools/`, `benchmarks/`, `configs/` and
-most of `docs/`) is licensed under the [Apache License 2.0](LICENSE-APACHE.txt).
+most of `docs/`) is licensed under the [Apache License 2.0](LICENSE.txt).
 The HAM-SALSA Fortran model it derives from remains under the
-[BSD 3-Clause License](LICENSE.txt). See [NOTICE](NOTICE) for the exact split
+[BSD 3-Clause License](LICENSE-BSD.txt). See [NOTICE](NOTICE) for the exact split
 and attribution.
 The [original Fortran overview](docs/fortran-overview.md) describes HAM-SALSA's
 scientific context.
