@@ -26,7 +26,7 @@ class CoagulationState(NamedTuple):
     volume: jax.Array
 
 
-def coefficient_matrix(dry_diameter, wet_diameter, temperature, pressure):
+def coefficient_matrix(dry_diameter, wet_diameter, temperature, pressure, *, density=None):
     """Return (...,17,17) coefficients [m3/s], using the native upper triangle.
 
     Diameters are in m (the legacy ``pdwet`` radius comment is incorrect).
@@ -34,6 +34,8 @@ def coefficient_matrix(dry_diameter, wet_diameter, temperature, pressure):
     callers must enable JAX float64. Dry geometry can be shared across cases.
     The wet correction uses *index* order, including the duplicated 2b grid;
     independently computing the lower triangle would change the algorithm.
+    density [kg/m3] is the particle-mass density of the kernel; None (default)
+    keeps the native fixed COAGULATION_DENSITY = 1500 (mo_ham_salsa_init coagc).
     """
     dry = jnp.asarray(dry_diameter, dtype=jnp.float64)
     wet = jnp.asarray(wet_diameter, dtype=jnp.float64)
@@ -41,7 +43,7 @@ def coefficient_matrix(dry_diameter, wet_diameter, temperature, pressure):
         raise ValueError("Coagulation requires the 17-bin SALSA grid")
     temperature = jnp.asarray(temperature, dtype=jnp.float64)[..., None, None]
     pressure = jnp.asarray(pressure, dtype=jnp.float64)[..., None, None]
-    mass = PI / 6.0 * dry**3 * COAGULATION_DENSITY
+    mass = PI / 6.0 * dry**3 * (COAGULATION_DENSITY if density is None else density)
     coefficients = coagulation_coefficient(
         dry[..., :, None], dry[..., None, :],
         mass[..., :, None], mass[..., None, :], temperature, pressure,
@@ -108,7 +110,8 @@ def coagulation_update(number, volume, coefficients, timestep):
     return CoagulationState(updated.number.reshape(number.shape), updated.volume.reshape(volume.shape))
 
 
-def coagulation_step(number, volume, wet_diameter, dry_diameter, temperature, pressure, timestep, *, enabled=True):
+def coagulation_step(number, volume, wet_diameter, dry_diameter, temperature, pressure, timestep, *, enabled=True,
+                     density=None):
     """Run complete standalone coagulation, or preserve inputs when disabled.
 
     Enable ``jax_enable_x64`` before use. Inputs must be physical: nonnegative
@@ -116,12 +119,17 @@ def coagulation_step(number, volume, wet_diameter, dry_diameter, temperature, pr
     ``enabled`` may be a scalar JAX boolean. Disabling skips the native process,
     including salt relabeling and clipping; enabled dt=0 still applies those.
     Hydration is an input dependency, not computed here. No inputs are mutated.
+    density: kernel particle-mass density [kg/m3]; None = native 1500 (SALSA#22 Q1).
     """
     number = jnp.asarray(number, dtype=jnp.float64)
     volume = jnp.asarray(volume, dtype=jnp.float64)
+
+    def coefficients():
+        if density is None:
+            return coefficient_matrix(dry_diameter, wet_diameter, temperature, pressure)
+        return coefficient_matrix(dry_diameter, wet_diameter, temperature, pressure, density=density)
     return jax.lax.cond(
         enabled,
-        lambda: coagulation_update(number, volume,
-                                   coefficient_matrix(dry_diameter, wet_diameter, temperature, pressure), timestep),
+        lambda: coagulation_update(number, volume, coefficients(), timestep),
         lambda: CoagulationState(number, volume),
     )

@@ -16,6 +16,10 @@ from salsa_jax.processes.remapping_correction import cleanup, correction
 
 STATIC_OPTIONS = ('scheme', 'growth', 'coagulation_enabled', 'condensation_enabled',
                   'recalculate', 'transfer_soluble', 'hydrate_insoluble', 'organic_enabled', 'return_trace')
+# Opt-in repairs of confirmed native defects; every default False reproduces the original Fortran.
+# They are static too: JIT salsa_step with JIT_STATIC_OPTIONS when passing any of them.
+FIX_OPTIONS = ('fix_kelvin_water', 'fix_particle_diffusion', 'fix_remap_orphan')
+JIT_STATIC_OPTIONS = STATIC_OPTIONS + FIX_OPTIONS
 
 
 class SalsaState(NamedTuple):
@@ -39,7 +43,9 @@ def salsa_step(mass, number, gas, temperature, relative_humidity, pressure, time
                ion_factor=REMAPPING_ION_FACTOR, saturation_limit=REMAPPING_SATURATION_LIMIT,
                boundary_layer=True, scheme=0, growth=1, coagulation_enabled=True,
                condensation_enabled=True, recalculate=False, transfer_soluble=False,
-               hydrate_insoluble=True, organic_enabled=False, return_trace=False):
+               hydrate_insoluble=True, organic_enabled=False, return_trace=False,
+               fix_kelvin_water=False, fix_particle_diffusion=False, fix_remap_orphan=False,
+               coagulation_density=None):
     """Advance one native SALSA call, including both remap/correction passes.
 
     Inputs have matching leading axes: mass (...,69) uses native component units
@@ -62,6 +68,12 @@ def salsa_step(mass, number, gas, temperature, relative_humidity, pressure, time
     Known native volume inconsistencies are preserved. return_trace=True adds
     process-boundary pytrees for reference comparisons; default returns only
     SalsaState, allowing unused intermediate diagnostics to be eliminated.
+
+    Opt-in repairs (static; all False = native Fortran behaviour):
+    fix_kelvin_water   S4, TUT-ISI/SALSA#14: water Kelvin term in every hydration call
+    fix_particle_diffusion  S10, SALSA#19: slip-corrected particle diffusion in condensation
+    fix_remap_orphan   D011, SALSA#15: distr_update moves material with number and rescans receivers
+    coagulation_density  kernel particle-mass density [kg/m3]; None = native fixed 1500 (SALSA#22 Q1)
     """
     if scheme not in (0, 1, 2, 3) or growth not in (1, 2, 3):
         raise ValueError('Supported nucleation schemes are 0/1/2/3 and growth options 1/2/3')
@@ -78,15 +90,16 @@ def salsa_step(mass, number, gas, temperature, relative_humidity, pressure, time
     volume = jnp.where(valid[..., None, None], initial.volume, 0.0)
     gas = jnp.where(valid[..., None], initial.gas, 0.0)
     hydrated = equilibrate(number, volume, relative_humidity, temperature, grid.dpmid,
-                           soluble_mask=mask, parameters=parameters)
+                           soluble_mask=mask, parameters=parameters, fix_kelvin_water=fix_kelvin_water)
     if coagulation_enabled:
         coagulated = coagulation_step(number, volume, hydrated.wet_diameter, grid.dpmid,
-                                      temperature, pressure, timestep)
+                                      temperature, pressure, timestep, density=coagulation_density)
     else:
         coagulated = CoagulationState(number, volume)
     number, volume = coagulated
     sink_geometry = (equilibrate(number, volume, relative_humidity, temperature, grid.dpmid,
-                                 soluble_mask=mask, parameters=parameters) if recalculate else hydrated)
+                                 soluble_mask=mask, parameters=parameters, fix_kelvin_water=fix_kelvin_water)
+                    if recalculate else hydrated)
     species_mass = jnp.asarray(parameters.species_molar_mass, dtype=jnp.float64)
     species_density = jnp.asarray(parameters.species_density, dtype=jnp.float64)
     cond_parameters = CondensationParameters(
@@ -96,7 +109,8 @@ def salsa_step(mass, number, gas, temperature, relative_humidity, pressure, time
     if condensation_enabled:
         condensed = condensation_nucleation_step(number, volume, gas, sink_geometry.wet_diameter,
             temperature, relative_humidity, pressure, timestep, scheme=scheme, growth=growth,
-            boundary_layer=boundary_layer, organic_enabled=organic_enabled, parameters=cond_parameters)
+            boundary_layer=boundary_layer, organic_enabled=organic_enabled, parameters=cond_parameters,
+            fix_particle_diffusion=fix_particle_diffusion)
     else:
         condensed = CondensationState(number, volume, gas)
     number, volume, gas = condensed
@@ -107,9 +121,11 @@ def salsa_step(mass, number, gas, temperature, relative_humidity, pressure, time
         saturation_limit=saturation_limit, ion_factor=ion_factor, number_threshold=parameters.number_threshold)
     remapped_passes, corrected_passes = [], []
     for _ in range(2):
-        remapped = remap(number, volume, temperature, grid, transfer_soluble=transfer_soluble, parameters=remap_parameters)
+        remapped = remap(number, volume, temperature, grid, transfer_soluble=transfer_soluble, parameters=remap_parameters,
+                         fix_remap_orphan=fix_remap_orphan)
         corrected = correction(remapped.number, remapped.volume, gas, relative_humidity, temperature, grid.dpmid,
-                               soluble_mask=mask, parameters=parameters, organic_enabled=organic_enabled)
+                               soluble_mask=mask, parameters=parameters, organic_enabled=organic_enabled,
+                               fix_kelvin_water=fix_kelvin_water)
         number, volume, gas = corrected.number, corrected.volume, corrected.gas
         valid = valid & corrected.valid
         remapped_passes.append(remapped)

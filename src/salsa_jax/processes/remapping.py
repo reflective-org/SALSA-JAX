@@ -40,7 +40,7 @@ def _material_sum(volume):
 
 
 def remap(number, volume, temperature, grid: SizeGrid, *, transfer_soluble=False,
-          parameters=RemappingParameters()):
+          parameters=RemappingParameters(), fix_remap_orphan=False):
     """Apply one native distr_update call, including optional 2b→2a transfer.
 
     Number (...,17) is particles/m3; volume (...,17,5) is material m3/air m3
@@ -55,6 +55,13 @@ def remap(number, volume, temperature, grid: SizeGrid, *, transfer_soluble=False
     or empty-bin repair is added. Positive finite ordered geometry is required;
     active soluble-transfer bins require positive total material volume; a cell
     violating that native domain returns NaN number and volume.
+
+    fix_remap_orphan (static, default False = native) opts into the D011 repair
+    (TUT-ISI/SALSA#15, upstream/s5_remap_orphan/fix_remap.patch): the mean
+    volume of the moved particles becomes (V_hi + max(V_lo, v_hilim))/2, so a bin
+    that has grown wholly past its upper limit moves all of its material with
+    its number, and a non-terminal receiver left above its upper limit requests
+    another scan.
     """
     number, volume = (jnp.asarray(v, dtype=jnp.float64) for v in (number, volume))
     if number.shape[-1:] != (17,) or volume.shape != number.shape + (5,):
@@ -93,7 +100,8 @@ def remap(number, volume, temperature, grid: SizeGrid, *, transfer_soluble=False
             ratio = high[..., kk] / low[..., kk]
             vlo = 2.0 * mean / (1.0 + ratio)
             vhi = ratio * vlo
-            excess = 0.5 * (vhi + high[..., kk])
+            excess = (0.5 * (vhi + jnp.maximum(vlo, high[..., kk])) if fix_remap_orphan
+                      else 0.5 * (vhi + high[..., kk]))
             fraction = jnp.minimum(1.0, (vhi - high[..., kk]) / jnp.where(grow, vhi - vlo, 1.0))
             n, v = number[..., kk], volume[..., kk, :]
             total = _material_sum(v)
@@ -109,6 +117,13 @@ def remap(number, volume, temperature, grid: SizeGrid, *, transfer_soluble=False
             check = grow & (n > threshold)
             remaining = _material_sum(volume[..., kk, :]) / jnp.where(check, n, 1.0)
             again = again | (check & (remaining > high[..., kk]))
+            if fix_remap_orphan:
+                # Receivers 10/17 (zero-based 9/16) are terminal and never rescanned.
+                receiver = kk + 1
+                n_receiver = number[..., receiver]
+                check_receiver = grow & (receiver != 9) & (receiver != 16) & (n_receiver > threshold)
+                receiver_mean = _material_sum(volume[..., receiver, :]) / jnp.where(check_receiver, n_receiver, 1.0)
+                again = again | (check_receiver & (receiver_mean > high[..., receiver]))
             return number, volume, again
         number, volume, again = jax.lax.fori_loop(0, 16, bin_update, (number, volume, jnp.zeros_like(pending)))
         return number, volume, again, counts + pending.astype(jnp.int32)

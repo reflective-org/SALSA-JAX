@@ -82,7 +82,8 @@ def cleanup(number, volume, gas, *, parameters=HydrationParameters(), organic_en
 
 
 def correction(number, volume, gas, relative_humidity, temperature, dry_diameter, *,
-               soluble_mask=True, parameters=HydrationParameters(), organic_enabled=False):
+               soluble_mask=True, parameters=HydrationParameters(), organic_enabled=False,
+               fix_kelvin_water=False):
     """Run one cleanup → hydration → radii/water pass, with native policy.
 
     State shapes are number (...,17), volume (...,17,5), gas (...,3), with
@@ -107,7 +108,8 @@ def correction(number, volume, gas, relative_humidity, temperature, dry_diameter
     safe_number = jnp.where(valid[...,None],new_number,0.0)
     safe_volume = jnp.where(valid[...,None,None],new_volume,0.0)
     geometry = equilibrate(safe_number,safe_volume,relative_humidity,temperature,dry_diameter,
-                           soluble_mask=soluble_mask,parameters=parameters)
+                           soluble_mask=soluble_mask,parameters=parameters,
+                           fix_kelvin_water=fix_kelvin_water)
     dry_radius = (geometry.core/(PI/6.0))**(1.0/3.0)/2.0*100.0
     wet_radius = geometry.wet_diameter/2.0*100.0
     water_density = jnp.broadcast_to(jnp.asarray(parameters.water_density,dtype=jnp.float64),leading)

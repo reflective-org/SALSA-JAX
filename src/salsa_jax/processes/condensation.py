@@ -39,13 +39,22 @@ class CondensationState(NamedTuple):
     gas: jax.Array
 
 
-def condensation_rates(number, wet_diameter, temperature, pressure, *, parameters=CondensationParameters()):
+def condensation_rates(number, wet_diameter, temperature, pressure, *, parameters=CondensationParameters(),
+                       fix_particle_diffusion=False):
     """Return per-bin vapor collision sinks (...,17) [s-1], including number.
 
     Number is particles/m3, wet diameter m, temperature K, pressure Pa. All
     inputs must be finite, number nonnegative, others positive. The first two
     bins include molecular size and particle diffusion; later bins do not.
     Leading environmental/property axes broadcast against the state axes.
+
+    fix_particle_diffusion (static, default False = native) opts into the S10
+    repair (TUT-ISI/SALSA#19): natively the particle diffusion coefficient of
+    bins 1-2 (dynamics.F90:612-613) uses the vapor's Fuchs-Sutugin factor beta
+    in place of a slip correction; the repair uses the Cunningham correction
+    for air as in coagc (Allen and Raabe), with lambda_air =
+    (1.656e-10 T + 1.828e-8) p0/p and Kn = 2 lambda_air/d_wet
+    (upstream/s10_cond_particle_diffusion/fix_particle_diffusion.patch).
     """
     number = jnp.asarray(number, dtype=jnp.float64)
     diameter = jnp.asarray(wet_diameter, dtype=jnp.float64)
@@ -62,13 +71,20 @@ def condensation_rates(number, wet_diameter, temperature, pressure, *, parameter
     collision_diameter = diameter + jnp.where(small_bins, SULFURIC_ACID_DIAMETER, 0.0)
     knudsen = 2.0 * mean_free_path / collision_diameter
     beta = (knudsen + 1.0) / (0.377 * knudsen + 1.0 + 4.0 / (3.0 * accommodation) * (knudsen + knudsen**2))
-    particle_diffusion = BOLTZMANN * temperature * beta / (3.0 * PI * viscosity * diameter)
+    if fix_particle_diffusion:
+        air_mean_free_path = (1.656e-10 * temperature + 1.828e-8) * REFERENCE_PRESSURE / pressure
+        air_knudsen = 2.0 * air_mean_free_path / diameter
+        slip = 1.0 + air_knudsen * (1.142 + 0.558 * jnp.exp(-0.999 / air_knudsen))
+        particle_diffusion = BOLTZMANN * temperature * slip / (3.0 * PI * viscosity * diameter)
+    else:
+        particle_diffusion = BOLTZMANN * temperature * beta / (3.0 * PI * viscosity * diameter)
     return (2.0 * PI * collision_diameter *
             (vapor_diffusion + jnp.where(small_bins, particle_diffusion, 0.0)) * beta * number)
 
 
 def condensation_step(number, volume, gas, wet_diameter, temperature, pressure, timestep, *,
-                      organic_enabled=False, enabled=True, parameters=CondensationParameters()):
+                      organic_enabled=False, enabled=True, parameters=CondensationParameters(),
+                      fix_particle_diffusion=False):
     """Condense sulfate and optionally nonvolatile organic vapor; no nucleation.
 
     State shapes: number (...,17), volume (...,17,5), gas (...,3), with matching
@@ -89,15 +105,17 @@ def condensation_step(number, volume, gas, wet_diameter, temperature, pressure, 
 
     def condense():
         return _condense(number, volume, gas, wet_diameter, temperature, pressure, timestep,
-                         organic_enabled, parameters)
+                         organic_enabled, parameters, fix_particle_diffusion=fix_particle_diffusion)
 
     return jax.lax.cond(enabled, condense, lambda: CondensationState(number, volume, gas))
 
 
 def _condense(number, volume, gas, wet_diameter, temperature, pressure, timestep,
-              organic_enabled, parameters, sources=None):
+              organic_enabled, parameters, sources=None, fix_particle_diffusion=False):
     """Shared native vapor update; optional sources restore nucleation coupling."""
-    rates = condensation_rates(number, wet_diameter, temperature, pressure, parameters=parameters)
+    rates = (condensation_rates(number, wet_diameter, temperature, pressure, parameters=parameters,
+                                fix_particle_diffusion=True) if fix_particle_diffusion else
+             condensation_rates(number, wet_diameter, temperature, pressure, parameters=parameters))
     sink = jnp.sum(rates, axis=-1)
     new_number, new_gas, new_volume = number, gas, volume
     # The original collision sink is computed once, before any insertion.

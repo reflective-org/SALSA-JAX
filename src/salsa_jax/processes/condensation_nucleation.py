@@ -13,7 +13,7 @@ def condensation_nucleation_step(number, volume, gas, wet_diameter, temperature,
                                  relative_humidity, pressure, timestep, *, scheme=2, growth=1,
                                  boundary_layer=True, organic_enabled=False, enabled=True,
                                  activation_coefficient=NUCLEATION_ACTIVATION_COEFFICIENT,
-                                 parameters=CondensationParameters()):
+                                 parameters=CondensationParameters(), fix_particle_diffusion=False):
     """Advance native uptake/insertion with fixed supplied hydrated diameters.
 
     State units/shapes follow condensation_step; RH is a fraction, timestep
@@ -29,7 +29,8 @@ def condensation_nucleation_step(number, volume, gas, wet_diameter, temperature,
         raise ValueError("Supported nucleation schemes are 0/1/2/3 and growth options 1/2/3")
     if scheme == 0:
         return condensation_step(number, volume, gas, wet_diameter, temperature, pressure, timestep,
-                                 organic_enabled=organic_enabled, enabled=enabled, parameters=parameters)
+                                 organic_enabled=organic_enabled, enabled=enabled, parameters=parameters,
+                                 fix_particle_diffusion=fix_particle_diffusion)
     number, volume, gas = (jnp.asarray(v, dtype=jnp.float64) for v in (number, volume, gas))
     if (number.shape[-1:] != (17,) or volume.shape != number.shape + (5,) or
             gas.shape != number.shape[:-1] + (3,)):
@@ -42,6 +43,7 @@ def condensation_nucleation_step(number, volume, gas, wet_diameter, temperature,
                                      boundary_layer=boundary_layer, organic_enabled=organic_enabled,
                                      activation_coefficient=activation_coefficient, parameters=parameters)
         return _condense(number, volume, gas, wet_diameter, temperature, pressure, timestep,
-                         organic_enabled, parameters, sources)
+                         organic_enabled, parameters, sources,
+                         fix_particle_diffusion=fix_particle_diffusion)
 
     return jax.lax.cond(enabled, advance, lambda: CondensationState(number, volume, gas))

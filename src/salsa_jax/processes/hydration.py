@@ -59,7 +59,7 @@ def inverse_molality(activity, *, organic_soluble_fraction=ORGANIC_SOLUBLE_FRACT
 
 
 def equilibrate(number, volume, relative_humidity, temperature, dry_diameter, *,
-                soluble_mask=True, parameters=HydrationParameters()):
+                soluble_mask=True, parameters=HydrationParameters(), fix_kelvin_water=False):
     """Return per-particle dry volume and equilibrium wet diameter for 17 bins.
 
     Number (...,17) [#/m3] and material volume (...,17,5) [m3/m3] have matching
@@ -76,6 +76,12 @@ def equilibrate(number, volume, relative_humidity, temperature, dry_diameter, *,
     initial Kelvin factor 1.001 and uncapped loop; no new convergence repair.
     A soluble active zero-volume bin or nonfinite Kelvin factor yields a NaN
     wet diameter, exposing the native floating-point failure without a JIT hang.
+
+    fix_kelvin_water (static, default False = native) opts into the S4 repair
+    (TUT-ISI/SALSA#14): the native Kelvin factor at properties.F90:339 is
+    exp(2 sigma v_SO4/(k T d)) with the volume of one sulfate molecule; the
+    repair uses the Kelvin term on water, exp(4 sigma v_w/(k T d)), with
+    v_w = M_w/(1000 N_A rho_w) (upstream/s4_kelvin_hydration/fix_kelvin.patch).
     """
     number, volume, dry = (jnp.asarray(v, dtype=jnp.float64) for v in (number, volume, dry_diameter))
     if (number.shape[-1:] != (17,) or volume.shape != number.shape + (5,) or dry.shape[-1:] != (17,)):
@@ -108,7 +114,12 @@ def equilibrate(number, volume, relative_humidity, temperature, dry_diameter, *,
     previous = jnp.ones_like(number)
     kelvin = jnp.full_like(number, 1.001)
     iterations = jnp.zeros_like(number, dtype=jnp.int32)
-    sulfate_molecular_volume = (mass[..., 0, None] / 1000.0) / AVOGADRO / density[..., 0, None]
+    if fix_kelvin_water:
+        kelvin_factor = 4.0
+        kelvin_volume = (water_mass / 1000.0) / AVOGADRO / water_density
+    else:
+        kelvin_factor = 2.0
+        kelvin_volume = (mass[..., 0, None] / 1000.0) / AVOGADRO / density[..., 0, None]
 
     def condition(state):
         wet, previous, _, _ = state
@@ -126,7 +137,7 @@ def equilibrate(number, volume, relative_humidity, temperature, dry_diameter, *,
         updated = (water_content / divisor / water_density / (PI / 6.0) + core / (PI / 6.0))**(1.0 / 3.0)
         # Bins not iterating have no Kelvin update in Fortran. Safe placeholders
         # avoid division by zero on their traced, unselected arithmetic path.
-        next_kelvin = jnp.exp(2.0 * surface_tension * sulfate_molecular_volume /
+        next_kelvin = jnp.exp(kelvin_factor * surface_tension * kelvin_volume /
                              (BOLTZMANN * temperature * jnp.where(running, updated, 1.0)))
         updated = jnp.where(jnp.isfinite(next_kelvin), updated, jnp.nan)
         return (jnp.where(running, updated, wet), jnp.where(running, old, previous),
