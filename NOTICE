@@ -1,0 +1,17 @@
+SALSA-JAX
+Copyright (c) 2026, HAMMOZ Consortium
+Licensed under the BSD 3-Clause License (see LICENSE.txt).
+
+SALSA-JAX is a derived work. It is a JAX port of HAM-SALSA, the Sectional
+Aerosol module for Large Scale Applications, as distributed in the
+HAM-SALSA box-model code at https://github.com/reflective-org/SALSA
+(commit d87dc07). HAM-SALSA was developed by Kokkola et al. at the Finnish
+Meteorological Institute (FMI) and collaborators, and is released by the
+HAMMOZ Consortium under the BSD 3-Clause License. Original SALSA authors
+named in the source headers include Korhonen, Kokkola, Bergman, Niskanen,
+Laakso and Kuehn.
+
+The vendored Fortran source files in this repository are taken from that
+code and retain their original per-file author, copyright and
+SPDX-License-Identifier headers. Those headers remain in force and must be
+preserved in any redistribution.
